@@ -1,0 +1,12 @@
+{
+  "messages": [
+    {
+      "id": "8c3276b5-0882-4a80-8600-07e7e7c8cfeb",
+      "text": "Urgent Message: Due to severe weather, our pharmacy will be closed early on 03/23/2026. We will reopen 03/24/2026",
+      "startDate": "2026-05-21",
+      "endDate": "2026-05-21",
+      "active": true,
+      "createdAt": "2026-05-22"
+    }
+  ]
+}
