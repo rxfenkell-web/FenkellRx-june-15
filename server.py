@@ -357,7 +357,7 @@ class Handler(SimpleHTTPRequestHandler):
             self._serve_html_with_seo(os.path.join(BASE_DIR, "compounding-pharmacy-detroit.html"))
         elif path == "/blister-packaging-detroit":
             self._serve_html_with_seo(os.path.join(BASE_DIR, "blister-packaging-detroit.html"))
-            elif path == "/privacy-policy":
+        elif path == "/privacy-policy":
             self._serve_html_with_seo(os.path.join(BASE_DIR, "privacy-policy.html"))
         elif path == "/api/content":
             content = load_content()
