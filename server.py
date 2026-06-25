@@ -357,6 +357,8 @@ class Handler(SimpleHTTPRequestHandler):
             self._serve_html_with_seo(os.path.join(BASE_DIR, "compounding-pharmacy-detroit.html"))
         elif path == "/blister-packaging-detroit":
             self._serve_html_with_seo(os.path.join(BASE_DIR, "blister-packaging-detroit.html"))
+            elif path == "/privacy-policy":
+            self._serve_html_with_seo(os.path.join(BASE_DIR, "privacy-policy.html"))
         elif path == "/api/content":
             content = load_content()
             content.pop("notifications", None)
@@ -564,7 +566,7 @@ class Handler(SimpleHTTPRequestHandler):
 
     def _send_zip(self):
         INCLUDE_FILES = [
-            "index.html", "admin.html", "availability.html",
+            "index.html", "admin.html", "availability.html","privacy-policy.html",
             "compounding-pharmacy-detroit.html", "free-prescription-delivery-detroit.html", "blister-packaging-detroit.html",
             "style.css", "script.js",
             "logo.png", "server.py", "render.yaml", "requirements.txt",
