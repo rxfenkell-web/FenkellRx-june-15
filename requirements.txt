@@ -1,6 +1,4 @@
 resend
-resend
-resend
 Pillow
 requests
 schedule
