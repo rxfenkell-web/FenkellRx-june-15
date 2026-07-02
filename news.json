@@ -1,0 +1,29 @@
+{
+  "updatedAt": "2026-07-02T12:00:00-04:00",
+  "items": [
+    {
+      "title": "Medication Shortage Update: Hard-To-Find Prescriptions in Stock in Detroit",
+      "summary": "National shortages continue to affect ADHD medications, GLP-1 medications like semaglutide (Ozempic, Wegovy) and tirzepatide (Mounjaro, Zepbound), and several antibiotics. As an independent Detroit pharmacy, we source from multiple wholesalers - check our live availability or call (313) 519-5700. Valid prescription required.",
+      "url": "/availability",
+      "linkText": "Check live availability",
+      "tag": "Availability",
+      "publishedAt": "2026-07-02"
+    },
+    {
+      "title": "Walk-In Flu, COVID-19, RSV and Shingles (Shingrix) Vaccines - Detroit 48223",
+      "summary": "No appointment needed at our Fenkell Ave pharmacy. Most vaccines are $0 with Medicare Part B, Part D, or private insurance - we verify your coverage before administering.",
+      "url": "/#immunizations",
+      "linkText": "See all vaccines",
+      "tag": "Vaccines",
+      "publishedAt": "2026-07-02"
+    },
+    {
+      "title": "Free Same-Day Prescription Delivery Across Northwest Detroit",
+      "summary": "Home delivery is always free within our service area - North Rosedale, Brightmoor, Old Redford, Grandmont, Redford Township, and Southfield. Refills, transfers, and new prescriptions all qualify.",
+      "url": "/free-prescription-delivery-detroit",
+      "linkText": "Delivery details",
+      "tag": "Services",
+      "publishedAt": "2026-07-02"
+    }
+  ]
+}
