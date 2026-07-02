@@ -1,0 +1,1808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Banner Admin — Fenkell Rx Pharmacy</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #F4F6F9;
+      color: #1A1F2E;
+      min-height: 100vh;
+    }
+
+    /* ── TOP BAR ── */
+    .topbar {
+      background: linear-gradient(135deg, #7B1226 0%, #A01830 100%);
+      color: #fff;
+      padding: 14px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .topbar-title {
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+    .topbar-sub { font-size: 13px; opacity: 0.75; margin-top: 2px; }
+    #logout-btn {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #fff;
+      padding: 7px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      cursor: pointer;
+      display: none;
+    }
+    #logout-btn:hover { background: rgba(255,255,255,0.25); }
+
+    /* ── LOGIN ── */
+    #login-screen {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: calc(100vh - 56px);
+      padding: 24px;
+    }
+    .login-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 40px 36px;
+      width: 100%;
+      max-width: 380px;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.10);
+    }
+    .login-card h2 { font-size: 22px; margin-bottom: 6px; }
+    .login-card p { color: #718096; font-size: 14px; margin-bottom: 28px; }
+    .login-card label { font-size: 13px; font-weight: 600; color: #4A5568; display: block; margin-bottom: 6px; }
+    .login-card input {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid #E2E8F0;
+      border-radius: 8px;
+      font-size: 15px;
+      outline: none;
+      margin-bottom: 16px;
+      transition: border-color 0.2s;
+    }
+    .login-card input:focus { border-color: #A01830; }
+    #login-error { color: #C53030; font-size: 13px; margin-bottom: 12px; display: none; }
+    .btn-primary {
+      background: linear-gradient(135deg, #7B1226, #A01830);
+      color: #fff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      transition: opacity 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.88; }
+
+    /* ── MAIN PANEL ── */
+    #admin-panel { display: none; padding: 0 24px 32px; max-width: 820px; margin: 0 auto; }
+
+    /* ── JUMP NAV ── */
+    .jump-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #fff;
+      border-bottom: 1.5px solid #E2E8F0;
+      display: flex;
+      gap: 4px;
+      padding: 8px 0;
+      margin: 0 -24px 24px;
+      padding-left: 24px;
+      padding-right: 24px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .jump-nav::-webkit-scrollbar { display: none; }
+    .jump-nav a {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      white-space: nowrap;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #4A5568;
+      background: #F7FAFC;
+      border: 1.5px solid #E2E8F0;
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .jump-nav a:hover { background: #1a3c2b; color: #fff; border-color: #1a3c2b; }
+
+    /* ── CONTENT EDITOR ── */
+    .ce-group { border: 1.5px solid #E2E8F0; border-radius: 10px; margin-bottom: 10px; overflow: hidden; }
+    .ce-group summary { padding: 12px 16px; cursor: pointer; font-weight: 600; font-size: 14px; background: #F7FAFC; list-style: none; display: flex; align-items: center; gap: 8px; user-select: none; }
+    .ce-group summary::-webkit-details-marker { display: none; }
+    .ce-group summary:hover { background: #EDF2F7; }
+    .ce-group summary::after { content: '▾'; margin-left: auto; color: #718096; font-size: 12px; }
+    .ce-group[open] summary::after { content: '▴'; }
+    .ce-group-body { padding: 14px 16px; border-top: 1.5px solid #E2E8F0; display: grid; gap: 10px; }
+
+    /* preview banner */
+    #preview-bar {
+      display: none;
+      background: linear-gradient(135deg, #7B1226 0%, #A01830 100%);
+      color: #fff;
+      padding: 11px 20px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 28px;
+      text-align: center;
+    }
+
+    /* ADD FORM */
+    .card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 28px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+      margin-bottom: 28px;
+    }
+    .card h3 { font-size: 17px; font-weight: 700; margin-bottom: 20px; color: #1A1F2E; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { font-size: 13px; font-weight: 600; color: #4A5568; display: block; margin-bottom: 6px; }
+    .form-group input[type="text"],
+    .form-group input[type="date"],
+    .form-group textarea {
+      width: 100%;
+      padding: 10px 13px;
+      border: 1.5px solid #E2E8F0;
+      border-radius: 8px;
+      font-size: 14px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+      resize: vertical;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus { border-color: #A01830; }
+    .form-group textarea { min-height: 72px; }
+    .char-hint { font-size: 12px; color: #A0AEC0; margin-top: 4px; }
+    .form-actions { display: flex; gap: 10px; align-items: center; margin-top: 4px; }
+    .btn-save {
+      background: linear-gradient(135deg, #7B1226, #A01830);
+      color: #fff;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 9px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .btn-save:hover { opacity: 0.88; }
+    .btn-cancel {
+      background: #EDF2F7;
+      color: #4A5568;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 9px;
+      font-size: 14px;
+      cursor: pointer;
+      display: none;
+    }
+    .btn-cancel:hover { background: #E2E8F0; }
+    #form-status { font-size: 13px; color: #2F855A; display: none; }
+
+    /* MESSAGE LIST */
+    .list-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .list-header h3 { font-size: 17px; font-weight: 700; }
+    #msg-count { font-size: 13px; color: #718096; }
+    .msg-empty { color: #A0AEC0; font-size: 14px; padding: 24px 0; text-align: center; }
+    .msg-item {
+      border: 1.5px solid #E8EDF3;
+      border-radius: 12px;
+      padding: 16px 18px;
+      margin-bottom: 12px;
+      background: #fff;
+      transition: border-color 0.2s;
+    }
+    .msg-item.is-active { border-color: #68D391; background: #F0FFF4; }
+    .msg-item.is-inactive { opacity: 0.6; }
+    .msg-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+    .msg-text { font-size: 15px; font-weight: 600; color: #1A1F2E; flex: 1; line-height: 1.4; }
+    .msg-badges { display: flex; gap: 6px; flex-shrink: 0; flex-wrap: wrap; justify-content: flex-end; }
+    .badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .badge-active { background: #C6F6D5; color: #276749; }
+    .badge-inactive { background: #EDF2F7; color: #718096; }
+    .badge-today { background: #FED7D7; color: #9B2C2C; }
+    .badge-upcoming { background: #BEE3F8; color: #2A69AC; }
+    .badge-expired { background: #E2E8F0; color: #A0AEC0; }
+    .msg-dates { font-size: 12px; color: #718096; margin-top: 5px; }
+    .msg-actions { display: flex; gap: 8px; margin-top: 12px; }
+    .btn-edit {
+      background: #EBF4FF;
+      color: #2B6CB0;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 7px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-edit:hover { background: #BEE3F8; }
+    .btn-toggle {
+      background: #EDF2F7;
+      color: #4A5568;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 7px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-toggle:hover { background: #E2E8F0; }
+    .btn-delete {
+      background: #FFF5F5;
+      color: #C53030;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 7px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-delete:hover { background: #FED7D7; }
+
+    /* ── QUICK MESSAGES ── */
+    .quick-section-title {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .quick-section-sub {
+      font-size: 13px;
+      color: #718096;
+      margin-bottom: 16px;
+    }
+    .quick-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .quick-card {
+      border: 1.5px solid #E8EDF3;
+      border-radius: 11px;
+      padding: 13px 14px;
+      cursor: pointer;
+      transition: border-color 0.18s, background 0.18s, transform 0.1s;
+      background: #FAFBFC;
+    }
+    .quick-card:hover {
+      border-color: #A01830;
+      background: #FFF5F6;
+      transform: translateY(-1px);
+    }
+    .quick-card:active { transform: translateY(0); }
+    .quick-card-icon { font-size: 22px; margin-bottom: 5px; }
+    .quick-card-title { font-size: 13px; font-weight: 700; color: #1A1F2E; margin-bottom: 3px; }
+    .quick-card-preview { font-size: 12px; color: #718096; line-height: 1.4; }
+    @media (max-width: 520px) { .quick-grid { grid-template-columns: 1fr; } }
+
+    .emoji-picker { margin-top: 10px; }
+    .emoji-picker-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #718096;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .emoji-picker-label .toggle-arrow {
+      font-size: 10px;
+      transition: transform 0.2s;
+      display: inline-block;
+    }
+    .emoji-picker-label.open .toggle-arrow { transform: rotate(90deg); }
+    .emoji-sections { display: none; }
+    .emoji-sections.open { display: block; }
+    .emoji-category {
+      margin-bottom: 8px;
+    }
+    .emoji-category-title {
+      font-size: 11px;
+      color: #A0AEC0;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 4px;
+    }
+    .emoji-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+    .emoji-btn {
+      background: #F7FAFC;
+      border: 1.5px solid #E2E8F0;
+      border-radius: 8px;
+      width: 36px;
+      height: 36px;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s, border-color 0.15s, transform 0.1s;
+      line-height: 1;
+    }
+    .emoji-btn:hover {
+      background: #EBF4FF;
+      border-color: #A01830;
+      transform: scale(1.15);
+    }
+    .emoji-btn:active { transform: scale(0.95); }
+
+    @media (max-width: 520px) {
+      .form-row { grid-template-columns: 1fr; }
+      #admin-panel { padding: 20px 14px; }
+    }
+
+    /* ── MEDICATIONS ── */
+    .section-divider {
+      font-size: 18px;
+      font-weight: 800;
+      color: #1A1F2E;
+      margin: 8px 0 4px;
+      padding-top: 12px;
+      border-top: 2px solid #E8EDF3;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-divider-sub {
+      font-size: 13px;
+      color: #718096;
+      font-weight: 400;
+      margin-bottom: 24px;
+    }
+    .form-group select {
+      width: 100%;
+      padding: 10px 13px;
+      border: 1.5px solid #E2E8F0;
+      border-radius: 8px;
+      font-size: 14px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+      background: #fff;
+      color: #1A1F2E;
+    }
+    .form-group select:focus { border-color: #A01830; }
+    .med-item {
+      border: 1.5px solid #E8EDF3;
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-bottom: 10px;
+      background: #fff;
+      transition: border-color 0.2s;
+    }
+    .med-item:hover { border-color: #cbd5e0; }
+    .med-item-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+    .med-item-name { font-size: 15px; font-weight: 700; color: #1A1F2E; }
+    .med-item-generic { font-size: 13px; color: #718096; font-style: italic; }
+    .med-item-notes { font-size: 13px; color: #718096; margin-top: 4px; }
+    .med-item-meta { display: flex; align-items: center; gap: 8px; margin-top: 3px; flex-wrap: wrap; }
+    .med-category-tag {
+      font-size: 11px;
+      font-weight: 600;
+      color: #2B6CB0;
+      background: #EBF4FF;
+      padding: 2px 8px;
+      border-radius: 20px;
+    }
+    .med-updated { font-size: 11px; color: #A0AEC0; }
+    .med-item-actions { display: flex; gap: 8px; margin-top: 10px; }
+    .med-status-badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .ms-in_stock     { background: #C6F6D5; color: #276749; }
+    .ms-limited      { background: #FEEBB4; color: #92400E; }
+    .ms-out_of_stock { background: #FED7D7; color: #9B2C2C; }
+    .ms-call_us      { background: #BEE3F8; color: #2A69AC; }
+    .med-empty { color: #A0AEC0; font-size: 14px; padding: 20px 0; text-align: center; }
+    #med-form-status { font-size: 13px; color: #2F855A; display: none; }
+    .availability-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #0082C8;
+      background: #EDF9FF;
+      border: 1px solid #C0ECFF;
+      padding: 7px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.15s;
+      margin-bottom: 20px;
+      float: right;
+    }
+    .availability-link:hover { background: #C0ECFF; }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <div>
+    <div class="topbar-title">Fenkell Rx — Banner Admin</div>
+    <div class="topbar-sub">Manage custom messages shown on the website</div>
+  </div>
+  <div style="display:flex;gap:8px;align-items:center;">
+    <button id="export-btn" onclick="downloadBackup()" style="display:none;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:7px 14px;border-radius:8px;font-size:13px;cursor:pointer;">
+      &#x2B07; Download Backup
+    </button>
+    <button id="logout-btn" onclick="logout()">Log Out</button>
+  </div>
+</div>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="login-card">
+    <h2>Admin Login</h2>
+    <p>Enter your password to manage banner messages.</p>
+    <label for="pw-input">Password</label>
+    <input type="password" id="pw-input" placeholder="Enter password" onkeydown="if(event.key==='Enter')login()">
+    <div id="login-error">Incorrect password. Please try again.</div>
+    <button class="btn-primary" onclick="login()">Sign In</button>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="admin-panel">
+
+  <!-- JUMP NAV -->
+  <nav class="jump-nav">
+    <a href="#section-banner">📢 Banners</a>
+    <a href="#section-submissions">📋 Submissions</a>
+    <a href="#section-meds">💊 Medications</a>
+    <a href="#section-content">✏️ Contact & Hours</a>
+    <a href="#section-content-hero">🏥 Pages & Text</a>
+    <a href="#section-notifications">🔔 Notifications</a>
+    <a href="#section-seo">🔍 SEO</a>
+  </nav>
+
+  <div id="preview-bar"></div>
+
+  <!-- SYSTEM STATUS -->
+  <div id="section-banner" class="card">
+    <h3 style="margin-bottom:1rem;">System Status</h3>
+    <div id="status-rows" style="display:flex;flex-direction:column;gap:0.65rem;">
+      <div style="color:#888;font-size:14px;">Checking configuration…</div>
+    </div>
+    <div style="margin-top:1.25rem;display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;">
+      <button id="test-email-btn" onclick="sendTestEmail()" style="background:#1a3c2b;color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:14px;font-weight:600;cursor:pointer;">
+        Send Test Email
+      </button>
+      <span id="test-email-result" style="font-size:13px;display:none;"></span>
+    </div>
+  </div>
+
+  <!-- ADD / EDIT FORM -->
+  <div class="card">
+    <h3 id="form-title">Add New Banner Message</h3>
+    <input type="hidden" id="edit-id">
+    <div class="form-group">
+      <label for="msg-text">Message Text</label>
+      <textarea id="msg-text" placeholder="e.g. We will close early at 3 PM on Christmas Eve — Merry Christmas from our team!" maxlength="160"></textarea>
+      <div class="char-hint"><span id="char-count">0</span> / 160 characters</div>
+      <div class="emoji-picker">
+        <div class="emoji-picker-label" onclick="toggleEmojiPicker(this)">
+          <span class="toggle-arrow">▶</span> Insert Emoji
+        </div>
+        <div class="emoji-sections">
+          <div class="emoji-category">
+            <div class="emoji-category-title">Pharmacy &amp; Health</div>
+            <div class="emoji-row">
+              <button class="emoji-btn" onclick="insertEmoji('💊')" title="Pill">💊</button>
+              <button class="emoji-btn" onclick="insertEmoji('🏥')" title="Hospital">🏥</button>
+              <button class="emoji-btn" onclick="insertEmoji('🩺')" title="Stethoscope">🩺</button>
+              <button class="emoji-btn" onclick="insertEmoji('⚕️')" title="Medical symbol">⚕️</button>
+              <button class="emoji-btn" onclick="insertEmoji('💉')" title="Syringe">💉</button>
+              <button class="emoji-btn" onclick="insertEmoji('🩹')" title="Bandage">🩹</button>
+              <button class="emoji-btn" onclick="insertEmoji('🌡️')" title="Thermometer">🌡️</button>
+              <button class="emoji-btn" onclick="insertEmoji('❤️')" title="Heart">❤️</button>
+            </div>
+          </div>
+          <div class="emoji-category">
+            <div class="emoji-category-title">Holidays &amp; Occasions</div>
+            <div class="emoji-row">
+              <button class="emoji-btn" onclick="insertEmoji('🎄')" title="Christmas tree">🎄</button>
+              <button class="emoji-btn" onclick="insertEmoji('🦃')" title="Thanksgiving">🦃</button>
+              <button class="emoji-btn" onclick="insertEmoji('🎆')" title="Fireworks">🎆</button>
+              <button class="emoji-btn" onclick="insertEmoji('🎉')" title="Party">🎉</button>
+              <button class="emoji-btn" onclick="insertEmoji('🎊')" title="Confetti">🎊</button>
+              <button class="emoji-btn" onclick="insertEmoji('🌟')" title="Star">🌟</button>
+              <button class="emoji-btn" onclick="insertEmoji('⭐')" title="Star">⭐</button>
+              <button class="emoji-btn" onclick="insertEmoji('🥂')" title="Celebration">🥂</button>
+              <button class="emoji-btn" onclick="insertEmoji('🎁')" title="Gift">🎁</button>
+              <button class="emoji-btn" onclick="insertEmoji('🌸')" title="Spring">🌸</button>
+            </div>
+          </div>
+          <div class="emoji-category">
+            <div class="emoji-category-title">Alerts &amp; Info</div>
+            <div class="emoji-row">
+              <button class="emoji-btn" onclick="insertEmoji('📢')" title="Announcement">📢</button>
+              <button class="emoji-btn" onclick="insertEmoji('🔔')" title="Bell">🔔</button>
+              <button class="emoji-btn" onclick="insertEmoji('⚠️')" title="Warning">⚠️</button>
+              <button class="emoji-btn" onclick="insertEmoji('ℹ️')" title="Info">ℹ️</button>
+              <button class="emoji-btn" onclick="insertEmoji('✅')" title="Check">✅</button>
+              <button class="emoji-btn" onclick="insertEmoji('⏰')" title="Clock">⏰</button>
+              <button class="emoji-btn" onclick="insertEmoji('📅')" title="Calendar">📅</button>
+              <button class="emoji-btn" onclick="insertEmoji('🕐')" title="Time">🕐</button>
+              <button class="emoji-btn" onclick="insertEmoji('📍')" title="Location">📍</button>
+              <button class="emoji-btn" onclick="insertEmoji('📞')" title="Phone">📞</button>
+            </div>
+          </div>
+          <div class="emoji-category">
+            <div class="emoji-category-title">General</div>
+            <div class="emoji-row">
+              <button class="emoji-btn" onclick="insertEmoji('🙏')" title="Thanks">🙏</button>
+              <button class="emoji-btn" onclick="insertEmoji('👋')" title="Wave">👋</button>
+              <button class="emoji-btn" onclick="insertEmoji('😊')" title="Smile">😊</button>
+              <button class="emoji-btn" onclick="insertEmoji('✨')" title="Sparkles">✨</button>
+              <button class="emoji-btn" onclick="insertEmoji('☀️')" title="Sun">☀️</button>
+              <button class="emoji-btn" onclick="insertEmoji('🌺')" title="Flower">🌺</button>
+              <button class="emoji-btn" onclick="insertEmoji('👍')" title="Thumbs up">👍</button>
+              <button class="emoji-btn" onclick="insertEmoji('💙')" title="Blue heart">💙</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="start-date">Show From</label>
+        <input type="date" id="start-date">
+      </div>
+      <div class="form-group">
+        <label for="end-date">Show Until</label>
+        <input type="date" id="end-date">
+      </div>
+    </div>
+    <div class="form-actions">
+      <button class="btn-save" onclick="saveMessage()">Save Message</button>
+      <button class="btn-cancel" id="cancel-btn" onclick="cancelEdit()">Cancel</button>
+      <span id="form-status">Saved!</span>
+    </div>
+  </div>
+
+  <!-- QUICK MESSAGES -->
+  <div class="card">
+    <div class="quick-section-title">Quick Messages</div>
+    <div class="quick-section-sub">Click any preset to load it into the form above — then set your dates and save.</div>
+    <div class="quick-grid">
+
+      <div class="quick-card" onclick="loadPreset('⏰ Closing early today at 3 PM — sorry for any inconvenience. See you tomorrow!')">
+        <div class="quick-card-icon">⏰</div>
+        <div class="quick-card-title">Early Closing</div>
+        <div class="quick-card-preview">Closing early today — see you tomorrow</div>
+      </div>
+
+      <div class="quick-card" onclick="loadPreset('📢 Closed today for staff training. We\'ll be back tomorrow at our regular hours — thank you!')">
+        <div class="quick-card-icon">📢</div>
+        <div class="quick-card-title">Staff Training Day</div>
+        <div class="quick-card-preview">Closed for training, back tomorrow</div>
+      </div>
+
+      <div class="quick-card" onclick="loadPreset('⚠️ Closed today due to severe weather. Your safety is our priority — we\'ll reopen as soon as it\'s safe!')">
+        <div class="quick-card-icon">⚠️</div>
+        <div class="quick-card-title">Weather Closure</div>
+        <div class="quick-card-preview">Closed for weather — safety first</div>
+      </div>
+
+      <div class="quick-card" onclick="loadPreset('🕐 Reduced hours today — open 10 AM to 3 PM only. Thank you for your understanding!')">
+        <div class="quick-card-icon">🕐</div>
+        <div class="quick-card-title">Reduced Hours</div>
+        <div class="quick-card-preview">Open limited hours today only</div>
+      </div>
+
+      <div class="quick-card" onclick="loadPreset('💉 Flu shots now available — walk-ins welcome, no appointment needed. Stop in today!')">
+        <div class="quick-card-icon">💉</div>
+        <div class="quick-card-title">Flu Shot Reminder</div>
+        <div class="quick-card-preview">Walk-in flu shots available now</div>
+      </div>
+
+      <div class="quick-card" onclick="loadPreset('🌟 Join us this Saturday for our Community Health Fair! Free screenings, giveaways & more.')">
+        <div class="quick-card-icon">🌟</div>
+        <div class="quick-card-title">Community Event</div>
+        <div class="quick-card-preview">Health fair — free screenings & giveaways</div>
+      </div>
+
+      <div class="quick-card" onclick="loadPreset('🔔 We are temporarily closed due to an unforeseen issue. We apologize and will reopen shortly!')">
+        <div class="quick-card-icon">🔔</div>
+        <div class="quick-card-title">Emergency Closure</div>
+        <div class="quick-card-preview">Temporarily closed — reopening soon</div>
+      </div>
+
+      <div class="quick-card" onclick="loadPreset('🎉 We\'re celebrating our anniversary! Stop in for special deals and thank you for your support!')">
+        <div class="quick-card-icon">🎉</div>
+        <div class="quick-card-title">Special Occasion</div>
+        <div class="quick-card-preview">Celebrating — stop in for special deals</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FORM SUBMISSIONS LOG -->
+  <div id="section-submissions" class="card">
+    <div class="list-header">
+      <h3>Form Submissions</h3>
+      <span id="sub-count" style="font-size:13px;color:#888;"></span>
+    </div>
+    <p style="font-size:13px;color:#888;margin-bottom:1rem;">Every submission from the website is recorded here as a backup, even if the email notification was missed.</p>
+    <div id="sub-list"><div class="msg-empty">No submissions recorded yet.</div></div>
+    <div style="margin-top:1rem;text-align:right;">
+      <button id="clear-subs-btn" onclick="clearSubmissions()" style="background:none;border:1.5px solid #e74c3c;color:#e74c3c;border-radius:8px;padding:7px 16px;font-size:13px;font-weight:600;cursor:pointer;display:none;">
+        Clear All Submissions
+      </button>
+    </div>
+  </div>
+
+  <!-- MESSAGE LIST -->
+  <div class="card">
+    <div class="list-header">
+      <h3>Saved Messages</h3>
+      <span id="msg-count"></span>
+    </div>
+    <div id="msg-list"><div class="msg-empty">No messages yet. Add one above.</div></div>
+  </div>
+
+  <!-- ══ MEDICATION AVAILABILITY ══ -->
+  <div id="section-meds" style="margin-top: 12px;">
+    <div class="section-divider">💊 Medication Availability</div>
+    <div class="section-divider-sub">These medications appear as a <strong>slide-in panel</strong> when patients first visit your homepage, and are indexed by Google. <strong>Maximum 10 medications.</strong> The first 10 added are shown — remove one to add a different medication.</div>
+  </div>
+
+  <!-- ADD / EDIT MED FORM -->
+  <div class="card">
+    <h3 id="med-form-title">Add Medication</h3>
+    <input type="hidden" id="med-edit-id">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="med-name">Brand / Common Name <span style="color:#C53030;">*</span></label>
+        <input type="text" id="med-name" placeholder="e.g. Ozempic, Adderall XR">
+      </div>
+      <div class="form-group">
+        <label for="med-generic">Generic Name</label>
+        <input type="text" id="med-generic" placeholder="e.g. semaglutide, amphetamine">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="med-category">Category</label>
+        <input type="text" id="med-category" placeholder="e.g. Diabetes, ADHD, Antibiotics" list="category-suggestions">
+        <datalist id="category-suggestions">
+          <option value="Antibiotics">
+          <option value="ADHD">
+          <option value="Diabetes">
+          <option value="Blood Pressure">
+          <option value="Cholesterol">
+          <option value="Mental Health">
+          <option value="Pain Management">
+          <option value="Thyroid">
+          <option value="Vitamins &amp; Supplements">
+          <option value="Weight Management">
+          <option value="General">
+        </datalist>
+      </div>
+      <div class="form-group">
+        <label for="med-status">Availability Status</label>
+        <select id="med-status">
+          <option value="in_stock">✓ In Stock</option>
+          <option value="limited">⚠ Limited Supply</option>
+          <option value="call_us">📞 Call for Availability</option>
+          <option value="out_of_stock">✗ Currently Unavailable</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="med-notes">Notes (optional)</label>
+      <textarea id="med-notes" placeholder="e.g. Available in 10mg and 20mg doses only. Call to confirm your strength is in stock." style="min-height:64px;"></textarea>
+    </div>
+    <div class="form-actions">
+      <button class="btn-save" onclick="saveMedication()">Save Medication</button>
+      <button class="btn-cancel" id="med-cancel-btn" onclick="cancelMedEdit()">Cancel</button>
+      <span id="med-form-status">Saved!</span>
+    </div>
+  </div>
+
+  <!-- MED LIST -->
+  <div class="card">
+    <div class="list-header">
+      <h3>Listed Medications</h3>
+      <span id="med-count" style="font-size:13px;color:#718096;"></span>
+    </div>
+    <p style="font-size:13px;color:#888;margin-bottom:1rem;">These medications are publicly listed on your website and indexed by Google. Keep statuses up to date so patients see accurate information.</p>
+    <div id="med-list"><div class="med-empty">No medications listed yet. Add one above.</div></div>
+  </div>
+
+  <!-- CONTENT EDITOR -->
+  <div id="section-content" class="card" style="margin-top:16px;">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px;">
+      <div>
+        <h3 style="margin-bottom:4px;">Website Content Editor</h3>
+        <p style="color:#718096;font-size:13px;margin:0;">Edit any text on your website. Click Save when done — changes appear on the site immediately.</p>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;flex-shrink:0;">
+        <span id="content-save-status" style="display:none;font-size:13px;font-weight:600;"></span>
+        <button class="btn-save" onclick="saveContent()">Save All Content</button>
+      </div>
+    </div>
+
+    <details class="ce-group" open>
+      <summary>📞 Contact Information</summary>
+      <div class="ce-group-body">
+        <div class="form-row">
+          <div class="form-group"><label>Pharmacy Name</label><input type="text" data-field="contact.pharmacyName"></div>
+          <div class="form-group"><label>Tagline</label><input type="text" data-field="contact.tagline"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Phone (displayed, e.g. (313) 519-5700)</label><input type="text" data-field="contact.phone"></div>
+          <div class="form-group"><label>Phone Raw (digits only, for links)</label><input type="text" data-field="contact.phoneRaw"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Email Address</label><input type="email" data-field="contact.email"></div>
+          <div class="form-group"><label>Fax Number</label><input type="text" data-field="contact.fax"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Full Address</label><input type="text" data-field="contact.address"></div>
+          <div class="form-group"><label>Fax Description</label><input type="text" data-field="contact.faxDesc"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Google Rating (e.g. 4.9★)</label><input type="text" data-field="contact.googleRating"></div>
+          <div class="form-group"><label>Rating Label</label><input type="text" data-field="contact.googleRatingLabel"></div>
+        </div>
+        <div class="form-group">
+          <label>Google Maps Embed URL</label>
+          <input type="text" data-field="contact.mapsUrl" placeholder="https://www.google.com/maps/embed?pb=…">
+          <div style="font-size:12px;color:#a0aec0;margin-top:4px;">To get this URL: open Google Maps → search your address → Share → Embed a map → copy the <em>src</em> URL from the iframe code.</div>
+        </div>
+      </div>
+    </details>
+
+    <details class="ce-group">
+      <summary>🕐 Business Hours</summary>
+      <div class="ce-group-body">
+        <div class="form-row">
+          <div class="form-group"><label>Monday</label><input type="text" data-field="hours.monday"></div>
+          <div class="form-group"><label>Tuesday</label><input type="text" data-field="hours.tuesday"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Wednesday</label><input type="text" data-field="hours.wednesday"></div>
+          <div class="form-group"><label>Thursday</label><input type="text" data-field="hours.thursday"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Friday</label><input type="text" data-field="hours.friday"></div>
+          <div class="form-group"><label>Saturday</label><input type="text" data-field="hours.saturday"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Sunday / Holidays Label</label><input type="text" data-field="hours.sundayLabel"></div>
+          <div class="form-group"><label>Sunday / Holidays Value</label><input type="text" data-field="hours.sundayValue"></div>
+        </div>
+        <div class="form-group"><label>After-Hours Phone Message</label><input type="text" data-field="hours.afterHoursMsg"></div>
+      </div>
+    </details>
+
+    <details id="section-content-hero" class="ce-group">
+      <summary>🏥 Hero Section</summary>
+      <div class="ce-group-body">
+        <div class="form-group"><label>Hero Heading</label><input type="text" data-field="hero.heading"></div>
+        <div class="form-row-3">
+          <div class="form-group"><label>Hero Italic Word 1</label><input type="text" data-field="hero.emWord1"></div>
+          <div class="form-group"><label>Hero Italic Word 2</label><input type="text" data-field="hero.emWord2"></div>
+          <div class="form-group"><label>Hero Italic Word 3</label><input type="text" data-field="hero.emWord3"></div>
+        </div>
+        <div class="form-group"><label>Hero Description</label><textarea data-field="hero.description" rows="3" style="width:100%;padding:10px 12px;border:1.5px solid #E2E8F0;border-radius:8px;font-size:14px;font-family:inherit;resize:vertical;outline:none;"></textarea></div>
+        <div class="form-row">
+          <div class="form-group"><label>Primary Button Text</label><input type="text" data-field="hero.btnPrimary"></div>
+          <div class="form-group"><label>Quick Actions Card Title</label><input type="text" data-field="hero.quickActionsTitle"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Quick Link 1 Label</label><input type="text" data-field="hero.ql1Label"></div>
+          <div class="form-group"><label>Quick Link 1 Subtitle</label><input type="text" data-field="hero.ql1Sub"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Quick Link 2 Label</label><input type="text" data-field="hero.ql2Label"></div>
+          <div class="form-group"><label>Quick Link 2 Subtitle</label><input type="text" data-field="hero.ql2Sub"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Quick Link 3 Label</label><input type="text" data-field="hero.ql3Label"></div>
+          <div class="form-group"><label>Quick Link 3 Subtitle</label><input type="text" data-field="hero.ql3Sub"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Quick Link 4 Label</label><input type="text" data-field="hero.ql4Label"></div>
+          <div class="form-group"><label>Quick Link 4 Subtitle</label><input type="text" data-field="hero.ql4Sub"></div>
+        </div>
+      </div>
+    </details>
+
+    <details class="ce-group">
+      <summary>✅ Trust Bar</summary>
+      <div class="ce-group-body">
+        <div class="form-row">
+          <div class="form-group"><label>Item 1</label><input type="text" data-field="trustbar.item1"></div>
+          <div class="form-group"><label>Item 2</label><input type="text" data-field="trustbar.item2"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Item 3</label><input type="text" data-field="trustbar.item3"></div>
+          <div class="form-group"><label>Item 4</label><input type="text" data-field="trustbar.item4"></div>
+        </div>
+        <div class="form-group"><label>Item 5</label><input type="text" data-field="trustbar.item5"></div>
+      </div>
+    </details>
+
+    <details class="ce-group">
+      <summary>💊 Services Section</summary>
+      <div class="ce-group-body">
+        <div class="form-row">
+          <div class="form-group"><label>Section Label</label><input type="text" data-field="services.sectionLabel"></div>
+          <div class="form-group"><label>Section Title</label><input type="text" data-field="services.sectionTitle"></div>
+        </div>
+        <div class="form-group"><label>Section Description</label><input type="text" data-field="services.sectionDesc"></div>
+        <p style="font-size:12px;color:#888;margin:8px 0 4px;">Service Cards:</p>
+        <div class="form-row"><div class="form-group"><label>Card 1 Title</label><input type="text" data-field="services.card1Title"></div><div class="form-group"><label>Card 1 Tag</label><input type="text" data-field="services.card1Tag"></div></div>
+        <div class="form-group"><label>Card 1 Description</label><input type="text" data-field="services.card1Desc"></div>
+        <div class="form-row"><div class="form-group"><label>Card 2 Title</label><input type="text" data-field="services.card2Title"></div><div class="form-group"><label>Card 2 Tag</label><input type="text" data-field="services.card2Tag"></div></div>
+        <div class="form-group"><label>Card 2 Description</label><input type="text" data-field="services.card2Desc"></div>
+        <div class="form-row"><div class="form-group"><label>Card 3 Title</label><input type="text" data-field="services.card3Title"></div><div class="form-group"><label>Card 3 Tag</label><input type="text" data-field="services.card3Tag"></div></div>
+        <div class="form-group"><label>Card 3 Description</label><input type="text" data-field="services.card3Desc"></div>
+        <div class="form-row"><div class="form-group"><label>Card 4 Title</label><input type="text" data-field="services.card4Title"></div><div class="form-group"><label>Card 4 Tag</label><input type="text" data-field="services.card4Tag"></div></div>
+        <div class="form-group"><label>Card 4 Description</label><input type="text" data-field="services.card4Desc"></div>
+        <div class="form-row"><div class="form-group"><label>Card 5 Title</label><input type="text" data-field="services.card5Title"></div><div class="form-group"><label>Card 5 Tag</label><input type="text" data-field="services.card5Tag"></div></div>
+        <div class="form-group"><label>Card 5 Description</label><input type="text" data-field="services.card5Desc"></div>
+        <div class="form-row"><div class="form-group"><label>Card 6 Title</label><input type="text" data-field="services.card6Title"></div><div class="form-group"><label>Card 6 Tag</label><input type="text" data-field="services.card6Tag"></div></div>
+        <div class="form-group"><label>Card 6 Description</label><input type="text" data-field="services.card6Desc"></div>
+      </div>
+    </details>
+
+    <details class="ce-group">
+      <summary>💉 Immunizations</summary>
+      <div class="ce-group-body">
+        <div class="form-row">
+          <div class="form-group"><label>Section Label</label><input type="text" data-field="immunizations.sectionLabel"></div>
+          <div class="form-group"><label>Section Title</label><input type="text" data-field="immunizations.sectionTitle"></div>
+        </div>
+        <div class="form-group"><label>Section Description</label><input type="text" data-field="immunizations.sectionDesc"></div>
+        <div class="form-group"><label>Insurance Note</label><input type="text" data-field="immunizations.insuranceNote"></div>
+        <p style="font-size:12px;color:#888;margin:8px 0 4px;">Vaccine Cards (Title / Details):</p>
+        <div class="form-row"><div class="form-group"><label>Vaccine 1 Title</label><input type="text" data-field="immunizations.card1Title"></div><div class="form-group"><label>Vaccine 1 Details</label><input type="text" data-field="immunizations.card1Desc"></div></div>
+        <div class="form-row"><div class="form-group"><label>Vaccine 2 Title</label><input type="text" data-field="immunizations.card2Title"></div><div class="form-group"><label>Vaccine 2 Details</label><input type="text" data-field="immunizations.card2Desc"></div></div>
+        <div class="form-row"><div class="form-group"><label>Vaccine 3 Title</label><input type="text" data-field="immunizations.card3Title"></div><div class="form-group"><label>Vaccine 3 Details</label><input type="text" data-field="immunizations.card3Desc"></div></div>
+        <div class="form-row"><div class="form-group"><label>Vaccine 4 Title</label><input type="text" data-field="immunizations.card4Title"></div><div class="form-group"><label>Vaccine 4 Details</label><input type="text" data-field="immunizations.card4Desc"></div></div>
+        <div class="form-row"><div class="form-group"><label>Vaccine 5 Title</label><input type="text" data-field="immunizations.card5Title"></div><div class="form-group"><label>Vaccine 5 Details</label><input type="text" data-field="immunizations.card5Desc"></div></div>
+        <div class="form-row"><div class="form-group"><label>Vaccine 6 Title</label><input type="text" data-field="immunizations.card6Title"></div><div class="form-group"><label>Vaccine 6 Details</label><input type="text" data-field="immunizations.card6Desc"></div></div>
+        <div class="form-row"><div class="form-group"><label>Vaccine 7 Title</label><input type="text" data-field="immunizations.card7Title"></div><div class="form-group"><label>Vaccine 7 Details</label><input type="text" data-field="immunizations.card7Desc"></div></div>
+        <div class="form-row"><div class="form-group"><label>Vaccine 8 Title</label><input type="text" data-field="immunizations.card8Title"></div><div class="form-group"><label>Vaccine 8 Details</label><input type="text" data-field="immunizations.card8Desc"></div></div>
+      </div>
+    </details>
+
+    <details class="ce-group">
+      <summary>👥 Team Members</summary>
+      <div class="ce-group-body">
+        <div class="form-row">
+          <div class="form-group"><label>Section Label</label><input type="text" data-field="team.sectionLabel"></div>
+          <div class="form-group"><label>Section Title</label><input type="text" data-field="team.sectionTitle"></div>
+        </div>
+        <div class="form-group"><label>Section Description</label><textarea data-field="team.sectionDesc" rows="2" style="width:100%;padding:10px 12px;border:1.5px solid #E2E8F0;border-radius:8px;font-size:14px;font-family:inherit;resize:vertical;outline:none;"></textarea></div>
+        <p style="font-size:12px;color:#888;margin:8px 0 4px;">Member 1:</p>
+        <div class="form-row"><div class="form-group"><label>Initials</label><input type="text" data-field="team.member1Initials" maxlength="3"></div><div class="form-group"><label>Full Name</label><input type="text" data-field="team.member1Name"></div></div>
+        <div class="form-group"><label>Role / Title</label><input type="text" data-field="team.member1Role"></div>
+        <div class="form-group"><label>Bio</label><textarea data-field="team.member1Bio" rows="2" style="width:100%;padding:10px 12px;border:1.5px solid #E2E8F0;border-radius:8px;font-size:14px;font-family:inherit;resize:vertical;outline:none;"></textarea></div>
+        <p style="font-size:12px;color:#888;margin:8px 0 4px;">Member 2:</p>
+        <div class="form-row"><div class="form-group"><label>Initials</label><input type="text" data-field="team.member2Initials" maxlength="3"></div><div class="form-group"><label>Full Name</label><input type="text" data-field="team.member2Name"></div></div>
+        <div class="form-group"><label>Role / Title</label><input type="text" data-field="team.member2Role"></div>
+        <div class="form-group"><label>Bio</label><textarea data-field="team.member2Bio" rows="2" style="width:100%;padding:10px 12px;border:1.5px solid #E2E8F0;border-radius:8px;font-size:14px;font-family:inherit;resize:vertical;outline:none;"></textarea></div>
+        <p style="font-size:12px;color:#888;margin:8px 0 4px;">Member 3:</p>
+        <div class="form-row"><div class="form-group"><label>Initials</label><input type="text" data-field="team.member3Initials" maxlength="3"></div><div class="form-group"><label>Full Name</label><input type="text" data-field="team.member3Name"></div></div>
+        <div class="form-group"><label>Role / Title</label><input type="text" data-field="team.member3Role"></div>
+        <div class="form-group"><label>Bio</label><textarea data-field="team.member3Bio" rows="2" style="width:100%;padding:10px 12px;border:1.5px solid #E2E8F0;border-radius:8px;font-size:14px;font-family:inherit;resize:vertical;outline:none;"></textarea></div>
+      </div>
+    </details>
+
+    <details class="ce-group">
+      <summary>⭐ Reviews Section</summary>
+      <div class="ce-group-body">
+        <div class="form-row">
+          <div class="form-group"><label>Section Label</label><input type="text" data-field="reviews.sectionLabel"></div>
+          <div class="form-group"><label>Section Title</label><input type="text" data-field="reviews.sectionTitle"></div>
+        </div>
+        <div class="form-group"><label>Section Description</label><input type="text" data-field="reviews.sectionDesc"></div>
+        <div class="form-row">
+          <div class="form-group"><label>Rating Score (e.g. 4.9)</label><input type="text" data-field="reviews.rating"></div>
+          <div class="form-group"><label>Star Display (e.g. ★★★★★)</label><input type="text" data-field="reviews.scoreStars"></div>
+          <div class="form-group"><label>Review Count Label</label><input type="text" data-field="reviews.ratingCount"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Source Bar Label 1</label><input type="text" data-field="reviews.source1"></div>
+          <div class="form-group"><label>Source Bar Sub 1</label><input type="text" data-field="reviews.source1Sub"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Source Bar Label 2</label><input type="text" data-field="reviews.source2"></div>
+          <div class="form-group"><label>Source Bar Sub 2</label><input type="text" data-field="reviews.source2Sub"></div>
+        </div>
+        <p style="font-size:12px;color:#888;margin:12px 0 4px;font-weight:600;">Review Cards (6 fixed slots):</p>
+        <p style="font-size:12px;color:#a0aec0;margin-bottom:10px;">To add a new review: click <strong style="color:#C53030;">🗑 Clear to Replace</strong> on the slot you want to swap, type the new review, then hit <strong>Save All Content</strong>. Include opening/closing quotes in the quote text.</p>
+
+        <div style="border:1.5px solid #E2E8F0;border-radius:8px;padding:12px;margin-bottom:8px;background:#FAFAFA;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+            <span style="font-size:12px;color:#718096;font-weight:700;">Review 1</span>
+            <button type="button" onclick="clearReview(1)" style="background:none;border:1.5px solid #FC8181;color:#C53030;border-radius:6px;padding:3px 10px;font-size:12px;font-weight:600;cursor:pointer;">🗑 Clear to Replace</button>
+          </div>
+          <div class="form-group"><label>Quote Text</label><textarea data-field="reviews.r1text" rows="3" style="width:100%;padding:10px 12px;border:1.5px solid #E2E8F0;border-radius:8px;font-size:14px;font-family:inherit;resize:vertical;outline:none;"></textarea></div>
+          <div class="form-row"><div class="form-group"><label>Reviewer Name</label><input type="text" data-field="reviews.r1name"></div><div class="form-group"><label>Initials</label><input type="text" data-field="reviews.r1initials" maxlength="3"></div><div class="form-group"><label>Time (e.g. 2 months ago)</label><input type="text" data-field="reviews.r1since"></div></div>
+        </div>
+
+        <div style="border:1.5px solid #E2E8F0;border-radius:8px;padding:12px;margin-bottom:8px;background:#FAFAFA;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+            <span style="font-size:12px;color:#718096;font-weight:700;">Review 2</span>
+            <button type="button" onclick="clearReview(2)" style="background:none;border:1.5px solid #FC8181;color:#C53030;border-radius:6px;padding:3px 10px;font-size:12px;font-weight:600;cursor:pointer;">🗑 Clear to Replace</button>
+          </div>
+          <div class="form-group"><label>Quote Text</label><textarea data-field="reviews.r2text" rows="3" style="width:100%;padding:10px 12px;border:1.5px solid #E2E8F0;border-radius:8px;font-size:14px;font-family:inherit;resize:vertical;outline:none;"></textarea></div>
+          <div class="form-row"><div class="form-group"><label>Reviewer Name</label><input type="text" data-field="reviews.r2name"></div><div class="form-group"><label>Initials</label><input type="text" data-field="reviews.r2initials" maxlength="3"></div><div class="form-group"><label>Time</label><input type="text" data-field="reviews.r2since"></div></div>
+        </div>
+
+        <div style="border:1.5px solid #E2E8F0;border-radius:8px;padding:12px;margin-bottom:8px;background:#FAFAFA;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+            <span style="font-size:12px;color:#718096;font-weight:700;">Review 3</span>
+            <button type="button" onclick="clearReview(3)" style="background:none;border:1.5px solid #FC8181;color:#C53030;border-radius:6px;padding:3px 10px;font-size:12px;font-weight:600;cursor:pointer;">🗑 Clear to Replace</button>
+          </div>
+          <div class="form-group"><label>Quote Text</label><textarea data-field="reviews.r3text" rows="3" style="width:100%;padding:10px 12px;border:1.5px solid #E2E8F0;border-radius:8px;font-size:14px;font-family:inherit;resize:vertical;outline:none;"></textarea></div>
+          <div class="form-row"><div class="form-group"><label>Reviewer Name</label><input type="text" data-field="reviews.r3name"></div><div class="form-group"><label>Initials</label><input type="text" data-field="reviews.r3initials" maxlength="3"></div><div class="form-group"><label>Time</label><input type="text" data-field="reviews.r3since"></div></div>
+        </div>
+
+        <div style="border:1.5px solid #E2E8F0;border-radius:8px;padding:12px;margin-bottom:8px;background:#FAFAFA;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+            <span style="font-size:12px;color:#718096;font-weight:700;">Review 4</span>
+            <button type="button" onclick="clearReview(4)" style="background:none;border:1.5px solid #FC8181;color:#C53030;border-radius:6px;padding:3px 10px;font-size:12px;font-weight:600;cursor:pointer;">🗑 Clear to Replace</button>
+          </div>
+          <div class="form-group"><label>Quote Text</label><textarea data-field="reviews.r4text" rows="3" style="width:100%;padding:10px 12px;border:1.5px solid #E2E8F0;border-radius:8px;font-size:14px;font-family:inherit;resize:vertical;outline:none;"></textarea></div>
+          <div class="form-row"><div class="form-group"><label>Reviewer Name</label><input type="text" data-field="reviews.r4name"></div><div class="form-group"><label>Initials</label><input type="text" data-field="reviews.r4initials" maxlength="3"></div><div class="form-group"><label>Time</label><input type="text" data-field="reviews.r4since"></div></div>
+        </div>
+
+        <div style="border:1.5px solid #E2E8F0;border-radius:8px;padding:12px;margin-bottom:8px;background:#FAFAFA;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+            <span style="font-size:12px;color:#718096;font-weight:700;">Review 5</span>
+            <button type="button" onclick="clearReview(5)" style="background:none;border:1.5px solid #FC8181;color:#C53030;border-radius:6px;padding:3px 10px;font-size:12px;font-weight:600;cursor:pointer;">🗑 Clear to Replace</button>
+          </div>
+          <div class="form-group"><label>Quote Text</label><textarea data-field="reviews.r5text" rows="3" style="width:100%;padding:10px 12px;border:1.5px solid #E2E8F0;border-radius:8px;font-size:14px;font-family:inherit;resize:vertical;outline:none;"></textarea></div>
+          <div class="form-row"><div class="form-group"><label>Reviewer Name</label><input type="text" data-field="reviews.r5name"></div><div class="form-group"><label>Initials</label><input type="text" data-field="reviews.r5initials" maxlength="3"></div><div class="form-group"><label>Time</label><input type="text" data-field="reviews.r5since"></div></div>
+        </div>
+
+        <div style="border:1.5px solid #E2E8F0;border-radius:8px;padding:12px;margin-bottom:8px;background:#FAFAFA;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+            <span style="font-size:12px;color:#718096;font-weight:700;">Review 6</span>
+            <button type="button" onclick="clearReview(6)" style="background:none;border:1.5px solid #FC8181;color:#C53030;border-radius:6px;padding:3px 10px;font-size:12px;font-weight:600;cursor:pointer;">🗑 Clear to Replace</button>
+          </div>
+          <div class="form-group"><label>Quote Text</label><textarea data-field="reviews.r6text" rows="3" style="width:100%;padding:10px 12px;border:1.5px solid #E2E8F0;border-radius:8px;font-size:14px;font-family:inherit;resize:vertical;outline:none;"></textarea></div>
+          <div class="form-row"><div class="form-group"><label>Reviewer Name</label><input type="text" data-field="reviews.r6name"></div><div class="form-group"><label>Initials</label><input type="text" data-field="reviews.r6initials" maxlength="3"></div><div class="form-group"><label>Time</label><input type="text" data-field="reviews.r6since"></div></div>
+        </div>
+      </div>
+    </details>
+
+    <details class="ce-group">
+      <summary>🛡️ Insurance &amp; Payment</summary>
+      <div class="ce-group-body">
+        <div class="form-row">
+          <div class="form-group"><label>Section Label</label><input type="text" data-field="insurance.sectionLabel"></div>
+          <div class="form-group"><label>Section Title</label><input type="text" data-field="insurance.sectionTitle"></div>
+        </div>
+        <div class="form-group"><label>Section Description</label><input type="text" data-field="insurance.sectionDesc"></div>
+        <div class="form-group"><label>Callout Note Text</label><input type="text" data-field="insurance.calloutText"></div>
+        <p style="font-size:12px;color:#888;margin:8px 0 4px;">Insurance Plans:</p>
+        <div class="form-row"><div class="form-group"><label>Plan 1</label><input type="text" data-field="insurance.plan1"></div><div class="form-group"><label>Plan 2</label><input type="text" data-field="insurance.plan2"></div></div>
+        <div class="form-row"><div class="form-group"><label>Plan 3</label><input type="text" data-field="insurance.plan3"></div><div class="form-group"><label>Plan 4</label><input type="text" data-field="insurance.plan4"></div></div>
+        <div class="form-row"><div class="form-group"><label>Plan 5</label><input type="text" data-field="insurance.plan5"></div><div class="form-group"><label>Plan 6</label><input type="text" data-field="insurance.plan6"></div></div>
+        <div class="form-row"><div class="form-group"><label>Plan 7</label><input type="text" data-field="insurance.plan7"></div><div class="form-group"><label>Plan 8</label><input type="text" data-field="insurance.plan8"></div></div>
+        <p style="font-size:12px;color:#888;margin:8px 0 4px;">Payment Features:</p>
+        <div class="form-row"><div class="form-group"><label>Feature 1 Title</label><input type="text" data-field="insurance.feature1Title"></div><div class="form-group"><label>Feature 1 Description</label><input type="text" data-field="insurance.feature1Desc"></div></div>
+        <div class="form-row"><div class="form-group"><label>Feature 2 Title</label><input type="text" data-field="insurance.feature2Title"></div><div class="form-group"><label>Feature 2 Description</label><input type="text" data-field="insurance.feature2Desc"></div></div>
+        <div class="form-row"><div class="form-group"><label>Feature 3 Title</label><input type="text" data-field="insurance.feature3Title"></div><div class="form-group"><label>Feature 3 Description</label><input type="text" data-field="insurance.feature3Desc"></div></div>
+        <div class="form-row"><div class="form-group"><label>Feature 4 Title</label><input type="text" data-field="insurance.feature4Title"></div><div class="form-group"><label>Feature 4 Description</label><input type="text" data-field="insurance.feature4Desc"></div></div>
+      </div>
+    </details>
+
+    <details class="ce-group">
+      <summary>🔁 Refills Section</summary>
+      <div class="ce-group-body">
+        <div class="form-row">
+          <div class="form-group"><label>Section Label</label><input type="text" data-field="refills.sectionLabel"></div>
+          <div class="form-group"><label>Section Title</label><input type="text" data-field="refills.sectionTitle"></div>
+        </div>
+        <div class="form-group"><label>Section Description</label><input type="text" data-field="refills.sectionDesc"></div>
+        <p style="font-size:12px;color:#888;margin:8px 0 4px;">Steps:</p>
+        <div class="form-row"><div class="form-group"><label>Step 1 Title</label><input type="text" data-field="refills.step1Title"></div><div class="form-group"><label>Step 1 Description</label><input type="text" data-field="refills.step1Desc"></div></div>
+        <div class="form-row"><div class="form-group"><label>Step 2 Title</label><input type="text" data-field="refills.step2Title"></div><div class="form-group"><label>Step 2 Description</label><input type="text" data-field="refills.step2Desc"></div></div>
+        <div class="form-row"><div class="form-group"><label>Step 3 Title</label><input type="text" data-field="refills.step3Title"></div><div class="form-group"><label>Step 3 Description</label><input type="text" data-field="refills.step3Desc"></div></div>
+        <div class="form-row"><div class="form-group"><label>Form Title</label><input type="text" data-field="refills.formTitle"></div><div class="form-group"><label>Form Subtitle</label><input type="text" data-field="refills.formSubtitle"></div></div>
+        <div class="form-row"><div class="form-group"><label>Submit Button</label><input type="text" data-field="refills.submitBtn"></div></div>
+      </div>
+    </details>
+
+    <details class="ce-group">
+      <summary>🩺 Health Screenings</summary>
+      <div class="ce-group-body">
+        <div class="form-row">
+          <div class="form-group"><label>Section Label</label><input type="text" data-field="screenings.sectionLabel"></div>
+          <div class="form-group"><label>Section Title</label><input type="text" data-field="screenings.sectionTitle"></div>
+        </div>
+        <div class="form-group"><label>Section Description</label><input type="text" data-field="screenings.sectionDesc"></div>
+        <div class="form-row"><div class="form-group"><label>Screening 1 Name</label><input type="text" data-field="screenings.screening1Name"></div><div class="form-group"><label>Screening 1 Availability</label><input type="text" data-field="screenings.screening1Avail"></div><div class="form-group"><label>Screening 1 Appt Label</label><input type="text" data-field="screenings.screening1Appt"></div></div>
+        <div class="form-row"><div class="form-group"><label>Screening 2 Name</label><input type="text" data-field="screenings.screening2Name"></div><div class="form-group"><label>Screening 2 Availability</label><input type="text" data-field="screenings.screening2Avail"></div><div class="form-group"><label>Screening 2 Appt Label</label><input type="text" data-field="screenings.screening2Appt"></div></div>
+        <div class="form-row"><div class="form-group"><label>Screening 3 Name</label><input type="text" data-field="screenings.screening3Name"></div><div class="form-group"><label>Screening 3 Availability</label><input type="text" data-field="screenings.screening3Avail"></div><div class="form-group"><label>Screening 3 Appt Label</label><input type="text" data-field="screenings.screening3Appt"></div></div>
+        <div class="form-row"><div class="form-group"><label>Screening 4 Name</label><input type="text" data-field="screenings.screening4Name"></div><div class="form-group"><label>Screening 4 Availability</label><input type="text" data-field="screenings.screening4Avail"></div><div class="form-group"><label>Screening 4 Appt Label</label><input type="text" data-field="screenings.screening4Appt"></div></div>
+        <div class="form-row"><div class="form-group"><label>CTA Card Title</label><input type="text" data-field="screenings.ctaTitle"></div><div class="form-group"><label>CTA Card Button</label><input type="text" data-field="screenings.ctaBtn"></div></div>
+        <div class="form-group"><label>CTA Card Description</label><input type="text" data-field="screenings.ctaDesc"></div>
+        <div class="form-row"><div class="form-group"><label>Wellness Perk 1</label><input type="text" data-field="screenings.perk1"></div><div class="form-group"><label>Wellness Perk 2</label><input type="text" data-field="screenings.perk2"></div></div>
+        <div class="form-row"><div class="form-group"><label>Wellness Perk 3</label><input type="text" data-field="screenings.perk3"></div><div class="form-group"><label>Wellness Perk 4</label><input type="text" data-field="screenings.perk4"></div></div>
+      </div>
+    </details>
+
+    <details class="ce-group">
+      <summary>🔀 Transfer Section</summary>
+      <div class="ce-group-body">
+        <div class="form-group"><label>Heading</label><input type="text" data-field="transfer.heading"></div>
+        <div class="form-group"><label>Description</label><textarea data-field="transfer.description" rows="2" style="width:100%;padding:10px 12px;border:1.5px solid #E2E8F0;border-radius:8px;font-size:14px;font-family:inherit;resize:vertical;outline:none;"></textarea></div>
+        <div class="form-row"><div class="form-group"><label>Form Title</label><input type="text" data-field="transfer.formTitle"></div><div class="form-group"><label>Submit Button</label><input type="text" data-field="transfer.submitBtn"></div></div>
+        <div class="form-group"><label>Privacy Note</label><input type="text" data-field="transfer.privacyNote"></div>
+      </div>
+    </details>
+
+    <details class="ce-group">
+      <summary>✉️ Contact Form</summary>
+      <div class="ce-group-body">
+        <div class="form-row">
+          <div class="form-group"><label>Section Label</label><input type="text" data-field="contact_form.sectionLabel"></div>
+          <div class="form-group"><label>Section Title</label><input type="text" data-field="contact_form.sectionTitle"></div>
+        </div>
+        <div class="form-group"><label>Section Description</label><input type="text" data-field="contact_form.sectionDesc"></div>
+        <div class="form-row"><div class="form-group"><label>Form Title</label><input type="text" data-field="contact_form.formTitle"></div><div class="form-group"><label>Form Subtitle</label><input type="text" data-field="contact_form.formSubtitle"></div></div>
+        <div class="form-row"><div class="form-group"><label>Submit Button</label><input type="text" data-field="contact_form.submitBtn"></div></div>
+      </div>
+    </details>
+
+    <details class="ce-group">
+      <summary>🦶 Footer</summary>
+      <div class="ce-group-body">
+        <div class="form-group"><label>Brand Description</label><textarea data-field="footer.brandDesc" rows="2" style="width:100%;padding:10px 12px;border:1.5px solid #E2E8F0;border-radius:8px;font-size:14px;font-family:inherit;resize:vertical;outline:none;"></textarea></div>
+        <div class="form-row">
+          <div class="form-group"><label>Column 1 Title</label><input type="text" data-field="footer.col1Title"></div>
+          <div class="form-group"><label>Column 2 Title</label><input type="text" data-field="footer.col2Title"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Column 3 Title</label><input type="text" data-field="footer.col3Title"></div>
+        </div>
+        <div class="form-group"><label>Copyright Line</label><input type="text" data-field="footer.copyright"></div>
+      </div>
+    </details>
+
+    <details class="ce-group">
+      <summary>💊 Availability Page</summary>
+      <div class="ce-group-body">
+        <div class="form-row">
+          <div class="form-group"><label>Page Label (eyebrow)</label><input type="text" data-field="availability_page.heroLabel"></div>
+          <div class="form-group"><label>Page Heading</label><input type="text" data-field="availability_page.heroHeading"></div>
+        </div>
+        <div class="form-group"><label>Page Description</label><textarea data-field="availability_page.heroDesc" rows="2" style="width:100%;padding:10px 12px;border:1.5px solid #E2E8F0;border-radius:8px;font-size:14px;font-family:inherit;resize:vertical;outline:none;"></textarea></div>
+        <div class="form-row"><div class="form-group"><label>Call Button</label><input type="text" data-field="availability_page.heroBtnCall"></div><div class="form-group"><label>Message Button</label><input type="text" data-field="availability_page.heroBtnMessage"></div></div>
+        <div class="form-row"><div class="form-group"><label>Trust Item 1</label><input type="text" data-field="availability_page.trustItem1"></div><div class="form-group"><label>Trust Item 2</label><input type="text" data-field="availability_page.trustItem2"></div></div>
+        <div class="form-group"><label>Search Placeholder</label><input type="text" data-field="availability_page.searchPlaceholder"></div>
+        <div class="form-row"><div class="form-group"><label>CTA Heading</label><input type="text" data-field="availability_page.ctaHeading"></div><div class="form-group"><label>CTA Description</label><input type="text" data-field="availability_page.ctaDesc"></div></div>
+        <div class="form-row"><div class="form-group"><label>CTA Call Button</label><input type="text" data-field="availability_page.ctaBtnCall"></div><div class="form-group"><label>CTA Message Button</label><input type="text" data-field="availability_page.ctaBtnMessage"></div></div>
+        <div class="form-group"><label>Footer Hours Line (e.g. Mon–Fri 9 AM–6 PM · Sat 10 AM–3 PM)</label><input type="text" data-field="availability_page.footerHoursLine"></div>
+      </div>
+    </details>
+
+    <details id="section-notifications" class="ce-group">
+      <summary>📧 Notification Settings</summary>
+      <div class="ce-group-body">
+        <p style="font-size:13px;color:#718096;margin-bottom:12px;">This is the email address where all website form submissions (refill requests, transfers, contact inquiries) are delivered. It is never shown publicly on the website.</p>
+        <div class="form-group">
+          <label>Form Submission Recipient Email</label>
+          <input type="email" data-field="notifications.recipientEmail" placeholder="e.g. care@fenkellrxpharmacy.com">
+        </div>
+      </div>
+    </details>
+
+    <details id="section-seo" class="ce-group">
+      <summary>🔍 SEO &amp; Search Engine Settings</summary>
+      <div class="ce-group-body">
+        <p style="font-size:13px;color:#718096;margin-bottom:4px;font-weight:600;">Google Search Console Verification</p>
+        <p style="font-size:12px;color:#a0aec0;margin-bottom:12px;">
+          1. Go to <strong>search.google.com/search-console</strong> and add your property.<br>
+          2. Choose <strong>"HTML tag"</strong> as the verification method.<br>
+          3. Copy <em>only the code value</em> from the meta tag Google gives you (the part after <code>content="</code>).<br>
+          4. Paste it in the field below and hit <strong>Save All Content</strong>.<br>
+          Google will automatically find the tag and verify your site.
+        </p>
+        <div class="form-group">
+          <label>Google Site Verification Code</label>
+          <input type="text" data-field="seo.googleVerification" placeholder="e.g. abc123XYZ_example_code_from_google">
+        </div>
+        <p style="font-size:12px;color:#a0aec0;margin-top:8px;">Once verified, submit your sitemap at: <strong>fenkellrxpharmacy.com/sitemap.xml</strong></p>
+      </div>
+    </details>
+
+    <details class="ce-group">
+      <summary>📋 Med Availability Overlay (homepage popup)</summary>
+      <div class="ce-group-body">
+        <div class="form-row">
+          <div class="form-group"><label>Heading Word 1 (plain)</label><input type="text" data-field="overlay.heading"></div>
+          <div class="form-group"><label>Heading Word 2 (italic)</label><input type="text" data-field="overlay.headingEm"></div>
+        </div>
+        <div class="form-group"><label>Subtext</label><textarea data-field="overlay.subtext" rows="3" style="width:100%;padding:10px 12px;border:1.5px solid #E2E8F0;border-radius:8px;font-size:14px;font-family:inherit;resize:vertical;outline:none;"></textarea></div>
+        <div class="form-row"><div class="form-group"><label>Call Button Text</label><input type="text" data-field="overlay.btnCall"></div><div class="form-group"><label>Contact Button Text</label><input type="text" data-field="overlay.btnContact"></div></div>
+        <div class="form-group"><label>Continue Button Text</label><input type="text" data-field="overlay.btnContinue"></div>
+      </div>
+    </details>
+
+    <div style="text-align:right;padding-top:16px;border-top:1px solid #E2E8F0;margin-top:8px;">
+      <button class="btn-save" onclick="saveContent()">Save All Content</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  let SESSION_PW = '';
+  let allMessages = [];
+
+  document.querySelectorAll('.jump-nav a').forEach(link => {
+    link.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href').slice(1);
+      const target = document.getElementById(targetId);
+      if (target && target.tagName === 'DETAILS') {
+        target.open = true;
+      }
+    });
+  });
+
+  function login() {
+    const pw = document.getElementById('pw-input').value.trim();
+    if (!pw) return;
+    apiFetch({ action: 'list', password: pw })
+      .then(res => {
+        if (!res.ok) throw new Error('bad password');
+        SESSION_PW = pw;
+        document.getElementById('login-screen').style.display = 'none';
+        document.getElementById('admin-panel').style.display = 'block';
+        document.getElementById('logout-btn').style.display = 'inline-block';
+        document.getElementById('export-btn').style.display = 'inline-block';
+        allMessages = res.messages || [];
+        renderList();
+        loadStatus();
+        loadSubmissions();
+        loadMedications();
+        loadContent();
+      })
+      .catch(() => {
+        document.getElementById('login-error').style.display = 'block';
+      });
+  }
+
+  function logout() {
+    SESSION_PW = '';
+    allMessages = [];
+    document.getElementById('login-screen').style.display = 'flex';
+    document.getElementById('admin-panel').style.display = 'none';
+    document.getElementById('logout-btn').style.display = 'none';
+    document.getElementById('export-btn').style.display = 'none';
+    document.getElementById('pw-input').value = '';
+    document.getElementById('login-error').style.display = 'none';
+  }
+
+  function apiFetch(body) {
+    return fetch('/api/admin/banner', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    }).then(r => r.json());
+  }
+
+  function downloadBackup() {
+    if (!SESSION_PW) return;
+    const btn = document.getElementById('export-btn');
+    btn.textContent = 'Preparing…';
+    btn.disabled = true;
+    const url = '/api/admin/export?password=' + encodeURIComponent(SESSION_PW);
+    fetch(url)
+      .then(r => {
+        if (!r.ok) throw new Error('export failed');
+        return r.blob();
+      })
+      .then(blob => {
+        const today = new Date().toISOString().slice(0, 10);
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'fenkellrx-backup-' + today + '.zip';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(a.href);
+      })
+      .catch(() => alert('Export failed. Please try again.'))
+      .finally(() => {
+        btn.innerHTML = '&#x2B07; Download Backup';
+        btn.disabled = false;
+      });
+  }
+
+  function loadPreset(text) {
+    const ta = document.getElementById('msg-text');
+    ta.value = text;
+    document.getElementById('char-count').textContent = text.length;
+    document.getElementById('edit-id').value = '';
+    document.getElementById('form-title').textContent = 'Add New Banner Message';
+    document.getElementById('cancel-btn').style.display = 'none';
+    updatePreview();
+    ta.focus();
+    document.querySelector('.card').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function toggleEmojiPicker(label) {
+    label.classList.toggle('open');
+    label.nextElementSibling.classList.toggle('open');
+  }
+
+  function insertEmoji(emoji) {
+    const ta = document.getElementById('msg-text');
+    const start = ta.selectionStart;
+    const end = ta.selectionEnd;
+    const current = ta.value;
+    if (current.length >= 160) return;
+    ta.value = current.slice(0, start) + emoji + current.slice(end);
+    const pos = start + emoji.length;
+    ta.selectionStart = ta.selectionEnd = pos;
+    ta.focus();
+    document.getElementById('char-count').textContent = ta.value.length;
+    updatePreview();
+  }
+
+  // char counter
+  document.getElementById('msg-text').addEventListener('input', function() {
+    document.getElementById('char-count').textContent = this.value.length;
+    updatePreview();
+  });
+
+  function updatePreview() {
+    const text = document.getElementById('msg-text').value.trim();
+    const bar = document.getElementById('preview-bar');
+    if (text) {
+      bar.style.display = 'block';
+      bar.textContent = '🏥  ' + text;
+    } else {
+      bar.style.display = 'none';
+    }
+  }
+
+  function saveMessage() {
+    const text = document.getElementById('msg-text').value.trim();
+    const startDate = document.getElementById('start-date').value;
+    const endDate = document.getElementById('end-date').value;
+    const editId = document.getElementById('edit-id').value;
+
+    if (!text) { alert('Please enter a message.'); return; }
+    if (!startDate || !endDate) { alert('Please set both start and end dates.'); return; }
+    if (startDate > endDate) { alert('Start date must be before end date.'); return; }
+
+    const action = editId ? 'update' : 'add';
+    const payload = { action, password: SESSION_PW, text, startDate, endDate, active: true };
+    if (editId) payload.id = editId;
+
+    apiFetch(payload).then(res => {
+      if (!res.ok) { alert('Error saving. Please try again.'); return; }
+      const status = document.getElementById('form-status');
+      status.style.display = 'inline';
+      setTimeout(() => status.style.display = 'none', 2500);
+      cancelEdit();
+      refreshList();
+    });
+  }
+
+  function startEdit(msg) {
+    document.getElementById('form-title').textContent = 'Edit Message';
+    document.getElementById('edit-id').value = msg.id;
+    document.getElementById('msg-text').value = msg.text;
+    document.getElementById('char-count').textContent = msg.text.length;
+    document.getElementById('start-date').value = msg.startDate;
+    document.getElementById('end-date').value = msg.endDate;
+    document.getElementById('cancel-btn').style.display = 'inline-block';
+    updatePreview();
+    document.querySelector('.card').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function cancelEdit() {
+    document.getElementById('form-title').textContent = 'Add New Banner Message';
+    document.getElementById('edit-id').value = '';
+    document.getElementById('msg-text').value = '';
+    document.getElementById('char-count').textContent = '0';
+    document.getElementById('start-date').value = '';
+    document.getElementById('end-date').value = '';
+    document.getElementById('cancel-btn').style.display = 'none';
+    document.getElementById('preview-bar').style.display = 'none';
+  }
+
+  function toggleActive(msg) {
+    apiFetch({ action: 'update', password: SESSION_PW, id: msg.id, text: msg.text, startDate: msg.startDate, endDate: msg.endDate, active: !msg.active })
+      .then(() => refreshList());
+  }
+
+  function deleteMessage(id) {
+    if (!confirm('Delete this message? This cannot be undone.')) return;
+    apiFetch({ action: 'delete', password: SESSION_PW, id })
+      .then(() => refreshList());
+  }
+
+  function refreshList() {
+    apiFetch({ action: 'list', password: SESSION_PW })
+      .then(res => {
+        allMessages = res.messages || [];
+        renderList();
+      });
+  }
+
+  function renderList() {
+    const today = new Date().toISOString().split('T')[0];
+    const container = document.getElementById('msg-list');
+    const count = document.getElementById('msg-count');
+
+    if (!allMessages.length) {
+      container.innerHTML = '<div class="msg-empty">No messages yet. Add one above.</div>';
+      count.textContent = '';
+      return;
+    }
+
+    const sorted = [...allMessages].sort((a, b) => a.startDate.localeCompare(b.startDate));
+    count.textContent = sorted.length + ' message' + (sorted.length !== 1 ? 's' : '');
+
+    container.innerHTML = sorted.map(msg => {
+      const isActiveNow = msg.active && msg.startDate <= today && today <= msg.endDate;
+      const isUpcoming = msg.active && msg.startDate > today;
+      const isExpired = msg.endDate < today;
+
+      let statusBadge = '';
+      if (!msg.active) statusBadge = '<span class="badge badge-inactive">Disabled</span>';
+      else if (isActiveNow) statusBadge = '<span class="badge badge-today">Live Today</span>';
+      else if (isUpcoming) statusBadge = '<span class="badge badge-upcoming">Upcoming</span>';
+      else if (isExpired) statusBadge = '<span class="badge badge-expired">Expired</span>';
+      else statusBadge = '<span class="badge badge-active">Active</span>';
+
+      const itemClass = isActiveNow ? 'msg-item is-active' : (!msg.active || isExpired ? 'msg-item is-inactive' : 'msg-item');
+
+      const fmtDate = d => {
+        const [y, m, day] = d.split('-');
+        const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        return months[parseInt(m)-1] + ' ' + parseInt(day) + ', ' + y;
+      };
+
+      return `<div class="${itemClass}">
+        <div class="msg-top">
+          <div class="msg-text">${escHtml(msg.text)}</div>
+          <div class="msg-badges">${statusBadge}</div>
+        </div>
+        <div class="msg-dates">📅 ${fmtDate(msg.startDate)} — ${fmtDate(msg.endDate)}</div>
+        <div class="msg-actions">
+          <button class="btn-edit" onclick="startEdit(${escJson(msg)})">Edit</button>
+          <button class="btn-toggle" onclick="toggleActive(${escJson(msg)})">${msg.active ? 'Disable' : 'Enable'}</button>
+          <button class="btn-delete" onclick="deleteMessage('${msg.id}')">Delete</button>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  function escHtml(str) {
+    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+  function escJson(obj) {
+    return "'" + JSON.stringify(obj).replace(/'/g,"\\'") + "'";
+  }
+  // parse back when called from inline onclick
+  window.startEdit = function(raw) {
+    const msg = typeof raw === 'string' ? JSON.parse(raw) : raw;
+    const el = document.getElementById;
+    document.getElementById('form-title').textContent = 'Edit Message';
+    document.getElementById('edit-id').value = msg.id;
+    document.getElementById('msg-text').value = msg.text;
+    document.getElementById('char-count').textContent = msg.text.length;
+    document.getElementById('start-date').value = msg.startDate;
+    document.getElementById('end-date').value = msg.endDate;
+    document.getElementById('cancel-btn').style.display = 'inline-block';
+    updatePreview();
+    document.querySelector('.card').scrollIntoView({ behavior: 'smooth' });
+  };
+  window.toggleActive = function(raw) {
+    const msg = typeof raw === 'string' ? JSON.parse(raw) : raw;
+    apiFetch({ action: 'update', password: SESSION_PW, id: msg.id, text: msg.text, startDate: msg.startDate, endDate: msg.endDate, active: !msg.active })
+      .then(() => refreshList());
+  };
+  window.deleteMessage = function(id) {
+    if (!confirm('Delete this message? This cannot be undone.')) return;
+    apiFetch({ action: 'delete', password: SESSION_PW, id }).then(() => refreshList());
+  };
+
+  function loadSubmissions() {
+    fetch('/api/admin/submissions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'list', password: SESSION_PW })
+    })
+    .then(r => r.json())
+    .then(d => {
+      const list = document.getElementById('sub-list');
+      const count = document.getElementById('sub-count');
+      const clearBtn = document.getElementById('clear-subs-btn');
+      const subs = d.submissions || [];
+      count.textContent = subs.length ? `${subs.length} total` : '';
+      clearBtn.style.display = subs.length ? 'inline-block' : 'none';
+      if (!subs.length) {
+        list.innerHTML = '<div class="msg-empty">No submissions recorded yet.</div>';
+        return;
+      }
+      const typeColors = {
+        'Refill Request':   { bg: '#e8f5e9', color: '#2d7a4a' },
+        'Transfer Request': { bg: '#e3f2fd', color: '#1565c0' },
+        'Contact Inquiry':  { bg: '#fff3e0', color: '#b45309' },
+        'Newsletter Signup':{ bg: '#f3e5f5', color: '#7b1fa2' }
+      };
+      list.innerHTML = subs.map(s => {
+        const tc = typeColors[s.type] || { bg: '#f4f6f9', color: '#444' };
+        const fields = Array.isArray(s.fields) ? s.fields : [];
+        const fieldRows = fields.map(([label, value]) => {
+          const isMsg = label === 'Message';
+          const isEmail = label === 'Email' && value && value.includes('@');
+          const display = isEmail
+            ? `<a href="mailto:${value}" style="color:#0077a8;text-decoration:none;">${value}</a>`
+            : (value || '—');
+          return `<div style="display:${isMsg ? 'block' : 'flex'};gap:8px;margin-top:4px;font-size:13px;">
+            <span style="color:#888;min-width:140px;flex-shrink:0;">${label}:</span>
+            <span style="color:#222;${isMsg ? 'display:block;margin-top:2px;white-space:pre-wrap;background:#f8f9fa;padding:6px 8px;border-radius:6px;' : ''}">${display}</span>
+          </div>`;
+        }).join('');
+        return `<div style="padding:0.9rem 0;border-bottom:1px solid #f0f0f0;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+            <span style="background:${tc.bg};color:${tc.color};font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;white-space:nowrap;">${s.type}</span>
+            <span style="font-weight:600;font-size:14px;flex:1;">${s.contact}</span>
+            <span style="font-size:12px;color:#aaa;white-space:nowrap;">${s.timestamp}</span>
+          </div>
+          ${fieldRows}
+        </div>`;
+      }).join('');
+    })
+    .catch(() => {
+      document.getElementById('sub-list').innerHTML =
+        '<div style="color:#c0392b;font-size:14px;">Could not load submissions.</div>';
+    });
+  }
+
+  function clearSubmissions() {
+    if (!confirm('Clear all submission records? This cannot be undone.')) return;
+    fetch('/api/admin/submissions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'clear', password: SESSION_PW })
+    })
+    .then(r => r.json())
+    .then(() => loadSubmissions())
+    .catch(() => alert('Could not clear submissions. Please try again.'));
+  }
+
+  function loadStatus() {
+    fetch('/health')
+      .then(r => r.json())
+      .then(d => {
+        const rows = document.getElementById('status-rows');
+        const checks = [
+          {
+            label: 'Server is running',
+            ok: d.ok === true,
+            detail: d.ok ? 'Responding normally' : 'Server error'
+          },
+          {
+            label: 'Email (Gmail) configured',
+            ok: d.emailConfigured === true,
+            detail: d.emailConfigured
+              ? 'Sending as ' + d.gmailUser
+              : 'GMAIL_APP_PASSWORD not set — forms will not send emails'
+          },
+          {
+            label: 'Admin password changed from default',
+            ok: d.adminPasswordSet === true,
+            detail: d.adminPasswordSet
+              ? 'Custom password is set'
+              : 'Still using the default password — change ADMIN_PASSWORD in Render'
+          }
+        ];
+        rows.innerHTML = checks.map(c => `
+          <div style="display:flex;align-items:flex-start;gap:10px;font-size:14px;">
+            <span style="font-size:16px;line-height:1.4;">${c.ok ? '✅' : '❌'}</span>
+            <div>
+              <strong>${c.label}</strong>
+              <div style="color:${c.ok ? '#555' : '#c0392b'};font-size:13px;margin-top:2px;">${c.detail}</div>
+            </div>
+          </div>
+        `).join('');
+      })
+      .catch(() => {
+        document.getElementById('status-rows').innerHTML =
+          '<div style="color:#c0392b;font-size:14px;">Could not reach /health endpoint.</div>';
+      });
+  }
+
+  /* ── MEDICATIONS ── */
+  let allMedications = [];
+
+  const MED_STATUS_LABELS = {
+    in_stock:     '✓ In Stock',
+    limited:      '⚠ Limited Supply',
+    out_of_stock: '✗ Unavailable',
+    call_us:      '📞 Call for Availability'
+  };
+
+  function medApiFetch(body) {
+    return fetch('/api/admin/medications', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    }).then(r => r.json());
+  }
+
+  function loadMedications() {
+    medApiFetch({ action: 'list', password: SESSION_PW })
+      .then(d => {
+        allMedications = d.medications || [];
+        renderMedList();
+      })
+      .catch(() => {
+        document.getElementById('med-list').innerHTML =
+          '<div style="color:#c0392b;font-size:14px;">Could not load medications.</div>';
+      });
+  }
+
+  function saveMedication() {
+    const name = document.getElementById('med-name').value.trim();
+    if (!name) { alert('Medication name is required.'); return; }
+    const editId = document.getElementById('med-edit-id').value;
+    const payload = {
+      action:      editId ? 'update' : 'add',
+      password:    SESSION_PW,
+      name,
+      genericName: document.getElementById('med-generic').value.trim(),
+      category:    document.getElementById('med-category').value.trim() || 'General',
+      status:      document.getElementById('med-status').value,
+      notes:       document.getElementById('med-notes').value.trim(),
+    };
+    if (editId) payload.id = editId;
+
+    medApiFetch(payload).then(res => {
+      if (!res.ok) { alert('Error saving. Please try again.'); return; }
+      const st = document.getElementById('med-form-status');
+      st.style.display = 'inline';
+      setTimeout(() => st.style.display = 'none', 2500);
+      cancelMedEdit();
+      loadMedications();
+    });
+  }
+
+  function startMedEdit(raw) {
+    const med = typeof raw === 'string' ? JSON.parse(raw) : raw;
+    document.getElementById('med-form-title').textContent = 'Edit Medication';
+    document.getElementById('med-edit-id').value = med.id;
+    document.getElementById('med-name').value = med.name || '';
+    document.getElementById('med-generic').value = med.genericName || '';
+    document.getElementById('med-category').value = med.category || '';
+    document.getElementById('med-status').value = med.status || 'in_stock';
+    document.getElementById('med-notes').value = med.notes || '';
+    document.getElementById('med-cancel-btn').style.display = 'inline-block';
+    document.getElementById('med-form-title').closest('.card').scrollIntoView({ behavior: 'smooth' });
+  }
+  window.startMedEdit = startMedEdit;
+
+  function cancelMedEdit() {
+    document.getElementById('med-form-title').textContent = 'Add Medication';
+    document.getElementById('med-edit-id').value = '';
+    document.getElementById('med-name').value = '';
+    document.getElementById('med-generic').value = '';
+    document.getElementById('med-category').value = '';
+    document.getElementById('med-status').value = 'in_stock';
+    document.getElementById('med-notes').value = '';
+    document.getElementById('med-cancel-btn').style.display = 'none';
+  }
+
+  function quickUpdateStatus(id, status) {
+    medApiFetch({ action: 'update', password: SESSION_PW, id, status }).then(() => loadMedications());
+  }
+  window.quickUpdateStatus = quickUpdateStatus;
+
+  function deleteMedication(id) {
+    if (!confirm('Remove this medication from the public list? This cannot be undone.')) return;
+    medApiFetch({ action: 'delete', password: SESSION_PW, id }).then(() => loadMedications());
+  }
+  window.deleteMedication = deleteMedication;
+
+  function fmtMedDate(iso) {
+    if (!iso) return '';
+    const [y, m, d] = iso.split('-');
+    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    return months[parseInt(m)-1] + ' ' + parseInt(d) + ', ' + y;
+  }
+
+  function renderMedList() {
+    const list = document.getElementById('med-list');
+    const count = document.getElementById('med-count');
+    if (!allMedications.length) {
+      list.innerHTML = '<div class="med-empty">No medications listed yet. Add one above to make it appear on your website.</div>';
+      count.textContent = '';
+      return;
+    }
+    const sorted = [...allMedications].sort((a, b) => (a.name || '').localeCompare(b.name || ''));
+    count.textContent = sorted.length + ' medication' + (sorted.length !== 1 ? 's' : '');
+
+    list.innerHTML = sorted.map(med => {
+      const statusClass = 'ms-' + (med.status || 'call_us');
+      const statusLabel = MED_STATUS_LABELS[med.status] || 'Call for Availability';
+      const statusOptions = Object.entries(MED_STATUS_LABELS)
+        .map(([val, lbl]) => `<option value="${val}"${med.status === val ? ' selected' : ''}>${lbl}</option>`)
+        .join('');
+
+      return `<div class="med-item">
+        <div class="med-item-top">
+          <div>
+            <div class="med-item-name">${escHtml(med.name)}</div>
+            ${med.genericName ? `<div class="med-item-generic">${escHtml(med.genericName)}</div>` : ''}
+            <div class="med-item-meta">
+              ${med.category ? `<span class="med-category-tag">${escHtml(med.category)}</span>` : ''}
+              ${med.updatedAt ? `<span class="med-updated">Updated ${fmtMedDate(med.updatedAt)}</span>` : ''}
+            </div>
+            ${med.notes ? `<div class="med-item-notes">${escHtml(med.notes)}</div>` : ''}
+          </div>
+          <span class="med-status-badge ${statusClass}">${statusLabel}</span>
+        </div>
+        <div class="med-item-actions">
+          <button class="btn-edit" onclick="startMedEdit(${escJson(med)})">Edit</button>
+          <select onchange="quickUpdateStatus('${med.id}', this.value)" style="padding:5px 10px;border:1.5px solid #E2E8F0;border-radius:7px;font-size:12px;font-weight:600;background:#F7FAFC;cursor:pointer;font-family:inherit;">
+            ${statusOptions}
+          </select>
+          <button class="btn-delete" onclick="deleteMedication('${med.id}')">Remove</button>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  function clearReview(n) {
+    if (!confirm('Clear Review ' + n + ' so you can write a new one? It will be removed from the website once you save.')) return;
+    ['text', 'name', 'initials', 'since'].forEach(function(f) {
+      var el = document.querySelector('[data-field="reviews.r' + n + f + '"]');
+      if (el) el.value = '';
+    });
+  }
+
+  function loadContent() {
+    fetch('/api/admin/content', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'get', password: SESSION_PW })
+    })
+      .then(r => r.json())
+      .then(d => {
+        const c = d.content || {};
+        document.querySelectorAll('[data-field]').forEach(function(inp) {
+          const key = inp.getAttribute('data-field');
+          const val = key.split('.').reduce((o, k) => o && o[k], c);
+          if (val !== undefined && val !== null) inp.value = val;
+        });
+      })
+      .catch(() => {});
+  }
+
+  function saveContent() {
+    const content = {};
+    document.querySelectorAll('[data-field]').forEach(function(inp) {
+      const key = inp.getAttribute('data-field');
+      const parts = key.split('.');
+      let obj = content;
+      for (let i = 0; i < parts.length - 1; i++) {
+        if (!obj[parts[i]]) obj[parts[i]] = {};
+        obj = obj[parts[i]];
+      }
+      obj[parts[parts.length - 1]] = inp.value;
+    });
+    const status = document.getElementById('content-save-status');
+    const btns = document.querySelectorAll('[onclick="saveContent()"]');
+    btns.forEach(b => { b.textContent = 'Saving\u2026'; b.disabled = true; });
+    fetch('/api/admin/content', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password: SESSION_PW, content })
+    })
+    .then(r => r.json())
+    .then(d => {
+      status.style.display = 'inline';
+      status.style.color = d.ok ? '#2d9e5f' : '#c0392b';
+      status.textContent = d.ok ? '\u2713 Saved! Refresh your site to see changes.' : 'Error saving. Please try again.';
+      setTimeout(() => status.style.display = 'none', 4500);
+    })
+    .catch(() => {
+      status.style.display = 'inline';
+      status.style.color = '#c0392b';
+      status.textContent = 'Request failed. Please try again.';
+      setTimeout(() => status.style.display = 'none', 4500);
+    })
+    .finally(() => {
+      btns.forEach(b => { b.textContent = 'Save All Content'; b.disabled = false; });
+    });
+  }
+
+  function sendTestEmail() {
+    const btn = document.getElementById('test-email-btn');
+    const result = document.getElementById('test-email-result');
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+    result.style.display = 'none';
+
+    fetch('/api/admin/test-email', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password: SESSION_PW })
+    })
+    .then(r => r.json())
+    .then(d => {
+      result.style.display = 'inline';
+      if (d.ok) {
+        result.style.color = '#2d9e5f';
+        result.textContent = 'Test email sent to care@fenkellrxpharmacy.com — check your inbox!';
+      } else {
+        result.style.color = '#c0392b';
+        result.textContent = d.error || 'Send failed. Check your Gmail credentials in Render.';
+      }
+    })
+    .catch(() => {
+      result.style.display = 'inline';
+      result.style.color = '#c0392b';
+      result.textContent = 'Request failed. Make sure the server is running.';
+    })
+    .finally(() => {
+      btn.textContent = 'Send Test Email';
+      btn.disabled = false;
+    });
+  }
+</script>
+</body>
+</html>

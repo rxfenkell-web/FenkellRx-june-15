@@ -1,0 +1,31 @@
+{
+  "medications": [
+    {
+      "id": "0bf19543-50c7-4656-919a-f8be62031398",
+      "name": "Vivelle Dot 0.0375 mg patches",
+      "genericName": "Estradiol 0.0375 24 hr patches",
+      "category": "Hormone Therapy",
+      "status": "in_stock",
+      "notes": "Limited availability. First come, first serve basis.",
+      "updatedAt": "2026-06-10"
+    },
+    {
+      "id": "5aa69ff1-38e4-4b5c-8825-5d9dd843a4bc",
+      "name": "Progesterone 200 mg capsules",
+      "genericName": "Progesterone 200 mg capsules",
+      "category": "Hormone Therapy",
+      "status": "in_stock",
+      "notes": "Limited availability. First come, first serve basis.",
+      "updatedAt": "2026-06-10"
+    },
+    {
+      "id": "50905fca-3ac7-497e-a444-722ce3d18966",
+      "name": "Vivelle Dot 0.075 mg patches",
+      "genericName": "Estradiol 0.075 24 hr patches",
+      "category": "Hormone Therapy",
+      "status": "in_stock",
+      "notes": "Limited availability. First come, first serve basis.",
+      "updatedAt": "2026-06-10"
+    }
+  ]
+}

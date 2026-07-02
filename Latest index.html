@@ -1,0 +1,2811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fenkell Rx Pharmacy — Your Community Pharmacist in Detroit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    /* Brand colors from logo */
+    --brand-red: #CC001C;
+    --brand-red-dark: #8A0012;
+    --brand-red-light: #FF2D45;
+    --brand-red-50: #FFF0F2;
+    --brand-red-100: #FFD0D5;
+    --brand-blue: #00AEEF;
+    --brand-blue-dark: #0082C8;
+    --brand-blue-darker: #005B8E;
+    --brand-blue-50: #EDF9FF;
+    --brand-blue-100: #C0ECFF;
+
+    /* Cyan palette */
+    --green-50: #E0F7FA;
+    --green-100: #B2EBF2;
+    --green-200: #80DEEA;
+    --green-300: #4DD0E1;
+    --green-400: #26C6DA;
+    --green-600: #00838F;
+    --green-700: #006064;
+    --green-800: #004D5A;
+    --green-900: #00363A;
+    --cream: #FBF8F2;
+    --warm-50: #FAF6EE;
+    --warm-100: #F2EADB;
+    --warm-400: #C8A96A;
+    --warm-600: #9A7A3C;
+    --slate: #1A1F2E;
+    --slate-light: #4A5568;
+    --slate-muted: #718096;
+    --border: rgba(0,130,200,0.12);
+    --border-strong: rgba(0,130,200,0.25);
+    --shadow: 0 2px 24px rgba(0,82,128,0.08);
+    --shadow-lg: 0 8px 48px rgba(0,82,128,0.12);
+    --radius: 12px;
+    --radius-lg: 20px;
+    --radius-xl: 32px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--slate);
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'DM Serif Display', serif;
+    line-height: 1.2;
+    color: var(--slate);
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  img { display: block; max-width: 100%; }
+
+  .container {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(251,248,242,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+    min-width: 0;
+  }
+
+  .logo-mark {
+    width: 40px;
+    height: 40px;
+    background: var(--green-600);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-mark svg { width: 22px; height: 22px; }
+
+  .logo-text {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    color: var(--brand-blue-darker);
+    white-space: nowrap;
+  }
+
+  .logo-sub {
+    font-size: 10px;
+    color: var(--slate-muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--slate-light);
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--brand-blue-dark); }
+
+  .nav-burger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    margin-left: 12px;
+  }
+  .nav-burger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--slate);
+    border-radius: 2px;
+    transition: all 0.25s;
+  }
+  .nav-mobile-menu {
+    display: none;
+    background: #fff;
+    border-top: 1px solid var(--border);
+    padding: 0.75rem 0 1rem;
+  }
+  .nav-mobile-menu.open { display: block; }
+  .nav-mobile-menu ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .nav-mobile-menu ul li a {
+    display: block;
+    padding: 0.65rem 1.25rem;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--slate);
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+  }
+  .nav-mobile-menu ul li a:hover {
+    background: var(--green-50);
+    color: var(--brand-blue-dark);
+  }
+
+  .nav-cta {
+    background: var(--green-600);
+    color: #fff !important;
+    padding: 9px 22px;
+    border-radius: 50px;
+    font-size: 13.5px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    border: 2px solid var(--green-600);
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(45,158,95,0.25);
+  }
+  .nav-cta:hover {
+    background: var(--green-800) !important;
+    border-color: var(--green-800) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(45,158,95,0.35) !important;
+  }
+  .nav-cta-outline {
+    background: transparent !important;
+    color: var(--green-600) !important;
+    padding: 9px 22px;
+    border-radius: 50px;
+    font-size: 13.5px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    border: 2px solid var(--green-600) !important;
+    transition: background 0.2s, color 0.2s, transform 0.15s;
+  }
+  .nav-cta-outline:hover {
+    background: var(--green-600) !important;
+    color: #fff !important;
+    transform: translateY(-1px);
+  }
+
+  .nav-emergency {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--brand-red);
+    font-weight: 600;
+    white-space: nowrap;
+    flex-shrink: 0;
+    background: var(--brand-blue-50);
+    border: 1.5px solid var(--brand-blue-100);
+    border-radius: 50px;
+    padding: 7px 16px;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .nav-emergency:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,130,200,0.2);
+    background: var(--brand-blue-100);
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, #0077a8 0%, #00b4d8 45%, #48cae4 100%);
+    position: relative;
+    overflow: hidden;
+    padding: 100px 0 80px;
+    color: #fff;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 70% 50%, rgba(255,255,255,0.06) 0%, transparent 60%),
+      radial-gradient(circle at 20% 80%, rgba(255,255,255,0.04) 0%, transparent 40%);
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.18);
+    border: 1.5px solid rgba(255,255,255,0.4);
+    padding: 9px 18px 9px 12px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+    letter-spacing: 0.01em;
+    transition: background 0.3s, border-color 0.3s;
+  }
+
+  .badge-dot {
+    width: 10px;
+    height: 10px;
+    background: #4ADE80;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+    flex-shrink: 0;
+    box-shadow: 0 0 0 3px rgba(74,222,128,0.3);
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 3px rgba(74,222,128,0.3); }
+    50% { opacity: 0.85; transform: scale(1.15); box-shadow: 0 0 0 5px rgba(74,222,128,0.15); }
+  }
+
+  #status-badge.closed {
+    background: rgba(0,0,0,0.2);
+    border-color: rgba(255,255,255,0.25);
+  }
+
+  #status-dot.closed {
+    background: #F87171;
+    box-shadow: 0 0 0 3px rgba(248,113,113,0.3);
+    animation: none;
+  }
+
+  .hours-row.hours-today {
+    background: var(--green-50);
+    border-radius: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 0 -10px;
+  }
+
+  #holiday-banner {
+    display: none;
+    background: linear-gradient(135deg, #7B1226 0%, #A01830 100%);
+    color: #fff;
+    text-align: center;
+    padding: 12px 20px;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    position: relative;
+    z-index: 999;
+  }
+  #holiday-banner .hb-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  #holiday-banner .hb-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  #holiday-banner .hb-text { line-height: 1.4; }
+  #holiday-banner .hb-text strong { font-weight: 700; }
+  #holiday-banner .hb-divider {
+    opacity: 0.45;
+    margin: 0 4px;
+  }
+  #holiday-banner .hb-reopen {
+    opacity: 0.92;
+    font-weight: 400;
+    font-size: 14px;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.4rem, 4vw, 3.6rem);
+    color: #fff;
+    margin-bottom: 1.25rem;
+    font-style: normal;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: #A3F0C8;
+  }
+
+  .hero-desc {
+    font-size: 18px;
+    color: rgba(255,255,255,0.8);
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+    line-height: 1.8;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: #fff;
+    color: var(--green-800);
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 15px;
+    transition: transform 0.15s, box-shadow 0.15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+  .btn-outline {
+    background: transparent;
+    color: #fff;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 15px;
+    border: 1.5px solid rgba(255,255,255,0.4);
+    transition: background 0.15s, border-color 0.15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.7); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+
+  .hero-card {
+    background: rgba(255,255,255,0.95);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    color: var(--slate);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .hero-card h3 {
+    font-size: 18px;
+    margin-bottom: 1.25rem;
+    color: var(--green-800);
+  }
+
+  .quick-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .quick-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 16px;
+    background: var(--warm-50);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+
+  .quick-link:hover {
+    background: var(--brand-blue-50);
+    border-color: var(--brand-blue);
+    transform: translateY(-2px);
+  }
+
+  .ql-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--green-50);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .ql-icon svg { width: 18px; height: 18px; stroke: var(--green-600); }
+
+  .ql-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--slate);
+    line-height: 1.3;
+  }
+
+  .ql-sub {
+    font-size: 11px;
+    color: var(--slate-muted);
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .hero-stat { text-align: center; flex: 1; }
+
+  .hero-stat-n {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px;
+    color: var(--green-700);
+    display: block;
+  }
+
+  .hero-stat-l {
+    font-size: 11px;
+    color: var(--slate-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+  }
+
+  /* ── TRUST BAR ── */
+  .trust-bar {
+    background: var(--green-800);
+    color: rgba(255,255,255,0.75);
+    padding: 14px 0;
+  }
+
+  .trust-bar-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .trust-item svg { width: 16px; height: 16px; stroke: #6EE7A0; }
+
+  /* ── SECTIONS ── */
+  section { padding: 80px 0; }
+
+  .section-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    color: var(--green-600);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    margin-bottom: 1rem;
+  }
+
+  .section-desc {
+    color: var(--slate-light);
+    font-size: 17px;
+    max-width: 560px;
+    font-weight: 300;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+  }
+
+  /* ── SERVICES ── */
+  .services-bg { background: var(--warm-50); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .service-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 2rem 1.75rem;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--green-400);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+    transform-origin: left;
+  }
+
+  .service-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+  .service-card:hover::before { transform: scaleX(1); }
+
+  .delivery-card {
+    border-color: var(--green-400);
+    background: linear-gradient(135deg, #E0F7FA 0%, #fff 60%);
+  }
+  .delivery-card::before { background: var(--green-400) !important; }
+  .delivery-icon {
+    background: var(--green-100) !important;
+    animation: truckBounce 1.8s ease-in-out infinite;
+  }
+  @keyframes truckBounce {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    20%       { transform: translateY(-5px) translateX(3px); }
+    40%       { transform: translateY(0) translateX(6px); }
+    60%       { transform: translateY(-3px) translateX(3px); }
+    80%       { transform: translateY(0) translateX(0); }
+  }
+
+  .service-icon {
+    width: 52px;
+    height: 52px;
+    background: var(--green-50);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+  }
+
+  .service-icon svg { width: 26px; height: 26px; stroke: var(--green-600); }
+
+  .service-card h3 {
+    font-size: 17px;
+    margin-bottom: 0.6rem;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+  }
+
+  .service-card p {
+    font-size: 14px;
+    color: var(--slate-light);
+    line-height: 1.7;
+  }
+
+  .service-tag {
+    display: inline-block;
+    margin-top: 1rem;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--green-600);
+    background: var(--green-50);
+    padding: 4px 10px;
+    border-radius: 6px;
+  }
+
+  /* ── REFILLS ── */
+  .refill-section {
+    background: var(--green-800);
+    color: #fff;
+  }
+
+  .refill-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .refill-section h2 { color: #fff; font-style: italic; }
+
+  .refill-section .section-label { color: #A3F0C8; }
+
+  .refill-section p {
+    color: rgba(255,255,255,0.75);
+    font-size: 16px;
+    margin-bottom: 2rem;
+    font-weight: 300;
+    line-height: 1.8;
+  }
+
+  .refill-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .refill-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius);
+  }
+
+  .step-num {
+    width: 32px;
+    height: 32px;
+    background: var(--green-400);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+    flex-shrink: 0;
+    color: #fff;
+  }
+
+  .refill-step h4 {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: #fff;
+    margin-bottom: 2px;
+  }
+
+  .refill-step p {
+    font-size: 13px;
+    margin-bottom: 0;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .refill-form-card {
+    background: rgba(255,255,255,0.95);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    color: var(--slate);
+  }
+
+  .refill-form-card h3 {
+    font-size: 22px;
+    margin-bottom: 0.5rem;
+  }
+
+  .refill-form-card > p {
+    color: var(--slate-light);
+    font-size: 14px;
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--slate);
+    margin-bottom: 6px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1.5px solid var(--border-strong);
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--slate);
+    background: var(--cream);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--green-400);
+  }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  .btn-submit {
+    width: 100%;
+    padding: 14px;
+    background: var(--green-600);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: background 0.2s, transform 0.1s;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .btn-submit:hover { background: var(--green-800); transform: translateY(-1px); }
+
+  /* ── HEALTH SCREENINGS ── */
+  .screenings-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .screening-list { display: flex; flex-direction: column; gap: 0.75rem; }
+
+  .screening-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    transition: all 0.2s;
+  }
+
+  .screening-item:hover { border-color: var(--green-400); transform: translateX(4px); }
+
+  .si-left { display: flex; align-items: center; gap: 12px; }
+
+  .si-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--green-50);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .si-icon svg { width: 20px; height: 20px; stroke: var(--green-600); }
+
+  .si-name { font-weight: 600; font-size: 14px; }
+  .si-avail { font-size: 12px; color: var(--slate-muted); }
+
+  .si-appt {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--green-600);
+    background: var(--green-50);
+    padding: 5px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    border: 1px solid var(--green-200);
+    white-space: nowrap;
+  }
+
+  .health-cta-card {
+    background: var(--green-600);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    color: #fff;
+    position: sticky;
+    top: 90px;
+  }
+
+  .health-cta-card h3 {
+    font-size: 24px;
+    font-style: italic;
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+
+  .health-cta-card p {
+    color: rgba(255,255,255,0.8);
+    font-size: 15px;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+  }
+
+  .health-perks { display: flex; flex-direction: column; gap: 10px; margin-bottom: 2rem; }
+
+  .health-perk {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.9);
+  }
+
+  .health-perk svg { width: 16px; height: 16px; stroke: #A3F0C8; flex-shrink: 0; }
+
+  /* ── IMMUNIZATIONS ── */
+  .imm-bg { background: var(--warm-50); }
+
+  .imm-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+  }
+
+  .imm-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.2s;
+  }
+
+  .imm-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: var(--green-200); }
+
+  .imm-card svg { width: 32px; height: 32px; stroke: var(--green-600); margin: 0 auto 0.75rem; }
+
+  .imm-card h4 { font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 14px; margin-bottom: 0.5rem; }
+
+  .imm-card p { font-size: 12px; color: var(--slate-muted); }
+
+  /* ── TEAM ── */
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+  }
+
+  .team-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all 0.25s;
+  }
+
+  .team-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+
+  .team-photo {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+    position: relative;
+  }
+
+  .team-photo-1 { background: linear-gradient(135deg, #C3EAD5, #8FD1B0); }
+  .team-photo-2 { background: linear-gradient(135deg, #B5D4F4, #85B7EB); }
+  .team-photo-3 { background: linear-gradient(135deg, #F4C0D1, #ED93B1); }
+  .team-photo-4 { background: linear-gradient(135deg, #FAC775, #EF9F27); }
+
+  .team-initials {
+    width: 80px;
+    height: 80px;
+    background: rgba(255,255,255,0.5);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    color: var(--green-800);
+  }
+
+  .team-info { padding: 1.25rem; }
+  .team-info h3 { font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 17px; margin-bottom: 3px; }
+  .team-role { font-size: 13px; color: var(--green-600); font-weight: 500; margin-bottom: 0.5rem; }
+  .team-bio { font-size: 13px; color: var(--slate-light); line-height: 1.6; }
+
+  /* ── TESTIMONIALS ── */
+  .reviews-bg { background: var(--green-50); }
+
+  .reviews-summary {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+  }
+  .reviews-score {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .reviews-score-num {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--green-800);
+    line-height: 1;
+  }
+  .reviews-score-stars { color: #EF9F27; font-size: 20px; letter-spacing: 3px; display: block; margin-bottom: 2px; }
+  .reviews-score-label { font-size: 13px; color: var(--slate-muted); }
+  .reviews-divider { width: 1px; height: 48px; background: var(--border); }
+  .reviews-source { font-size: 13px; color: var(--slate-muted); }
+  .reviews-source strong { display: block; color: var(--slate); font-size: 14px; margin-bottom: 2px; }
+
+  /* Carousel wrapper */
+  .carousel-outer { position: relative; }
+
+  .carousel-track-wrap {
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+  }
+
+  .carousel-track {
+    display: flex;
+    gap: 1.5rem;
+    transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+  }
+
+  .review-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    transition: box-shadow 0.2s;
+    flex: 0 0 calc((100% - 3rem) / 3);
+    min-width: 0;
+  }
+
+  .review-card:hover { box-shadow: var(--shadow); }
+
+  .review-source-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--slate-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.875rem;
+  }
+  .review-source-tag svg { width: 13px; height: 13px; }
+
+  .review-stars { color: #EF9F27; font-size: 16px; margin-bottom: 0.875rem; letter-spacing: 2px; }
+
+  .review-text {
+    font-size: 15px;
+    color: var(--slate);
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+    font-style: italic;
+  }
+
+  .reviewer { display: flex; align-items: center; gap: 10px; }
+
+  .reviewer-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--green-100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--green-800);
+    flex-shrink: 0;
+  }
+
+  .reviewer-name { font-weight: 600; font-size: 14px; }
+  .reviewer-since { font-size: 12px; color: var(--slate-muted); }
+
+  /* Carousel controls */
+  .carousel-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    margin-top: 2rem;
+  }
+
+  .carousel-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1.5px solid var(--border);
+    background: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--slate);
+    transition: all 0.18s;
+    flex-shrink: 0;
+  }
+  .carousel-btn:hover { border-color: var(--green-600); color: var(--green-700); background: var(--green-50); }
+  .carousel-btn:disabled { opacity: 0.3; cursor: default; }
+  .carousel-btn svg { width: 16px; height: 16px; }
+
+  .carousel-dots {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--border);
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    padding: 0;
+  }
+  .carousel-dot.active {
+    background: var(--green-600);
+    width: 24px;
+    border-radius: 4px;
+  }
+
+  /* ── INSURANCE ── */
+  .ins-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .ins-logos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .ins-logo-box {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem;
+    text-align: center;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--slate-light);
+    transition: all 0.2s;
+  }
+
+  .ins-logo-box:hover { border-color: var(--green-400); color: var(--green-600); }
+
+  .ins-note {
+    margin-top: 1.5rem;
+    padding: 1rem 1.25rem;
+    background: var(--warm-50);
+    border-left: 3px solid var(--warm-400);
+    border-radius: 0 8px 8px 0;
+    font-size: 14px;
+    color: var(--slate-light);
+  }
+
+  .ins-features { display: flex; flex-direction: column; gap: 1rem; }
+
+  .ins-feature {
+    display: flex;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+
+  .ins-feature-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--green-50);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .ins-feature-icon svg { width: 22px; height: 22px; stroke: var(--green-600); }
+
+  .ins-feature h4 { font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 15px; margin-bottom: 3px; }
+  .ins-feature p { font-size: 13px; color: var(--slate-light); }
+
+  /* ── HOURS & LOCATION ── */
+  .location-bg { background: var(--warm-50); }
+
+  .location-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+
+  .hours-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+  }
+
+  .hours-card h3 { font-size: 20px; margin-bottom: 1.5rem; }
+
+  .hours-list { display: flex; flex-direction: column; gap: 0; }
+
+  .hours-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+
+  .hours-row:last-child { border-bottom: none; }
+
+  .hours-day { font-weight: 500; }
+  .hours-time { color: var(--slate-light); }
+  .hours-closed { color: #E24B4A; font-weight: 500; }
+  .hours-today { background: var(--green-50); margin: 0 -1rem; padding-left: 1rem; padding-right: 1rem; border-radius: 8px; border-bottom: none; }
+  .today-badge { font-size: 11px; background: var(--green-400); color: #fff; padding: 2px 8px; border-radius: 4px; font-weight: 600; margin-left: 6px; }
+
+  .contact-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+  }
+
+  .contact-card h3 { font-size: 20px; margin-bottom: 1.5rem; }
+
+  .contact-items { display: flex; flex-direction: column; gap: 1.25rem; }
+
+  .contact-item { display: flex; align-items: flex-start; gap: 1rem; }
+
+  .contact-icon {
+    width: 42px;
+    height: 42px;
+    background: var(--green-50);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .contact-icon svg { width: 20px; height: 20px; stroke: var(--green-600); }
+
+  .contact-item h4 { font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 14px; margin-bottom: 2px; }
+  .contact-item p, .contact-item a { font-size: 14px; color: var(--slate-light); line-height: 1.6; }
+  .contact-item a:hover { color: var(--green-600); }
+
+  .map-embed {
+    margin-top: 1.5rem;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    height: 220px;
+  }
+
+  .map-embed iframe {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: none;
+  }
+
+  /* ── NEWSLETTER ── */
+  .newsletter-section {
+    background: var(--green-600);
+    color: #fff;
+    padding: 60px 0;
+  }
+
+  .newsletter-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .newsletter-copy h2 { color: #fff; font-size: 2rem; font-style: italic; }
+  .newsletter-copy p { color: rgba(255,255,255,0.8); font-size: 15px; margin-top: 0.5rem; font-weight: 300; }
+
+  .newsletter-form { display: flex; gap: 10px; flex-wrap: wrap; }
+
+  .newsletter-form input {
+    padding: 13px 18px;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-family: 'DM Sans', sans-serif;
+    width: 280px;
+    color: var(--slate);
+    outline: none;
+  }
+
+  .newsletter-form button {
+    padding: 13px 24px;
+    background: #fff;
+    color: var(--green-800);
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .newsletter-form button:hover { background: var(--green-50); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--green-900);
+    color: rgba(255,255,255,0.7);
+    padding: 60px 0 30px;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .footer-brand p { font-size: 14px; line-height: 1.8; margin: 1rem 0 1.5rem; font-weight: 300; }
+
+  .social-links { display: flex; gap: 10px; }
+
+  .social-link {
+    width: 36px;
+    height: 36px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+  }
+
+  .social-link:hover { background: rgba(255,255,255,0.15); }
+  .social-link svg { width: 16px; height: 16px; stroke: rgba(255,255,255,0.7); }
+
+  .footer-col h4 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 1rem;
+  }
+
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+
+  .footer-links a {
+    font-size: 14px;
+    color: rgba(255,255,255,0.65);
+    transition: color 0.2s;
+    font-weight: 300;
+  }
+
+  .footer-links a:hover { color: #fff; }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .footer-bottom-links { display: flex; gap: 1.5rem; }
+  .footer-bottom-links a { color: rgba(255,255,255,0.4); transition: color 0.2s; font-size: 13px; }
+  .footer-bottom-links a:hover { color: rgba(255,255,255,0.8); }
+
+  /* ── ACCESSIBILITY BAR ── */
+  .acc-bar {
+    background: var(--warm-100);
+    border-bottom: 1px solid var(--border);
+    padding: 7px 0;
+  }
+
+  .acc-bar-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12.5px;
+    color: var(--slate-muted);
+    gap: 1rem;
+  }
+
+  .acc-bar-left {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .acc-bar-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+  }
+
+  .acc-bar-item svg {
+    opacity: 0.6;
+    flex-shrink: 0;
+    color: var(--slate-muted);
+  }
+
+  .acc-bar-item a {
+    color: var(--green-700);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .acc-bar-item a:hover { color: var(--green-800); text-decoration: underline; }
+
+  .acc-bar-right {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .acc-bar-btn {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: #fff !important;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 50px;
+    text-decoration: none !important;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+
+  .acc-bar-btn:hover { background: rgba(255,255,255,0.22) !important; }
+
+  /* ── PRESCRIPTION INFO BAR ── */
+  .rx-alert {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .rx-alert svg { width: 24px; height: 24px; stroke: var(--green-600); flex-shrink: 0; }
+  .rx-alert p { font-size: 14px; color: var(--slate-light); }
+  .rx-alert strong { color: var(--slate); }
+
+  @keyframes logoPulse {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero-grid, .refill-grid, .screenings-grid, .ins-grid, .location-grid, .footer-grid {
+      grid-template-columns: 1fr;
+    }
+    .hero { padding: 60px 0 50px; }
+    .nav-links { display: none; }
+    .nav-burger { display: flex; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .trust-bar-inner { justify-content: center; }
+  }
+
+  .call-label-mobile { display: none; }
+  .call-label-desktop { display: inline; }
+  @media (max-width: 768px) {
+    .call-label-mobile { display: inline; }
+    .call-label-desktop { display: none; }
+    .review-card {
+      flex: 0 0 100%;
+      padding: 1.25rem;
+    }
+    .reviews-summary {
+      flex-direction: column;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+    .reviews-divider {
+      width: 40px;
+      height: 1px;
+    }
+    .review-text {
+      font-size: 14px;
+      line-height: 1.65;
+    }
+    .reviews-score-num {
+      font-size: 2.25rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .container { padding: 0 1.25rem; }
+    section { padding: 60px 0; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .newsletter-inner { flex-direction: column; align-items: flex-start; }
+    .newsletter-form { flex-direction: column; }
+    .newsletter-form input { width: 100%; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Holiday Banner -->
+<div id="holiday-banner">
+  <div class="hb-inner">
+    <span class="hb-icon">🏥</span>
+    <span class="hb-text"><strong id="hb-holiday-name">Holiday</strong><span id="hb-closed-text"> — We are closed today</span></span>
+    <span class="hb-divider">|</span>
+    <span class="hb-reopen" id="hb-reopen-text"></span>
+  </div>
+</div>
+
+<!-- Top bar -->
+<div class="acc-bar">
+  <div class="container">
+    <div class="acc-bar-inner" style="justify-content:center;">
+      <span style="color:var(--brand-blue-dark);font-weight:500;">The Wellness Pharmacy</span>
+    </div>
+  </div>
+</div>
+
+<!-- Navigation -->
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <div class="nav-logo">
+        <a href="#" style="display:flex;align-items:center;">
+          <img src="logo.png" alt="Fenkell Rx Pharmacy" style="height:54px;width:auto;display:block;">
+        </a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#refills">Refills</a></li>
+        <li><a href="#screenings">Health &amp; Wellness</a></li>
+        <li><a href="#immunizations">Vaccines</a></li>
+        <li><a href="#team">Our Team</a></li>
+        <li><a href="#location">Hours &amp; Location</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="tel:3135195700" class="nav-emergency">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 13.87a19.79 19.79 0 01-3.07-8.67A2 2 0 012 3h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 18v-.08z"/></svg>
+        (313) 519-5700
+      </a>
+      <button class="nav-burger" id="navBurger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="nav-mobile-menu" id="navMobileMenu">
+    <ul>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#refills">Refills</a></li>
+      <li><a href="#screenings">Health &amp; Wellness</a></li>
+      <li><a href="#immunizations">Vaccines</a></li>
+      <li><a href="#team">Our Team</a></li>
+      <li><a href="#location">Hours &amp; Location</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <a href="#location" style="text-decoration:none;">
+          <div class="hero-badge" id="status-badge" style="cursor:pointer;">
+            <span class="badge-dot" id="status-dot"></span>
+            <span id="status-text">Checking hours…</span>
+          </div>
+        </a>
+        <h1><em>Care</em> rooted in <em>trust</em><br>and <em>community</em></h1>
+        <p class="hero-desc">Fenkell Rx Pharmacy proudly serves Detroit's community. We're independently owned, deeply personal, and genuinely committed to your wellbeing — not just filling prescriptions.</p>
+        <div class="hero-actions">
+          <a href="#transfer" class="btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>
+            Transfer My Prescription
+          </a>
+          <a href="tel:3135195700" class="btn-outline">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 13.87a19.79 19.79 0 01-3.07-8.67A2 2 0 012 3h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 18v-.08z"/></svg>
+            <span class="call-label-mobile">Call Us</span><span class="call-label-desktop">(313) 519-5700</span>
+          </a>
+        </div>
+      </div>
+      <div>
+        <div class="hero-card">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
+            <h3 style="margin-bottom:0;">Quick Actions</h3>
+            <a href="https://www.google.com/maps/search/?api=1&query=Fenkell+Rx+Pharmacy+Detroit+MI" target="_blank" rel="noopener" style="text-decoration:none;display:flex;align-items:center;gap:6px;background:var(--warm-50);border:1px solid var(--warm-100);border-radius:50px;padding:4px 12px;">
+              <span style="font-size:1rem;font-weight:700;color:var(--slate);">4.9★</span>
+              <span style="font-size:11px;color:var(--slate-muted);font-weight:500;">Google rating</span>
+            </a>
+          </div>
+          <div class="quick-links">
+            <a href="#refills" class="quick-link">
+              <div class="ql-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg></div>
+              <div><div class="ql-label">Refill Rx</div><div class="ql-sub">Online or by phone</div></div>
+            </a>
+            <a href="#transfer" class="quick-link" style="border-color:var(--brand-blue);background:var(--brand-blue-50);">
+              <div class="ql-icon" style="background:var(--brand-blue-100);color:var(--brand-blue-dark);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 014-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg></div>
+              <div><div class="ql-label">Transfer Rx</div><div class="ql-sub">Switch to Fenkell Rx</div></div>
+            </a>
+            <a href="#screenings" class="quick-link">
+              <div class="ql-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+              <div><div class="ql-label">Health Check</div><div class="ql-sub">Blood pressure, glucose</div></div>
+            </a>
+            <a href="#immunizations" class="quick-link">
+              <div class="ql-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 8h4m-2-2v4"/><circle cx="12" cy="12" r="10"/></svg></div>
+              <div><div class="ql-label">Vaccines</div><div class="ql-sub">Walk-ins welcome</div></div>
+            </a>
+          </div>
+          <div style="margin-top:1rem;border-radius:10px;overflow:hidden;height:210px;position:relative;">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5890.246!2d-83.2487!3d42.3974!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8824c56e1f6b0001%3A0x0!2s18360+Fenkell+St%2C+Detroit%2C+MI+48223!5e0!3m2!1sen!2sus!4v1"
+              width="100%" height="210" style="border:0;display:block;"
+              allowfullscreen="" loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Fenkell Rx Pharmacy location map">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Trust bar -->
+<div class="trust-bar">
+  <div class="container">
+    <div class="trust-bar-inner">
+      <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> NABP Accredited Pharmacy</div>
+      <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Board-Certified Pharmacists</div>
+      <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> HIPAA Compliant</div>
+      <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Medicare Part D Provider</div>
+      <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Free Medication Review</div>
+    </div>
+  </div>
+</div>
+
+<!-- Services -->
+<section id="services" class="services-bg">
+  <div class="container">
+    <div class="section-label">What We Offer</div>
+    <h2 class="section-title">Full-service pharmacy care</h2>
+    <p class="section-desc">From everyday prescriptions to specialized compounding, our licensed team provides expert care tailored to you.</p>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg></div>
+        <h3>Prescription Dispensing</h3>
+        <p>Fast, accurate filling of all prescription medications. Same-day dispensing on most orders with pharmacist verification.</p>
+        <span class="service-tag">Core Service</span>
+      </div>
+
+      <div class="service-card delivery-card">
+        <div class="service-icon delivery-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+        <h3>Free Local Delivery</h3>
+        <p>Prescription delivery to your home within our service area — no extra cost, same-day where possible.</p>
+        <span class="service-tag">Free</span>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg></div>
+        <h3>Medication Therapy Management</h3>
+        <p>Comprehensive review of all your medications to identify interactions, improve adherence, and optimize your health outcomes.</p>
+        <span class="service-tag">Consultation</span>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg></div>
+        <h3>Blister Packaging (PillPack)</h3>
+        <p>Pre-sorted daily dose packages for patients managing multiple medications. Perfect for seniors and complex regimens.</p>
+        <span class="service-tag">Adherence</span>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        <h3>Medication Synchronization</h3>
+        <p>All your refills aligned to one pickup date per month, so you never run out of any medication unexpectedly.</p>
+        <span class="service-tag">Convenience</span>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3h6l1 7H8L9 3z"/><path d="M8 10s-2 1-2 4h12c0-3-2-4-2-4"/><path d="M10 17v4M14 17v4"/></svg></div>
+        <h3>Compounding</h3>
+        <p>Custom medications prepared to your doctor's exact specifications — dosage forms, strengths, and flavors tailored to you.</p>
+        <span class="service-tag">Custom</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Immunizations -->
+<section id="immunizations" class="imm-bg">
+  <div class="container">
+    <div class="section-label">Immunizations</div>
+    <h2 class="section-title">Vaccines. Walk-ins welcome.</h2>
+    <p class="section-desc">Our pharmacists are certified immunizers. No appointment needed for most vaccines — just come in and we'll take care of you.</p>
+
+    <div class="imm-grid">
+      <div class="imm-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2z"/><path d="M12 6v6l4 2"/></svg>
+        <h4>Flu (Influenza)</h4>
+        <p>Annual · All ages · Walk-in</p>
+      </div>
+      <div class="imm-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/></svg>
+        <h4>COVID-19</h4>
+        <p>Updated boosters · All ages</p>
+      </div>
+      <div class="imm-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <h4>Shingles (Shingrix)</h4>
+        <p>50+ · 2-dose series</p>
+      </div>
+      <div class="imm-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+        <h4>Pneumococcal</h4>
+        <p>65+ or high-risk adults</p>
+      </div>
+      <div class="imm-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        <h4>Tdap / Td</h4>
+        <p>Tetanus, diphtheria, pertussis</p>
+      </div>
+      <div class="imm-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+        <h4>Hepatitis A &amp; B</h4>
+        <p>Travel · Occupational · Series</p>
+      </div>
+      <div class="imm-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <h4>RSV Vaccine</h4>
+        <p>60+ · Single dose</p>
+      </div>
+      <div class="imm-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <h4>Travel Vaccines</h4>
+        <p>Typhoid, Hep A, Yellow fever + more</p>
+      </div>
+    </div>
+
+    <div class="rx-alert" style="margin-top:2rem;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <p><strong>Insurance accepted:</strong> Most vaccines are covered at $0 cost with Medicare Part B, Part D, or private insurance. We'll verify your coverage before administering.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Our Team -->
+<section id="team">
+  <div class="container">
+    <div class="section-label">Our Team</div>
+    <h2 class="section-title">Staff who know your name</h2>
+    <p class="section-desc">Our team of skilled pharmacists and technicians is committed to more than just filling prescriptions — we take the time to understand each patient's needs and provide the attentive, expert care they deserve.</p>
+
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-photo team-photo-1"><div class="team-initials">SH</div></div>
+        <div class="team-info">
+          <h3>Syed Hassan, PharmD</h3>
+          <div class="team-role">Pharmacy Manager · 13+ Years Experience</div>
+          <p class="team-bio">Passionate about community health with 13+ years in patient care, pharmacy operations, and team leadership. Specializes in medication management, immunizations, and delivering accessible, high-quality pharmacy care.</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo team-photo-2"><div class="team-initials">MK</div></div>
+        <div class="team-info">
+          <h3>Mathula Kaja</h3>
+          <div class="team-role">Pharmacist</div>
+          <p class="team-bio">Dedicated to providing safe, accurate, and compassionate pharmacy care to every patient who walks through our doors.</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo team-photo-3"><div class="team-initials">TT</div></div>
+        <div class="team-info">
+          <h3>Tiffany Threatt</h3>
+          <div class="team-role">Pharmacy Support Associate</div>
+          <p class="team-bio">Delivers medications directly to patients and leads pharmacy outreach efforts to keep our community connected to the care they need.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Reviews -->
+<section class="reviews-bg">
+  <div class="container">
+    <div class="section-label">Patient Reviews</div>
+    <h2 class="section-title">What our community says</h2>
+    <p class="section-desc">Don't take our word for it. Here's what our patients have been saying.</p>
+
+    <div class="reviews-summary">
+      <div class="reviews-score">
+        <div class="reviews-score-num">4.9</div>
+        <div>
+          <span class="reviews-score-stars">★★★★★</span>
+          <div class="reviews-score-label">Based on 120+ reviews</div>
+        </div>
+      </div>
+      <div class="reviews-divider"></div>
+      <div class="reviews-source">
+        <strong>Google Reviews</strong>
+        Fenkell Rx Pharmacy · Detroit, MI
+      </div>
+      <div class="reviews-divider"></div>
+      <div class="reviews-source">
+        <strong>Verified patients</strong>
+        All reviews from confirmed customers
+      </div>
+    </div>
+
+    <div class="carousel-outer" id="reviewsCarousel">
+      <div class="carousel-track-wrap">
+        <div class="carousel-track" id="carouselTrack">
+
+          <div class="review-card">
+            <div class="review-source-tag">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.545 10.239v3.821h5.445c-.712 2.315-2.647 3.972-5.445 3.972a6.033 6.033 0 01-6.033-6.033 6.033 6.033 0 016.033-6.032c1.498 0 2.866.549 3.921 1.453l2.814-2.814A9.969 9.969 0 0012.545 2C7.021 2 2.543 6.477 2.543 12s4.478 10 10.002 10c8.396 0 10.249-7.85 9.426-11.748l-9.426-.013z"/></svg>
+              Google
+            </div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"This place is literally the best! I was honestly freaking out because I thought my meds were gonna cost a fortune, but they didn't at all! The pharmacist is very kind, and he even came from behind the counter and explained to me exactly how to use my meds. I seriously recommend this place!"</p>
+            <div class="reviewer">
+              <div class="reviewer-avatar">ME</div>
+              <div>
+                <div class="reviewer-name">Madison E.</div>
+                <div class="reviewer-since">2 months ago</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-source-tag">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.545 10.239v3.821h5.445c-.712 2.315-2.647 3.972-5.445 3.972a6.033 6.033 0 01-6.033-6.033 6.033 6.033 0 016.033-6.032c1.498 0 2.866.549 3.921 1.453l2.814-2.814A9.969 9.969 0 0012.545 2C7.021 2 2.543 6.477 2.543 12s4.478 10 10.002 10c8.396 0 10.249-7.85 9.426-11.748l-9.426-.013z"/></svg>
+              Google
+            </div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"I luv this pharmacy! The pharmacist and staff are amazing! He was the best pharmacist at Rite Aid and I'm so happy he has his own! Kudos!"</p>
+            <div class="reviewer">
+              <div class="reviewer-avatar">PG</div>
+              <div>
+                <div class="reviewer-name">Pat G.</div>
+                <div class="reviewer-since">2 months ago</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-source-tag">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.545 10.239v3.821h5.445c-.712 2.315-2.647 3.972-5.445 3.972a6.033 6.033 0 01-6.033-6.033 6.033 6.033 0 016.033-6.032c1.498 0 2.866.549 3.921 1.453l2.814-2.814A9.969 9.969 0 0012.545 2C7.021 2 2.543 6.477 2.543 12s4.478 10 10.002 10c8.396 0 10.249-7.85 9.426-11.748l-9.426-.013z"/></svg>
+              Google
+            </div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"The staff is very nice. The pharmacist goes above and beyond to be sure that each and every customer has been taken care of. They also deliver!!! One of the best pharmacies by far! CVS who?? No wait and they always have the medication you need!"</p>
+            <div class="reviewer">
+              <div class="reviewer-avatar">AC</div>
+              <div>
+                <div class="reviewer-name">Alexis C.</div>
+                <div class="reviewer-since">8 months ago</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-source-tag">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.545 10.239v3.821h5.445c-.712 2.315-2.647 3.972-5.445 3.972a6.033 6.033 0 01-6.033-6.033 6.033 6.033 0 016.033-6.032c1.498 0 2.866.549 3.921 1.453l2.814-2.814A9.969 9.969 0 0012.545 2C7.021 2 2.543 6.477 2.543 12s4.478 10 10.002 10c8.396 0 10.249-7.85 9.426-11.748l-9.426-.013z"/></svg>
+              Google
+            </div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"The most caring, kind and compassionate pharmacy I have ever dealt with. I have done surgery for 32 years, and I have never been more impressed with the excellence and professionalism they provide. In health care many lose the true purpose we have, to serve! I am so blessed to have found this pharmacy. If I could give 10 stars!!!!"</p>
+            <div class="reviewer">
+              <div class="reviewer-avatar">RF</div>
+              <div>
+                <div class="reviewer-name">Robert F., M.D.</div>
+                <div class="reviewer-since">11 months ago</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-source-tag">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.545 10.239v3.821h5.445c-.712 2.315-2.647 3.972-5.445 3.972a6.033 6.033 0 01-6.033-6.033 6.033 6.033 0 016.033-6.032c1.498 0 2.866.549 3.921 1.453l2.814-2.814A9.969 9.969 0 0012.545 2C7.021 2 2.543 6.477 2.543 12s4.478 10 10.002 10c8.396 0 10.249-7.85 9.426-11.748l-9.426-.013z"/></svg>
+              Google
+            </div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"I just switched from another pharmacy to Fenkell RX. Syed, the pharmacist goes above and beyond to make sure I have the medications I need that are essential to my well being in a timely manner. He is a professional with a personal touch that will make a great addition to our community."</p>
+            <div class="reviewer">
+              <div class="reviewer-avatar">MF</div>
+              <div>
+                <div class="reviewer-name">Matilda F.</div>
+                <div class="reviewer-since">11 months ago</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-source-tag">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.545 10.239v3.821h5.445c-.712 2.315-2.647 3.972-5.445 3.972a6.033 6.033 0 01-6.033-6.033 6.033 6.033 0 016.033-6.032c1.498 0 2.866.549 3.921 1.453l2.814-2.814A9.969 9.969 0 0012.545 2C7.021 2 2.543 6.477 2.543 12s4.478 10 10.002 10c8.396 0 10.249-7.85 9.426-11.748l-9.426-.013z"/></svg>
+              Google
+            </div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"Pharmacist Hassan took the time to help a customer who needed a prescription for a brand name drug insurance would not pay — the cost was $400. Other pharmacies were not helpful at all. I am grateful this pharmacy is open. Phenomenal service, thank you!"</p>
+            <div class="reviewer">
+              <div class="reviewer-avatar">GT</div>
+              <div>
+                <div class="reviewer-name">Gloria T.</div>
+                <div class="reviewer-since">10 months ago</div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+      <div class="carousel-controls">
+        <button class="carousel-btn" id="carouselPrev" aria-label="Previous reviews">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="carousel-dots" id="carouselDots"></div>
+        <button class="carousel-btn" id="carouselNext" aria-label="Next reviews">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Insurance -->
+<section id="insurance">
+  <div class="container">
+    <div class="ins-grid">
+      <div>
+        <div class="section-label">Insurance &amp; Payment</div>
+        <h2 class="section-title">We work with your insurance</h2>
+        <p class="section-desc" style="margin-bottom:1.5rem;">We accept most major insurance plans and work hard to find you the best pricing — including GoodRx and patient assistance programs.</p>
+        <div class="ins-logos">
+          <div class="ins-logo-box">Medicare Part D</div>
+          <div class="ins-logo-box">All Medicaid Plans</div>
+          <div class="ins-logo-box">Blue Cross Blue Shield</div>
+          <div class="ins-logo-box">Aetna</div>
+          <div class="ins-logo-box">United Healthcare</div>
+          <div class="ins-logo-box">HAP</div>
+          <div class="ins-logo-box">Humana</div>
+          <div class="ins-logo-box">Priority Health</div>
+        </div>
+        <div class="ins-note">Don't see your plan? <a href="tel:3135195700" style="color:inherit;font-weight:700;text-decoration:underline;">Call us at (313) 519-5700</a> — we likely accept it, or we'll help you find the lowest cash price.</div>
+      </div>
+      <div class="ins-features">
+        <div class="ins-feature">
+          <div class="ins-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <div>
+            <h4>Insurance Verification</h4>
+            <p>We verify your benefits before dispensing so there are no surprise costs at pickup.</p>
+          </div>
+        </div>
+        <div class="ins-feature">
+          <div class="ins-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+          <div>
+            <h4>Patient Assistance Programs</h4>
+            <p>We help connect eligible patients with manufacturer programs that can provide medications for free or at very low cost.</p>
+          </div>
+        </div>
+        <div class="ins-feature">
+          <div class="ins-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+          <div>
+            <h4>Flexible Payment Options</h4>
+            <p>We accept cash, all major credit cards, FSA/HSA cards, and monthly billing for established patients.</p>
+          </div>
+        </div>
+        <div class="ins-feature">
+          <div class="ins-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg></div>
+          <div>
+            <h4>Generic Drug Savings</h4>
+            <p>We proactively suggest FDA-approved generic equivalents that can save you significantly on your monthly costs.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Prescription Refill -->
+<section id="refills" class="refill-section">
+  <div class="container">
+    <div class="refill-grid">
+      <div>
+        <div class="section-label">Refill a Prescription</div>
+        <h2 class="section-title">Skip the line.<br>Refill online.</h2>
+        <p>Request your refills online and we'll have them ready when you arrive. Or choose delivery — your choice, your convenience.</p>
+        <div class="refill-steps">
+          <div class="refill-step">
+            <div class="step-num">1</div>
+            <div>
+              <h4>Enter your Rx number</h4>
+              <p>Found on your prescription bottle label</p>
+            </div>
+          </div>
+          <div class="refill-step">
+            <div class="step-num">2</div>
+            <div>
+              <h4>Confirm your details</h4>
+              <p>Date of birth and preferred pickup or delivery</p>
+            </div>
+          </div>
+          <div class="refill-step">
+            <div class="step-num">3</div>
+            <div>
+              <h4>We'll notify you when it's ready</h4>
+              <p>Text or email — you choose</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="refill-form-card">
+          <h3>Request a Refill</h3>
+          <p>You will be notified when your medication is ready for pick up.</p>
+
+          <div class="form-group">
+            <label>Rx Number(s)</label>
+            <input id="rf-rx" type="text" placeholder="e.g. 1234567, 1234568">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>First Name</label>
+              <input id="rf-first" type="text" placeholder="Jane">
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input id="rf-last" type="text" placeholder="Smith">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Date of Birth</label>
+              <input id="rf-dob" type="date">
+            </div>
+            <div class="form-group">
+              <label>Phone Number</label>
+              <input id="rf-phone" type="tel" placeholder="(555) 000-0000">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Preferred Method</label>
+            <select id="rf-method">
+              <option>In-store pickup</option>
+              <option>Home delivery (free)</option>
+              <option>Curbside pickup</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Email Address (optional — for confirmation)</label>
+            <input id="rf-email" type="email" placeholder="jane@email.com">
+          </div>
+          <div class="form-group">
+            <label>Notes (optional)</label>
+            <textarea id="rf-notes" rows="2" placeholder="Any special instructions..."></textarea>
+          </div>
+          <button class="btn-submit" onclick="submitRefill()">Request Refill →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Health Screenings -->
+<section id="screenings">
+  <div class="container">
+    <div class="section-label">Health &amp; Wellness</div>
+    <h2 class="section-title">On-site health screenings</h2>
+    <p class="section-desc">No appointment needed. All screenings are walk-in and free — speak directly with a pharmacist about your results.</p>
+
+    <div class="screenings-grid">
+      <div class="screening-list">
+        <div class="screening-item">
+          <div class="si-left">
+            <div class="si-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+            <div>
+              <div class="si-name">Blood Pressure Screening</div>
+              <div class="si-avail">Walk-in · Free</div>
+            </div>
+          </div>
+          <div class="si-appt">Walk In</div>
+        </div>
+        <div class="screening-item">
+          <div class="si-left">
+            <div class="si-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div>
+            <div>
+              <div class="si-name">Blood Glucose (Diabetes) Check</div>
+              <div class="si-avail">Walk-in · Free</div>
+            </div>
+          </div>
+          <div class="si-appt">Walk In</div>
+        </div>
+        <div class="screening-item">
+          <div class="si-left">
+            <div class="si-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+            <div>
+              <div class="si-name">Body Mass Index (BMI)</div>
+              <div class="si-avail">Walk-in · Free</div>
+            </div>
+          </div>
+          <div class="si-appt">Walk In</div>
+        </div>
+        <div class="screening-item">
+          <div class="si-left">
+            <div class="si-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+            <div>
+              <div class="si-name">Medication Adherence Review</div>
+              <div class="si-avail">Walk-in · Free</div>
+            </div>
+          </div>
+          <div class="si-appt">Walk In</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="health-cta-card">
+          <h3>Wellness programs for our community</h3>
+          <p>We partner with local physicians and health systems to provide free monthly wellness clinics and chronic disease management support.</p>
+          <div class="health-perks">
+            <div class="health-perk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Diabetes self-management coaching</div>
+            <div class="health-perk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Heart health education</div>
+            <div class="health-perk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Smoking cessation counseling</div>
+            <div class="health-perk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Coordination with your care team</div>
+          </div>
+          <a href="tel:3135195700" class="btn-primary" style="display:inline-flex; background:#fff; color: #0D4D32;">Call to Schedule a Consultation</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Hours & Location -->
+<section id="location" class="location-bg">
+  <div class="container">
+    <div class="section-label">Hours &amp; Location</div>
+    <h2 class="section-title">Find us in the heart of Detroit</h2>
+
+    <div class="location-grid">
+      <div>
+        <div class="hours-card" style="margin-bottom:1.5rem;">
+          <h3>Store Hours</h3>
+          <div class="hours-list">
+            <div class="hours-row" data-day="1"><span class="hours-day">Monday <span class="today-badge" style="display:none">Today</span></span><span class="hours-time">9:30 AM – 6:00 PM</span></div>
+            <div class="hours-row" data-day="2"><span class="hours-day">Tuesday <span class="today-badge" style="display:none">Today</span></span><span class="hours-time">9:30 AM – 6:00 PM</span></div>
+            <div class="hours-row" data-day="3"><span class="hours-day">Wednesday <span class="today-badge" style="display:none">Today</span></span><span class="hours-time">9:30 AM – 6:00 PM</span></div>
+            <div class="hours-row" data-day="4"><span class="hours-day">Thursday <span class="today-badge" style="display:none">Today</span></span><span class="hours-time">9:30 AM – 6:00 PM</span></div>
+            <div class="hours-row" data-day="5"><span class="hours-day">Friday <span class="today-badge" style="display:none">Today</span></span><span class="hours-time">9:30 AM – 6:00 PM</span></div>
+            <div class="hours-row" data-day="6"><span class="hours-day">Saturday <span class="today-badge" style="display:none">Today</span></span><span class="hours-time">9:30 AM – 3:00 PM</span></div>
+            <div class="hours-row" data-day="0"><span class="hours-day">Sunday's &amp; Holidays <span class="today-badge" style="display:none">Today</span></span><span class="hours-closed">Closed</span></div>
+            <div class="hours-row" id="holiday-row" style="display:none"><span class="hours-day" id="holiday-name">Holiday <span class="today-badge" style="display:inline">Today</span></span><span class="hours-closed">Closed</span></div>
+          </div>
+        </div>
+        <div class="rx-alert">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 13.87a19.79 19.79 0 01-3.07-8.67A2 2 0 012 3h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 18v-.08z"/></svg>
+          <p><strong>Main Line:</strong> (313) 519-5700 — Outside of business hours: Please leave a message and we will get back to you as soon as possible.</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="contact-card">
+          <h3>Contact &amp; Directions</h3>
+          <div class="contact-items">
+            <div class="contact-item">
+              <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 018 8c0 5.25-8 14-8 14S4 15.25 4 10a8 8 0 018-8z"/></svg></div>
+              <div>
+                <h4>Address</h4>
+                <p>18360 Fenkell Ave, Detroit, MI, 48223</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 13.87a19.79 19.79 0 01-3.07-8.67A2 2 0 012 3h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 18v-.08z"/></svg></div>
+              <div>
+                <h4>Phone</h4>
+                <p><a href="tel:3135195700">(313) 519-5700</a> — Main pharmacy</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+              <div>
+                <h4>Email</h4>
+                <p><a href="mailto:fenkellrxpharmacy@gmail.com">fenkellrxpharmacy@gmail.com</a></p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+              <div>
+                <h4>Fax (Prescriber Line)</h4>
+                <p>(313) 899-7389<br>For physician offices and care providers</p>
+              </div>
+            </div>
+          </div>
+          <div class="map-embed">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2945.123!2d-83.2487!3d42.3974!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8824c56e1f6b0001%3A0x0!2s18360+Fenkell+St%2C+Detroit%2C+MI+48223!5e0!3m2!1sen!2sus!4v1"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Fenkell Rx Pharmacy location map">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Transfer CTA -->
+<section id="transfer" style="background:linear-gradient(135deg,#0077a8 0%,#00b4d8 45%,#48cae4 100%);padding:5rem 0;">
+  <div class="container">
+    <div style="text-align:center;color:#fff;max-width:700px;margin:0 auto 3rem;">
+      <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" style="display:inline-block;margin-bottom:1.5rem;animation:logoPulse 3s ease-in-out infinite;background:#fff;border-radius:16px;padding:0.6rem 2rem;box-shadow:0 8px 32px rgba(0,0,0,0.18);transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'">
+        <img src="logo.png" alt="Fenkell Rx Pharmacy" style="height:100px;width:auto;display:block;filter:drop-shadow(0 6px 18px rgba(0,119,168,0.35));">
+
+      </a>
+      <h2 style="font-size:2.2rem;font-weight:800;margin-bottom:1rem;color:#fff;">Ready to make the switch?</h2>
+      <p style="font-size:1.15rem;opacity:0.92;line-height:1.7;">Transferring your prescriptions to Fenkell Rx is fast, free, and easy. Fill out the form below — we'll contact your old pharmacy and take care of everything.</p>
+    </div>
+
+    <div style="background:#fff;border-radius:20px;padding:2.5rem;max-width:620px;margin:0 auto;box-shadow:0 8px 40px rgba(0,0,0,0.15);">
+      <h3 style="font-size:1.3rem;font-weight:700;color:#1a3c2b;margin-bottom:1.5rem;">Prescription Transfer Request</h3>
+
+      <div style="display:grid;gap:1.1rem;">
+        <div>
+          <label style="display:block;font-size:0.85rem;font-weight:600;color:#444;margin-bottom:0.4rem;">Patient Full Name *</label>
+          <input id="tf-name" type="text" placeholder="Jane Smith" style="width:100%;padding:0.75rem 1rem;border:1.5px solid #ddd;border-radius:10px;font-size:1rem;box-sizing:border-box;outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='#2d9e5f'" onblur="this.style.borderColor='#ddd'">
+        </div>
+        <div>
+          <label style="display:block;font-size:0.85rem;font-weight:600;color:#444;margin-bottom:0.4rem;">Date of Birth *</label>
+          <input id="tf-dob" type="date" style="width:100%;padding:0.75rem 1rem;border:1.5px solid #ddd;border-radius:10px;font-size:1rem;box-sizing:border-box;outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='#2d9e5f'" onblur="this.style.borderColor='#ddd'">
+        </div>
+        <div>
+          <label style="display:block;font-size:0.85rem;font-weight:600;color:#444;margin-bottom:0.4rem;">Patient Phone Number *</label>
+          <input id="tf-phone" type="tel" placeholder="(313) 000-0000" style="width:100%;padding:0.75rem 1rem;border:1.5px solid #ddd;border-radius:10px;font-size:1rem;box-sizing:border-box;outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='#2d9e5f'" onblur="this.style.borderColor='#ddd'">
+        </div>
+        <div style="border-top:1.5px solid #f0f0f0;padding-top:1.1rem;margin-top:0.2rem;">
+          <p style="font-size:0.82rem;color:#888;margin-bottom:1rem;">Previous Pharmacy Information</p>
+          <div style="display:grid;gap:1.1rem;">
+            <div>
+              <label style="display:block;font-size:0.85rem;font-weight:600;color:#444;margin-bottom:0.4rem;">Previous Pharmacy Name *</label>
+              <input id="tf-rx-name" type="text" placeholder="e.g. CVS Pharmacy" style="width:100%;padding:0.75rem 1rem;border:1.5px solid #ddd;border-radius:10px;font-size:1rem;box-sizing:border-box;outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='#2d9e5f'" onblur="this.style.borderColor='#ddd'">
+            </div>
+            <div>
+              <label style="display:block;font-size:0.85rem;font-weight:600;color:#444;margin-bottom:0.4rem;">Previous Pharmacy Phone Number *</label>
+              <input id="tf-rx-phone" type="tel" placeholder="(313) 000-0000" style="width:100%;padding:0.75rem 1rem;border:1.5px solid #ddd;border-radius:10px;font-size:1rem;box-sizing:border-box;outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='#2d9e5f'" onblur="this.style.borderColor='#ddd'">
+            </div>
+          </div>
+        </div>
+        <div>
+          <label style="display:block;font-size:0.85rem;font-weight:600;color:#444;margin-bottom:0.4rem;">Email Address <span style="font-weight:400;color:#aaa;">(optional — for confirmation)</span></label>
+          <input id="tf-email" type="email" placeholder="jane@email.com" style="width:100%;padding:0.75rem 1rem;border:1.5px solid #ddd;border-radius:10px;font-size:1rem;box-sizing:border-box;outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='#2d9e5f'" onblur="this.style.borderColor='#ddd'">
+        </div>
+      </div>
+
+      <button onclick="submitTransfer()" style="width:100%;margin-top:1.5rem;background:linear-gradient(135deg,var(--brand-blue-darker),var(--brand-blue-dark));color:#fff;font-size:1.05rem;font-weight:700;padding:1rem;border:none;border-radius:12px;cursor:pointer;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+        Submit Transfer Request →
+      </button>
+      <p style="text-align:center;font-size:0.82rem;color:#aaa;margin-top:1rem;">Your information is kept private and used only to process your transfer.</p>
+    </div>
+  </div>
+</section>
+
+<script>
+function submitTransfer() {
+  var name    = document.getElementById('tf-name').value.trim();
+  var dob     = document.getElementById('tf-dob').value.trim();
+  var phone   = document.getElementById('tf-phone').value.trim();
+  var rxName  = document.getElementById('tf-rx-name').value.trim();
+  var rxPhone = document.getElementById('tf-rx-phone').value.trim();
+  var email   = document.getElementById('tf-email').value.trim();
+
+  if (!name || !dob || !phone || !rxName || !rxPhone) {
+    alert('Please fill in all fields before submitting.');
+    return;
+  }
+
+  postEmail({
+    type: 'Transfer Request',
+    subject: 'Prescription Transfer Request – ' + name,
+    body:
+      'PRESCRIPTION TRANSFER REQUEST\n' +
+      '==============================\n\n' +
+      'Patient Name:              ' + name + '\n' +
+      'Date of Birth:             ' + dob + '\n' +
+      'Patient Phone:             ' + phone + '\n\n' +
+      'Previous Pharmacy Name:    ' + rxName + '\n' +
+      'Previous Pharmacy Phone:   ' + rxPhone + '\n\n' +
+      '==============================\n' +
+      'Submitted via FenkellRxPharmacy.com',
+    customerEmail: email,
+    name: name,
+    rxName: rxName
+  }, 'Transfer request sent! We\'ll take care of everything.');
+}
+
+function submitRefill() {
+  var rx     = document.getElementById('rf-rx').value.trim();
+  var first  = document.getElementById('rf-first').value.trim();
+  var last   = document.getElementById('rf-last').value.trim();
+  var dob    = document.getElementById('rf-dob').value.trim();
+  var phone  = document.getElementById('rf-phone').value.trim();
+  var method = document.getElementById('rf-method').value;
+  var notes  = document.getElementById('rf-notes').value.trim();
+  var email  = document.getElementById('rf-email').value.trim();
+
+  if (!rx || !first || !last || !dob || !phone) {
+    alert('Please fill in all required fields before submitting.');
+    return;
+  }
+
+  postEmail({
+    type: 'Refill Request',
+    subject: 'Refill Request – ' + first + ' ' + last,
+    body:
+      'REFILL REQUEST\n' +
+      '==============================\n\n' +
+      'Patient Name:    ' + first + ' ' + last + '\n' +
+      'Date of Birth:   ' + dob + '\n' +
+      'Phone:           ' + phone + '\n' +
+      'Rx Number(s):    ' + rx + '\n' +
+      'Preferred Method:' + method + '\n' +
+      'Notes:           ' + (notes || 'None') + '\n\n' +
+      '==============================\n' +
+      'Submitted via FenkellRxPharmacy.com',
+    customerEmail: email,
+    firstName: first,
+    lastName: last,
+    rx: rx,
+    method: method
+  }, 'Thank you! You will be notified when your medication is ready for pick up.');
+}
+
+function submitNewsletter() {
+  var email = document.getElementById('nl-email').value.trim();
+  if (!email) { alert('Please enter your email address.'); return; }
+
+  postEmail({
+    type: 'Newsletter Signup',
+    subject: 'Newsletter Signup – ' + email,
+    body:
+      'NEWSLETTER SIGNUP\n' +
+      '==============================\n\n' +
+      'Email: ' + email + '\n\n' +
+      'Submitted via FenkellRxPharmacy.com',
+    customerEmail: email
+  }, 'Thank you for subscribing to our health newsletter!');
+}
+
+function submitContact() {
+  var first   = document.getElementById('ct-first').value.trim();
+  var last    = document.getElementById('ct-last').value.trim();
+  var phone   = document.getElementById('ct-phone').value.trim();
+  var email   = document.getElementById('ct-email').value.trim();
+  var topic   = document.getElementById('ct-topic').value;
+  var message = document.getElementById('ct-message').value.trim();
+
+  if (!first || !last || !phone || !topic || !message) {
+    alert('Please fill in all required fields before submitting.');
+    return;
+  }
+
+  postEmail({
+    type: 'Contact Inquiry',
+    subject: 'Contact Inquiry (' + topic + ') – ' + first + ' ' + last,
+    body:
+      'CONTACT INQUIRY\n' +
+      '==============================\n\n' +
+      'Name:    ' + first + ' ' + last + '\n' +
+      'Phone:   ' + phone + '\n' +
+      'Email:   ' + (email || 'Not provided') + '\n' +
+      'Topic:   ' + topic + '\n\n' +
+      'Message:\n' + message + '\n\n' +
+      '==============================\n' +
+      'Submitted via FenkellRxPharmacy.com',
+    customerEmail: email,
+    first: first,
+    last: last,
+    topic: topic
+  }, 'Thank you! We\'ll get back to you within 1 business day.');
+
+  document.getElementById('ct-first').value = '';
+  document.getElementById('ct-last').value = '';
+  document.getElementById('ct-phone').value = '';
+  document.getElementById('ct-email').value = '';
+  document.getElementById('ct-topic').value = '';
+  document.getElementById('ct-message').value = '';
+}
+
+function postEmail(payload, successMsg) {
+  fetch('/api/email', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(d) {
+    if (d.ok) {
+      alert(successMsg);
+    } else {
+      alert('Your message could not be sent. Please call us directly at (313) 519-5700.');
+    }
+  })
+  .catch(function() {
+    alert('Your message could not be sent. Please call us directly at (313) 519-5700.');
+  });
+}
+</script>
+
+<!-- Contact -->
+<section id="contact" style="background:var(--cream);padding:5rem 0;">
+  <div class="container">
+    <div class="refill-grid">
+      <div>
+        <div class="section-label">Contact Us</div>
+        <h2 class="section-title">Have a question?<br>We're here to help.</h2>
+        <p>Whether it's a question about your medication, insurance, our services, or anything else — send us a message and we'll get back to you as soon as possible.</p>
+      </div>
+      <div>
+        <div class="refill-form-card">
+          <h3>Send Us a Message</h3>
+          <p>We'll respond within 1 business day.</p>
+          <div class="form-row">
+            <div class="form-group">
+              <label>First Name *</label>
+              <input id="ct-first" type="text" placeholder="Jane">
+            </div>
+            <div class="form-group">
+              <label>Last Name *</label>
+              <input id="ct-last" type="text" placeholder="Smith">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Phone Number *</label>
+              <input id="ct-phone" type="tel" placeholder="(313) 000-0000">
+            </div>
+            <div class="form-group">
+              <label>Email Address</label>
+              <input id="ct-email" type="email" placeholder="jane@email.com">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Topic *</label>
+            <select id="ct-topic">
+              <option value="">Select a topic…</option>
+              <option>General Question</option>
+              <option>Insurance &amp; Billing</option>
+              <option>Medication Question</option>
+              <option>Delivery &amp; Pickup</option>
+              <option>Vaccination / Health Screening</option>
+              <option>Feedback or Compliment</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Message *</label>
+            <textarea id="ct-message" rows="4" placeholder="How can we help you?"></textarea>
+          </div>
+          <button class="btn-submit" onclick="submitContact()">Send Message →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Newsletter -->
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div style="margin-bottom:0.75rem;">
+          <img src="logo.png" alt="Fenkell Rx Pharmacy" style="height:60px;width:auto;display:block;">
+        </div>
+        <p>Independently owned and operated. Serving Detroit and surrounding communities with personal, professional pharmaceutical care.</p>
+        <div class="social-links">
+          <a href="https://www.facebook.com/profile.php?id=61575469304353" target="_blank" rel="noopener" class="social-link" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+          <a href="#" class="social-link" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="#" class="social-link" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul class="footer-links">
+          <li><a href="#refills">Prescription Refills</a></li>
+          <li><a href="#services">Medication Sync</a></li>
+          <li><a href="#services">MTM Consultation</a></li>
+          <li><a href="#services">Free Delivery</a></li>
+          <li><a href="#services">Blister Packaging</a></li>
+          <li><a href="#services">Compounding</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Health &amp; Wellness</h4>
+        <ul class="footer-links">
+          <li><a href="#immunizations">Immunizations</a></li>
+          <li><a href="#screenings">Blood Pressure Check</a></li>
+          <li><a href="#screenings">Diabetes Screening</a></li>
+          <li><a href="#screenings">Smoking Cessation</a></li>
+          <li><a href="#screenings">Wellness Programs</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Information</h4>
+        <ul class="footer-links">
+          <li><a href="#team">Our Team</a></li>
+          <li><a href="#insurance">Insurance</a></li>
+          <li><a href="#location">Location &amp; Hours</a></li>
+          <li><a href="#">Transfer Prescription</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Fenkell Rx Pharmacy. All rights reserved. Licensed by the Michigan Board of Pharmacy. Detroit, MI 48223.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const HOURS = {
+    0: null,
+    1: [9.5, 18],
+    2: [9.5, 18],
+    3: [9.5, 18],
+    4: [9.5, 18],
+    5: [9.5, 18],
+    6: [9.5, 15]
+  };
+
+  const DAY_NAMES = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+
+  function getMajorHoliday(date) {
+    const m = date.getMonth() + 1;
+    const d = date.getDate();
+    const dow = date.getDay();
+    const year = date.getFullYear();
+
+    if (m === 1 && d === 1) return "New Year's Day";
+    if (m === 6 && d === 19) return "Juneteenth";
+    if (m === 7 && d === 4) return "Independence Day";
+    if (m === 11 && d === 11) return "Veterans Day";
+    if (m === 12 && d === 25) return "Christmas Day";
+
+    if (m === 1 && dow === 1 && d >= 15 && d <= 21) return "Martin Luther King Jr. Day";
+    if (m === 5 && dow === 1 && d >= 25) return "Memorial Day";
+    if (m === 9 && dow === 1 && d <= 7) return "Labor Day";
+    if (m === 11 && dow === 4 && d >= 22 && d <= 28) return "Thanksgiving Day";
+
+    const jan1dow = new Date(year, 0, 1).getDay();
+    if (m === 1 && d === 2 && dow === 1 && jan1dow === 0) return "New Year's Day (Observed)";
+
+    const dec25dow = new Date(year, 11, 25).getDay();
+    if (m === 12 && d === 26 && dow === 1 && dec25dow === 0) return "Christmas Day (Observed)";
+
+    const jul4dow = new Date(year, 6, 4).getDay();
+    if (m === 7 && d === 5 && dow === 1 && jul4dow === 0) return "Independence Day (Observed)";
+    if (m === 7 && d === 3 && dow === 5 && jul4dow === 6) return "Independence Day (Observed)";
+
+    return null;
+  }
+
+  function getStatus() {
+    const now = new Date();
+    const day = now.getDay();
+    const hour = now.getHours();
+    const min = now.getMinutes();
+    const timeNow = hour + min / 60;
+    const holiday = getMajorHoliday(now);
+
+    if (holiday) return { open: false, day, closesAt: null, opensNext: getNextOpen(day), holiday };
+
+    const range = HOURS[day];
+    if (!range) return { open: false, day, closesAt: null, opensNext: getNextOpen(day), holiday: null };
+
+    const [open, close] = range;
+    if (timeNow >= open && timeNow < close) {
+      return { open: true, day, closesAt: close, opensNext: null, holiday: null };
+    }
+    return { open: false, day, closesAt: null, opensNext: getNextOpen(day, timeNow < open ? day : null), holiday: null };
+  }
+
+  function getNextOpen(today, sameDay) {
+    if (sameDay !== undefined && sameDay !== null) {
+      const r = HOURS[today];
+      if (r) return { day: today, hour: r[0] };
+    }
+    for (let i = 1; i <= 7; i++) {
+      const d = (today + i) % 7;
+      if (HOURS[d]) return { day: d, hour: HOURS[d][0] };
+    }
+    return null;
+  }
+
+  function fmtHour(h) {
+    const suffix = h >= 12 ? 'PM' : 'AM';
+    const whole = Math.floor(h);
+    const mins = h % 1 === 0.5 ? '30' : '00';
+    const display = whole > 12 ? whole - 12 : whole === 0 ? 12 : whole;
+    return display + ':' + mins + ' ' + suffix;
+  }
+
+  function updateStatus() {
+    const status = getStatus();
+    const badge = document.getElementById('status-badge');
+    const dot = document.getElementById('status-dot');
+    const text = document.getElementById('status-text');
+
+    if (status.open) {
+      badge.classList.remove('closed');
+      dot.classList.remove('closed');
+      text.innerHTML = '<strong>Open Now</strong> &nbsp;·&nbsp; Closes ' + fmtHour(status.closesAt);
+    } else {
+      badge.classList.add('closed');
+      dot.classList.add('closed');
+      const next = status.opensNext;
+      if (next) {
+        const isToday = next.day === status.day;
+        const label = isToday ? 'Today' : DAY_NAMES[next.day];
+        text.innerHTML = '<strong>Closed</strong> &nbsp;·&nbsp; Opens ' + label + ' at ' + fmtHour(next.hour);
+      } else {
+        text.innerHTML = '<strong>Closed</strong>';
+      }
+    }
+
+    const holidayRow = document.getElementById('holiday-row');
+    const holidayNameEl = document.getElementById('holiday-name');
+    const holidayBanner = document.getElementById('holiday-banner');
+    const hbHolidayName = document.getElementById('hb-holiday-name');
+    const hbReopenText = document.getElementById('hb-reopen-text');
+
+    if (status.holiday) {
+      if (holidayRow) {
+        holidayRow.style.display = '';
+        holidayRow.classList.add('hours-today');
+      }
+      if (holidayNameEl) {
+        holidayNameEl.childNodes[0].textContent = status.holiday + ' ';
+      }
+      if (holidayBanner) holidayBanner.style.display = 'block';
+      if (hbHolidayName) hbHolidayName.textContent = status.holiday;
+      if (hbReopenText) {
+        const next = status.opensNext;
+        if (next) {
+          const isToday = next.day === status.day;
+          const label = isToday ? 'today' : DAY_NAMES[next.day];
+          hbReopenText.textContent = 'We reopen ' + label + ' at ' + fmtHour(next.hour);
+        } else {
+          hbReopenText.textContent = '';
+        }
+      }
+      document.querySelectorAll('.hours-row[data-day]').forEach(row => {
+        row.classList.remove('hours-today');
+        const b = row.querySelector('.today-badge');
+        if (b) b.style.display = 'none';
+      });
+    } else {
+      if (holidayRow) {
+        holidayRow.style.display = 'none';
+        holidayRow.classList.remove('hours-today');
+      }
+      if (holidayBanner) holidayBanner.style.display = 'none';
+      document.querySelectorAll('.hours-row[data-day]').forEach(row => {
+        const d = parseInt(row.dataset.day);
+        const badge = row.querySelector('.today-badge');
+        if (d === status.day) {
+          row.classList.add('hours-today');
+          if (badge) badge.style.display = 'inline';
+        } else {
+          row.classList.remove('hours-today');
+          if (badge) badge.style.display = 'none';
+        }
+      });
+    }
+  }
+
+  let customBannerText = null;
+
+  function applyBanner() {
+    const banner = document.getElementById('holiday-banner');
+    const hbName = document.getElementById('hb-holiday-name');
+    const hbReopen = document.getElementById('hb-reopen-text');
+    const hbClosed = document.getElementById('hb-closed-text');
+    const divider = banner ? banner.querySelector('.hb-divider') : null;
+
+    if (customBannerText) {
+      if (banner) banner.style.display = 'block';
+      if (hbName) hbName.textContent = customBannerText;
+      if (hbClosed) hbClosed.style.display = 'none';
+      if (hbReopen) hbReopen.textContent = '';
+      if (divider) divider.style.display = 'none';
+    } else {
+      if (hbClosed) hbClosed.style.display = '';
+      if (divider) divider.style.display = '';
+    }
+  }
+
+  function fetchCustomBanner() {
+    fetch('/api/banner')
+      .then(r => r.json())
+      .then(res => {
+        if (res.ok && res.message && res.message.text) {
+          customBannerText = res.message.text;
+        } else {
+          customBannerText = null;
+        }
+        applyBanner();
+      })
+      .catch(() => { customBannerText = null; });
+  }
+
+  updateStatus();
+  fetchCustomBanner();
+  setInterval(updateStatus, 60000);
+  setInterval(fetchCustomBanner, 300000);
+
+  // ── REVIEWS CAROUSEL ──
+  (function() {
+    const track = document.getElementById('carouselTrack');
+    const dotsContainer = document.getElementById('carouselDots');
+    const prevBtn = document.getElementById('carouselPrev');
+    const nextBtn = document.getElementById('carouselNext');
+    if (!track) return;
+
+    const cards = track.querySelectorAll('.review-card');
+    const CARD_GAP = 24;
+    const total = cards.length;
+    let current = 0;
+    let autoTimer;
+
+    function getVisible() { return window.innerWidth <= 768 ? 1 : 3; }
+
+    function buildDots() {
+      dotsContainer.innerHTML = '';
+      const vis = getVisible();
+      const pageCount = Math.ceil(total / vis);
+      for (let i = 0; i < pageCount; i++) {
+        const dot = document.createElement('button');
+        dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', 'Go to page ' + (i + 1));
+        dot.addEventListener('click', () => { resetAuto(); goTo(i * vis); });
+        dotsContainer.appendChild(dot);
+      }
+    }
+
+    function getCardWidth() {
+      if (!cards[0]) return 0;
+      return cards[0].getBoundingClientRect().width;
+    }
+
+    function goTo(index) {
+      const vis = getVisible();
+      const maxPage = total - vis;
+      current = Math.max(0, Math.min(index, maxPage));
+      const cardWidth = getCardWidth();
+      track.style.transform = `translateX(-${current * (cardWidth + CARD_GAP)}px)`;
+      const activePage = Math.round(current / vis);
+      dotsContainer.querySelectorAll('.carousel-dot').forEach((d, i) => {
+        d.classList.toggle('active', i === activePage);
+      });
+      prevBtn.disabled = current === 0;
+      nextBtn.disabled = current >= maxPage;
+    }
+
+    function next() { goTo(current + getVisible()); }
+    function prev() { goTo(current - getVisible()); }
+
+    prevBtn.addEventListener('click', () => { resetAuto(); prev(); });
+    nextBtn.addEventListener('click', () => { resetAuto(); next(); });
+
+    function startAuto() {
+      autoTimer = setInterval(() => {
+        const maxPage = total - getVisible();
+        if (current >= maxPage) goTo(0); else next();
+      }, 5000);
+    }
+
+    function resetAuto() {
+      clearInterval(autoTimer);
+      startAuto();
+    }
+
+    const carousel = document.getElementById('reviewsCarousel');
+    carousel.addEventListener('mouseenter', () => clearInterval(autoTimer));
+    carousel.addEventListener('mouseleave', startAuto);
+
+    window.addEventListener('resize', () => {
+      buildDots();
+      goTo(0);
+    });
+
+    let touchStartX = 0;
+    track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend', e => {
+      const dx = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(dx) > 50) { resetAuto(); dx > 0 ? next() : prev(); }
+    });
+
+    buildDots();
+    goTo(0);
+    startAuto();
+  })();
+
+  // ── MOBILE NAV BURGER ──
+  (function() {
+    const burger = document.getElementById('navBurger');
+    const menu = document.getElementById('navMobileMenu');
+    if (!burger || !menu) return;
+    burger.addEventListener('click', function() {
+      menu.classList.toggle('open');
+    });
+    menu.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        menu.classList.remove('open');
+      });
+    });
+  })();
+</script>
+</body>
+</html>
