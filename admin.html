@@ -459,6 +459,59 @@
       float: right;
     }
     .availability-link:hover { background: #C0ECFF; }
+
+    /* ── RICH TEXT EDITOR ── */
+    .rich-editor-wrap {
+      border: 1.5px solid #E2E8F0;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .rich-editor-wrap:focus-within { border-color: #A01830; }
+    .rich-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      padding: 6px 8px;
+      background: #F7FAFC;
+      border-bottom: 1px solid #E2E8F0;
+      flex-wrap: wrap;
+    }
+    .rich-toolbar button {
+      background: none;
+      border: 1px solid transparent;
+      border-radius: 5px;
+      padding: 4px 9px;
+      font-size: 13px;
+      cursor: pointer;
+      color: #4A5568;
+      font-family: inherit;
+      line-height: 1.4;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .rich-toolbar button:hover { background: #EDF2F7; border-color: #CBD5E0; }
+    .rich-divider { width: 1px; height: 18px; background: #E2E8F0; margin: 0 4px; flex-shrink: 0; }
+    .rich-content {
+      min-height: 180px;
+      padding: 12px 14px;
+      font-size: 14px;
+      color: #1A1F2E;
+      line-height: 1.7;
+      outline: none;
+      font-family: inherit;
+    }
+    .rich-content:empty::before {
+      content: attr(placeholder);
+      color: #A0AEC0;
+      pointer-events: none;
+      display: block;
+    }
+    .rich-content h2 { font-size: 18px; color: #0b2231; margin: 16px 0 6px; }
+    .rich-content p { margin-bottom: 10px; }
+    .rich-content table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 13px; }
+    .rich-content table td, .rich-content table th { border: 1px solid #CBD5E0; padding: 6px 10px; }
+    .rich-content table th { background: #F7FAFC; font-weight: 700; }
+    .rich-content ul, .rich-content ol { padding-left: 22px; margin-bottom: 10px; }
   </style>
 </head>
 <body>
@@ -823,8 +876,25 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="news-body">Full Article Body (optional - creates a Google-indexable article page)</label>
-      <textarea id="news-body" placeholder="Leave empty for a simple homepage card. Write a full article here (blank line between paragraphs, start a line with ## for a heading) and this item gets its own SEO page at /news/your-title that can rank in Google searches." style="min-height:140px;"></textarea>
+      <label>Full Article Body <span style="font-size:12px;color:#718096;font-weight:400;">(optional — creates a Google-indexable article page)</span></label>
+      <div class="rich-editor-wrap">
+        <div class="rich-toolbar">
+          <button type="button" onclick="fmt('bold')"><strong>B</strong></button>
+          <button type="button" onclick="fmt('italic')"><em>I</em></button>
+          <button type="button" onclick="fmt('underline')"><u>U</u></button>
+          <span class="rich-divider"></span>
+          <button type="button" onclick="fmtBlock('h2')" title="Section heading">H2</button>
+          <button type="button" onclick="fmtBlock('p')" title="Normal paragraph">¶</button>
+          <span class="rich-divider"></span>
+          <button type="button" onclick="fmt('insertUnorderedList')">• List</button>
+          <button type="button" onclick="fmt('insertOrderedList')">1. List</button>
+          <span class="rich-divider"></span>
+          <button type="button" onclick="clearNewsBody()" style="color:#c53030;">✕ Clear</button>
+        </div>
+        <div id="news-body-editor" contenteditable="true" class="rich-content"
+             placeholder="Leave empty for a simple homepage card. Paste formatted content from AI or any website here — tables, bold text, headings, and lists are all preserved automatically. This creates an SEO article page at /news/your-title."></div>
+      </div>
+      <div style="font-size:12px;color:#A0AEC0;margin-top:5px;">Tip: Copy text from an AI response or any website and paste it here — the formatting (including tables) is kept.</div>
     </div>
     <div class="form-group">
       <label for="news-tag">Tag</label>
@@ -1765,7 +1835,7 @@
       url:      document.getElementById('news-url').value.trim(),
       linkText: document.getElementById('news-linktext').value.trim() || 'Read more',
       tag:      document.getElementById('news-tag').value.trim() || 'Update',
-      body:     document.getElementById('news-body').value.trim(),
+      body:     document.getElementById('news-body-editor').innerHTML.trim(),
     };
     if (editId) payload.id = editId;
     newsApiFetch(payload).then(res => {
@@ -1787,7 +1857,7 @@
     document.getElementById('news-url').value = it.url || '';
     document.getElementById('news-linktext').value = it.linkText || 'Read more';
     document.getElementById('news-tag').value = it.tag || 'Update';
-    document.getElementById('news-body').value = it.body || '';
+    document.getElementById('news-body-editor').innerHTML = it.body || '';
     document.getElementById('news-cancel-btn').style.display = 'inline-block';
     document.getElementById('news-form-title').closest('.card').scrollIntoView({ behavior: 'smooth' });
   }
@@ -1801,7 +1871,7 @@
     document.getElementById('news-url').value = '';
     document.getElementById('news-linktext').value = 'Read more';
     document.getElementById('news-tag').value = 'Update';
-    document.getElementById('news-body').value = '';
+    document.getElementById('news-body-editor').innerHTML = '';
     document.getElementById('news-cancel-btn').style.display = 'none';
   }
 
@@ -2013,6 +2083,22 @@
     .finally(() => {
       btns.forEach(b => { b.textContent = 'Save All Content'; b.disabled = false; });
     });
+  }
+
+  /* ── RICH TEXT EDITOR HELPERS ── */
+  function fmt(cmd) {
+    document.getElementById('news-body-editor').focus();
+    document.execCommand(cmd, false, null);
+  }
+  function fmtBlock(tag) {
+    document.getElementById('news-body-editor').focus();
+    document.execCommand('formatBlock', false, tag);
+  }
+  function clearNewsBody() {
+    if (!document.getElementById('news-body-editor').innerHTML.trim()) return;
+    if (confirm('Clear the article body?')) {
+      document.getElementById('news-body-editor').innerHTML = '';
+    }
   }
 
   function sendTestEmail() {

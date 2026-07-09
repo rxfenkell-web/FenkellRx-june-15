@@ -702,8 +702,15 @@ def news_slug(title):
     return med_slug(title)[:80].strip("-")
 
 def _split_body_html(body):
+    if not body:
+        return ""
+    body = body.strip()
+    # If body is already HTML (from the rich text editor), render it directly
+    if body.startswith("<"):
+        return body
+    # Legacy plain-text format: blank lines = paragraphs, ## = h2
     out = []
-    for block in (body or "").split("\n\n"):
+    for block in body.split("\n\n"):
         block = block.strip()
         if not block:
             continue
