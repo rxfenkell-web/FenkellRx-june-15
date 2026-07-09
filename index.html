@@ -239,6 +239,7 @@
   }
 
   .nav-inner {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -284,8 +285,13 @@
   .nav-links {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 1.25rem;
     list-style: none;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: calc(100% - 340px);
   }
 
   .nav-links a {
