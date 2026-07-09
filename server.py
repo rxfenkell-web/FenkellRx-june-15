@@ -435,11 +435,32 @@ STATUS_LABELS = {
     "out_of_stock": ("Currently Unavailable - Call Us", "#b42318", "https://schema.org/OutOfStock"),
 }
 
+def _site_nav_html():
+    return """<nav class="site-nav">
+  <div class="wrap nav-inner">
+    <a href="/" class="nav-logo-link"><img src="/logo.png" alt="Fenkell Rx Pharmacy"></a>
+    <div class="nav-actions">
+      <a href="/" class="nav-back">&larr; <span class="label">Back to Home</span></a>
+      <a href="tel:3135195700" class="nav-call">(313) 519-5700</a>
+    </div>
+  </div>
+</nav>"""
+
 def _med_page_css():
     return """
     *{margin:0;padding:0;box-sizing:border-box}
     body{font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif;color:#1e2f3c;background:#f6fafd;line-height:1.6}
     .wrap{max-width:860px;margin:0 auto;padding:0 20px}
+    .site-nav{background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);border-bottom:1px solid #e1edf4;position:sticky;top:0;z-index:100}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;height:76px;gap:1rem}
+    .nav-logo-link{display:flex;align-items:center;text-decoration:none;flex-shrink:0}
+    .nav-logo-link img{height:56px;width:auto;display:block}
+    .nav-actions{display:flex;gap:10px;align-items:center}
+    .nav-back{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:500;color:#4A5568;padding:8px 16px;border:1.5px solid #e1edf4;border-radius:50px;text-decoration:none;transition:all .2s;white-space:nowrap}
+    .nav-back:hover{border-color:#0089c0;color:#0089c0}
+    .nav-call{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:700;color:#fff !important;background:#CC001C;padding:9px 18px;border-radius:50px;text-decoration:none;white-space:nowrap}
+    .nav-call:hover{background:#a50016}
+    @media (max-width:560px){.nav-back span.label{display:none}.nav-inner{height:68px}.nav-logo-link img{height:46px}}
     header.top{background:linear-gradient(120deg,#005f87,#0089c0);color:#fff;padding:44px 0 40px}
     .crumb{font-size:13px;margin-bottom:14px}
     .crumb a{color:#bfe9fb;text-decoration:none}
@@ -535,6 +556,7 @@ def render_med_page(med):
 <style>{_med_page_css()}</style>
 </head>
 <body>
+{_site_nav_html()}
 <header class="top">
   <div class="wrap">
     <div class="crumb"><a href="/">Home</a> &rsaquo; <a href="/medications">Medication Availability</a> &rsaquo; {name}</div>
@@ -626,6 +648,7 @@ def render_med_hub(meds):
 .row .st{{font-weight:800;font-size:13px;white-space:nowrap}}</style>
 </head>
 <body>
+{_site_nav_html()}
 <header class="top"><div class="wrap">
   <div class="crumb"><a href="/">Home</a> &rsaquo; Medication Availability</div>
   <h1>Medication Availability - Detroit, MI</h1>
@@ -730,6 +753,7 @@ article p{{font-size:15.5px;color:#37505f;margin-bottom:12px;line-height:1.7}}
 .tagline{{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#0077a8;background:#e3f4fb;border-radius:999px;padding:4px 12px;margin-bottom:10px}}</style>
 </head>
 <body>
+{_site_nav_html()}
 <header class="top"><div class="wrap">
   <div class="crumb"><a href="/">Home</a> &rsaquo; <a href="/news">Health &amp; Pharmacy News</a></div>
   <h1>{title}</h1>
@@ -791,6 +815,7 @@ def render_news_hub(items):
 .row .st{{font-weight:800;font-size:12px;white-space:nowrap}}</style>
 </head>
 <body>
+{_site_nav_html()}
 <header class="top"><div class="wrap">
   <div class="crumb"><a href="/">Home</a> &rsaquo; News</div>
   <h1>Detroit Health &amp; Pharmacy News</h1>

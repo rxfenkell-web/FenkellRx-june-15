@@ -28,6 +28,8 @@
       font-weight: 700;
       letter-spacing: 0.01em;
     }
+    .topbar-brand { display: flex; align-items: center; gap: 12px; }
+    .topbar-logo { height: 42px; width: auto; display: block; filter: brightness(0) invert(1); flex-shrink: 0; }
     .topbar-sub { font-size: 13px; opacity: 0.75; margin-top: 2px; }
     #logout-btn {
       background: rgba(255,255,255,0.15);
@@ -462,11 +464,17 @@
 <body>
 
 <div class="topbar">
-  <div>
-    <div class="topbar-title">Fenkell Rx — Banner Admin</div>
-    <div class="topbar-sub">Manage custom messages shown on the website</div>
+  <div class="topbar-brand">
+    <img src="logo.png" alt="Fenkell Rx Pharmacy" class="topbar-logo">
+    <div>
+      <div class="topbar-title">Fenkell Rx — Admin Panel</div>
+      <div class="topbar-sub">Manage banners, news, and site content</div>
+    </div>
   </div>
   <div style="display:flex;gap:8px;align-items:center;">
+    <a href="/" style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:7px 14px;border-radius:8px;font-size:13px;text-decoration:none;">
+      &larr; Back to Site
+    </a>
     <button id="export-btn" onclick="downloadBackup()" style="display:none;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:7px 14px;border-radius:8px;font-size:13px;cursor:pointer;">
       &#x2B07; Download Backup
     </button>

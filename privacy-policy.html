@@ -44,26 +44,43 @@
       gap: 10px;
       text-decoration: none;
     }
-    .topbar-badge {
-      background: var(--red);
-      color: #fff;
-      font-size: 13px;
-      font-weight: 700;
-      padding: 5px 12px;
-      border-radius: 6px;
-      letter-spacing: 0.5px;
+    .topbar-logo img {
+      height: 44px;
+      width: auto;
+      display: block;
+      filter: brightness(0) invert(1);
     }
-    .topbar-name {
-      color: #fff;
-      font-size: 15px;
-      font-weight: 500;
-    }
-    .topbar-phone {
-      color: var(--cyan);
+    .topbar-actions { display: flex; gap: 10px; align-items: center; }
+    .topbar-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       font-size: 14px;
+      font-weight: 500;
+      color: #fff;
+      padding: 8px 16px;
+      border: 1.5px solid rgba(255,255,255,0.3);
+      border-radius: 50px;
       text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.2s;
     }
-    .topbar-phone:hover { text-decoration: underline; }
+    .topbar-back:hover { background: rgba(255,255,255,0.1); }
+    .topbar-phone {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #fff;
+      background: var(--red);
+      font-size: 14px;
+      font-weight: 700;
+      padding: 9px 18px;
+      border-radius: 50px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .topbar-phone:hover { background: #a50016; }
+    @media (max-width: 560px) { .topbar-back span.label { display: none; } }
 
     /* -- Hero -- */
     .hero {
@@ -382,10 +399,12 @@
 
 <div class="topbar">
   <a href="/" class="topbar-logo">
-    <span class="topbar-badge">Rx</span>
-    <span class="topbar-name">Fenkell RX Pharmacy</span>
+    <img src="logo.png" alt="Fenkell Rx Pharmacy">
   </a>
-  <a href="tel:3135195700" class="topbar-phone">(313) 519-5700</a>
+  <div class="topbar-actions">
+    <a href="/" class="topbar-back">&larr; <span class="label">Back to Home</span></a>
+    <a href="tel:3135195700" class="topbar-phone">(313) 519-5700</a>
+  </div>
 </div>
 
 <div class="hero">
