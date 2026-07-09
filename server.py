@@ -449,7 +449,7 @@ def _site_nav_html():
 def _med_page_css():
     return """
     *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif;color:#1e2f3c;background:#f6fafd;line-height:1.6}
+    body{font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif;color:#1e2f3c;background:#FBF8F2;line-height:1.6}
     .wrap{max-width:860px;margin:0 auto;padding:0 20px}
     .site-nav{background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);border-bottom:1px solid #e1edf4;position:sticky;top:0;z-index:100}
     .nav-inner{display:flex;align-items:center;justify-content:space-between;height:76px;gap:1rem}
