@@ -6,11 +6,12 @@
   <title>Banner Admin — Fenkell Rx Pharmacy</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+  <!-- DM Sans + DM Serif Display loaded for use inside the article body editor only -->
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       background: #FBF8F2;
       color: #1A1F2E;
       min-height: 100vh;
@@ -18,7 +19,7 @@
 
     /* ── TOP BAR ── */
     .topbar {
-      background: linear-gradient(135deg, #8A0012 0%, #CC001C 100%);
+      background: linear-gradient(135deg, #7B1226 0%, #A01830 100%);
       color: #fff;
       padding: 14px 28px;
       display: flex;
@@ -29,7 +30,6 @@
       font-size: 17px;
       font-weight: 700;
       letter-spacing: 0.01em;
-      font-family: 'DM Serif Display', serif;
     }
     .topbar-brand { display: flex; align-items: center; gap: 12px; }
     .topbar-logo { height: 42px; width: auto; display: block; filter: brightness(0) invert(1); flex-shrink: 0; }
@@ -62,7 +62,7 @@
       max-width: 380px;
       box-shadow: 0 4px 32px rgba(0,0,0,0.10);
     }
-    .login-card h2 { font-size: 22px; margin-bottom: 6px; font-family: 'DM Serif Display', serif; }
+    .login-card h2 { font-size: 22px; margin-bottom: 6px; }
     .login-card p { color: #718096; font-size: 14px; margin-bottom: 28px; }
     .login-card label { font-size: 13px; font-weight: 600; color: #4A5568; display: block; margin-bottom: 6px; }
     .login-card input {
@@ -75,10 +75,10 @@
       margin-bottom: 16px;
       transition: border-color 0.2s;
     }
-    .login-card input:focus { border-color: #CC001C; }
+    .login-card input:focus { border-color: #A01830; }
     #login-error { color: #C53030; font-size: 13px; margin-bottom: 12px; display: none; }
     .btn-primary {
-      background: linear-gradient(135deg, #8A0012, #CC001C);
+      background: linear-gradient(135deg, #7B1226, #A01830);
       color: #fff;
       border: none;
       padding: 12px 24px;
@@ -126,7 +126,7 @@
       text-decoration: none;
       transition: background 0.15s, color 0.15s, border-color 0.15s;
     }
-    .jump-nav a:hover { background: #0082C8; color: #fff; border-color: #0082C8; }
+    .jump-nav a:hover { background: #1a3c2b; color: #fff; border-color: #1a3c2b; }
 
     /* ── CONTENT EDITOR ── */
     .ce-group { border: 1.5px solid #E2E8F0; border-radius: 10px; margin-bottom: 10px; overflow: hidden; }
@@ -140,7 +140,7 @@
     /* preview banner */
     #preview-bar {
       display: none;
-      background: linear-gradient(135deg, #8A0012 0%, #CC001C 100%);
+      background: linear-gradient(135deg, #7B1226 0%, #A01830 100%);
       color: #fff;
       padding: 11px 20px;
       border-radius: 10px;
@@ -158,8 +158,7 @@
       box-shadow: 0 2px 16px rgba(0,0,0,0.06);
       margin-bottom: 28px;
     }
-    .card h3 { font-size: 17px; font-weight: 700; margin-bottom: 20px; color: #1A1F2E; font-family: 'DM Serif Display', serif; }
-    .section-divider { font-family: 'DM Serif Display', serif; }
+    .card h3 { font-size: 17px; font-weight: 700; margin-bottom: 20px; color: #1A1F2E; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .form-group { margin-bottom: 16px; }
     .form-group label { font-size: 13px; font-weight: 600; color: #4A5568; display: block; margin-bottom: 6px; }
@@ -177,12 +176,12 @@
       resize: vertical;
     }
     .form-group input:focus,
-    .form-group textarea:focus { border-color: #CC001C; }
+    .form-group textarea:focus { border-color: #A01830; }
     .form-group textarea { min-height: 72px; }
     .char-hint { font-size: 12px; color: #A0AEC0; margin-top: 4px; }
     .form-actions { display: flex; gap: 10px; align-items: center; margin-top: 4px; }
     .btn-save {
-      background: linear-gradient(135deg, #8A0012, #CC001C);
+      background: linear-gradient(135deg, #7B1226, #A01830);
       color: #fff;
       border: none;
       padding: 10px 22px;
@@ -303,7 +302,7 @@
       background: #FAFBFC;
     }
     .quick-card:hover {
-      border-color: #CC001C;
+      border-color: #A01830;
       background: #FFF5F6;
       transform: translateY(-1px);
     }
@@ -367,7 +366,7 @@
     }
     .emoji-btn:hover {
       background: #EBF4FF;
-      border-color: #CC001C;
+      border-color: #A01830;
       transform: scale(1.15);
     }
     .emoji-btn:active { transform: scale(0.95); }
@@ -407,7 +406,7 @@
       background: #fff;
       color: #1A1F2E;
     }
-    .form-group select:focus { border-color: #CC001C; }
+    .form-group select:focus { border-color: #A01830; }
     .med-item {
       border: 1.5px solid #E8EDF3;
       border-radius: 12px;
@@ -452,7 +451,7 @@
       gap: 6px;
       font-size: 13px;
       font-weight: 600;
-      color: #0082C8;
+      color: #1a3c2b;
       background: #EDF9FF;
       border: 1px solid #C0ECFF;
       padding: 7px 14px;
@@ -471,7 +470,7 @@
       overflow: hidden;
       transition: border-color 0.2s;
     }
-    .rich-editor-wrap:focus-within { border-color: #CC001C; }
+    .rich-editor-wrap:focus-within { border-color: #A01830; }
     .rich-toolbar {
       display: flex;
       align-items: center;
@@ -516,6 +515,17 @@
     .rich-content table td, .rich-content table th { border: 1px solid #CBD5E0; padding: 6px 10px; }
     .rich-content table th { background: #F7FAFC; font-weight: 700; }
     .rich-content ul, .rich-content ol { padding-left: 22px; margin-bottom: 10px; }
+    .color-swatch {
+      width: 22px !important;
+      height: 22px !important;
+      border-radius: 50% !important;
+      border: 2px solid rgba(0,0,0,0.15) !important;
+      padding: 0 !important;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: transform 0.15s, box-shadow 0.15s !important;
+    }
+    .color-swatch:hover { transform: scale(1.25) !important; box-shadow: 0 0 0 2px #A01830 !important; background: inherit !important; border-color: inherit !important; }
   </style>
 </head>
 <body>
@@ -575,7 +585,7 @@
       <div style="color:#888;font-size:14px;">Checking configuration…</div>
     </div>
     <div style="margin-top:1.25rem;display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;">
-      <button id="test-email-btn" onclick="sendTestEmail()" style="background:#0082C8;color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:14px;font-weight:600;cursor:pointer;">
+      <button id="test-email-btn" onclick="sendTestEmail()" style="background:#1a3c2b;color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:14px;font-weight:600;cursor:pointer;">
         Send Test Email
       </button>
       <span id="test-email-result" style="font-size:13px;display:none;"></span>
@@ -883,17 +893,36 @@
       <label>Full Article Body <span style="font-size:12px;color:#718096;font-weight:400;">(optional — creates a Google-indexable article page)</span></label>
       <div class="rich-editor-wrap">
         <div class="rich-toolbar">
-          <button type="button" onclick="fmt('bold')"><strong>B</strong></button>
-          <button type="button" onclick="fmt('italic')"><em>I</em></button>
-          <button type="button" onclick="fmt('underline')"><u>U</u></button>
+          <button type="button" onclick="fmt('bold')" title="Bold"><strong>B</strong></button>
+          <button type="button" onclick="fmt('italic')" title="Italic"><em>I</em></button>
+          <button type="button" onclick="fmt('underline')" title="Underline"><u>U</u></button>
           <span class="rich-divider"></span>
           <button type="button" onclick="fmtBlock('h2')" title="Section heading">H2</button>
           <button type="button" onclick="fmtBlock('p')" title="Normal paragraph">¶</button>
           <span class="rich-divider"></span>
-          <button type="button" onclick="fmt('insertUnorderedList')">• List</button>
-          <button type="button" onclick="fmt('insertOrderedList')">1. List</button>
+          <button type="button" onclick="fmt('insertUnorderedList')" title="Bullet list">• List</button>
+          <button type="button" onclick="fmt('insertOrderedList')" title="Numbered list">1. List</button>
           <span class="rich-divider"></span>
-          <button type="button" onclick="clearNewsBody()" style="color:#CC001C;">✕ Clear</button>
+          <span style="font-size:11px;font-weight:600;color:#718096;align-self:center;margin-right:2px;">Font:</span>
+          <button type="button" onclick="applyFont('DM Sans, sans-serif')" title="DM Sans — body font used on the site" style="font-family:'DM Sans',sans-serif;font-size:12px;">DM Sans</button>
+          <button type="button" onclick="applyFont('DM Serif Display, serif')" title="DM Serif Display — heading font used on the site" style="font-family:'DM Serif Display',serif;font-size:13px;">DM Serif</button>
+          <span class="rich-divider"></span>
+          <span style="font-size:11px;font-weight:600;color:#718096;align-self:center;margin-right:2px;">Color:</span>
+          <button type="button" class="color-swatch" onclick="applyColor('#1A1F2E')" style="background:#1A1F2E;" title="Slate Black"></button>
+          <button type="button" class="color-swatch" onclick="applyColor('#FFFFFF')" style="background:#FFFFFF;border-color:#CBD5E0;" title="White"></button>
+          <button type="button" class="color-swatch" onclick="applyColor('#CC001C')" style="background:#CC001C;" title="Brand Red"></button>
+          <button type="button" class="color-swatch" onclick="applyColor('#8A0012')" style="background:#8A0012;" title="Brand Red Dark"></button>
+          <button type="button" class="color-swatch" onclick="applyColor('#00AEEF')" style="background:#00AEEF;" title="Brand Blue"></button>
+          <button type="button" class="color-swatch" onclick="applyColor('#0082C8')" style="background:#0082C8;" title="Brand Blue Dark"></button>
+          <button type="button" class="color-swatch" onclick="applyColor('#005B8E')" style="background:#005B8E;" title="Brand Blue Darker"></button>
+          <button type="button" class="color-swatch" onclick="applyColor('#26C6DA')" style="background:#26C6DA;" title="Cyan / Teal"></button>
+          <button type="button" class="color-swatch" onclick="applyColor('#00838F')" style="background:#00838F;" title="Green-Teal"></button>
+          <button type="button" class="color-swatch" onclick="applyColor('#006064')" style="background:#006064;" title="Deep Teal"></button>
+          <button type="button" class="color-swatch" onclick="applyColor('#C8A96A')" style="background:#C8A96A;" title="Warm Gold"></button>
+          <button type="button" class="color-swatch" onclick="applyColor('#718096')" style="background:#718096;" title="Muted Slate"></button>
+          <button type="button" onclick="applyColor('inherit')" title="Remove color" style="font-size:11px;padding:3px 6px;color:#718096;">✕</button>
+          <span class="rich-divider"></span>
+          <button type="button" onclick="clearNewsBody()" style="color:#c53030;">✕ Clear</button>
         </div>
         <div id="news-body-editor" contenteditable="true" class="rich-content"
              placeholder="Leave empty for a simple homepage card. Paste formatted content from AI or any website here — tables, bold text, headings, and lists are all preserved automatically. This creates an SEO article page at /news/your-title."></div>
@@ -2100,6 +2129,18 @@
   function fmtBlock(tag) {
     document.getElementById('news-body-editor').focus();
     document.execCommand('formatBlock', false, tag);
+  }
+  function applyColor(color) {
+    document.getElementById('news-body-editor').focus();
+    if (color === 'inherit') {
+      document.execCommand('removeFormat', false, null);
+    } else {
+      document.execCommand('foreColor', false, color);
+    }
+  }
+  function applyFont(fontFamily) {
+    document.getElementById('news-body-editor').focus();
+    document.execCommand('fontName', false, fontFamily);
   }
   function clearNewsBody() {
     if (!document.getElementById('news-body-editor').innerHTML.trim()) return;
