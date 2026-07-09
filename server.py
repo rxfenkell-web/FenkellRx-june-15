@@ -857,27 +857,22 @@ def _last_weekday(year, month, weekday):
         d = date(year, month + 1, 1) - timedelta(days=1)
     return d - timedelta(days=(d.weekday() - weekday) % 7)
 
-def _observed(d):
-    """Fixed-date holiday falling on a weekend: closed Fri before / Mon after."""
-    if d.weekday() == 5:   # Saturday
-        return d - timedelta(days=1), True
-    if d.weekday() == 6:   # Sunday (closed anyway) -> observed Monday
-        return d + timedelta(days=1), True
-    return d, False
-
-# key -> (label, date_fn(year) -> (date, observed_bool))
+# key -> (label, date_fn(year) -> date)
+# Holidays always fall on their actual calendar date, regardless of the day
+# of the week it lands on. Dates are computed from `year`, so they roll
+# forward automatically every year.
 HOLIDAY_DEFS = {
-    "new_years":     ("New Year's Day",      lambda y: _observed(date(y, 1, 1))),
-    "mlk":           ("Martin Luther King Jr. Day", lambda y: (_nth_weekday(y, 1, 0, 3), False)),
-    "memorial":      ("Memorial Day",        lambda y: (_last_weekday(y, 5, 0), False)),
-    "juneteenth":    ("Juneteenth",          lambda y: _observed(date(y, 6, 19))),
-    "independence":  ("Independence Day",    lambda y: _observed(date(y, 7, 4))),
-    "labor":         ("Labor Day",           lambda y: (_nth_weekday(y, 9, 0, 1), False)),
-    "veterans":      ("Veterans Day",        lambda y: _observed(date(y, 11, 11))),
-    "thanksgiving":  ("Thanksgiving",        lambda y: (_nth_weekday(y, 11, 3, 4), False)),
-    "christmas_eve": ("Christmas Eve",       lambda y: (date(y, 12, 24), False)),
-    "christmas":     ("Christmas Day",       lambda y: _observed(date(y, 12, 25))),
-    "new_years_eve": ("New Year's Eve",      lambda y: (date(y, 12, 31), False)),
+    "new_years":     ("New Year's Day",      lambda y: date(y, 1, 1)),
+    "mlk":           ("Martin Luther King Jr. Day", lambda y: _nth_weekday(y, 1, 0, 3)),
+    "memorial":      ("Memorial Day",        lambda y: _last_weekday(y, 5, 0)),
+    "juneteenth":    ("Juneteenth",          lambda y: date(y, 6, 19)),
+    "independence":  ("Independence Day",    lambda y: date(y, 7, 4)),
+    "labor":         ("Labor Day",           lambda y: _nth_weekday(y, 9, 0, 1)),
+    "veterans":      ("Veterans Day",        lambda y: date(y, 11, 11)),
+    "thanksgiving":  ("Thanksgiving",        lambda y: _nth_weekday(y, 11, 3, 4)),
+    "christmas_eve": ("Christmas Eve",       lambda y: date(y, 12, 24)),
+    "christmas":     ("Christmas Day",       lambda y: date(y, 12, 25)),
+    "new_years_eve": ("New Year's Eve",      lambda y: date(y, 12, 31)),
 }
 HOLIDAY_ORDER = ["new_years", "mlk", "memorial", "juneteenth", "independence",
                  "labor", "veterans", "thanksgiving", "christmas_eve",
@@ -908,13 +903,12 @@ def get_holiday_notice():
     for key in hs["enabled"]:
         label, fn = HOLIDAY_DEFS[key]
         for year in (today.year, today.year + 1):
-            hdate, observed = fn(year)
+            hdate = fn(year)
             delta = (hdate - today).days
             if delta < 0 or delta > lead:
                 continue
-            shown = label + (" (Observed)" if observed else "")
             if best is None or delta < best[0]:
-                best = (delta, shown, hdate)
+                best = (delta, label, hdate)
     if best is None:
         return None
     delta, shown, hdate = best
@@ -1160,13 +1154,12 @@ class Handler(SimpleHTTPRequestHandler):
                 catalog = []
                 for key in HOLIDAY_ORDER:
                     label, fn = HOLIDAY_DEFS[key]
-                    hdate, observed = fn(today.year)
+                    hdate = fn(today.year)
                     if hdate < today:
-                        hdate, observed = fn(today.year + 1)
+                        hdate = fn(today.year + 1)
                     catalog.append({
                         "key": key, "label": label,
                         "nextDate": hdate.isoformat(),
-                        "observed": observed,
                         "enabled": key in hs["enabled"],
                     })
                 self._respond(200, {"ok": True, "holidays": catalog,

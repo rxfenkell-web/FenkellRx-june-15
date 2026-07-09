@@ -2943,16 +2943,6 @@ function postEmail(payload, successMsg) {
     if (m === 9 && dow === 1 && d <= 7) return "Labor Day";
     if (m === 11 && dow === 4 && d >= 22 && d <= 28) return "Thanksgiving Day";
 
-    const jan1dow = new Date(year, 0, 1).getDay();
-    if (m === 1 && d === 2 && dow === 1 && jan1dow === 0) return "New Year's Day (Observed)";
-
-    const dec25dow = new Date(year, 11, 25).getDay();
-    if (m === 12 && d === 26 && dow === 1 && dec25dow === 0) return "Christmas Day (Observed)";
-
-    const jul4dow = new Date(year, 6, 4).getDay();
-    if (m === 7 && d === 5 && dow === 1 && jul4dow === 0) return "Independence Day (Observed)";
-    if (m === 7 && d === 3 && dow === 5 && jul4dow === 6) return "Independence Day (Observed)";
-
     return null;
   }
 
