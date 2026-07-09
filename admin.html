@@ -4,11 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Banner Admin — Fenkell Rx Pharmacy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       background: #FBF8F2;
       color: #1A1F2E;
       min-height: 100vh;
@@ -16,7 +18,7 @@
 
     /* ── TOP BAR ── */
     .topbar {
-      background: linear-gradient(135deg, #7B1226 0%, #A01830 100%);
+      background: linear-gradient(135deg, #8A0012 0%, #CC001C 100%);
       color: #fff;
       padding: 14px 28px;
       display: flex;
@@ -27,6 +29,7 @@
       font-size: 17px;
       font-weight: 700;
       letter-spacing: 0.01em;
+      font-family: 'DM Serif Display', serif;
     }
     .topbar-brand { display: flex; align-items: center; gap: 12px; }
     .topbar-logo { height: 42px; width: auto; display: block; filter: brightness(0) invert(1); flex-shrink: 0; }
@@ -59,7 +62,7 @@
       max-width: 380px;
       box-shadow: 0 4px 32px rgba(0,0,0,0.10);
     }
-    .login-card h2 { font-size: 22px; margin-bottom: 6px; }
+    .login-card h2 { font-size: 22px; margin-bottom: 6px; font-family: 'DM Serif Display', serif; }
     .login-card p { color: #718096; font-size: 14px; margin-bottom: 28px; }
     .login-card label { font-size: 13px; font-weight: 600; color: #4A5568; display: block; margin-bottom: 6px; }
     .login-card input {
@@ -72,10 +75,10 @@
       margin-bottom: 16px;
       transition: border-color 0.2s;
     }
-    .login-card input:focus { border-color: #A01830; }
+    .login-card input:focus { border-color: #CC001C; }
     #login-error { color: #C53030; font-size: 13px; margin-bottom: 12px; display: none; }
     .btn-primary {
-      background: linear-gradient(135deg, #7B1226, #A01830);
+      background: linear-gradient(135deg, #8A0012, #CC001C);
       color: #fff;
       border: none;
       padding: 12px 24px;
@@ -123,7 +126,7 @@
       text-decoration: none;
       transition: background 0.15s, color 0.15s, border-color 0.15s;
     }
-    .jump-nav a:hover { background: #1a3c2b; color: #fff; border-color: #1a3c2b; }
+    .jump-nav a:hover { background: #0082C8; color: #fff; border-color: #0082C8; }
 
     /* ── CONTENT EDITOR ── */
     .ce-group { border: 1.5px solid #E2E8F0; border-radius: 10px; margin-bottom: 10px; overflow: hidden; }
@@ -137,7 +140,7 @@
     /* preview banner */
     #preview-bar {
       display: none;
-      background: linear-gradient(135deg, #7B1226 0%, #A01830 100%);
+      background: linear-gradient(135deg, #8A0012 0%, #CC001C 100%);
       color: #fff;
       padding: 11px 20px;
       border-radius: 10px;
@@ -155,7 +158,8 @@
       box-shadow: 0 2px 16px rgba(0,0,0,0.06);
       margin-bottom: 28px;
     }
-    .card h3 { font-size: 17px; font-weight: 700; margin-bottom: 20px; color: #1A1F2E; }
+    .card h3 { font-size: 17px; font-weight: 700; margin-bottom: 20px; color: #1A1F2E; font-family: 'DM Serif Display', serif; }
+    .section-divider { font-family: 'DM Serif Display', serif; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .form-group { margin-bottom: 16px; }
     .form-group label { font-size: 13px; font-weight: 600; color: #4A5568; display: block; margin-bottom: 6px; }
@@ -173,12 +177,12 @@
       resize: vertical;
     }
     .form-group input:focus,
-    .form-group textarea:focus { border-color: #A01830; }
+    .form-group textarea:focus { border-color: #CC001C; }
     .form-group textarea { min-height: 72px; }
     .char-hint { font-size: 12px; color: #A0AEC0; margin-top: 4px; }
     .form-actions { display: flex; gap: 10px; align-items: center; margin-top: 4px; }
     .btn-save {
-      background: linear-gradient(135deg, #7B1226, #A01830);
+      background: linear-gradient(135deg, #8A0012, #CC001C);
       color: #fff;
       border: none;
       padding: 10px 22px;
@@ -299,7 +303,7 @@
       background: #FAFBFC;
     }
     .quick-card:hover {
-      border-color: #A01830;
+      border-color: #CC001C;
       background: #FFF5F6;
       transform: translateY(-1px);
     }
@@ -363,7 +367,7 @@
     }
     .emoji-btn:hover {
       background: #EBF4FF;
-      border-color: #A01830;
+      border-color: #CC001C;
       transform: scale(1.15);
     }
     .emoji-btn:active { transform: scale(0.95); }
@@ -403,7 +407,7 @@
       background: #fff;
       color: #1A1F2E;
     }
-    .form-group select:focus { border-color: #A01830; }
+    .form-group select:focus { border-color: #CC001C; }
     .med-item {
       border: 1.5px solid #E8EDF3;
       border-radius: 12px;
@@ -467,7 +471,7 @@
       overflow: hidden;
       transition: border-color 0.2s;
     }
-    .rich-editor-wrap:focus-within { border-color: #A01830; }
+    .rich-editor-wrap:focus-within { border-color: #CC001C; }
     .rich-toolbar {
       display: flex;
       align-items: center;
@@ -571,7 +575,7 @@
       <div style="color:#888;font-size:14px;">Checking configuration…</div>
     </div>
     <div style="margin-top:1.25rem;display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;">
-      <button id="test-email-btn" onclick="sendTestEmail()" style="background:#1a3c2b;color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:14px;font-weight:600;cursor:pointer;">
+      <button id="test-email-btn" onclick="sendTestEmail()" style="background:#0082C8;color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:14px;font-weight:600;cursor:pointer;">
         Send Test Email
       </button>
       <span id="test-email-result" style="font-size:13px;display:none;"></span>
@@ -889,7 +893,7 @@
           <button type="button" onclick="fmt('insertUnorderedList')">• List</button>
           <button type="button" onclick="fmt('insertOrderedList')">1. List</button>
           <span class="rich-divider"></span>
-          <button type="button" onclick="clearNewsBody()" style="color:#c53030;">✕ Clear</button>
+          <button type="button" onclick="clearNewsBody()" style="color:#CC001C;">✕ Clear</button>
         </div>
         <div id="news-body-editor" contenteditable="true" class="rich-content"
              placeholder="Leave empty for a simple homepage card. Paste formatted content from AI or any website here — tables, bold text, headings, and lists are all preserved automatically. This creates an SEO article page at /news/your-title."></div>
