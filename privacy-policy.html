@@ -84,24 +84,17 @@
 
     /* -- Hero -- */
     .hero {
-      background: var(--dark);
+      background: linear-gradient(135deg, #0077a8 0%, #00b4d8 45%, #48cae4 100%);
       padding: 56px 24px 48px;
       text-align: center;
       position: relative;
       overflow: hidden;
     }
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--red), var(--cyan));
-    }
     .hero-eyebrow {
       display: inline-block;
-      background: rgba(0, 174, 239, 0.15);
-      border: 1px solid rgba(0, 174, 239, 0.3);
-      color: var(--cyan);
+      background: rgba(11, 37, 69, 0.25);
+      border: 1px solid rgba(255,255,255,0.35);
+      color: #fff;
       font-size: 12px;
       font-weight: 600;
       letter-spacing: 1.5px;
@@ -118,7 +111,7 @@
       margin-bottom: 14px;
     }
     .hero-sub {
-      color: rgba(255,255,255,0.6);
+      color: rgba(255,255,255,0.92);
       font-size: 15px;
       max-width: 480px;
       margin: 0 auto 24px;
@@ -131,12 +124,12 @@
       flex-wrap: wrap;
     }
     .hero-chip {
-      background: rgba(255,255,255,0.08);
-      color: rgba(255,255,255,0.7);
+      background: rgba(11, 37, 69, 0.25);
+      color: #fff;
       font-size: 13px;
       padding: 5px 14px;
       border-radius: 20px;
-      border: 1px solid rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.35);
     }
 
     /* -- CRITICAL highlight box -- */

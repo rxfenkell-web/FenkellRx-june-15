@@ -461,7 +461,7 @@ def _med_page_css():
     .nav-call{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:700;color:#fff !important;background:#CC001C;padding:9px 18px;border-radius:50px;text-decoration:none;white-space:nowrap}
     .nav-call:hover{background:#a50016}
     @media (max-width:560px){.nav-back span.label{display:none}.nav-inner{height:68px}.nav-logo-link img{height:46px}}
-    header.top{background:linear-gradient(120deg,#005f87,#0089c0);color:#fff;padding:44px 0 40px}
+    header.top{background:linear-gradient(135deg,#0077a8 0%,#00b4d8 45%,#48cae4 100%);color:#fff;padding:44px 0 40px}
     .crumb{font-size:13px;margin-bottom:14px}
     .crumb a{color:#bfe9fb;text-decoration:none}
     .crumb a:hover{text-decoration:underline}
@@ -478,10 +478,11 @@ def _med_page_css():
     .fact .k{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#5b7487}
     .fact .v{font-weight:700;font-size:15px;margin-top:2px}
     .cta{display:flex;gap:12px;flex-wrap:wrap;margin:22px 0}
-    .btn{display:inline-block;text-decoration:none;font-weight:800;font-size:15px;padding:14px 24px;border-radius:10px}
+    .btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:800;font-size:15px;padding:14px 24px;border-radius:10px;transition:transform .15s,box-shadow .15s}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.15)}
     .btn-red{background:#CC001C;color:#fff}
     .btn-blue{background:#0077a8;color:#fff}
-    .btn-line{border:2px solid #0077a8;color:#0077a8}
+    .btn-line{border:2px solid #0077a8;color:#0077a8;background:transparent}
     .faq h3{font-size:15.5px;margin:16px 0 4px;color:#0b2231}
     .faq p{font-size:14.5px;color:#42586a}
     .links{font-size:14px;margin-top:8px}
