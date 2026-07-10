@@ -26,6 +26,15 @@
       "status": "in_stock",
       "notes": "Limited availability. First come, first serve basis.",
       "updatedAt": "2026-06-10"
+    },
+    {
+      "id": "c651dd59-1095-4f6a-b02a-82d88a012eda",
+      "name": "Prometrium 100 mg capsules",
+      "genericName": "Progesterone 100 mg capsules",
+      "category": "Hormone Therapy",
+      "status": "in_stock",
+      "notes": "Limited availability. First come, first serve basis.",
+      "updatedAt": "2026-07-10"
     }
   ]
 }
