@@ -35,6 +35,15 @@
       "status": "in_stock",
       "notes": "Limited availability. First come, first serve basis.",
       "updatedAt": "2026-07-10"
+    },
+    {
+      "id": "bf988fa0-48ef-4985-b1af-577b725992c1",
+      "name": "Climara 0.05mg 24 hr patches",
+      "genericName": "Estradiol 0.05mg 24 hr patches",
+      "category": "Hormone Therapy",
+      "status": "in_stock",
+      "notes": "Limited availability. First come, first serve basis.",
+      "updatedAt": "2026-07-10"
     }
   ]
 }
