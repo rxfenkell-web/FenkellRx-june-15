@@ -547,6 +547,10 @@ def render_med_page(med):
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{title}</title>
 <meta name="description" content="{desc}">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="canonical" href="{url}">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
@@ -640,6 +644,10 @@ def render_med_hub(meds):
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{title}</title>
 <meta name="description" content="{desc}">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="canonical" href="{SITE_URL}/medications">
 <script type="application/ld+json">{json.dumps(ld)}</script>
 <style>{_med_page_css()}
@@ -838,6 +846,10 @@ def render_news_article(item):
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{title} | {PHARMACY_NAME}</title>
 <meta name="description" content="{_esc(desc)}">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="canonical" href="{url}">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{_esc(desc)}">
@@ -903,6 +915,10 @@ def render_news_hub(items):
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Detroit Health &amp; Pharmacy News | {PHARMACY_NAME}</title>
 <meta name="description" content="Health, medication availability, and insurance coverage news for Detroit from Fenkell Rx Pharmacy - an independent pharmacy at 18360 Fenkell Ave, Detroit MI 48223.">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="canonical" href="{SITE_URL}/news">
 <script type="application/ld+json">{json.dumps(ld)}</script>
 <style>{_med_page_css()}
