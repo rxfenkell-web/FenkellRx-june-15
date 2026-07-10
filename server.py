@@ -701,6 +701,95 @@ def render_sitemap(meds):
 def news_slug(title):
     return med_slug(title)[:80].strip("-")
 
+
+def _build_availability_prerender(meds):
+    """
+    Returns (prerender_html, jsonld_script_tag) for the /availability page.
+    prerender_html replaces <!--MEDS_PRERENDER--> so drug names are in raw HTML.
+    jsonld_script_tag is injected before </head>.
+    """
+    # --- pre-rendered visible list ---
+    cats = {}
+    for m in meds:
+        cat = m.get("category", "General") or "General"
+        cats.setdefault(cat, []).append(m)
+
+    rows_html = '<ul class="avail-prerender" style="list-style:none;padding:0;margin:0">'
+    for cat in sorted(cats.keys()):
+        rows_html += f'<li style="margin-top:1.2em"><strong style="font-size:.85em;text-transform:uppercase;letter-spacing:.06em;color:#42586a">{_esc(cat)}</strong><ul style="list-style:none;padding:0;margin:.4em 0 0">'
+        for m in sorted(cats[cat], key=lambda x: x.get("name", "")):
+            name = _esc(m.get("name", ""))
+            gen  = _esc(m.get("genericName", "") or "")
+            status_key = m.get("status", "in_stock")
+            label, color, _sa = STATUS_LABELS.get(status_key, STATUS_LABELS["in_stock"])
+            gen_span = f' <span style="color:#42586a;font-size:.9em">({gen})</span>' if gen else ""
+            rows_html += (
+                f'<li style="padding:.35em 0;border-bottom:1px solid #eee">'
+                f'{name}{gen_span} '
+                f'<span style="color:{color};font-size:.85em;font-weight:600">{_esc(label)}</span>'
+                f'</li>'
+            )
+        rows_html += '</ul></li>'
+    rows_html += '</ul>'
+
+    # --- JSON-LD: Pharmacy + Drug/Offer list ---
+    offers = []
+    for m in meds:
+        status_key = m.get("status", "in_stock")
+        _label, _color, schema_avail = STATUS_LABELS.get(status_key, STATUS_LABELS["in_stock"])
+        slug = med_slug(m.get("name", ""))
+        offers.append({
+            "@type": "Offer",
+            "itemOffered": {
+                "@type": "Drug",
+                "name": m.get("name", ""),
+                "alternateName": m.get("genericName", "") or None,
+                "url": SITE_URL + "/medications/" + slug
+            },
+            "availability": schema_avail,
+            "seller": {
+                "@type": "Pharmacy",
+                "name": PHARMACY_NAME,
+                "url": SITE_URL,
+                "telephone": PHARMACY_PHONE,
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "18360 Fenkell Ave",
+                    "addressLocality": "Detroit",
+                    "addressRegion": "MI",
+                    "postalCode": "48223",
+                    "addressCountry": "US"
+                }
+            }
+        })
+    # Remove None values from alternateName
+    for o in offers:
+        if o["itemOffered"].get("alternateName") is None:
+            del o["itemOffered"]["alternateName"]
+
+    ld = {
+        "@context": "https://schema.org",
+        "@type": "Pharmacy",
+        "name": PHARMACY_NAME,
+        "url": SITE_URL,
+        "telephone": PHARMACY_PHONE,
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "18360 Fenkell Ave",
+            "addressLocality": "Detroit",
+            "addressRegion": "MI",
+            "postalCode": "48223",
+            "addressCountry": "US"
+        },
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Medication Availability",
+            "itemListElement": offers
+        }
+    }
+    jsonld_tag = f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>'
+    return rows_html, jsonld_tag
+
 def _split_body_html(body):
     if not body:
         return ""
@@ -998,7 +1087,32 @@ class Handler(SimpleHTTPRequestHandler):
         elif path in ("/", "/index.html"):
             self._serve_html_with_seo(os.path.join(BASE_DIR, "index.html"))
         elif path == "/availability":
-            self._serve_html_with_seo(os.path.join(BASE_DIR, "availability.html"))
+            try:
+                fpath = os.path.join(BASE_DIR, "availability.html")
+                with open(fpath, "r", encoding="utf-8") as f:
+                    html = f.read()
+                # GSC verification tag
+                c = load_content()
+                gsc_code = c.get("seo", {}).get("googleVerification", "").strip()
+                if gsc_code:
+                    tag = f'<meta name="google-site-verification" content="{gsc_code}">'
+                    html = html.replace("</head>", f"  {tag}\n</head>", 1)
+                # FRX banner
+                if "<!--FRX_BANNER-->" in html:
+                    html = html.replace("<!--FRX_BANNER-->", get_banner_html(), 1)
+                # Pre-render medication list + inject JSON-LD
+                meds = load_medications().get("medications", [])
+                prerender_html, jsonld_tag = _build_availability_prerender(meds)
+                html = html.replace("<!--MEDS_PRERENDER-->", prerender_html, 1)
+                html = html.replace("</head>", f"  {jsonld_tag}\n</head>", 1)
+                body = html.encode("utf-8")
+                self.send_response(200)
+                self.send_header("Content-Type", "text/html; charset=utf-8")
+                self.send_header("Content-Length", str(len(body)))
+                self.end_headers()
+                self.wfile.write(body)
+            except Exception:
+                self._respond(404, {"ok": False, "error": "Not found"})
         elif path == "/free-prescription-delivery-detroit":
             self._serve_html_with_seo(os.path.join(BASE_DIR, "free-prescription-delivery-detroit.html"))
         elif path == "/compounding-pharmacy-detroit":
