@@ -44,6 +44,15 @@
       "status": "in_stock",
       "notes": "Limited availability. First come, first serve basis.",
       "updatedAt": "2026-07-10"
+    },
+    {
+      "id": "c7488aec-bf98-4806-9214-85dd00d88011",
+      "name": "Lantus Solostar",
+      "genericName": "Insulin Glargine",
+      "category": "Diabetes",
+      "status": "in_stock",
+      "notes": "Limited availability. First come, first serve basis.",
+      "updatedAt": "2026-07-14"
     }
   ]
 }
