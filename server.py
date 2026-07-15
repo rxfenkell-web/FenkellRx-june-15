@@ -681,6 +681,7 @@ def render_sitemap(meds):
         (SITE_URL + "/", today, "1.0"),
         (SITE_URL + "/availability", today, "0.9"),
         (SITE_URL + "/medications", today, "0.9"),
+        (SITE_URL + "/transfer", today, "0.8"),
         (SITE_URL + "/free-prescription-delivery-detroit", today, "0.8"),
         (SITE_URL + "/blister-packaging-detroit", today, "0.7"),
         (SITE_URL + "/compounding-pharmacy-detroit", today, "0.7"),
@@ -1129,6 +1130,8 @@ class Handler(SimpleHTTPRequestHandler):
                 self.wfile.write(body)
             except Exception:
                 self._respond(404, {"ok": False, "error": "Not found"})
+        elif path == "/transfer":
+            self._serve_html_with_seo(os.path.join(BASE_DIR, "transfer.html"))
         elif path == "/free-prescription-delivery-detroit":
             self._serve_html_with_seo(os.path.join(BASE_DIR, "free-prescription-delivery-detroit.html"))
         elif path == "/compounding-pharmacy-detroit":
@@ -1486,7 +1489,7 @@ class Handler(SimpleHTTPRequestHandler):
 
     def _send_zip(self):
         INCLUDE_FILES = [
-            "index.html", "admin.html", "availability.html","privacy-policy.html",
+            "index.html", "admin.html", "availability.html", "transfer.html", "privacy-policy.html",
             "compounding-pharmacy-detroit.html", "free-prescription-delivery-detroit.html", "blister-packaging-detroit.html",
             "style.css", "script.js",
             "logo.png", "server.py", "render.yaml", "requirements.txt",
