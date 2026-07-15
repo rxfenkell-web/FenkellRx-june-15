@@ -204,6 +204,7 @@ function submitTransfer() {
   var rxName  = document.getElementById('tf-rx-name').value.trim();
   var rxPhone = document.getElementById('tf-rx-phone').value.trim();
   var email   = document.getElementById('tf-email').value.trim();
+  var ref     = new URLSearchParams(window.location.search).get('ref') || 'Direct / Unknown';
 
   if (!name || !dob || !phone || !rxName || !rxPhone) {
     alert('Please fill in all required fields before submitting.');
@@ -228,6 +229,7 @@ function submitTransfer() {
         'Patient Phone:             ' + phone + '\n\n' +
         'Previous Pharmacy Name:    ' + rxName + '\n' +
         'Previous Pharmacy Phone:   ' + rxPhone + '\n\n' +
+        'Source / Referral:         ' + ref + '\n\n' +
         '==============================\n' +
         'Submitted via FenkellRxPharmacy.com/transfer',
       customerEmail: email,
@@ -235,7 +237,8 @@ function submitTransfer() {
       dob: dob,
       phone: phone,
       rxName: rxName,
-      rxPhone: rxPhone
+      rxPhone: rxPhone,
+      ref: ref
     })
   })
   .then(function(r) { return r.json(); })

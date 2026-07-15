@@ -105,6 +105,7 @@ def log_submission(form_type, data):
         ]
     elif form_type == "Transfer Request":
         contact = data.get("name", "—")
+        ref = data.get("ref", "").strip()
         fields = [
             ("Patient Name",         contact),
             ("Date of Birth",        data.get("dob", "—")),
@@ -112,6 +113,7 @@ def log_submission(form_type, data):
             ("Previous Pharmacy",    data.get("rxName", "—")),
             ("Prev. Pharmacy Phone", data.get("rxPhone", "—")),
             ("Email",                data.get("customerEmail", "Not provided")),
+            ("Source",               ref if ref else "Direct / Unknown"),
         ]
     elif form_type == "Contact Inquiry":
         first = data.get("first", "")
@@ -302,6 +304,8 @@ def build_confirmation_email(form_type, data):
 
     elif form_type == "Transfer Request":
         name = data.get("name", "Valued Patient")
+        ref = data.get("ref", "").strip()
+        source_line = f"\nSource / Referral:         {ref}" if ref else "\nSource / Referral:         Direct / Unknown"
         subject = f"Transfer Request Received — Fenkell Rx Pharmacy"
         body = (
             f"Dear {name},\n\n"
