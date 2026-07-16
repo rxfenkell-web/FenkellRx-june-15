@@ -3265,7 +3265,7 @@ function postEmail(payload, successMsg) {
   }
 
   .meo-bg {
-    min-height: 100vh;
+    height: 100vh;
     background: linear-gradient(160deg, #003d52 0%, #006080 35%, #00a8c8 70%, #48cae4 100%);
     display: flex;
     flex-direction: column;
@@ -3317,11 +3317,27 @@ function postEmail(payload, successMsg) {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 40px 24px 32px;
+    justify-content: flex-start;
+    padding: 40px 24px 16px;
     position: relative;
     z-index: 2;
     text-align: center;
+    overflow-y: auto;
+  }
+
+  .meo-cta-pinned {
+    flex-shrink: 0;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    background: rgba(0,30,42,0.97);
+    padding: 16px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    z-index: 2;
+  }
+  .meo-cta-pinned .meo-cta-row {
+    margin-bottom: 0;
   }
 
   .meo-eyebrow {
@@ -3526,6 +3542,9 @@ function postEmail(payload, successMsg) {
         <div class="meo-empty">Loading…</div>
       </div>
 
+    </div>
+
+    <div class="meo-cta-pinned">
       <div class="meo-cta-row">
         <a data-c-tel="contact.phoneRaw" href="tel:3135195700" class="meo-btn-call">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 13.87a19.79 19.79 0 01-3.07-8.67A2 2 0 012 3h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 18v-.08z"/></svg>
@@ -3536,7 +3555,6 @@ function postEmail(payload, successMsg) {
           <span data-c="overlay.btnContact">Send a Message</span>
         </button>
       </div>
-
       <button class="meo-hint" id="meoHintBtn">
         <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
         <span data-c="overlay.btnContinue">Continue to our website</span>
