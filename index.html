@@ -1959,6 +1959,15 @@
               <div><div class="ql-label" data-c="hero.ql4Label">Vaccines</div><div class="ql-sub" data-c="hero.ql4Sub">Walk-ins welcome</div></div>
             </a>
           </div>
+          <!-- Availability pill — sits directly below quick-action cards -->
+          <a href="/availability" id="frxAvailWrap" style="display:flex;align-items:center;justify-content:space-between;margin-top:12px;background:linear-gradient(90deg,var(--green-800),var(--green-600));border-radius:50px;padding:11px 16px 11px 20px;box-shadow:0 4px 16px rgba(0,131,143,0.28);text-decoration:none;transition:filter 0.2s;" onmouseover="this.style.filter='brightness(1.08)'" onmouseout="this.style.filter=''">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div class="frx-avail-dot"></div>
+              <span class="frx-avail-text">Can't find it anywhere? <em>Check live stock &rarr;</em></span>
+            </div>
+            <span id="frxAvailClose" role="button" aria-label="Dismiss" class="frx-avail-x" onclick="event.preventDefault();event.stopPropagation();sessionStorage.setItem('frxAvailDismissed','1');document.getElementById('frxAvailWrap').style.display='none';">&times;</span>
+          </a>
+          <script>(function(){if(sessionStorage.getItem('frxAvailDismissed')){var w=document.getElementById('frxAvailWrap');if(w)w.style.display='none';}})();</script>
           <div style="margin-top:1rem;border-radius:10px;overflow:hidden;height:140px;position:relative;">
             <iframe
               data-c-src="contact.mapsUrl"
@@ -1974,39 +1983,6 @@
     </div>
   </div>
 </section>
-
-<div class="frx-avail-wrap" id="frxAvailWrap">
-  <div class="frx-avail-inner">
-    <button class="frx-avail-pill" id="frxAvailPill" aria-label="Check live medication stock">
-      <div class="frx-avail-left">
-        <div class="frx-avail-dot"></div>
-        <span class="frx-avail-text">Can't find it anywhere? <em>Check live stock &rarr;</em></span>
-      </div>
-      <span class="frx-avail-x" id="frxAvailClose" role="button" aria-label="Dismiss">&times;</span>
-    </button>
-  </div>
-</div>
-<script>
-(function(){
-  var wrap = document.getElementById('frxAvailWrap');
-  if (sessionStorage.getItem('frxAvailDismissed')) { wrap.style.display='none'; }
-  document.getElementById('frxAvailPill').addEventListener('click', function(e) {
-    if (e.target.id === 'frxAvailClose') return;
-    var ov = document.getElementById('meoOverlay');
-    if (ov) {
-      ov.style.display = '';
-      document.body.style.overflow = 'hidden';
-      ov.classList.remove('is-closing');
-      setTimeout(function(){ ov.classList.add('is-open'); }, 10);
-    }
-  });
-  document.getElementById('frxAvailClose').addEventListener('click', function(e) {
-    e.stopPropagation();
-    sessionStorage.setItem('frxAvailDismissed','1');
-    wrap.style.display='none';
-  });
-})();
-</script>
 
 <!-- Reviews -->
 <section class="reviews-bg">
