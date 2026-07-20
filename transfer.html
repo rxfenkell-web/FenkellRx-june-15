@@ -145,7 +145,7 @@
         <div class="form-row-2">
           <div class="form-group">
             <label for="tf-dob">Date of Birth *</label>
-            <input id="tf-dob" type="date">
+            <input id="tf-dob" type="text" inputmode="numeric" placeholder="MM/DD/YYYY" maxlength="10" autocomplete="bday">
           </div>
           <div class="form-group">
             <label for="tf-phone">Patient Phone Number *</label>
@@ -262,6 +262,18 @@ function submitTransfer() {
     btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg> Submit Transfer Request';
   });
 }
+
+// Auto-format DOB as MM/DD/YYYY while typing
+document.getElementById('tf-dob').addEventListener('input', function(e) {
+  var v = this.value.replace(/\D/g, '').substring(0, 8);
+  if (v.length >= 5) {
+    this.value = v.substring(0,2) + '/' + v.substring(2,4) + '/' + v.substring(4);
+  } else if (v.length >= 3) {
+    this.value = v.substring(0,2) + '/' + v.substring(2);
+  } else {
+    this.value = v;
+  }
+});
 </script>
 
 </body>
