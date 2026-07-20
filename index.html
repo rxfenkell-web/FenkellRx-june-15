@@ -1749,6 +1749,55 @@
     .newsletter-form input { width: 100%; }
     .form-row { grid-template-columns: 1fr; }
   }
+
+  /* ── STICKY MOBILE BOTTOM BAR ──
+     Google interstitial policy exempts thin utility bars that don't
+     cover main content. At 64px (~9% of a 700px viewport) this is
+     well within the "reasonable amount of screen space" threshold.
+     padding-bottom on body ensures zero content overlap.
+     Hidden on desktop — nav already carries these CTAs. */
+  #mob-cta-bar {
+    display: none;
+  }
+  @media (max-width: 768px) {
+    body { padding-bottom: 64px; }
+    #mob-cta-bar {
+      display: flex;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      z-index: 90;
+      background: #fff;
+      border-top: 1px solid rgba(0,0,0,0.1);
+      box-shadow: 0 -2px 12px rgba(0,0,0,0.08);
+      align-items: center;
+      gap: 10px;
+      padding: 0 14px;
+    }
+    #mob-cta-bar a {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      height: 42px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    #mob-cta-call {
+      background: var(--green-50);
+      color: var(--green-800);
+      border: 1px solid var(--green-100);
+    }
+    #mob-cta-transfer {
+      background: var(--brand-blue-darker);
+      color: #fff;
+    }
+  }
 </style>
 
   <!-- ===== SEO: structured data & social cards (invisible) ===== -->
@@ -3799,6 +3848,18 @@ function postEmail(payload, successMsg) {
   })();
   window.FRXNewsFeed.init({source: '/news.json'});
 </script>
+
+<!-- Sticky mobile bottom bar — hidden on desktop via CSS -->
+<div id="mob-cta-bar" role="navigation" aria-label="Quick contact actions">
+  <a id="mob-cta-call" href="tel:3135195700" aria-label="Call Fenkell Rx Pharmacy">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 13.87a19.79 19.79 0 01-3.07-8.67A2 2 0 012 3h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 18v-.08z"/></svg>
+    Call Us
+  </a>
+  <a id="mob-cta-transfer" href="/transfer" aria-label="Transfer your prescription">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 014-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg>
+    Transfer Rx
+  </a>
+</div>
 
 </body>
 </html>
