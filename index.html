@@ -230,6 +230,50 @@
     padding: 0 2rem;
   }
 
+
+  /* ── FLOATING AVAILABILITY BUTTON ── */
+  .frx-avail-wrap { background: var(--cream); }
+  .frx-avail-inner {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 14px 1.5rem 0;
+  }
+  .frx-avail-pill {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(90deg, var(--green-800), var(--green-600));
+    border-radius: 50px;
+    padding: 13px 18px 13px 22px;
+    box-shadow: 0 4px 20px rgba(0,131,143,0.28);
+    cursor: pointer;
+    border: none;
+    width: 100%;
+    text-align: left;
+    transition: filter 0.2s;
+  }
+  .frx-avail-pill:hover { filter: brightness(1.08); }
+  .frx-avail-left { display: flex; align-items: center; gap: 12px; }
+  .frx-avail-dot {
+    width: 9px; height: 9px;
+    background: #a3f0c8;
+    border-radius: 50%;
+    flex-shrink: 0;
+    animation: frxDotPulse 2s infinite;
+  }
+  @keyframes frxDotPulse {
+    0%,100% { opacity:1; box-shadow:0 0 0 0 rgba(163,240,200,0.5); }
+    50%      { opacity:.75; box-shadow:0 0 0 6px rgba(163,240,200,0); }
+  }
+  .frx-avail-text { font-size:15px; font-weight:600; color:#fff; }
+  .frx-avail-text em { color:#a3f0c8; font-style:normal; }
+  .frx-avail-x {
+    font-size:20px; color:rgba(255,255,255,0.4);
+    background:none; border:none; cursor:pointer;
+    padding:2px 8px; line-height:1; flex-shrink:0;
+  }
+  .frx-avail-x:hover { color:rgba(255,255,255,0.75); }
+
   /* ── NAV ── */
   nav {
     position: sticky;
@@ -1931,66 +1975,188 @@
   </div>
 </section>
 
-<!-- ========== LIVE NEWS FEED (replaces homepage availability strip) ========== -->
-<section class="frx-news" id="news" aria-label="Live pharmacy and health news feed">
-  <div class="container">
-    <div class="frx-news-head">
-      <div>
-        <span class="frx-news-kicker"><span class="frx-live-dot"></span>Live Feed</span>
-        <h2 class="frx-news-title">Detroit Health &amp; Pharmacy News</h2>
+<div class="frx-avail-wrap" id="frxAvailWrap">
+  <div class="frx-avail-inner">
+    <button class="frx-avail-pill" id="frxAvailPill" aria-label="Check live medication stock">
+      <div class="frx-avail-left">
+        <div class="frx-avail-dot"></div>
+        <span class="frx-avail-text">Can't find it anywhere? <em>Check live stock &rarr;</em></span>
       </div>
-      <a class="frx-news-avail" href="/availability">Check live medication availability &rarr;</a>
-    </div>
-
-    <!-- Bootstrap items render instantly with zero network wait.
-         FRXNewsFeed then refreshes this list from /news.json and can
-         attach to a real-time stream later. Keep data-frx-news-list
-         as the mount point. -->
-    <div class="frx-news-list" id="frx-news-list" data-frx-news-list>
-      <article class="frx-news-card" data-tag="Vaccines">
-        <span class="frx-news-tag">Vaccines</span>
-        <h3 class="frx-news-h">Walk-In Flu, COVID &amp; RSV Vaccines Available Now</h3>
-        <p class="frx-news-p">No appointment needed at our Fenkell Ave pharmacy. Most vaccines are covered at $0 with Medicare or private insurance &mdash; we verify your coverage first.</p>
-        <a class="frx-news-link" href="/#immunizations">See all vaccines &rarr;</a>
-      </article>
-      <article class="frx-news-card" data-tag="Availability">
-        <span class="frx-news-tag">Availability</span>
-        <h3 class="frx-news-h">Hard-To-Find Medication? We Source From Multiple Wholesalers</h3>
-        <p class="frx-news-p">When chain pharmacies say a prescription is on backorder, our independent sourcing often gets it same or next day. Check current stock online or call us.</p>
-        <a class="frx-news-link" href="/availability">Check availability &rarr;</a>
-      </article>
-      <article class="frx-news-card" data-tag="Services">
-        <span class="frx-news-tag">Services</span>
-        <h3 class="frx-news-h">Free Same-Day Prescription Delivery Across Northwest Detroit</h3>
-        <p class="frx-news-p">Home delivery is always free within our service area &mdash; North Rosedale, Brightmoor, Old Redford, Grandmont, Redford Township, and Southfield.</p>
-        <a class="frx-news-link" href="/free-prescription-delivery-detroit">Delivery details &rarr;</a>
-      </article>
-    </div>
-
-    <!-- SEO internal-link hub: preserves crawl paths and keyword anchors
-         to the medication and service landing pages -->
-    <nav class="frx-news-seolinks" aria-label="Pharmacy services and medication availability pages">
-      <a href="/availability">Medication availability Detroit</a>
-      <a href="/free-prescription-delivery-detroit">Free prescription delivery Detroit</a>
-      <a href="/blister-packaging-detroit">Blister packaging pharmacy Detroit</a>
-      <a href="/compounding-pharmacy-detroit">Compounding pharmacy Detroit</a>
-    </nav>
+      <span class="frx-avail-x" id="frxAvailClose" role="button" aria-label="Dismiss">&times;</span>
+    </button>
   </div>
+</div>
+<script>
+(function(){
+  var wrap = document.getElementById('frxAvailWrap');
+  if (sessionStorage.getItem('frxAvailDismissed')) { wrap.style.display='none'; }
+  document.getElementById('frxAvailPill').addEventListener('click', function(e) {
+    if (e.target.id === 'frxAvailClose') return;
+    var ov = document.getElementById('meoOverlay');
+    if (ov) {
+      ov.style.display = '';
+      document.body.style.overflow = 'hidden';
+      ov.classList.remove('is-closing');
+      setTimeout(function(){ ov.classList.add('is-open'); }, 10);
+    }
+  });
+  document.getElementById('frxAvailClose').addEventListener('click', function(e) {
+    e.stopPropagation();
+    sessionStorage.setItem('frxAvailDismissed','1');
+    wrap.style.display='none';
+  });
+})();
+</script>
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    "name": "Fenkell Rx Pharmacy - Detroit Health and Pharmacy News",
-    "itemListElement": [
-      {"@type": "ListItem", "position": 1, "name": "Walk-In Flu, COVID and RSV Vaccines Available Now", "url": "https://fenkellrxpharmacy.com/#immunizations"},
-      {"@type": "ListItem", "position": 2, "name": "Hard-To-Find Medication Sourcing at Fenkell Rx", "url": "https://fenkellrxpharmacy.com/availability"},
-      {"@type": "ListItem", "position": 3, "name": "Free Same-Day Prescription Delivery Across Northwest Detroit", "url": "https://fenkellrxpharmacy.com/free-prescription-delivery-detroit"}
-    ]
-  }
-  </script>
+<!-- Reviews -->
+<section class="reviews-bg">
+  <div class="container">
+    <div class="section-label" data-c="reviews.sectionLabel">Patient Reviews</div>
+    <h2 class="section-title" data-c="reviews.sectionTitle">What our community says</h2>
+    <p class="section-desc" data-c="reviews.sectionDesc">Don't take our word for it. Here's what our patients have been saying.</p>
+
+    <div class="reviews-summary">
+      <div class="reviews-score">
+        <div class="reviews-score-num" data-c="reviews.rating">4.9</div>
+        <div>
+          <span class="reviews-score-stars" data-c="reviews.scoreStars">★★★★★</span>
+          <div class="reviews-score-label" data-c="reviews.ratingCount">Based on 100+ reviews</div>
+        </div>
+      </div>
+      <div class="reviews-divider"></div>
+      <div class="reviews-source">
+        <strong data-c="reviews.source1">Google Reviews</strong>
+        <span data-c="reviews.source1Sub">Fenkell Rx Pharmacy · Detroit, MI</span>
+      </div>
+      <div class="reviews-divider"></div>
+      <div class="reviews-source">
+        <strong data-c="reviews.source2">Verified patients</strong>
+        <span data-c="reviews.source2Sub">All reviews from confirmed customers</span>
+      </div>
+      <div class="reviews-divider"></div>
+      <a href="https://www.google.com/maps/search/?api=1&query=Fenkell+Rx+Pharmacy+Detroit+MI" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:#185FA5;color:#fff;padding:10px 20px;border-radius:6px;text-decoration:none;font-weight:700;font-size:14px;transition:background 0.2s;" onmouseover="this.style.background='#0d4a8a'" onmouseout="this.style.background='#185FA5'">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.545 10.239v3.821h5.445c-.712 2.315-2.647 3.972-5.445 3.972a6.033 6.033 0 01-6.033-6.033 6.033 6.033 0 016.033-6.032c1.498 0 2.866.549 3.921 1.453l2.814-2.814A9.969 9.969 0 0012.545 2C7.021 2 2.543 6.477 2.543 12s4.478 10 10.002 10c8.396 0 10.249-7.85 9.426-11.748l-9.426-.013z"/></svg>
+        Leave Us a Google Review
+      </a>
+    </div>
+
+    <div class="carousel-outer" id="reviewsCarousel">
+      <div class="carousel-track-wrap">
+        <div class="carousel-track" id="carouselTrack">
+
+          <div class="review-card">
+            <div class="review-source-tag">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.545 10.239v3.821h5.445c-.712 2.315-2.647 3.972-5.445 3.972a6.033 6.033 0 01-6.033-6.033 6.033 6.033 0 016.033-6.032c1.498 0 2.866.549 3.921 1.453l2.814-2.814A9.969 9.969 0 0012.545 2C7.021 2 2.543 6.477 2.543 12s4.478 10 10.002 10c8.396 0 10.249-7.85 9.426-11.748l-9.426-.013z"/></svg>
+              Google
+            </div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text" data-c="reviews.r1text">"This place is literally the best! I was honestly freaking out because I thought my meds were gonna cost a fortune, but they didn't at all! The pharmacist is very kind, and he even came from behind the counter and explained to me exactly how to use my meds. I seriously recommend this place!"</p>
+            <div class="reviewer">
+              <div class="reviewer-avatar" data-c="reviews.r1initials">ME</div>
+              <div>
+                <div class="reviewer-name" data-c="reviews.r1name">Madison E.</div>
+                <div class="reviewer-since" data-c="reviews.r1since">2 months ago</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-source-tag">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.545 10.239v3.821h5.445c-.712 2.315-2.647 3.972-5.445 3.972a6.033 6.033 0 01-6.033-6.033 6.033 6.033 0 016.033-6.032c1.498 0 2.866.549 3.921 1.453l2.814-2.814A9.969 9.969 0 0012.545 2C7.021 2 2.543 6.477 2.543 12s4.478 10 10.002 10c8.396 0 10.249-7.85 9.426-11.748l-9.426-.013z"/></svg>
+              Google
+            </div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text" data-c="reviews.r2text">"I luv this pharmacy! The pharmacist and staff are amazing! He was the best pharmacist at Rite Aid and I'm so happy he has his own! Kudos!"</p>
+            <div class="reviewer">
+              <div class="reviewer-avatar" data-c="reviews.r2initials">PG</div>
+              <div>
+                <div class="reviewer-name" data-c="reviews.r2name">Pat G.</div>
+                <div class="reviewer-since" data-c="reviews.r2since">2 months ago</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-source-tag">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.545 10.239v3.821h5.445c-.712 2.315-2.647 3.972-5.445 3.972a6.033 6.033 0 01-6.033-6.033 6.033 6.033 0 016.033-6.032c1.498 0 2.866.549 3.921 1.453l2.814-2.814A9.969 9.969 0 0012.545 2C7.021 2 2.543 6.477 2.543 12s4.478 10 10.002 10c8.396 0 10.249-7.85 9.426-11.748l-9.426-.013z"/></svg>
+              Google
+            </div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text" data-c="reviews.r3text">"The staff is very nice. The pharmacist goes above and beyond to be sure that each and every customer has been taken care of. They also deliver!!! One of the best pharmacies by far! CVS who?? No wait and they always have the medication you need!"</p>
+            <div class="reviewer">
+              <div class="reviewer-avatar" data-c="reviews.r3initials">AC</div>
+              <div>
+                <div class="reviewer-name" data-c="reviews.r3name">Alexis C.</div>
+                <div class="reviewer-since" data-c="reviews.r3since">8 months ago</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-source-tag">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.545 10.239v3.821h5.445c-.712 2.315-2.647 3.972-5.445 3.972a6.033 6.033 0 01-6.033-6.033 6.033 6.033 0 016.033-6.032c1.498 0 2.866.549 3.921 1.453l2.814-2.814A9.969 9.969 0 0012.545 2C7.021 2 2.543 6.477 2.543 12s4.478 10 10.002 10c8.396 0 10.249-7.85 9.426-11.748l-9.426-.013z"/></svg>
+              Google
+            </div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text" data-c="reviews.r4text">"The most caring, kind and compassionate pharmacy I have ever dealt with. I have done surgery for 32 years, and I have never been more impressed with the excellence and professionalism they provide. In health care many lose the true purpose we have, to serve! I am so blessed to have found this pharmacy. If I could give 10 stars!!!!"</p>
+            <div class="reviewer">
+              <div class="reviewer-avatar" data-c="reviews.r4initials">RF</div>
+              <div>
+                <div class="reviewer-name" data-c="reviews.r4name">Robert F., M.D.</div>
+                <div class="reviewer-since" data-c="reviews.r4since">11 months ago</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-source-tag">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.545 10.239v3.821h5.445c-.712 2.315-2.647 3.972-5.445 3.972a6.033 6.033 0 01-6.033-6.033 6.033 6.033 0 016.033-6.032c1.498 0 2.866.549 3.921 1.453l2.814-2.814A9.969 9.969 0 0012.545 2C7.021 2 2.543 6.477 2.543 12s4.478 10 10.002 10c8.396 0 10.249-7.85 9.426-11.748l-9.426-.013z"/></svg>
+              Google
+            </div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text" data-c="reviews.r5text">"I just switched from another pharmacy to Fenkell RX. Syed, the pharmacist goes above and beyond to make sure I have the medications I need that are essential to my well being in a timely manner. He is a professional with a personal touch that will make a great addition to our community."</p>
+            <div class="reviewer">
+              <div class="reviewer-avatar" data-c="reviews.r5initials">MF</div>
+              <div>
+                <div class="reviewer-name" data-c="reviews.r5name">Matilda F.</div>
+                <div class="reviewer-since" data-c="reviews.r5since">11 months ago</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-source-tag">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.545 10.239v3.821h5.445c-.712 2.315-2.647 3.972-5.445 3.972a6.033 6.033 0 01-6.033-6.033 6.033 6.033 0 016.033-6.032c1.498 0 2.866.549 3.921 1.453l2.814-2.814A9.969 9.969 0 0012.545 2C7.021 2 2.543 6.477 2.543 12s4.478 10 10.002 10c8.396 0 10.249-7.85 9.426-11.748l-9.426-.013z"/></svg>
+              Google
+            </div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text" data-c="reviews.r6text">"Pharmacist Hassan took the time to help a customer who needed a prescription for a brand name drug insurance would not pay — the cost was $400. Other pharmacies were not helpful at all. I am grateful this pharmacy is open. Phenomenal service, thank you!"</p>
+            <div class="reviewer">
+              <div class="reviewer-avatar" data-c="reviews.r6initials">GT</div>
+              <div>
+                <div class="reviewer-name" data-c="reviews.r6name">Gloria T.</div>
+                <div class="reviewer-since" data-c="reviews.r6since">10 months ago</div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+      <div class="carousel-controls">
+        <button class="carousel-btn" id="carouselPrev" aria-label="Previous reviews">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="carousel-dots" id="carouselDots"></div>
+        <button class="carousel-btn" id="carouselNext" aria-label="Next reviews">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
+
+  </div>
 </section>
-<!-- ========== END LIVE NEWS FEED ========== -->
 
 
 
@@ -2158,155 +2324,7 @@
   </div>
 </section>
 
-<!-- Reviews -->
-<section class="reviews-bg">
-  <div class="container">
-    <div class="section-label" data-c="reviews.sectionLabel">Patient Reviews</div>
-    <h2 class="section-title" data-c="reviews.sectionTitle">What our community says</h2>
-    <p class="section-desc" data-c="reviews.sectionDesc">Don't take our word for it. Here's what our patients have been saying.</p>
 
-    <div class="reviews-summary">
-      <div class="reviews-score">
-        <div class="reviews-score-num" data-c="reviews.rating">4.9</div>
-        <div>
-          <span class="reviews-score-stars" data-c="reviews.scoreStars">★★★★★</span>
-          <div class="reviews-score-label" data-c="reviews.ratingCount">Based on 100+ reviews</div>
-        </div>
-      </div>
-      <div class="reviews-divider"></div>
-      <div class="reviews-source">
-        <strong data-c="reviews.source1">Google Reviews</strong>
-        <span data-c="reviews.source1Sub">Fenkell Rx Pharmacy · Detroit, MI</span>
-      </div>
-      <div class="reviews-divider"></div>
-      <div class="reviews-source">
-        <strong data-c="reviews.source2">Verified patients</strong>
-        <span data-c="reviews.source2Sub">All reviews from confirmed customers</span>
-      </div>
-      <div class="reviews-divider"></div>
-      <a href="https://www.google.com/maps/search/?api=1&query=Fenkell+Rx+Pharmacy+Detroit+MI" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:#185FA5;color:#fff;padding:10px 20px;border-radius:6px;text-decoration:none;font-weight:700;font-size:14px;transition:background 0.2s;" onmouseover="this.style.background='#0d4a8a'" onmouseout="this.style.background='#185FA5'">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.545 10.239v3.821h5.445c-.712 2.315-2.647 3.972-5.445 3.972a6.033 6.033 0 01-6.033-6.033 6.033 6.033 0 016.033-6.032c1.498 0 2.866.549 3.921 1.453l2.814-2.814A9.969 9.969 0 0012.545 2C7.021 2 2.543 6.477 2.543 12s4.478 10 10.002 10c8.396 0 10.249-7.85 9.426-11.748l-9.426-.013z"/></svg>
-        Leave Us a Google Review
-      </a>
-    </div>
-
-    <div class="carousel-outer" id="reviewsCarousel">
-      <div class="carousel-track-wrap">
-        <div class="carousel-track" id="carouselTrack">
-
-          <div class="review-card">
-            <div class="review-source-tag">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.545 10.239v3.821h5.445c-.712 2.315-2.647 3.972-5.445 3.972a6.033 6.033 0 01-6.033-6.033 6.033 6.033 0 016.033-6.032c1.498 0 2.866.549 3.921 1.453l2.814-2.814A9.969 9.969 0 0012.545 2C7.021 2 2.543 6.477 2.543 12s4.478 10 10.002 10c8.396 0 10.249-7.85 9.426-11.748l-9.426-.013z"/></svg>
-              Google
-            </div>
-            <div class="review-stars">★★★★★</div>
-            <p class="review-text" data-c="reviews.r1text">"This place is literally the best! I was honestly freaking out because I thought my meds were gonna cost a fortune, but they didn't at all! The pharmacist is very kind, and he even came from behind the counter and explained to me exactly how to use my meds. I seriously recommend this place!"</p>
-            <div class="reviewer">
-              <div class="reviewer-avatar" data-c="reviews.r1initials">ME</div>
-              <div>
-                <div class="reviewer-name" data-c="reviews.r1name">Madison E.</div>
-                <div class="reviewer-since" data-c="reviews.r1since">2 months ago</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="review-card">
-            <div class="review-source-tag">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.545 10.239v3.821h5.445c-.712 2.315-2.647 3.972-5.445 3.972a6.033 6.033 0 01-6.033-6.033 6.033 6.033 0 016.033-6.032c1.498 0 2.866.549 3.921 1.453l2.814-2.814A9.969 9.969 0 0012.545 2C7.021 2 2.543 6.477 2.543 12s4.478 10 10.002 10c8.396 0 10.249-7.85 9.426-11.748l-9.426-.013z"/></svg>
-              Google
-            </div>
-            <div class="review-stars">★★★★★</div>
-            <p class="review-text" data-c="reviews.r2text">"I luv this pharmacy! The pharmacist and staff are amazing! He was the best pharmacist at Rite Aid and I'm so happy he has his own! Kudos!"</p>
-            <div class="reviewer">
-              <div class="reviewer-avatar" data-c="reviews.r2initials">PG</div>
-              <div>
-                <div class="reviewer-name" data-c="reviews.r2name">Pat G.</div>
-                <div class="reviewer-since" data-c="reviews.r2since">2 months ago</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="review-card">
-            <div class="review-source-tag">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.545 10.239v3.821h5.445c-.712 2.315-2.647 3.972-5.445 3.972a6.033 6.033 0 01-6.033-6.033 6.033 6.033 0 016.033-6.032c1.498 0 2.866.549 3.921 1.453l2.814-2.814A9.969 9.969 0 0012.545 2C7.021 2 2.543 6.477 2.543 12s4.478 10 10.002 10c8.396 0 10.249-7.85 9.426-11.748l-9.426-.013z"/></svg>
-              Google
-            </div>
-            <div class="review-stars">★★★★★</div>
-            <p class="review-text" data-c="reviews.r3text">"The staff is very nice. The pharmacist goes above and beyond to be sure that each and every customer has been taken care of. They also deliver!!! One of the best pharmacies by far! CVS who?? No wait and they always have the medication you need!"</p>
-            <div class="reviewer">
-              <div class="reviewer-avatar" data-c="reviews.r3initials">AC</div>
-              <div>
-                <div class="reviewer-name" data-c="reviews.r3name">Alexis C.</div>
-                <div class="reviewer-since" data-c="reviews.r3since">8 months ago</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="review-card">
-            <div class="review-source-tag">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.545 10.239v3.821h5.445c-.712 2.315-2.647 3.972-5.445 3.972a6.033 6.033 0 01-6.033-6.033 6.033 6.033 0 016.033-6.032c1.498 0 2.866.549 3.921 1.453l2.814-2.814A9.969 9.969 0 0012.545 2C7.021 2 2.543 6.477 2.543 12s4.478 10 10.002 10c8.396 0 10.249-7.85 9.426-11.748l-9.426-.013z"/></svg>
-              Google
-            </div>
-            <div class="review-stars">★★★★★</div>
-            <p class="review-text" data-c="reviews.r4text">"The most caring, kind and compassionate pharmacy I have ever dealt with. I have done surgery for 32 years, and I have never been more impressed with the excellence and professionalism they provide. In health care many lose the true purpose we have, to serve! I am so blessed to have found this pharmacy. If I could give 10 stars!!!!"</p>
-            <div class="reviewer">
-              <div class="reviewer-avatar" data-c="reviews.r4initials">RF</div>
-              <div>
-                <div class="reviewer-name" data-c="reviews.r4name">Robert F., M.D.</div>
-                <div class="reviewer-since" data-c="reviews.r4since">11 months ago</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="review-card">
-            <div class="review-source-tag">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.545 10.239v3.821h5.445c-.712 2.315-2.647 3.972-5.445 3.972a6.033 6.033 0 01-6.033-6.033 6.033 6.033 0 016.033-6.032c1.498 0 2.866.549 3.921 1.453l2.814-2.814A9.969 9.969 0 0012.545 2C7.021 2 2.543 6.477 2.543 12s4.478 10 10.002 10c8.396 0 10.249-7.85 9.426-11.748l-9.426-.013z"/></svg>
-              Google
-            </div>
-            <div class="review-stars">★★★★★</div>
-            <p class="review-text" data-c="reviews.r5text">"I just switched from another pharmacy to Fenkell RX. Syed, the pharmacist goes above and beyond to make sure I have the medications I need that are essential to my well being in a timely manner. He is a professional with a personal touch that will make a great addition to our community."</p>
-            <div class="reviewer">
-              <div class="reviewer-avatar" data-c="reviews.r5initials">MF</div>
-              <div>
-                <div class="reviewer-name" data-c="reviews.r5name">Matilda F.</div>
-                <div class="reviewer-since" data-c="reviews.r5since">11 months ago</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="review-card">
-            <div class="review-source-tag">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.545 10.239v3.821h5.445c-.712 2.315-2.647 3.972-5.445 3.972a6.033 6.033 0 01-6.033-6.033 6.033 6.033 0 016.033-6.032c1.498 0 2.866.549 3.921 1.453l2.814-2.814A9.969 9.969 0 0012.545 2C7.021 2 2.543 6.477 2.543 12s4.478 10 10.002 10c8.396 0 10.249-7.85 9.426-11.748l-9.426-.013z"/></svg>
-              Google
-            </div>
-            <div class="review-stars">★★★★★</div>
-            <p class="review-text" data-c="reviews.r6text">"Pharmacist Hassan took the time to help a customer who needed a prescription for a brand name drug insurance would not pay — the cost was $400. Other pharmacies were not helpful at all. I am grateful this pharmacy is open. Phenomenal service, thank you!"</p>
-            <div class="reviewer">
-              <div class="reviewer-avatar" data-c="reviews.r6initials">GT</div>
-              <div>
-                <div class="reviewer-name" data-c="reviews.r6name">Gloria T.</div>
-                <div class="reviewer-since" data-c="reviews.r6since">10 months ago</div>
-              </div>
-            </div>
-          </div>
-
-
-        </div>
-      </div>
-
-      <div class="carousel-controls">
-        <button class="carousel-btn" id="carouselPrev" aria-label="Previous reviews">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
-        </button>
-        <div class="carousel-dots" id="carouselDots"></div>
-        <button class="carousel-btn" id="carouselNext" aria-label="Next reviews">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-        </button>
-      </div>
-    </div>
-
-  </div>
-</section>
 
 <!-- Insurance -->
 <section id="insurance">
@@ -2856,6 +2874,67 @@ function postEmail(payload, successMsg) {
     </div>
   </div>
 </section>
+
+<!-- ========== LIVE NEWS FEED (replaces homepage availability strip) ========== -->
+<section class="frx-news" id="news" aria-label="Live pharmacy and health news feed">
+  <div class="container">
+    <div class="frx-news-head">
+      <div>
+        <span class="frx-news-kicker"><span class="frx-live-dot"></span>Live Feed</span>
+        <h2 class="frx-news-title">Detroit Health &amp; Pharmacy News</h2>
+      </div>
+      <a class="frx-news-avail" href="/availability">Check live medication availability &rarr;</a>
+    </div>
+
+    <!-- Bootstrap items render instantly with zero network wait.
+         FRXNewsFeed then refreshes this list from /news.json and can
+         attach to a real-time stream later. Keep data-frx-news-list
+         as the mount point. -->
+    <div class="frx-news-list" id="frx-news-list" data-frx-news-list>
+      <article class="frx-news-card" data-tag="Vaccines">
+        <span class="frx-news-tag">Vaccines</span>
+        <h3 class="frx-news-h">Walk-In Flu, COVID &amp; RSV Vaccines Available Now</h3>
+        <p class="frx-news-p">No appointment needed at our Fenkell Ave pharmacy. Most vaccines are covered at $0 with Medicare or private insurance &mdash; we verify your coverage first.</p>
+        <a class="frx-news-link" href="/#immunizations">See all vaccines &rarr;</a>
+      </article>
+      <article class="frx-news-card" data-tag="Availability">
+        <span class="frx-news-tag">Availability</span>
+        <h3 class="frx-news-h">Hard-To-Find Medication? We Source From Multiple Wholesalers</h3>
+        <p class="frx-news-p">When chain pharmacies say a prescription is on backorder, our independent sourcing often gets it same or next day. Check current stock online or call us.</p>
+        <a class="frx-news-link" href="/availability">Check availability &rarr;</a>
+      </article>
+      <article class="frx-news-card" data-tag="Services">
+        <span class="frx-news-tag">Services</span>
+        <h3 class="frx-news-h">Free Same-Day Prescription Delivery Across Northwest Detroit</h3>
+        <p class="frx-news-p">Home delivery is always free within our service area &mdash; North Rosedale, Brightmoor, Old Redford, Grandmont, Redford Township, and Southfield.</p>
+        <a class="frx-news-link" href="/free-prescription-delivery-detroit">Delivery details &rarr;</a>
+      </article>
+    </div>
+
+    <!-- SEO internal-link hub: preserves crawl paths and keyword anchors
+         to the medication and service landing pages -->
+    <nav class="frx-news-seolinks" aria-label="Pharmacy services and medication availability pages">
+      <a href="/availability">Medication availability Detroit</a>
+      <a href="/free-prescription-delivery-detroit">Free prescription delivery Detroit</a>
+      <a href="/blister-packaging-detroit">Blister packaging pharmacy Detroit</a>
+      <a href="/compounding-pharmacy-detroit">Compounding pharmacy Detroit</a>
+    </nav>
+  </div>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Fenkell Rx Pharmacy - Detroit Health and Pharmacy News",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Walk-In Flu, COVID and RSV Vaccines Available Now", "url": "https://fenkellrxpharmacy.com/#immunizations"},
+      {"@type": "ListItem", "position": 2, "name": "Hard-To-Find Medication Sourcing at Fenkell Rx", "url": "https://fenkellrxpharmacy.com/availability"},
+      {"@type": "ListItem", "position": 3, "name": "Free Same-Day Prescription Delivery Across Northwest Detroit", "url": "https://fenkellrxpharmacy.com/free-prescription-delivery-detroit"}
+    ]
+  }
+  </script>
+</section>
+<!-- ========== END LIVE NEWS FEED ========== -->
 
 <!-- Newsletter -->
 
@@ -3636,15 +3715,8 @@ function postEmail(payload, successMsg) {
       listEl.innerHTML = '<div class="meo-empty">Call (313) 519-5700 for current availability.</div>';
     });
 
-  // Only show if user hasn't closed it this session
-  if (sessionStorage.getItem('medOverlayClosed')) {
-    overlay.style.display = 'none';
-  } else {
-    document.body.style.overflow = 'hidden';
-    setTimeout(function() {
-      overlay.classList.add('is-open');
-    }, 200);
-  }
+  // Overlay is opt-in — hidden until user clicks the floating button
+  overlay.style.display = 'none';
 })();
 </script>
 <script>
