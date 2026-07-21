@@ -1761,7 +1761,7 @@
   }
   @media (max-width: 768px) {
     body { padding-bottom: 64px; }
-    #mob-cta-bar {
+    #mob-cta-bar.mob-visible {
       display: flex;
       position: fixed;
       bottom: 0;
@@ -2004,8 +2004,8 @@
           </p>
         </div>
       </div>
-      <div style="margin-top:3rem;">
-        <div class="hero-card">
+      <div style="margin-top:7rem;">
+        <div class="hero-card" id="hero-card">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
             <h3 style="margin-bottom:0;" data-c="hero.quickActionsTitle">Quick Actions</h3>
             <a href="https://www.google.com/maps/search/?api=1&query=Fenkell+Rx+Pharmacy+Detroit+MI" target="_blank" rel="noopener" style="text-decoration:none;display:flex;align-items:center;gap:6px;background:var(--warm-50);border:1px solid var(--warm-100);border-radius:50px;padding:4px 12px;">
@@ -3883,6 +3883,24 @@ function postEmail(payload, successMsg) {
     Transfer Rx
   </a>
 </div>
+
+<script>
+(function(){
+  var bar = document.getElementById('mob-cta-bar');
+  var card = document.getElementById('hero-card');
+  if (!bar || !card || window.innerWidth > 768) return;
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (!e.isIntersecting) {
+        bar.classList.add('mob-visible');
+      } else {
+        bar.classList.remove('mob-visible');
+      }
+    });
+  }, { threshold: 0 });
+  obs.observe(card);
+})();
+</script>
 
 </body>
 </html>
