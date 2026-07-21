@@ -1850,6 +1850,10 @@
     }
   }
   </script>
+<script>
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  window.addEventListener('pageshow', function() { window.scrollTo(0, 0); });
+</script>
 </head>
 <body>
 
