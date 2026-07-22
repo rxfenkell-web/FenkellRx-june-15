@@ -567,14 +567,15 @@
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        to: 'fenkellrxpharmacy@gmail.com',
+        type: 'Vaccine Dose Request',
         subject: 'Vaccine Dose Request — ' + name,
-        text:
-          '=== VACCINE DOSE REQUEST ===\n\n' +
-          'Name:          ' + name + '\n' +
-          'Date of Birth: ' + dob  + '\n' +
-          'Phone:         ' + phone + '\n' +
-          'Zip Code:      ' + zip   + '\n\n' +
+        body:
+          'VACCINE DOSE REQUEST\n' +
+          '==============================\n\n' +
+          'Patient Name:   ' + name  + '\n' +
+          'Date of Birth:  ' + dob   + '\n' +
+          'Phone:          ' + phone + '\n' +
+          'Zip Code:       ' + zip   + '\n\n' +
           '==============================\n' +
           'Submitted via fenkellrxpharmacy.com/vaccines-detroit',
         customerEmail: '',
