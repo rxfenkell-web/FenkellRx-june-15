@@ -642,7 +642,7 @@
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 13.87a19.79 19.79 0 01-3.07-8.67A2 2 0 012 3h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 18v-.08z"/></svg>
         <span data-c="availability_page.heroBtnCall">Call (313) 519-5700</span>
       </a>
-      <a href="/#contact-form" class="btn-hero-outline">
+      <a href="/#contact" class="btn-hero-outline">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
         <span data-c="availability_page.heroBtnMessage">Message Our Pharmacist</span>
       </a>
@@ -805,7 +805,7 @@
         const statusLabel = STATUS_LABELS[med.status] || 'Call for Availability';
         const contactHref = med.status === 'in_stock'
           ? 'tel:3135195700'
-          : '/#contact-form';
+          : '/#contact';
         const contactLabel = med.status === 'in_stock' ? 'Call to Fill' : 'Inquire';
 
         html += `<article class="med-card">
