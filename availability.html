@@ -884,11 +884,9 @@
         renderMeds();
       })
       .catch(() => {
-        document.getElementById('meds-output').innerHTML = `<div class="state-box">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-          <h3>Could not load medication list</h3>
-          <p>Please call us at <a href="tel:${_phoneRaw}" style="color:var(--green-600);font-weight:600;">${escHtml(_phoneDisplay)}</a> for current availability.</p>
-        </div>`;
+        // Leave the server-pre-rendered list visible — just disable the search bar
+        const searchEl = document.getElementById('med-search');
+        if (searchEl) { searchEl.disabled = true; searchEl.placeholder = 'Search unavailable — call us for availability'; }
       });
   }
 

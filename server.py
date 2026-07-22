@@ -1211,7 +1211,7 @@ class Handler(SimpleHTTPRequestHandler):
             self._respond(200, content)
         elif path == "/api/medications":
             med_data = load_medications()
-            meds = med_data.get("medications", [])[:10]
+            meds = med_data.get("medications", [])
             self._respond(200, {"ok": True, "medications": meds})
         elif path == "/health":
             self._respond(200, {
