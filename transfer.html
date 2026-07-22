@@ -163,11 +163,6 @@
           </div>
         </div>
 
-        <div class="form-group">
-          <label for="tf-email">Email Address <span style="font-weight:400;color:#aaa;">(optional — for confirmation)</span></label>
-          <input id="tf-email" type="email" placeholder="jane@email.com" autocomplete="email">
-        </div>
-
       </div>
 
       <button class="btn-submit" onclick="submitTransfer()">
@@ -198,7 +193,7 @@ function submitTransfer() {
   var phone   = document.getElementById('tf-phone').value.trim();
   var rxName  = document.getElementById('tf-rx-name').value.trim();
   var rxPhone = document.getElementById('tf-rx-phone').value.trim();
-  var email   = document.getElementById('tf-email').value.trim();
+  var email   = '';
   var ref     = new URLSearchParams(window.location.search).get('ref') || 'Direct / Unknown';
 
   if (!name || !dob || !phone || !rxName || !rxPhone) {
