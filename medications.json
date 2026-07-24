@@ -44,6 +44,15 @@
       "status": "in_stock",
       "notes": "Limited availability. First come, first serve basis.",
       "updatedAt": "2026-07-10"
+    },
+    {
+      "id": "f801514e-21fb-4e9f-88d9-286827bcfc14",
+      "name": "Lantus Solostar",
+      "genericName": "Lantus Solostar",
+      "category": "Diabetes",
+      "status": "in_stock",
+      "notes": "Limited availability. First come, first serve basis.",
+      "updatedAt": "2026-07-24"
     }
   ]
 }
