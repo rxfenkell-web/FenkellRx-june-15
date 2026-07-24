@@ -840,6 +840,24 @@
     const existing = document.getElementById('med-jsonld');
     if (existing) existing.remove();
     if (!meds.length) return;
+    const AVAIL_MAP = {
+      in_stock: "https://schema.org/InStock",
+      limited: "https://schema.org/LimitedAvailability",
+      out_of_stock: "https://schema.org/OutOfStock",
+      call_us: "https://schema.org/PreOrder"
+    };
+    const PHARMACY_REF = {
+      "@type": "Pharmacy",
+      "name": "Fenkell Rx Pharmacy",
+      "telephone": "+13135195700",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "18360 Fenkell Ave",
+        "addressLocality": "Detroit",
+        "addressRegion": "MI",
+        "postalCode": "48223"
+      }
+    };
     const itemList = {
       "@context": "https://schema.org",
       "@type": "ItemList",
@@ -853,17 +871,12 @@
           "name": m.genericName || m.name,
           ...(m.genericName && m.genericName !== m.name ? { "alternateName": m.name } : {}),
           "description": `${m.genericName || m.name} — ${m.status === "in_stock" ? "Currently in stock" : m.status === "limited" ? "Limited availability" : "Currently out of stock"} at Fenkell Rx Pharmacy, Detroit MI. Call (313) 519-5700 to fill your prescription.`,
-          "availableAtOrFrom": {
-            "@type": "Pharmacy",
-            "name": "Fenkell Rx Pharmacy",
-            "telephone": "+13135195700",
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "18360 Fenkell Ave",
-              "addressLocality": "Detroit",
-              "addressRegion": "MI",
-              "postalCode": "48223"
-            }
+          "availableAtOrFrom": PHARMACY_REF,
+          "offers": {
+            "@type": "Offer",
+            "seller": PHARMACY_REF,
+            "availability": AVAIL_MAP[m.status] || "https://schema.org/InStock",
+            "areaServed": {"@type": "City", "name": "Detroit", "sameAs": "https://en.wikipedia.org/wiki/Detroit"}
           }
         }
       }))
