@@ -836,58 +836,11 @@
     output.innerHTML = html;
   }
 
-  function injectJsonLd(meds) {
-    const existing = document.getElementById('med-jsonld');
-    if (existing) existing.remove();
-    if (!meds.length) return;
-    const itemList = {
-      "@context": "https://schema.org",
-      "@type": "ItemList",
-      "name": "Medication Availability at Fenkell Rx Pharmacy",
-      "description": "Current medication stock at Fenkell Rx Pharmacy in Detroit, MI. Includes brand and generic name availability.",
-      "itemListElement": meds.map((m, i) => ({
-        "@type": "ListItem",
-        "position": i + 1,
-        "item": {
-          "@type": "Drug",
-          "name": m.genericName || m.name,
-          ...(m.genericName && m.genericName !== m.name ? { "alternateName": m.name } : {}),
-          "description": `${m.genericName || m.name} — ${m.status === "in_stock" ? "Currently in stock" : m.status === "limited" ? "Limited availability" : "Currently out of stock"} at Fenkell Rx Pharmacy, Detroit MI. Call (313) 519-5700 to fill your prescription.`,
-          "availableAtOrFrom": {
-            "@type": "Pharmacy",
-            "name": "Fenkell Rx Pharmacy",
-            "telephone": "+13135195700",
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "18360 Fenkell Ave",
-              "addressLocality": "Detroit",
-              "addressRegion": "MI",
-              "postalCode": "48223"
-            }
-          },
-          "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.9",
-            "bestRating": "5",
-            "worstRating": "1",
-            "ratingCount": "100"
-          }
-        }
-      }))
-    };
-    const s = document.createElement('script');
-    s.id = 'med-jsonld';
-    s.type = 'application/ld+json';
-    s.textContent = JSON.stringify(itemList);
-    document.head.appendChild(s);
-  }
-
   function loadMedications() {
     fetch('/api/medications')
       .then(r => r.json())
       .then(d => {
         allMeds = d.medications || [];
-        injectJsonLd(allMeds);
         renderMeds();
       })
       .catch(() => {
