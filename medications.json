@@ -26,6 +26,33 @@
       "status": "in_stock",
       "notes": "Limited availability. First come, first serve basis.",
       "updatedAt": "2026-07-31"
+    },
+    {
+      "id": "c651dd59-1095-4f6a-b02a-82d88a012eda",
+      "name": "Prometrium 100 mg capsules",
+      "genericName": "Progesterone 100 mg capsules",
+      "category": "Hormone Therapy",
+      "status": "in_stock",
+      "notes": "Limited availability. First come, first serve basis.",
+      "updatedAt": "2026-07-31"
+    },
+    {
+      "id": "bf988fa0-48ef-4985-b1af-577b725992c1",
+      "name": "Climara 0.05mg 24 hr patches",
+      "genericName": "Estradiol 0.05mg 24 hr patches",
+      "category": "Hormone Therapy",
+      "status": "in_stock",
+      "notes": "Limited availability. First come, first serve basis.",
+      "updatedAt": "2026-07-31"
+    },
+    {
+      "id": "f801514e-21fb-4e9f-88d9-286827bcfc14",
+      "name": "Lantus Solostar",
+      "genericName": "Lantus Solostar",
+      "category": "Diabetes",
+      "status": "in_stock",
+      "notes": "Limited availability. First come, first serve basis.",
+      "updatedAt": "2026-07-31"
     }
   ]
 }
