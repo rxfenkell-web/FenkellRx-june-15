@@ -689,6 +689,7 @@ def render_sitemap(meds):
         (SITE_URL + "/vaccines-detroit", today, "0.9"),
         (SITE_URL + "/free-prescription-delivery-detroit", today, "0.8"),
         (SITE_URL + "/blister-packaging-detroit", today, "0.7"),
+        (SITE_URL + "/diabetic-supplies-detroit", today, "0.8"),
         (SITE_URL + "/compounding-pharmacy-detroit", today, "0.7"),
         (SITE_URL + "/privacy-policy", today, "0.3"),
     ]
@@ -1142,6 +1143,8 @@ class Handler(SimpleHTTPRequestHandler):
             self._serve_html_with_seo(os.path.join(BASE_DIR, "compounding-pharmacy-detroit.html"))
         elif path == "/blister-packaging-detroit":
             self._serve_html_with_seo(os.path.join(BASE_DIR, "blister-packaging-detroit.html"))
+        elif path == "/diabetic-supplies-detroit":
+            self._serve_html_with_seo(os.path.join(BASE_DIR, "diabetic-supplies-detroit.html"))
         elif path == "/vaccines-detroit":
             self._serve_html_with_seo(os.path.join(BASE_DIR, "vaccines-detroit.html"))
         elif path == "/privacy-policy":
@@ -1496,7 +1499,7 @@ class Handler(SimpleHTTPRequestHandler):
     def _send_zip(self):
         INCLUDE_FILES = [
             "index.html", "admin.html", "availability.html", "transfer.html", "privacy-policy.html",
-            "compounding-pharmacy-detroit.html", "free-prescription-delivery-detroit.html", "blister-packaging-detroit.html",
+            "compounding-pharmacy-detroit.html", "free-prescription-delivery-detroit.html", "blister-packaging-detroit.html", "diabetic-supplies-detroit.html",
             "style.css", "script.js",
             "logo.png", "server.py", "render.yaml", "requirements.txt",
             "banner.json", "submissions.json", "medications.json", "content.json",
