@@ -288,13 +288,15 @@
 
   .nav-inner {
     position: relative;
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas: "logo links right";
     align-items: center;
-    justify-content: space-between;
     height: 96px;
   }
 
   .nav-logo {
+    grid-area: logo;
     display: flex;
     align-items: center;
     gap: 12px;
@@ -331,15 +333,15 @@
   }
 
   .nav-links {
+    grid-area: links;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: nowrap;
-    gap: clamp(0.6rem, 1.6vw, 1.25rem);
+    gap: clamp(0.35rem, 1vw, 0.85rem);
     list-style: none;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    position: static;
+    transform: none;
     white-space: nowrap;
   }
 
@@ -347,7 +349,7 @@
   .nav-links a { white-space: nowrap; }
 
   .nav-links a {
-    font-size: 13.5px;
+    font-size: 13px;
     font-weight: 500;
     color: var(--slate-light);
     transition: color 0.2s;
@@ -356,6 +358,8 @@
   .nav-links a:hover { color: var(--brand-blue-dark); }
 
   .nav-burger {
+    grid-area: right;
+    justify-self: end;
     display: none;
     flex-direction: column;
     justify-content: center;
@@ -437,6 +441,8 @@
   }
 
   .nav-emergency {
+    grid-area: right;
+    justify-self: end;
     display: none;
     align-items: center;
     gap: 6px;
@@ -1692,7 +1698,7 @@
 
   /* ── NAV LOGO ZOOM (scroll-driven via JS) ── */
   .nav-logo img {
-    height: 96px;
+    height: 76px;
     width: auto;
     display: block;
     margin-top: 0;
@@ -3294,7 +3300,7 @@ function postEmail(payload, successMsg) {
     var callBtn = document.querySelector('.nav-emergency');
     var accBar = document.querySelector('.acc-bar');
     if (!logoImg) return;
-    var LOGO_LARGE = 96, LOGO_SMALL = 54;
+    var LOGO_LARGE = 76, LOGO_SMALL = 54;
     var ticking = false;
 
     function applyUpdate() {
