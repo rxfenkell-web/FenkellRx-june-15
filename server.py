@@ -537,7 +537,7 @@ def render_med_page(med):
                     "addressLocality": "Detroit", "addressRegion": "MI",
                     "postalCode": "48223", "addressCountry": "US"},
         "makesOffer": {"@type": "Offer",
-                       "itemOffered": {"@type": "Product", "name": med.get("name", "")},
+                       "itemOffered": {"@type": "Service", "name": med.get("name", "")},
                        "availability": schema_avail,
                        "areaServed": "Detroit, MI"}
     }
@@ -1122,11 +1122,10 @@ class Handler(SimpleHTTPRequestHandler):
                 # FRX banner
                 if "<!--FRX_BANNER-->" in html:
                     html = html.replace("<!--FRX_BANNER-->", get_banner_html(), 1)
-                # Pre-render medication list + inject JSON-LD
+                # Pre-render medication list (Drug JSON-LD intentionally omitted — triggers Product snippet errors)
                 meds = load_medications().get("medications", [])
-                prerender_html, jsonld_tag = _build_availability_prerender(meds)
+                prerender_html, _ = _build_availability_prerender(meds)
                 html = html.replace("<!--MEDS_PRERENDER-->", prerender_html, 1)
-                html = html.replace("</head>", f"  {jsonld_tag}\n</head>", 1)
                 body = html.encode("utf-8")
                 self.send_response(200)
                 self.send_header("Content-Type", "text/html; charset=utf-8")
