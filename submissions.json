@@ -1,5 +1,33 @@
 [
   {
+    "id": "9b853589-c25a-4c94-a74d-2bea0159d4a0",
+    "type": "Contact Inquiry",
+    "contact": "Megan Mulvaney",
+    "fields": [
+      [
+        "Name",
+        "Megan Mulvaney"
+      ],
+      [
+        "Phone",
+        "2489181508"
+      ],
+      [
+        "Email",
+        "mekamulv@iu.edu"
+      ],
+      [
+        "Topic",
+        "Feedback or Compliment"
+      ],
+      [
+        "Message",
+        "Hi, this is Megan from Artesian Street. Wondering if you would be interested in working together on a Detroit Public Library educational event - I think they would be interested and the Redford branch is nearby. It could be good indirect advertising, like a \u201cconversation with a pharmacist (and Megan)\u201d, but of course I don\u2019t know what attendance would be like. My public health research focuses on climate change, and there\u2019s a lot that could be shared about medication/chronic health condition safety in heatwaves. Here are some of the resources I like. https://www.safemedication.com/pharmacist-insights/2021/preparing-your-medications-for-emergencies \n\nhttps://yaleclimateconnections.org/2022/07/common-medications-may-increase-the-dangers-of-heat-waves/ (beautiful infographic)\n\nhttps://journals.plos.org/plosone/article?id=10.1371/journal.pone.0243665\n\nhttps://www.cdc.gov/caregiving/media/pdfs/Complete-Care-Plan-Form-5081.pdf\n\nhttps://www.medicare.gov/publications/11377-getting-care-and-drugs-in-a-disaster-or-emergency.pdf\n\nhttps://thefederalregister.org/pdf/documents/2016-28297.pdf (If I\u2019m reading this correctly, pharmacies can waive copay/deductible/coinsurance for federal program beneficiaries at their discretion during natural disasters - very interested to hear what you know about this)."
+      ]
+    ],
+    "timestamp": "Aug 05, 2026 07:04 PM EST"
+  },
+  {
     "id": "6c3832f4-8baf-431a-a6de-ced7f9b5db54",
     "type": "Contact Inquiry",
     "contact": "Megan Mulvaney",
