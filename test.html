@@ -98,7 +98,7 @@ nav{
 }
 .hero-inner{
   max-width:1280px;margin:0 auto;padding:0 2rem;
-  display:grid;grid-template-columns:1fr 1fr;
+  display:grid;grid-template-columns:1fr 1fr 260px;
   min-height:520px;
 }
 .hero-left{
@@ -254,6 +254,48 @@ nav{
   margin-top:12px;border-top:1px solid var(--border);padding-top:12px;
 }
 .delivery-note a{color:var(--navy);font-weight:700;}
+
+/* ── HERO ACTIONS (vertical sidebar) ── */
+.hero-actions{
+  background:#fff;
+  border-left:1px solid var(--border);
+  display:flex;flex-direction:column;
+  position:relative;z-index:2;
+}
+.hero-actions-header{
+  padding:18px 20px 14px;
+  border-bottom:1px solid var(--border);
+}
+.hero-actions-label{
+  font-size:10px;font-weight:900;letter-spacing:0.12em;
+  text-transform:uppercase;color:var(--blue-dark);margin-bottom:2px;
+}
+.hero-actions-title{
+  font-size:15px;font-weight:800;color:var(--navy);line-height:1.2;
+}
+.hero-action-item{
+  display:flex;align-items:center;gap:12px;
+  padding:16px 20px;
+  border-bottom:1px solid var(--border);
+  text-decoration:none;color:inherit;
+  transition:background 0.15s;
+  flex:1;
+}
+.hero-action-item:last-child{border-bottom:none;}
+.hero-action-item:hover{background:var(--cream);}
+.hero-action-icon{
+  width:40px;height:40px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--blue-light);border-radius:9px;
+}
+.hero-action-icon svg{width:20px;height:20px;stroke:var(--navy);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.hero-action-icon.google-icon{background:#fff;border:1.5px solid var(--border);}
+.hero-action-text{flex:1;}
+.hero-action-title{font-size:13px;font-weight:800;color:var(--navy);line-height:1.3;}
+.hero-action-sub{font-size:11.5px;color:var(--text-light);margin-top:2px;line-height:1.4;}
+.hero-action-arrow{flex-shrink:0;}
+.hero-action-arrow svg{width:13px;height:13px;stroke:var(--text-light);}
+.hero-action-item:hover .hero-action-arrow svg{stroke:var(--navy);}
 
 /* ── QUICK ACTIONS ── */
 .quick-actions{
@@ -770,55 +812,55 @@ footer{
         </div>
       </div>
     </div>
+    <!-- VERTICAL QUICK ACTIONS (right of photo) -->
+    <div class="hero-actions">
+      <div class="hero-actions-header">
+        <div class="hero-actions-label">Quick Actions</div>
+        <div class="hero-actions-title">What can we<br>help you with?</div>
+      </div>
+      <a href="#transfer" class="hero-action-item">
+        <div class="hero-action-icon">
+          <svg viewBox="0 0 24 24"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 014-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg>
+        </div>
+        <div class="hero-action-text">
+          <div class="hero-action-title">Transfer Rx</div>
+          <div class="hero-action-sub">Switch to Fenkell Rx</div>
+        </div>
+        <div class="hero-action-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+      </a>
+      <a href="#refills" class="hero-action-item">
+        <div class="hero-action-icon">
+          <svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 7h6M9 11h6M9 15h4"/></svg>
+        </div>
+        <div class="hero-action-text">
+          <div class="hero-action-title">Refill Rx</div>
+          <div class="hero-action-sub">Online or by phone</div>
+        </div>
+        <div class="hero-action-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+      </a>
+      <a href="/availability" class="hero-action-item">
+        <div class="hero-action-icon">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <div class="hero-action-text">
+          <div class="hero-action-title">Meds In Stock</div>
+          <div class="hero-action-sub">Check live inventory now</div>
+        </div>
+        <div class="hero-action-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+      </a>
+      <a href="https://g.page/r/fenkellrx/review" class="hero-action-item">
+        <div class="hero-action-icon google-icon">
+          <img src="/google-logo.svg" alt="Google" width="24" height="24">
+        </div>
+        <div class="hero-action-text">
+          <div class="hero-action-title">Leave a Review</div>
+          <div class="hero-action-sub">We appreciate your feedback</div>
+        </div>
+        <div class="hero-action-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+      </a>
+    </div>
   </div>
 </section>
-
-<!-- QUICK ACTIONS -->
-<div class="quick-actions">
-  <div class="quick-actions-inner">
-    <div class="qa-label">Quick<br>Actions</div>
-    <a href="#transfer" class="qa-item">
-      <div class="qa-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 014-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg>
-      </div>
-      <div class="qa-text">
-        <div class="qa-title">Transfer Rx</div>
-        <div class="qa-sub">Switch to Fenkell Rx</div>
-      </div>
-      <div class="qa-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-    </a>
-    <a href="#refills" class="qa-item">
-      <div class="qa-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 7h6M9 11h6M9 15h4"/><path d="M8 2v4M16 2v4"/></svg>
-      </div>
-      <div class="qa-text">
-        <div class="qa-title">Refill Rx</div>
-        <div class="qa-sub">Online or by phone</div>
-      </div>
-      <div class="qa-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-    </a>
-    <a href="/availability" class="qa-item">
-      <div class="qa-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-4"/><path d="M21 3l-9 9"/><path d="M15 3h6v6"/></svg>
-      </div>
-      <div class="qa-text">
-        <div class="qa-title">Meds In Stock</div>
-        <div class="qa-sub">Check live inventory now</div>
-      </div>
-      <div class="qa-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-    </a>
-    <a href="https://g.page/r/fenkellrx/review" class="qa-item">
-      <div class="qa-icon google">
-        <img src="/google-logo.svg" alt="Google" width="28" height="28">
-      </div>
-      <div class="qa-text">
-        <div class="qa-title">Leave a Google Review</div>
-        <div class="qa-sub">We appreciate your feedback</div>
-      </div>
-      <div class="qa-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-    </a>
-  </div>
-</div>
 
 <!-- CAN'T FIND BANNER -->
 <div class="cant-find-banner">
