@@ -1145,6 +1145,8 @@ class Handler(SimpleHTTPRequestHandler):
             self._serve_html_with_seo(os.path.join(BASE_DIR, "blister-packaging-detroit.html"))
         elif path == "/diabetic-supplies-detroit":
             self._serve_html_with_seo(os.path.join(BASE_DIR, "diabetic-supplies-detroit.html"))
+        elif path == "/test":
+            self._serve_html_with_seo(os.path.join(BASE_DIR, "test.html"))
         elif path == "/vaccines-detroit":
             self._serve_html_with_seo(os.path.join(BASE_DIR, "vaccines-detroit.html"))
         elif path == "/privacy-policy":
@@ -1499,7 +1501,7 @@ class Handler(SimpleHTTPRequestHandler):
     def _send_zip(self):
         INCLUDE_FILES = [
             "index.html", "admin.html", "availability.html", "transfer.html", "privacy-policy.html",
-            "compounding-pharmacy-detroit.html", "free-prescription-delivery-detroit.html", "blister-packaging-detroit.html", "diabetic-supplies-detroit.html",
+            "compounding-pharmacy-detroit.html", "free-prescription-delivery-detroit.html", "blister-packaging-detroit.html", "diabetic-supplies-detroit.html", "test.html",
             "style.css", "script.js",
             "logo.png", "server.py", "render.yaml", "requirements.txt",
             "banner.json", "submissions.json", "medications.json", "content.json",
