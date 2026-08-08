@@ -448,52 +448,75 @@ nav{
 .btn-red-pill svg{width:16px;height:16px;stroke:#fff;stroke-width:2.5;}
 /* Scrollable track */
 .reviews-scroll-outer{
-  overflow:hidden;
+  position:relative;
+  display:flex;flex-direction:column;
+}
+.reviews-scroll-row{
+  display:flex;align-items:center;gap:0;
   position:relative;
 }
+.scroll-arrow{
+  width:40px;height:40px;border-radius:50%;
+  border:1.5px solid var(--border);background:#fff;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:border-color 0.2s,box-shadow 0.2s;
+  flex-shrink:0;z-index:2;
+  box-shadow:0 2px 8px rgba(0,0,0,0.10);
+}
+.scroll-arrow:hover{border-color:var(--red);box-shadow:0 4px 12px rgba(0,0,0,0.15);}
+.scroll-arrow svg{width:16px;height:16px;stroke:var(--navy);stroke-width:2.5;}
 .reviews-track{
   display:flex;
   gap:16px;
   overflow-x:auto;
   scroll-behavior:smooth;
   scrollbar-width:none;
-  padding-bottom:12px;
+  padding:4px 4px 8px;
   cursor:grab;
+  flex:1;
 }
 .reviews-track::-webkit-scrollbar{display:none;}
 .reviews-track:active{cursor:grabbing;}
 .review-card{
-  background:#fff;border:1.5px solid var(--border);border-radius:14px;
-  padding:22px;transition:border-color 0.2s,box-shadow 0.2s;
-  flex:0 0 280px;
+  background:#fff;
+  border:1px solid #e8e8e8;
+  border-radius:16px;
+  padding:24px 22px;
+  box-shadow:0 2px 12px rgba(0,0,0,0.07);
+  transition:box-shadow 0.2s;
+  flex:0 0 260px;
+  display:flex;flex-direction:column;
+  min-height:300px;
 }
-.review-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(204,0,28,0.08);}
-.review-google{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
-.review-google-logo{display:flex;align-items:center;gap:4px;}
-.review-stars-sm{color:#F59E0B;font-size:13px;letter-spacing:1px;}
+.review-card:hover{box-shadow:0 6px 24px rgba(0,0,0,0.12);}
+.review-google{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.review-google-logo img{width:32px;height:32px;display:block;}
+.review-google-logo{display:flex;align-items:center;}
+.review-stars-sm{color:#F59E0B;font-size:16px;letter-spacing:1px;}
 .review-text{
-  font-size:13px;color:var(--text-mid);line-height:1.65;
-  margin-bottom:14px;
-  display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden;
+  font-size:13.5px;color:var(--text-mid);line-height:1.7;
+  margin-bottom:auto;padding-bottom:18px;
+  display:-webkit-box;-webkit-line-clamp:7;-webkit-box-orient:vertical;overflow:hidden;
 }
-.reviewer{display:flex;align-items:center;gap:9px;}
+.reviewer{display:flex;align-items:center;gap:11px;margin-top:auto;}
 .reviewer-avatar{
-  width:34px;height:34px;border-radius:50%;
+  width:42px;height:42px;border-radius:50%;
   display:flex;align-items:center;justify-content:center;
-  font-size:12px;font-weight:800;flex-shrink:0;
+  font-size:13px;font-weight:800;flex-shrink:0;
 }
-.reviewer-name{font-size:13px;font-weight:700;color:var(--navy);}
-.reviewer-time{font-size:11px;color:var(--text-light);margin-top:1px;}
-/* Scroll nav arrows */
-.reviews-scroll-nav{display:flex;gap:8px;margin-top:14px;}
-.scroll-btn{
-  width:36px;height:36px;border-radius:50%;
-  border:1.5px solid var(--border);background:#fff;
+.reviewer-name{font-size:13.5px;font-weight:700;color:var(--navy);}
+.reviewer-time{font-size:11.5px;color:var(--text-light);margin-top:2px;}
+/* Pagination dots */
+.reviews-dots{
   display:flex;align-items:center;justify-content:center;
-  cursor:pointer;transition:border-color 0.2s,background 0.2s;
+  gap:8px;margin-top:16px;
 }
-.scroll-btn:hover{border-color:var(--red);background:var(--gold-light);}
-.scroll-btn svg{width:16px;height:16px;stroke:var(--navy);}
+.reviews-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--border);transition:background 0.2s,transform 0.2s;
+  cursor:pointer;border:none;padding:0;
+}
+.reviews-dot.active{background:var(--red);transform:scale(1.2);}
 .reviews-see-all{font-size:13px;font-weight:700;color:var(--blue-dark);display:flex;align-items:center;gap:5px;}
 .reviews-see-all svg{width:13px;height:13px;stroke:var(--blue-dark);}
 
@@ -1230,10 +1253,14 @@ footer{
 
     <!-- Right scrollable cards -->
     <div class="reviews-scroll-outer">
-      <div class="reviews-track" id="reviewsTrack">
+      <div class="reviews-scroll-row">
+        <button class="scroll-arrow" id="scrollLeft" onclick="reviewsScroll(-1)">
+          <svg viewBox="0 0 24 24" fill="none"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="reviews-track" id="reviewsTrack">
         <div class="review-card">
           <div class="review-google">
-            <div class="review-google-logo"><img src="/google-logo.svg" alt="Google" width="16" height="16" style="display:inline-block;vertical-align:middle;margin-right:4px;"><span style="color:#5f6368;font-size:12px;font-weight:600;vertical-align:middle;">Google</span></div>
+            <div class="review-google-logo"><img src="/google-logo.svg" alt="Google" width="32" height="32"></div>
             <span class="review-stars-sm">★★★★★</span>
           </div>
           <p class="review-text">"This place is literally the best! I was honestly freaking out because I thought my meds were gonna cost a fortune, but they didn't at all! The pharmacist is very kind, and he even came from behind the counter and explained to me exactly how to use my meds. I seriously recommend this place!"</p>
@@ -1244,7 +1271,7 @@ footer{
         </div>
         <div class="review-card">
           <div class="review-google">
-            <div class="review-google-logo"><img src="/google-logo.svg" alt="Google" width="16" height="16" style="display:inline-block;vertical-align:middle;margin-right:4px;"><span style="color:#5f6368;font-size:12px;font-weight:600;vertical-align:middle;">Google</span></div>
+            <div class="review-google-logo"><img src="/google-logo.svg" alt="Google" width="32" height="32"></div>
             <span class="review-stars-sm">★★★★★</span>
           </div>
           <p class="review-text">"I luv this pharmacy! The pharmacist and staff are amazing! He was the best pharmacist at Rite Aid and I'm so happy he has his own!"</p>
@@ -1255,7 +1282,7 @@ footer{
         </div>
         <div class="review-card">
           <div class="review-google">
-            <div class="review-google-logo"><img src="/google-logo.svg" alt="Google" width="16" height="16" style="display:inline-block;vertical-align:middle;margin-right:4px;"><span style="color:#5f6368;font-size:12px;font-weight:600;vertical-align:middle;">Google</span></div>
+            <div class="review-google-logo"><img src="/google-logo.svg" alt="Google" width="32" height="32"></div>
             <span class="review-stars-sm">★★★★★</span>
           </div>
           <p class="review-text">"The staff is very nice. The pharmacist goes above and beyond to be sure that each and every customer has been taken care of. They also deliver!! One of the best pharmacies by far! CVS who?? No wait and they always have the medication you need!"</p>
@@ -1266,7 +1293,7 @@ footer{
         </div>
         <div class="review-card">
           <div class="review-google">
-            <div class="review-google-logo"><img src="/google-logo.svg" alt="Google" width="16" height="16" style="display:inline-block;vertical-align:middle;margin-right:4px;"><span style="color:#5f6368;font-size:12px;font-weight:600;vertical-align:middle;">Google</span></div>
+            <div class="review-google-logo"><img src="/google-logo.svg" alt="Google" width="32" height="32"></div>
             <span class="review-stars-sm">★★★★★</span>
           </div>
           <p class="review-text">"The most caring, kind and compassionate pharmacy I have ever dealt with. I have done surgery for 32 years, and I have never been more impressed with the excellence and professionalism they provide. In health care many lose the true purpose we have, to serve! I am so blessed to have found this pharmacy. If I could give 10 stars!!!"</p>
@@ -1277,7 +1304,7 @@ footer{
         </div>
         <div class="review-card">
           <div class="review-google">
-            <div class="review-google-logo"><img src="/google-logo.svg" alt="Google" width="16" height="16" style="display:inline-block;vertical-align:middle;margin-right:4px;"><span style="color:#5f6368;font-size:12px;font-weight:600;vertical-align:middle;">Google</span></div>
+            <div class="review-google-logo"><img src="/google-logo.svg" alt="Google" width="32" height="32"></div>
             <span class="review-stars-sm">★★★★★</span>
           </div>
           <p class="review-text">"I just switched from another pharmacy to Fenkell RX. Syed, the pharmacist goes above and beyond to make sure I have the medications I need that are essential to my well being in a timely manner. He is a professional with a personal touch that will make a great addition to our community."</p>
@@ -1288,7 +1315,7 @@ footer{
         </div>
         <div class="review-card">
           <div class="review-google">
-            <div class="review-google-logo"><img src="/google-logo.svg" alt="Google" width="16" height="16" style="display:inline-block;vertical-align:middle;margin-right:4px;"><span style="color:#5f6368;font-size:12px;font-weight:600;vertical-align:middle;">Google</span></div>
+            <div class="review-google-logo"><img src="/google-logo.svg" alt="Google" width="32" height="32"></div>
             <span class="review-stars-sm">★★★★★</span>
           </div>
           <p class="review-text">"Best pharmacy I've ever been to. They actually know my name and my medications. The personal service is something you just can't get at the big chains. I tell everyone I know to come here."</p>
@@ -1297,15 +1324,16 @@ footer{
             <div><div class="reviewer-name">Denise W.</div><div class="reviewer-time">3 months ago</div></div>
           </div>
         </div>
+        </div>
       </div>
-      <!-- Nav arrows -->
-      <div class="reviews-scroll-nav">
-        <button class="scroll-btn" onclick="document.getElementById('reviewsTrack').scrollBy({left:-300,behavior:'smooth'})">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
-        </button>
-        <button class="scroll-btn" onclick="document.getElementById('reviewsTrack').scrollBy({left:300,behavior:'smooth'})">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-        </button>
+      <!-- Pagination dots -->
+      <div class="reviews-dots" id="reviewsDots">
+        <button class="reviews-dot active" onclick="reviewsGoTo(0)"></button>
+        <button class="reviews-dot" onclick="reviewsGoTo(1)"></button>
+        <button class="reviews-dot" onclick="reviewsGoTo(2)"></button>
+        <button class="reviews-dot" onclick="reviewsGoTo(3)"></button>
+        <button class="reviews-dot" onclick="reviewsGoTo(4)"></button>
+        <button class="reviews-dot" onclick="reviewsGoTo(5)"></button>
       </div>
     </div>
 
@@ -1534,6 +1562,35 @@ footer{
     </div>
   </div>
 </footer>
+
+<script>
+(function(){
+  var track = document.getElementById('reviewsTrack');
+  var dots = document.querySelectorAll('#reviewsDots .reviews-dot');
+  if(!track) return;
+  var cardW = 276; // card width + gap
+
+  function updateDots(){
+    var idx = Math.round(track.scrollLeft / cardW);
+    dots.forEach(function(d,i){ d.classList.toggle('active', i===idx); });
+  }
+
+  window.reviewsScroll = function(dir){
+    track.scrollBy({left: dir * cardW, behavior:'smooth'});
+  };
+  window.reviewsGoTo = function(idx){
+    track.scrollTo({left: idx * cardW, behavior:'smooth'});
+  };
+
+  track.addEventListener('scroll', updateDots, {passive:true});
+
+  // Drag to scroll
+  var isDown=false, startX, scrollStart;
+  track.addEventListener('mousedown', function(e){ isDown=true; startX=e.pageX-track.offsetLeft; scrollStart=track.scrollLeft; });
+  document.addEventListener('mouseup', function(){ isDown=false; });
+  track.addEventListener('mousemove', function(e){ if(!isDown) return; e.preventDefault(); track.scrollLeft=scrollStart-(e.pageX-track.offsetLeft-startX); });
+})();
+</script>
 
 </body>
 </html>
