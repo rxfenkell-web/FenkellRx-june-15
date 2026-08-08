@@ -516,16 +516,53 @@ nav{
 .reviews-see-all svg{width:13px;height:13px;stroke:var(--blue-dark);}
 
 /* ── SERVICES ── */
-.services-section{background:#fff;padding:52px 0;border-top:1px solid var(--border);}
-.services-inner{
-  max-width:1280px;margin:0 auto;padding:0 2rem;
-  display:grid;grid-template-columns:240px 1fr;
-  gap:48px;align-items:start;
+/* ── SERVICES (card-row layout) ── */
+.services-section{background:var(--cream);padding:64px 0;border-top:1px solid var(--border);}
+.services-wrap{max-width:1340px;margin:0 auto;padding:0 2rem;}
+.services-header{text-align:center;margin-bottom:44px;}
+.services-header .section-label{margin-bottom:10px;}
+.services-header .section-title{font-size:34px;margin-bottom:14px;line-height:1.25;}
+.services-subtitle{font-size:14.5px;color:var(--text-light);line-height:1.7;max-width:560px;margin:0 auto;}
+.services-row{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:20px;
 }
-.services-left{}
-.services-left .section-label{margin-bottom:8px;}
-.services-left .section-title{font-size:28px;margin-bottom:12px;}
-.services-left .section-desc{font-size:13.5px;color:var(--text-light);line-height:1.7;margin-bottom:24px;}
+.svc-card{
+  background:#fff;border-radius:14px;overflow:visible;
+  box-shadow:0 2px 16px rgba(0,0,0,0.07);
+  transition:transform 0.22s,box-shadow 0.22s;
+  display:flex;flex-direction:column;
+}
+.svc-card:hover{transform:translateY(-5px);box-shadow:0 8px 28px rgba(0,0,0,0.13);}
+.svc-photo{
+  position:relative;height:180px;border-radius:14px 14px 0 0;
+  overflow:hidden;flex-shrink:0;
+}
+.svc-photo-img{width:100%;height:100%;object-fit:cover;display:block;}
+.svc-photo-placeholder{
+  width:100%;height:100%;
+  background:linear-gradient(145deg,#dde2e8 0%,#c8cfd8 100%);
+  display:flex;align-items:center;justify-content:center;
+}
+.svc-photo-placeholder span{font-size:10px;color:#8fa0b0;text-transform:uppercase;letter-spacing:0.07em;font-weight:600;}
+.svc-icon-badge{
+  position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);
+  width:46px;height:46px;background:#fff;border-radius:50%;
+  border:3px solid var(--cream);
+  box-shadow:0 3px 10px rgba(0,0,0,0.14);
+  display:flex;align-items:center;justify-content:center;z-index:3;
+}
+.svc-icon-badge svg{width:22px;height:22px;stroke:var(--red);fill:none;}
+.svc-body{padding:34px 14px 20px;flex:1;display:flex;flex-direction:column;}
+.svc-name{font-size:13px;font-weight:800;color:var(--navy);margin-bottom:8px;line-height:1.35;text-align:center;}
+.svc-desc{font-size:11.5px;color:var(--text-light);line-height:1.65;text-align:center;margin-bottom:14px;flex:1;}
+.svc-learn{
+  display:block;text-align:center;font-size:12px;font-weight:700;
+  color:var(--red);text-decoration:none;letter-spacing:0.01em;
+  transition:color 0.15s;
+}
+.svc-learn:hover{color:var(--gold-dark);}
 .btn-navy{
   display:inline-flex;align-items:center;gap:8px;
   background:var(--navy);color:#fff;
@@ -536,25 +573,6 @@ nav{
 }
 .btn-navy:hover{background:var(--navy-mid);}
 .btn-navy svg{width:14px;height:14px;stroke:#fff;}
-.services-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:16px;
-}
-.svc-card{
-  background:#fff;border:1.5px solid var(--border);
-  border-radius:10px;padding:20px;
-  transition:border-color 0.2s,transform 0.15s;
-}
-.svc-card:hover{border-color:var(--blue);transform:translateY(-3px);}
-.svc-icon{
-  width:42px;height:42px;
-  background:var(--cream);border-radius:10px;
-  display:flex;align-items:center;justify-content:center;
-  margin-bottom:12px;
-}
-.svc-icon svg{width:22px;height:22px;stroke:var(--navy);}
-.svc-name{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:6px;line-height:1.3;}
-.svc-desc{font-size:12px;color:var(--text-light);line-height:1.6;}
 
 /* ── TRUST + TEAM + INSURANCE ── */
 .mid-section{background:var(--cream);padding:40px 0;border-top:1px solid var(--border);}
@@ -844,7 +862,7 @@ footer{
   .hero-inner{grid-template-columns:1fr 1fr;min-height:auto;}
   .nav-links{gap:12px;font-size:12px;}
   .reviews-track{grid-template-columns:repeat(3,1fr);}
-  .services-grid{grid-template-columns:repeat(2,1fr);}
+  .services-row{grid-template-columns:repeat(3,1fr);}
   .mid-inner-full{grid-template-columns:1fr 1fr;}
   .bottom-grid{grid-template-columns:1fr 1fr;}
   .footer-inner{grid-template-columns:1fr 1fr;gap:32px;}
@@ -955,12 +973,10 @@ footer{
   .btn-red-pill{font-size:13px;padding:12px 20px;}
 
   /* Services */
-  .services-section{padding:36px 0;}
-  .services-inner{
-    grid-template-columns:1fr;
-    gap:24px;padding:0 1.25rem;
-  }
-  .services-grid{grid-template-columns:repeat(2,1fr);gap:12px;}
+  .services-section{padding:40px 0;}
+  .services-wrap{padding:0 1.25rem;}
+  .services-row{grid-template-columns:repeat(2,1fr);gap:14px;}
+  .svc-photo{height:150px;}
   .btn-navy{font-size:12px;padding:11px 18px;}
 
   /* Mid section */
@@ -998,7 +1014,7 @@ footer{
 @media (max-width:420px){
   .hero-h1{font-size:28px;}
   .reviews-track{grid-template-columns:1fr;}
-  .services-grid{grid-template-columns:1fr;}
+  .services-row{grid-template-columns:1fr 1fr;}
   .trust-grid{grid-template-columns:repeat(2,1fr);}
   .delivery-zone{flex:1 1 45%;}
   .hero-trust-bar{grid-template-columns:1fr 1fr;}
@@ -1332,49 +1348,110 @@ footer{
 
 <!-- SERVICES -->
 <section class="services-section" id="services">
-  <div class="services-inner">
-    <div class="services-left">
-      <div class="section-label">Our Services</div>
-      <h2 class="section-title">Independent Pharmacy Services in Detroit</h2>
-      <p class="services-left section-desc" style="font-size:13.5px;color:var(--text-light);line-height:1.7;margin-bottom:24px;">From fast prescription refills to custom compounding, our licensed Detroit pharmacists provide expert medical care tailored to your family.</p>
-      <a href="#services" class="btn-navy">
-        EXPLORE ALL SERVICES
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a>
+  <div class="services-wrap">
+
+    <!-- Centered header -->
+    <div class="services-header">
+      <div class="section-label">OUR SERVICES</div>
+      <h2 class="section-title">Independent Pharmacy Services<br>in Detroit</h2>
+      <p class="services-subtitle">From fast prescription refills to custom compounding, our licensed Detroit pharmacists provide expert care tailored to your family.</p>
     </div>
-    <div class="services-grid">
+
+    <!-- Card row -->
+    <div class="services-row">
+
+      <!-- 1. Free Local Home Delivery -->
       <div class="svc-card">
-        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
-        <div class="svc-name">Free Local Home Delivery</div>
-        <div class="svc-desc">100% free prescription delivery to your home. Same-day available.</div>
+        <div class="svc-photo">
+          <div class="svc-photo-placeholder"><span>Photo Coming Soon</span></div>
+          <div class="svc-icon-badge">
+            <svg viewBox="0 0 24 24" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          </div>
+        </div>
+        <div class="svc-body">
+          <div class="svc-name">Free Local Home Delivery</div>
+          <div class="svc-desc">100% free prescription delivery to your home. Same-day available.</div>
+          <a href="#services" class="svc-learn">Learn More →</a>
+        </div>
       </div>
+
+      <!-- 2. Immunizations & Shots -->
       <div class="svc-card">
-        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-        <div class="svc-name">Immunizations &amp; Shots</div>
-        <div class="svc-desc">Walk-in vaccines for the flu, shingles, pneumonia, COVID-19 &amp; more.</div>
+        <div class="svc-photo">
+          <div class="svc-photo-placeholder"><span>Photo Coming Soon</span></div>
+          <div class="svc-icon-badge">
+            <svg viewBox="0 0 24 24" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+        </div>
+        <div class="svc-body">
+          <div class="svc-name">Immunizations &amp; Shots</div>
+          <div class="svc-desc">Walk-in vaccines for flu, shingles, pneumonia, COVID-19 &amp; more.</div>
+          <a href="#services" class="svc-learn">Learn More →</a>
+        </div>
       </div>
+
+      <!-- 3. Diabetic Supplies -->
       <div class="svc-card">
-        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 12h1m8-9v1m8 8h1M5.6 5.6l.7.7m12.1-.7l-.7.7M12 17a5 5 0 100-10 5 5 0 000 10z"/></svg></div>
-        <div class="svc-name">Diabetic Supplies</div>
-        <div class="svc-desc">Meters, test strips, lancets, CGM supplies &amp; more. We contact your doctor.</div>
+        <div class="svc-photo">
+          <div class="svc-photo-placeholder"><span>Photo Coming Soon</span></div>
+          <div class="svc-icon-badge">
+            <svg viewBox="0 0 24 24" stroke-width="2"><path d="M9 3h6l2 18H7L9 3z"/><path d="M6 9h12"/></svg>
+          </div>
+        </div>
+        <div class="svc-body">
+          <div class="svc-name">Diabetic Supplies</div>
+          <div class="svc-desc">Meters, test strips, lancets, CGM supplies &amp; more. We contact your doctor.</div>
+          <a href="#services" class="svc-learn">Learn More →</a>
+        </div>
       </div>
+
+      <!-- 4. Custom Compounding -->
       <div class="svc-card">
-        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 3h6l1 7H8L9 3z"/><path d="M8 10s-2 1-2 4h12c0-3-2-4-2-4"/><path d="M10 17v4M14 17v4"/></svg></div>
-        <div class="svc-name">Custom Compounding Pharmacy</div>
-        <div class="svc-desc">Medications tailored to your doctor's specifications — for you or your pets.</div>
+        <div class="svc-photo">
+          <div class="svc-photo-placeholder"><span>Photo Coming Soon</span></div>
+          <div class="svc-icon-badge">
+            <svg viewBox="0 0 24 24" stroke-width="2"><path d="M9 3h6l1 7H8L9 3z"/><path d="M8 10s-2 1-2 4h12c0-3-2-4-2-4"/><path d="M10 17v4M14 17v4"/></svg>
+          </div>
+        </div>
+        <div class="svc-body">
+          <div class="svc-name">Custom Compounding Pharmacy</div>
+          <div class="svc-desc">Medications tailored to your doctor's specifications — for you or your pets.</div>
+          <a href="#services" class="svc-learn">Learn More →</a>
+        </div>
       </div>
+
+      <!-- 5. Blister Packaging -->
       <div class="svc-card">
-        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg></div>
-        <div class="svc-name">Blister Packaging (PillPack Alternative)</div>
-        <div class="svc-desc">Pre-sorted daily dose packaging for easy, accurate medication.</div>
+        <div class="svc-photo">
+          <div class="svc-photo-placeholder"><span>Photo Coming Soon</span></div>
+          <div class="svc-icon-badge">
+            <svg viewBox="0 0 24 24" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+          </div>
+        </div>
+        <div class="svc-body">
+          <div class="svc-name">Blister Packaging</div>
+          <div class="svc-desc">Pre-sorted daily dose packaging for easy, accurate medication management.</div>
+          <a href="#services" class="svc-learn">Learn More →</a>
+        </div>
       </div>
+
+      <!-- 6. Medication Synchronization -->
       <div class="svc-card">
-        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-        <div class="svc-name">Medication Synchronization</div>
-        <div class="svc-desc">Align all your refills to a single pickup or delivery date each month.</div>
+        <div class="svc-photo">
+          <div class="svc-photo-placeholder"><span>Photo Coming Soon</span></div>
+          <div class="svc-icon-badge">
+            <svg viewBox="0 0 24 24" stroke-width="2"><path d="M1 4v6h6"/><path d="M23 20v-6h-6"/><path d="M20.49 9A9 9 0 005.64 5.64L1 10M23 14l-4.64 4.36A9 9 0 013.51 15"/></svg>
+          </div>
+        </div>
+        <div class="svc-body">
+          <div class="svc-name">Medication Synchronization</div>
+          <div class="svc-desc">Align all your refills to one pickup or delivery date each month.</div>
+          <a href="#services" class="svc-learn">Learn More →</a>
+        </div>
       </div>
-    </div>
-  </div>
+
+    </div><!-- /services-row -->
+  </div><!-- /services-wrap -->
 </section>
 
 <!-- TRUST + TEAM + INSURANCE -->
