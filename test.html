@@ -235,45 +235,45 @@ nav{
 /* ── DELIVERY STRIP ── */
 .delivery-strip{
   background:#fff;
-  border:1px solid var(--border);
-  border-left:none;border-right:none;
-  padding:24px 0 18px;
+  padding:20px 0 14px;
 }
 .delivery-inner{max-width:1280px;margin:0 auto;padding:0 2rem;}
-.delivery-top{
-  display:grid;grid-template-columns:200px 1fr;
-  gap:32px;align-items:start;
-  margin-bottom:16px;
+.delivery-banner{
+  background:var(--blue);
+  border-radius:14px;
+  display:flex;align-items:center;
+  padding:0 0 0 0;
+  overflow:hidden;
+  min-height:80px;
 }
-.delivery-heading{
-  display:flex;flex-direction:column;gap:6px;
+.delivery-label{
+  display:flex;align-items:center;gap:14px;
+  padding:16px 24px;
+  flex-shrink:0;
+  border-right:1.5px solid rgba(255,255,255,0.25);
 }
-.delivery-heading-title{
-  font-size:13.5px;font-weight:800;color:var(--navy);
-  text-transform:uppercase;letter-spacing:0.04em;
-  line-height:1.2;
+.delivery-label svg{width:28px;height:28px;stroke:#fff;stroke-width:1.8;flex-shrink:0;}
+.delivery-label-text{
+  font-size:14px;font-weight:900;color:#fff;
+  text-transform:uppercase;letter-spacing:0.06em;
+  line-height:1.25;
 }
-.delivery-heading-sub{font-size:12px;color:var(--text-light);line-height:1.5;}
-.delivery-icon-wrap{
-  width:52px;height:52px;
-  background:var(--blue-light);border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  margin-bottom:8px;flex-shrink:0;
-}
-.delivery-icon-wrap svg{width:26px;height:26px;stroke:var(--blue-dark);}
 .delivery-zones{
-  display:grid;grid-template-columns:repeat(6,1fr);
-  gap:12px 20px;
+  display:flex;flex:1;align-items:stretch;
 }
 .delivery-zone{
-  border-left:3px solid var(--blue);
-  padding-left:10px;
+  flex:1;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:14px 16px;
+  border-right:1.5px solid rgba(255,255,255,0.25);
+  text-align:center;
 }
-.delivery-zone-zip{font-size:14px;font-weight:800;color:var(--navy);}
-.delivery-zone-name{font-size:11px;color:var(--text-light);line-height:1.4;margin-top:2px;}
+.delivery-zone:last-child{border-right:none;}
+.delivery-zone-zip{font-size:14px;font-weight:900;color:#fff;line-height:1.2;white-space:nowrap;}
+.delivery-zone-name{font-size:11px;color:rgba(255,255,255,0.8);line-height:1.4;margin-top:4px;}
 .delivery-note{
   text-align:center;font-size:12.5px;color:var(--text-light);
-  margin-top:12px;border-top:1px solid var(--border);padding-top:12px;
+  margin-top:10px;
 }
 .delivery-note a{color:var(--navy);font-weight:700;}
 
@@ -871,9 +871,11 @@ footer{
   .cant-find-sub{font-size:12.5px;}
 
   /* Delivery strip */
-  .delivery-inner{padding:0 1.25rem;}
-  .delivery-top{grid-template-columns:1fr;gap:16px;}
-  .delivery-zones{grid-template-columns:repeat(3,1fr);gap:12px 16px;}
+  .delivery-inner{padding:0 1rem;}
+  .delivery-banner{border-radius:10px;flex-direction:column;align-items:stretch;}
+  .delivery-label{border-right:none;border-bottom:1.5px solid rgba(255,255,255,0.25);justify-content:center;}
+  .delivery-zones{flex-wrap:wrap;}
+  .delivery-zone{flex:1 1 30%;border-right:none;border-bottom:1px solid rgba(255,255,255,0.15);}
 
   /* Reviews */
   .reviews-section{padding:36px 0;}
@@ -918,8 +920,7 @@ footer{
   .footer-bottom-links{justify-content:center;flex-wrap:wrap;gap:14px;}
 
   /* General padding fix */
-  .delivery-strip,.delivery-inner{padding-left:0;padding-right:0;}
-  .delivery-inner{padding:20px 1.25rem 16px;}
+  .delivery-inner{padding:16px 1rem 12px;}
   .cant-find-banner{padding:18px 0;}
   .reviews-section{padding:32px 0;}
 }
@@ -930,7 +931,7 @@ footer{
   .reviews-track{grid-template-columns:1fr;}
   .services-grid{grid-template-columns:1fr;}
   .trust-grid{grid-template-columns:repeat(2,1fr);}
-  .delivery-zones{grid-template-columns:repeat(2,1fr);}
+  .delivery-zone{flex:1 1 45%;}
   .hero-trust-bar{grid-template-columns:1fr 1fr;}
   .topbar{display:none;}
 }
@@ -1106,43 +1107,43 @@ footer{
 <!-- DELIVERY STRIP -->
 <div class="delivery-strip">
   <div class="delivery-inner">
-    <div class="delivery-top">
-      <div class="delivery-heading">
-        <div class="delivery-icon-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-        </div>
-        <div class="delivery-heading-title">FREE SAME-DAY DELIVERY<br>To Your Neighborhood</div>
-        <div class="delivery-heading-sub">We deliver across Northwest Detroit<br>&amp; surrounding areas.</div>
+    <div class="delivery-banner">
+      <div class="delivery-label">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div class="delivery-label-text">FREE DELIVERY<br>AREAS</div>
       </div>
       <div class="delivery-zones">
         <div class="delivery-zone">
           <div class="delivery-zone-zip">48223</div>
-          <div class="delivery-zone-name">North Rosedale Park<br>Brightmoor<br>Grandmont</div>
+          <div class="delivery-zone-name">North Rosedale Park,<br>Brightmoor, Grandmont</div>
         </div>
         <div class="delivery-zone">
           <div class="delivery-zone-zip">48219</div>
-          <div class="delivery-zone-name">Old Redford<br>North Rosedale<br>(north)</div>
+          <div class="delivery-zone-name">Old Redford,<br>N. Rosedale (north)</div>
         </div>
         <div class="delivery-zone">
           <div class="delivery-zone-zip">48227</div>
-          <div class="delivery-zone-name">Grandmont-Rosedale<br>Castle Rouge</div>
+          <div class="delivery-zone-name">Grandmont-Rosedale,<br>Castle Rouge</div>
         </div>
         <div class="delivery-zone">
           <div class="delivery-zone-zip">48228</div>
-          <div class="delivery-zone-name">Minock Park<br>Cody Rouge<br>Warrendale</div>
+          <div class="delivery-zone-name">Minock Park, Cody Rouge,<br>Warrendale</div>
         </div>
         <div class="delivery-zone">
           <div class="delivery-zone-zip">48235</div>
-          <div class="delivery-zone-name">Greenfield<br>Pembroke<br>Sherwood Forest</div>
+          <div class="delivery-zone-name">Greenfield, Pembroke,<br>Sherwood Forest</div>
         </div>
         <div class="delivery-zone">
           <div class="delivery-zone-zip">48239 · 48240</div>
           <div class="delivery-zone-name">Redford Township</div>
         </div>
+        <div class="delivery-zone">
+          <div class="delivery-zone-zip">48075 · 48076</div>
+          <div class="delivery-zone-name">Southfield</div>
+        </div>
       </div>
     </div>
     <div class="delivery-note">
-      <svg style="display:inline;vertical-align:-3px;margin-right:5px;" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#718096" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
       Can't find your area? <a href="tel:3135195700">(313) 519-5700</a> — we likely deliver to you.
     </div>
   </div>
