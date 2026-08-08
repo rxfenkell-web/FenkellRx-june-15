@@ -450,10 +450,10 @@ nav{
 .reviews-scroll-outer{
   position:relative;
   display:flex;flex-direction:column;
+  overflow:hidden;
 }
 .reviews-scroll-row{
-  display:flex;align-items:center;gap:0;
-  position:relative;
+  display:flex;align-items:center;gap:8px;
 }
 .scroll-arrow{
   width:40px;height:40px;border-radius:50%;
@@ -467,15 +467,11 @@ nav{
 .scroll-arrow svg{width:16px;height:16px;stroke:var(--navy);stroke-width:2.5;}
 .reviews-track{
   display:flex;
-  gap:16px;
-  overflow-x:auto;
-  scroll-behavior:smooth;
-  scrollbar-width:none;
-  padding:4px 4px 8px;
-  cursor:grab;
+  gap:12px;
+  overflow:hidden;
   flex:1;
+  cursor:grab;
 }
-.reviews-track::-webkit-scrollbar{display:none;}
 .reviews-track:active{cursor:grabbing;}
 .review-card{
   background:#fff;
@@ -483,8 +479,8 @@ nav{
   border-radius:12px;
   padding:16px 16px;
   box-shadow:0 2px 8px rgba(0,0,0,0.06);
-  transition:box-shadow 0.2s;
-  flex:0 0 210px;
+  transition:box-shadow 0.2s,transform 0.3s;
+  flex:0 0 calc(33.333% - 8px);
   display:flex;flex-direction:column;
 }
 .review-card:hover{box-shadow:0 4px 16px rgba(0,0,0,0.10);}
@@ -1245,7 +1241,7 @@ footer{
     <!-- Right scrollable cards -->
     <div class="reviews-scroll-outer">
       <div class="reviews-scroll-row">
-        <button class="scroll-arrow" id="scrollLeft" onclick="reviewsScroll(-1)">
+        <button class="scroll-arrow" onclick="reviewsScroll(-1)">
           <svg viewBox="0 0 24 24" fill="none"><polyline points="15 18 9 12 15 6"/></svg>
         </button>
         <div class="reviews-track" id="reviewsTrack">
@@ -1316,6 +1312,9 @@ footer{
           </div>
         </div>
         </div>
+        <button class="scroll-arrow" onclick="reviewsScroll(1)">
+          <svg viewBox="0 0 24 24" fill="none"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
       </div>
       <!-- Pagination dots -->
       <div class="reviews-dots" id="reviewsDots">
@@ -1559,27 +1558,30 @@ footer{
   var track = document.getElementById('reviewsTrack');
   var dots = document.querySelectorAll('#reviewsDots .reviews-dot');
   if(!track) return;
-  var cardW = 226; // card width + gap
+  var currentIdx = 0;
+  var totalCards = track.querySelectorAll('.review-card').length;
+  var visibleCount = 3;
+  var maxIdx = totalCards - visibleCount;
 
-  function updateDots(){
-    var idx = Math.round(track.scrollLeft / cardW);
+  function cardW(){ return track.querySelector('.review-card').offsetWidth + 12; }
+
+  function goTo(idx){
+    idx = Math.max(0, Math.min(idx, maxIdx));
+    currentIdx = idx;
+    var offset = -idx * cardW();
+    track.style.transform = 'translateX(' + offset + 'px)';
+    track.style.transition = 'transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94)';
     dots.forEach(function(d,i){ d.classList.toggle('active', i===idx); });
   }
 
-  window.reviewsScroll = function(dir){
-    track.scrollBy({left: dir * cardW, behavior:'smooth'});
-  };
-  window.reviewsGoTo = function(idx){
-    track.scrollTo({left: idx * cardW, behavior:'smooth'});
-  };
+  window.reviewsScroll = function(dir){ goTo(currentIdx + dir); };
+  window.reviewsGoTo = function(idx){ goTo(idx); };
 
-  track.addEventListener('scroll', updateDots, {passive:true});
-
-  // Drag to scroll
-  var isDown=false, startX, scrollStart;
-  track.addEventListener('mousedown', function(e){ isDown=true; startX=e.pageX-track.offsetLeft; scrollStart=track.scrollLeft; });
-  document.addEventListener('mouseup', function(){ isDown=false; });
-  track.addEventListener('mousemove', function(e){ if(!isDown) return; e.preventDefault(); track.scrollLeft=scrollStart-(e.pageX-track.offsetLeft-startX); });
+  // Init
+  track.style.display = 'flex';
+  track.style.overflow = 'visible';
+  track.style.willChange = 'transform';
+  goTo(0);
 })();
 </script>
 
