@@ -239,7 +239,8 @@ nav{
 }
 .delivery-inner{max-width:1280px;margin:0 auto;padding:0 2rem;}
 .delivery-banner{
-  background:var(--blue);
+  background:#fff;
+  border:2px solid var(--blue);
   border-radius:14px;
   display:flex;align-items:center;
   padding:0 0 0 0;
@@ -250,11 +251,12 @@ nav{
   display:flex;align-items:center;gap:14px;
   padding:16px 24px;
   flex-shrink:0;
-  border-right:1.5px solid rgba(255,255,255,0.25);
+  border-right:1.5px solid rgba(0,174,239,0.25);
+  background:var(--blue-light);
 }
-.delivery-label svg{width:28px;height:28px;stroke:#fff;stroke-width:1.8;flex-shrink:0;}
+.delivery-label svg{width:28px;height:28px;stroke:var(--blue);stroke-width:1.8;flex-shrink:0;}
 .delivery-label-text{
-  font-size:14px;font-weight:900;color:#fff;
+  font-size:14px;font-weight:900;color:var(--blue);
   text-transform:uppercase;letter-spacing:0.06em;
   line-height:1.25;
 }
@@ -265,12 +267,12 @@ nav{
   flex:1;
   display:flex;flex-direction:column;justify-content:center;
   padding:14px 16px;
-  border-right:1.5px solid rgba(255,255,255,0.25);
+  border-right:1.5px solid rgba(0,174,239,0.2);
   text-align:center;
 }
 .delivery-zone:last-child{border-right:none;}
-.delivery-zone-zip{font-size:14px;font-weight:900;color:#fff;line-height:1.2;white-space:nowrap;}
-.delivery-zone-name{font-size:11px;color:rgba(255,255,255,0.8);line-height:1.4;margin-top:4px;}
+.delivery-zone-zip{font-size:14px;font-weight:900;color:var(--blue);line-height:1.2;white-space:nowrap;}
+.delivery-zone-name{font-size:11px;color:var(--blue-dark);line-height:1.4;margin-top:4px;}
 .delivery-note{
   text-align:center;font-size:12.5px;color:var(--text-light);
   margin-top:10px;
@@ -873,9 +875,9 @@ footer{
   /* Delivery strip */
   .delivery-inner{padding:0 1rem;}
   .delivery-banner{border-radius:10px;flex-direction:column;align-items:stretch;}
-  .delivery-label{border-right:none;border-bottom:1.5px solid rgba(255,255,255,0.25);justify-content:center;}
+  .delivery-label{border-right:none;border-bottom:1.5px solid rgba(0,174,239,0.25);justify-content:center;}
   .delivery-zones{flex-wrap:wrap;}
-  .delivery-zone{flex:1 1 30%;border-right:none;border-bottom:1px solid rgba(255,255,255,0.15);}
+  .delivery-zone{flex:1 1 30%;border-right:none;border-bottom:1px solid rgba(0,174,239,0.15);}
 
   /* Reviews */
   .reviews-section{padding:36px 0;}
