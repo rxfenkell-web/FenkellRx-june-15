@@ -731,8 +731,8 @@ footer{
 }
 .nqa-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,0.15);}
 .nqa-card.red{background:var(--red);}
-.nqa-card.blue{background:#3A82C3;}
-.nqa-card.white{background:#fff;border:1.5px solid var(--border);}
+.nqa-card.blue{background:var(--red);}
+.nqa-card.white{background:var(--red);border:none;}
 .nqa-icon-wrap{
   width:62px;height:62px;flex-shrink:0;
   border-radius:50%;
@@ -740,7 +740,7 @@ footer{
 }
 .nqa-card.red .nqa-icon-wrap{background:rgba(255,255,255,0.22);}
 .nqa-card.blue .nqa-icon-wrap{background:rgba(255,255,255,0.22);}
-.nqa-card.white .nqa-icon-wrap{background:#F2F4F7;}
+.nqa-card.white .nqa-icon-wrap{background:rgba(255,255,255,0.9);}
 .nqa-icon-wrap svg{width:30px;height:30px;stroke:#fff;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;fill:none;}
 .nqa-card.white .nqa-icon-wrap svg{stroke:var(--navy);}
 .nqa-icon-wrap img{width:32px;height:32px;}
@@ -748,12 +748,12 @@ footer{
   width:1.5px;align-self:stretch;flex-shrink:0;margin:0 4px;
   background:rgba(255,255,255,0.25);
 }
-.nqa-card.white .nqa-divider{background:var(--border);}
+.nqa-card.white .nqa-divider{background:rgba(255,255,255,0.25);}
 .nqa-text{flex:1;}
 .nqa-card-title{font-size:18px;font-weight:900;line-height:1.2;margin-bottom:5px;color:#fff;}
-.nqa-card.white .nqa-card-title{color:var(--navy);}
+.nqa-card.white .nqa-card-title{color:#fff;}
 .nqa-card-sub{font-size:13px;color:rgba(255,255,255,0.75);line-height:1.4;}
-.nqa-card.white .nqa-card-sub{color:var(--text-mid);}
+.nqa-card.white .nqa-card-sub{color:rgba(255,255,255,0.75);}
 .nqa-arrow{
   width:40px;height:40px;flex-shrink:0;
   border-radius:50%;background:rgba(255,255,255,0.9);
@@ -762,9 +762,9 @@ footer{
 }
 .nqa-card.red .nqa-arrow{background:rgba(255,255,255,0.9);}
 .nqa-card.blue .nqa-arrow{background:rgba(255,255,255,0.9);}
-.nqa-card.white .nqa-arrow{background:var(--red);}
+.nqa-card.white .nqa-arrow{background:rgba(255,255,255,0.9);}
 .nqa-arrow svg{width:16px;height:16px;stroke:var(--navy);stroke-width:2.5;}
-.nqa-card.white .nqa-arrow svg{stroke:#fff;}
+.nqa-card.white .nqa-arrow svg{stroke:var(--navy);}
 
 /* ── RESPONSIVE ── */
 
@@ -1029,10 +1029,6 @@ footer{
         <div class="hero-check">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
           Hard-to-Find Meds in Stock
-        </div>
-        <div class="hero-check">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-          Walk-In Vaccines
         </div>
       </div>
       <div class="hero-cta-group">
