@@ -98,7 +98,7 @@ nav{
 }
 .hero-inner{
   max-width:1280px;margin:0 auto;padding:0 2rem;
-  display:grid;grid-template-columns:1fr 1fr 200px;
+  display:grid;grid-template-columns:1fr 1fr;
   min-height:520px;
 }
 .hero-left{
@@ -156,7 +156,6 @@ nav{
 .hero-right{
   position:relative;
   display:flex;flex-direction:column;
-  padding-bottom:140px;
 }
 .hero-photo{
   flex:1;
@@ -672,6 +671,78 @@ footer{
 .footer-bottom-links a{color:var(--text-light);transition:color 0.2s;}
 .footer-bottom-links a:hover{color:var(--navy);}
 
+/* ── NEW QUICK ACTIONS ── */
+.nqa-section{
+  background:#F2F4F7;
+  padding:36px 0 40px;
+}
+.nqa-inner{max-width:1280px;margin:0 auto;padding:0 2rem;}
+.nqa-heading{
+  display:flex;align-items:center;justify-content:center;
+  gap:14px;margin-bottom:28px;
+}
+.nqa-line{flex:1;height:2px;max-width:120px;}
+.nqa-line-red{background:var(--red);}
+.nqa-line-blue{background:var(--blue);}
+.nqa-dot{
+  width:8px;height:8px;border-radius:50%;flex-shrink:0;
+}
+.nqa-dot-red{background:var(--red);}
+.nqa-dot-blue{background:var(--blue);}
+.nqa-title{
+  font-size:22px;font-weight:900;letter-spacing:0.08em;
+  text-transform:uppercase;white-space:nowrap;
+}
+.nqa-title .t-red{color:var(--red);}
+.nqa-title .t-blue{color:var(--blue);}
+.nqa-cards{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+.nqa-card{
+  display:flex;align-items:center;gap:16px;
+  padding:22px 20px;border-radius:14px;
+  text-decoration:none;position:relative;
+  transition:transform 0.15s,box-shadow 0.15s;
+  overflow:hidden;
+}
+.nqa-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,0.15);}
+.nqa-card.red{background:var(--red);}
+.nqa-card.blue{background:#3A82C3;}
+.nqa-card.white{background:#fff;border:1.5px solid var(--border);}
+.nqa-icon-wrap{
+  width:62px;height:62px;flex-shrink:0;
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+}
+.nqa-card.red .nqa-icon-wrap{background:rgba(255,255,255,0.22);}
+.nqa-card.blue .nqa-icon-wrap{background:rgba(255,255,255,0.22);}
+.nqa-card.white .nqa-icon-wrap{background:#F2F4F7;}
+.nqa-icon-wrap svg{width:30px;height:30px;stroke:#fff;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;fill:none;}
+.nqa-card.white .nqa-icon-wrap svg{stroke:var(--navy);}
+.nqa-icon-wrap img{width:32px;height:32px;}
+.nqa-divider{
+  width:1.5px;align-self:stretch;flex-shrink:0;margin:0 4px;
+  background:rgba(255,255,255,0.25);
+}
+.nqa-card.white .nqa-divider{background:var(--border);}
+.nqa-text{flex:1;}
+.nqa-card-title{font-size:18px;font-weight:900;line-height:1.2;margin-bottom:5px;color:#fff;}
+.nqa-card.white .nqa-card-title{color:var(--navy);}
+.nqa-card-sub{font-size:13px;color:rgba(255,255,255,0.75);line-height:1.4;}
+.nqa-card.white .nqa-card-sub{color:var(--text-mid);}
+.nqa-arrow{
+  width:40px;height:40px;flex-shrink:0;
+  border-radius:50%;background:rgba(255,255,255,0.9);
+  display:flex;align-items:center;justify-content:center;
+  margin-left:8px;
+}
+.nqa-card.red .nqa-arrow{background:rgba(255,255,255,0.9);}
+.nqa-card.blue .nqa-arrow{background:rgba(255,255,255,0.9);}
+.nqa-card.white .nqa-arrow{background:var(--red);}
+.nqa-arrow svg{width:16px;height:16px;stroke:var(--navy);stroke-width:2.5;}
+.nqa-card.white .nqa-arrow svg{stroke:#fff;}
+
 /* ── RESPONSIVE ── */
 
 /* Tablet */
@@ -763,6 +834,12 @@ footer{
     justify-content:flex-start;
   }
   .qa-item{border-right:none;padding:15px 20px;}
+  /* New quick actions */
+  .nqa-cards{grid-template-columns:1fr;}
+  .nqa-card{padding:18px 16px;}
+  .nqa-icon-wrap{width:52px;height:52px;}
+  .nqa-card-title{font-size:16px;}
+  .nqa-title{font-size:18px;}
 
   /* Can't find banner */
   .cant-find-inner{flex-direction:column;gap:14px;text-align:center;padding:20px 1.25rem;}
@@ -948,72 +1025,59 @@ footer{
         <img src="/hero-pharmacist.jpg" alt="Fenkell Rx pharmacist helping a patient and her daughter">
         <div class="hero-photo-fade"></div>
       </div>
-      <div class="hero-trust-bar">
-        <div class="hero-trust-item">
-          <div class="hero-trust-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="13" height="11" rx="1"/><path d="M14 7h4.5L21 11v4h-7V7z"/><circle cx="5.5" cy="17.5" r="2"/><circle cx="18.5" cy="17.5" r="2"/><path d="M1 14h13"/></svg>
-          </div>
-          <div class="hero-trust-title">Free Same-Day<br>Delivery</div>
-          <div class="hero-trust-sub">To Your Home</div>
-        </div>
-        <div class="hero-trust-item">
-          <div class="hero-trust-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5"/><path d="M9 1h6"/><path d="M12 1v3"/></svg>
-          </div>
-          <div class="hero-trust-title">No Long<br>Wait Times</div>
-          <div class="hero-trust-sub">In &amp; Out in Minutes</div>
-        </div>
-        <div class="hero-trust-item">
-          <div class="hero-trust-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-          </div>
-          <div class="hero-trust-title">Local &amp;<br>Independent</div>
-          <div class="hero-trust-sub">We Put You First</div>
-        </div>
-        <div class="hero-trust-item">
-          <div class="hero-trust-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="6" r="3"/><circle cx="17" cy="7" r="2.5"/><path d="M1 20v-1a7 7 0 0114 0v1"/><path d="M17 11c2.76 0 5 2.24 5 5v1"/></svg>
-          </div>
-          <div class="hero-trust-title">Personalized<br>Care</div>
-          <div class="hero-trust-sub">Every Patient Matters</div>
-        </div>
-      </div>
     </div>
-    <!-- VERTICAL QUICK ACTIONS (right of photo) -->
-    <div class="hero-actions">
-      <div class="hero-actions-header">
-        <div class="hero-actions-label">Quick Actions</div>
-        <div class="hero-actions-title">What can we<br>help you with?</div>
-      </div>
-      <a href="#refills" class="hero-action-item">
-        <div class="hero-action-icon">
-          <svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 7h6M9 11h6M9 15h4"/></svg>
+  </div>
+</section>
+
+<!-- NEW QUICK ACTIONS -->
+<section class="nqa-section">
+  <div class="nqa-inner">
+    <div class="nqa-heading">
+      <div class="nqa-line nqa-line-red"></div>
+      <div class="nqa-dot nqa-dot-red"></div>
+      <h2 class="nqa-title"><span class="t-red">QUICK</span> <span class="t-blue">ACTIONS</span></h2>
+      <div class="nqa-dot nqa-dot-blue"></div>
+      <div class="nqa-line nqa-line-blue"></div>
+    </div>
+    <div class="nqa-cards">
+      <a href="#refills" class="nqa-card red">
+        <div class="nqa-icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M10.5 3.5a6 6 0 016 6 6 6 0 01-6 6 6 6 0 01-6-6 6 6 0 016-6z"/><path d="M7.5 9.5h6M10.5 6.5v6"/><path d="M5 19l14-14" stroke-width="2"/><rect x="3" y="13" width="7" height="7" rx="1"/><text x="4.5" y="20.5" font-size="5" fill="white" stroke="none" font-weight="bold">Rx</text></svg>
         </div>
-        <div class="hero-action-text">
-          <div class="hero-action-title">Refill Rx</div>
-          <div class="hero-action-sub">Online or by phone</div>
+        <div class="nqa-divider"></div>
+        <div class="nqa-text">
+          <div class="nqa-card-title">Refill Rx</div>
+          <div class="nqa-card-sub">Quick &amp; easy prescription refills</div>
         </div>
-        <div class="hero-action-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+        <div class="nqa-arrow">
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
       </a>
-      <a href="tel:3135195700" class="hero-action-item">
-        <div class="hero-action-icon">
-          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      <a href="tel:3135195700" class="nqa-card blue">
+        <div class="nqa-icon-wrap">
+          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><circle cx="16" cy="16" r="4"/><polyline points="16 14 16 16 17.5 17.5"/></svg>
         </div>
-        <div class="hero-action-text">
-          <div class="hero-action-title">Schedule Appointment</div>
-          <div class="hero-action-sub">Call us to book</div>
+        <div class="nqa-divider"></div>
+        <div class="nqa-text">
+          <div class="nqa-card-title">Schedule Appointment</div>
+          <div class="nqa-card-sub">Book time with your pharmacist</div>
         </div>
-        <div class="hero-action-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+        <div class="nqa-arrow">
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
       </a>
-      <a href="https://g.page/r/fenkellrx/review" class="hero-action-item">
-        <div class="hero-action-icon google-icon">
-          <img src="/google-logo.svg" alt="Google" width="18" height="18">
+      <a href="https://g.page/r/fenkellrx/review" class="nqa-card white">
+        <div class="nqa-icon-wrap">
+          <img src="/google-logo.svg" alt="Google" width="36" height="36">
         </div>
-        <div class="hero-action-text">
-          <div class="hero-action-title">Leave a Google Review</div>
-          <div class="hero-action-sub">We appreciate your feedback</div>
+        <div class="nqa-divider"></div>
+        <div class="nqa-text">
+          <div class="nqa-card-title">Leave a Google Review</div>
+          <div class="nqa-card-sub">Share your experience with us</div>
         </div>
-        <div class="hero-action-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+        <div class="nqa-arrow">
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
       </a>
     </div>
   </div>
