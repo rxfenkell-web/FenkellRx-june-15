@@ -398,52 +398,104 @@ nav{
 .btn-gold-outline:hover{background:#8A6218;}
 
 /* ── REVIEWS ── */
-.reviews-section{background:#fff;padding:52px 0;}
-.reviews-header{
+.reviews-section{background:#fff;padding:52px 0;overflow:hidden;}
+.reviews-layout{
   max-width:1280px;margin:0 auto;padding:0 2rem;
-  display:flex;align-items:center;justify-content:space-between;
-  margin-bottom:32px;
+  display:grid;grid-template-columns:300px 1fr;
+  gap:48px;align-items:start;
 }
-.reviews-header-left .section-label{margin-bottom:6px;}
-.reviews-see-all{font-size:13px;font-weight:700;color:var(--blue-dark);display:flex;align-items:center;gap:5px;}
-.reviews-see-all svg{width:13px;height:13px;stroke:var(--blue-dark);}
+.reviews-panel{}
+.reviews-panel .section-label{margin-bottom:10px;}
 .section-label{
   font-size:11px;font-weight:800;letter-spacing:0.1em;
-  text-transform:uppercase;color:var(--blue-dark);
+  text-transform:uppercase;color:var(--red);
 }
 .section-title{
   font-family:'DM Serif Display',serif;
   font-size:clamp(26px,2.8vw,34px);
   color:var(--navy);letter-spacing:-0.5px;line-height:1.15;
 }
+.reviews-panel .section-title{font-size:28px;margin-bottom:14px;}
+.reviews-panel-desc{
+  font-size:14px;color:var(--text-mid);line-height:1.7;margin-bottom:20px;
+}
+.reviews-panel-desc strong{color:var(--navy);}
+.reviews-rating-row{display:flex;align-items:center;gap:12px;margin-bottom:6px;}
+.reviews-rating-num{font-size:48px;font-weight:900;color:var(--navy);line-height:1;}
+.reviews-stars-lg{color:#F59E0B;font-size:26px;letter-spacing:2px;line-height:1;}
+.reviews-count{font-size:13px;color:var(--text-mid);margin-bottom:16px;}
+.reviews-google-badge{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:12px 14px;
+  border:1.5px solid var(--border);border-radius:10px;
+  margin-bottom:10px;
+}
+.reviews-google-badge img{width:28px;height:28px;flex-shrink:0;margin-top:2px;}
+.reviews-badge-text{}
+.reviews-badge-title{font-size:13px;font-weight:700;color:var(--navy);}
+.reviews-badge-sub{font-size:11.5px;color:var(--text-light);line-height:1.5;}
+.reviews-verified{font-size:11.5px;color:var(--text-light);margin-bottom:20px;}
+.btn-red-pill{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--red);color:#fff;
+  font-size:14px;font-weight:700;
+  padding:14px 24px;border-radius:50px;
+  letter-spacing:0.01em;
+  transition:background 0.2s,transform 0.15s;
+  white-space:nowrap;
+}
+.btn-red-pill:hover{background:var(--gold-dark);transform:translateY(-1px);}
+.btn-red-pill svg{width:16px;height:16px;stroke:#fff;stroke-width:2.5;}
+/* Scrollable track */
+.reviews-scroll-outer{
+  overflow:hidden;
+  position:relative;
+}
 .reviews-track{
-  max-width:1280px;margin:0 auto;padding:0 2rem;
-  display:grid;grid-template-columns:repeat(5,1fr);
+  display:flex;
   gap:16px;
+  overflow-x:auto;
+  scroll-behavior:smooth;
+  scrollbar-width:none;
+  padding-bottom:12px;
+  cursor:grab;
 }
+.reviews-track::-webkit-scrollbar{display:none;}
+.reviews-track:active{cursor:grabbing;}
 .review-card{
-  background:#fff;border:1.5px solid var(--border);border-radius:12px;
-  padding:20px;transition:border-color 0.2s;
+  background:#fff;border:1.5px solid var(--border);border-radius:14px;
+  padding:22px;transition:border-color 0.2s,box-shadow 0.2s;
+  flex:0 0 280px;
 }
-.review-card:hover{border-color:var(--blue);}
+.review-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(204,0,28,0.08);}
 .review-google{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
-.review-google-logo{
-  display:flex;align-items:center;gap:4px;
-}
-.review-stars-sm{color:#F59E0B;font-size:12px;letter-spacing:1px;}
+.review-google-logo{display:flex;align-items:center;gap:4px;}
+.review-stars-sm{color:#F59E0B;font-size:13px;letter-spacing:1px;}
 .review-text{
-  font-size:12.5px;color:var(--text-mid);line-height:1.65;
+  font-size:13px;color:var(--text-mid);line-height:1.65;
   margin-bottom:14px;
   display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden;
 }
 .reviewer{display:flex;align-items:center;gap:9px;}
 .reviewer-avatar{
-  width:32px;height:32px;border-radius:50%;
+  width:34px;height:34px;border-radius:50%;
   display:flex;align-items:center;justify-content:center;
   font-size:12px;font-weight:800;flex-shrink:0;
 }
-.reviewer-name{font-size:12.5px;font-weight:700;color:var(--navy);}
+.reviewer-name{font-size:13px;font-weight:700;color:var(--navy);}
 .reviewer-time{font-size:11px;color:var(--text-light);margin-top:1px;}
+/* Scroll nav arrows */
+.reviews-scroll-nav{display:flex;gap:8px;margin-top:14px;}
+.scroll-btn{
+  width:36px;height:36px;border-radius:50%;
+  border:1.5px solid var(--border);background:#fff;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:border-color 0.2s,background 0.2s;
+}
+.scroll-btn:hover{border-color:var(--red);background:var(--gold-light);}
+.scroll-btn svg{width:16px;height:16px;stroke:var(--navy);}
+.reviews-see-all{font-size:13px;font-weight:700;color:var(--blue-dark);display:flex;align-items:center;gap:5px;}
+.reviews-see-all svg{width:13px;height:13px;stroke:var(--blue-dark);}
 
 /* ── SERVICES ── */
 .services-section{background:#fff;padding:52px 0;border-top:1px solid var(--border);}
@@ -879,11 +931,10 @@ footer{
 
   /* Reviews */
   .reviews-section{padding:36px 0;}
-  .reviews-header{flex-direction:column;gap:10px;padding:0 1.25rem;margin-bottom:20px;}
-  .reviews-track{
-    grid-template-columns:repeat(2,1fr);
-    gap:12px;padding:0 1.25rem;
-  }
+  .reviews-layout{grid-template-columns:1fr;gap:28px;padding:0 1.25rem;}
+  .reviews-rating-num{font-size:36px;}
+  .reviews-stars-lg{font-size:20px;}
+  .btn-red-pill{font-size:13px;padding:12px 20px;}
 
   /* Services */
   .services-section{padding:36px 0;}
@@ -1151,72 +1202,113 @@ footer{
 
 <!-- REVIEWS -->
 <section class="reviews-section">
-  <div class="reviews-header">
-    <div class="reviews-header-left">
-      <div class="section-label">Patient Reviews</div>
+  <div class="reviews-layout">
+
+    <!-- Left panel -->
+    <div class="reviews-panel">
+      <div class="section-label">Local Patient Reviews</div>
       <h2 class="section-title">What Our Detroit Community Says</h2>
+      <p class="reviews-panel-desc">Read real feedback from neighbors who switched from big corporate pharmacy chains to <strong>Fenkell Rx Pharmacy.</strong></p>
+      <div class="reviews-rating-row">
+        <span class="reviews-rating-num">4.9</span>
+        <span class="reviews-stars-lg">★★★★★</span>
+      </div>
+      <div class="reviews-count">Based on 100+ Google Reviews</div>
+      <div class="reviews-google-badge">
+        <img src="/google-logo.svg" alt="Google" width="28" height="28">
+        <div class="reviews-badge-text">
+          <div class="reviews-badge-title">Google Reviews</div>
+          <div class="reviews-badge-sub">Fenkell Rx Pharmacy · Detroit, MI<br>Verified patients</div>
+        </div>
+      </div>
+      <div class="reviews-verified">All reviews from confirmed customers</div>
+      <a href="https://g.page/r/fenkellrx/review" class="btn-red-pill">
+        Leave Us a Google Review
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
     </div>
-    <a href="https://g.page/r/fenkellrx/review" class="reviews-see-all">
-      See all reviews on Google
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-    </a>
-  </div>
-  <div class="reviews-track">
-    <div class="review-card">
-      <div class="review-google">
-        <div class="review-google-logo"><img src="/google-logo.svg" alt="Google" width="16" height="16" style="display:inline-block;vertical-align:middle;margin-right:4px;"> <span style="color:#5f6368;font-size:12px;font-weight:600;vertical-align:middle;">Google</span></div>
-        <span class="review-stars-sm">★★★★★</span>
+
+    <!-- Right scrollable cards -->
+    <div class="reviews-scroll-outer">
+      <div class="reviews-track" id="reviewsTrack">
+        <div class="review-card">
+          <div class="review-google">
+            <div class="review-google-logo"><img src="/google-logo.svg" alt="Google" width="16" height="16" style="display:inline-block;vertical-align:middle;margin-right:4px;"><span style="color:#5f6368;font-size:12px;font-weight:600;vertical-align:middle;">Google</span></div>
+            <span class="review-stars-sm">★★★★★</span>
+          </div>
+          <p class="review-text">"This place is literally the best! I was honestly freaking out because I thought my meds were gonna cost a fortune, but they didn't at all! The pharmacist is very kind, and he even came from behind the counter and explained to me exactly how to use my meds. I seriously recommend this place!"</p>
+          <div class="reviewer">
+            <div class="reviewer-avatar" style="background:#E8F0FE;color:#4285F4;">ME</div>
+            <div><div class="reviewer-name">Madison E.</div><div class="reviewer-time">2 months ago</div></div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-google">
+            <div class="review-google-logo"><img src="/google-logo.svg" alt="Google" width="16" height="16" style="display:inline-block;vertical-align:middle;margin-right:4px;"><span style="color:#5f6368;font-size:12px;font-weight:600;vertical-align:middle;">Google</span></div>
+            <span class="review-stars-sm">★★★★★</span>
+          </div>
+          <p class="review-text">"I luv this pharmacy! The pharmacist and staff are amazing! He was the best pharmacist at Rite Aid and I'm so happy he has his own!"</p>
+          <div class="reviewer">
+            <div class="reviewer-avatar" style="background:#FCE8E6;color:#EA4335;">PG</div>
+            <div><div class="reviewer-name">Pat G.</div><div class="reviewer-time">2 months ago</div></div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-google">
+            <div class="review-google-logo"><img src="/google-logo.svg" alt="Google" width="16" height="16" style="display:inline-block;vertical-align:middle;margin-right:4px;"><span style="color:#5f6368;font-size:12px;font-weight:600;vertical-align:middle;">Google</span></div>
+            <span class="review-stars-sm">★★★★★</span>
+          </div>
+          <p class="review-text">"The staff is very nice. The pharmacist goes above and beyond to be sure that each and every customer has been taken care of. They also deliver!! One of the best pharmacies by far! CVS who?? No wait and they always have the medication you need!"</p>
+          <div class="reviewer">
+            <div class="reviewer-avatar" style="background:#E6F4EA;color:#34A853;">AC</div>
+            <div><div class="reviewer-name">Alexis C.</div><div class="reviewer-time">8 months ago</div></div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-google">
+            <div class="review-google-logo"><img src="/google-logo.svg" alt="Google" width="16" height="16" style="display:inline-block;vertical-align:middle;margin-right:4px;"><span style="color:#5f6368;font-size:12px;font-weight:600;vertical-align:middle;">Google</span></div>
+            <span class="review-stars-sm">★★★★★</span>
+          </div>
+          <p class="review-text">"The most caring, kind and compassionate pharmacy I have ever dealt with. I have done surgery for 32 years, and I have never been more impressed with the excellence and professionalism they provide. In health care many lose the true purpose we have, to serve! I am so blessed to have found this pharmacy. If I could give 10 stars!!!"</p>
+          <div class="reviewer">
+            <div class="reviewer-avatar" style="background:#F3E8FD;color:#9334EA;">RF</div>
+            <div><div class="reviewer-name">Robert F., M.D.</div><div class="reviewer-time">11 months ago</div></div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-google">
+            <div class="review-google-logo"><img src="/google-logo.svg" alt="Google" width="16" height="16" style="display:inline-block;vertical-align:middle;margin-right:4px;"><span style="color:#5f6368;font-size:12px;font-weight:600;vertical-align:middle;">Google</span></div>
+            <span class="review-stars-sm">★★★★★</span>
+          </div>
+          <p class="review-text">"I just switched from another pharmacy to Fenkell RX. Syed, the pharmacist goes above and beyond to make sure I have the medications I need that are essential to my well being in a timely manner. He is a professional with a personal touch that will make a great addition to our community."</p>
+          <div class="reviewer">
+            <div class="reviewer-avatar" style="background:#FEF3C7;color:#D97706;">MF</div>
+            <div><div class="reviewer-name">Matilda F.</div><div class="reviewer-time">11 months ago</div></div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-google">
+            <div class="review-google-logo"><img src="/google-logo.svg" alt="Google" width="16" height="16" style="display:inline-block;vertical-align:middle;margin-right:4px;"><span style="color:#5f6368;font-size:12px;font-weight:600;vertical-align:middle;">Google</span></div>
+            <span class="review-stars-sm">★★★★★</span>
+          </div>
+          <p class="review-text">"Best pharmacy I've ever been to. They actually know my name and my medications. The personal service is something you just can't get at the big chains. I tell everyone I know to come here."</p>
+          <div class="reviewer">
+            <div class="reviewer-avatar" style="background:#E8F0FE;color:#1A73E8;">DW</div>
+            <div><div class="reviewer-name">Denise W.</div><div class="reviewer-time">3 months ago</div></div>
+          </div>
+        </div>
       </div>
-      <p class="review-text">"This place is literally the best! I was honestly freaking out because I thought my meds were gonna cost a fortune, but they didn't at all! The pharmacist is very kind, and he even came from behind the counter and explained to me exactly how to use my meds. I seriously recommend this place!"</p>
-      <div class="reviewer">
-        <div class="reviewer-avatar" style="background:#E8F0FE;color:#4285F4;">ME</div>
-        <div><div class="reviewer-name">Madison E.</div><div class="reviewer-time">2 months ago</div></div>
+      <!-- Nav arrows -->
+      <div class="reviews-scroll-nav">
+        <button class="scroll-btn" onclick="document.getElementById('reviewsTrack').scrollBy({left:-300,behavior:'smooth'})">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button class="scroll-btn" onclick="document.getElementById('reviewsTrack').scrollBy({left:300,behavior:'smooth'})">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
       </div>
     </div>
-    <div class="review-card">
-      <div class="review-google">
-        <div class="review-google-logo"><img src="/google-logo.svg" alt="Google" width="16" height="16" style="display:inline-block;vertical-align:middle;margin-right:4px;"> <span style="color:#5f6368;font-size:12px;font-weight:600;vertical-align:middle;">Google</span></div>
-        <span class="review-stars-sm">★★★★★</span>
-      </div>
-      <p class="review-text">"I luv this pharmacy! The pharmacist and staff are amazing! He was the best pharmacist at Rite Aid and I'm so happy he has his own!"</p>
-      <div class="reviewer">
-        <div class="reviewer-avatar" style="background:#FCE8E6;color:#EA4335;">PG</div>
-        <div><div class="reviewer-name">Pat G.</div><div class="reviewer-time">2 months ago</div></div>
-      </div>
-    </div>
-    <div class="review-card">
-      <div class="review-google">
-        <div class="review-google-logo"><img src="/google-logo.svg" alt="Google" width="16" height="16" style="display:inline-block;vertical-align:middle;margin-right:4px;"> <span style="color:#5f6368;font-size:12px;font-weight:600;vertical-align:middle;">Google</span></div>
-        <span class="review-stars-sm">★★★★★</span>
-      </div>
-      <p class="review-text">"The staff is very nice. The pharmacist goes above and beyond to be sure that each and every customer has been taken care of. They also deliver!! One of the best pharmacies by far! CVS who?? No wait and they always have the medication you need!"</p>
-      <div class="reviewer">
-        <div class="reviewer-avatar" style="background:#E6F4EA;color:#34A853;">AC</div>
-        <div><div class="reviewer-name">Alexis C.</div><div class="reviewer-time">8 months ago</div></div>
-      </div>
-    </div>
-    <div class="review-card">
-      <div class="review-google">
-        <div class="review-google-logo"><img src="/google-logo.svg" alt="Google" width="16" height="16" style="display:inline-block;vertical-align:middle;margin-right:4px;"> <span style="color:#5f6368;font-size:12px;font-weight:600;vertical-align:middle;">Google</span></div>
-        <span class="review-stars-sm">★★★★★</span>
-      </div>
-      <p class="review-text">"The most caring, kind and compassionate pharmacy I have ever dealt with. I have done surgery for 32 years, and I have never been more impressed with the excellence and professionalism they provide. In health care many lose the true purpose we have, to serve! I am so blessed to have found this pharmacy. If I could give 10 stars!!!"</p>
-      <div class="reviewer">
-        <div class="reviewer-avatar" style="background:#F3E8FD;color:#9334EA;">RF</div>
-        <div><div class="reviewer-name">Robert F., M.D.</div><div class="reviewer-time">11 months ago</div></div>
-      </div>
-    </div>
-    <div class="review-card">
-      <div class="review-google">
-        <div class="review-google-logo"><img src="/google-logo.svg" alt="Google" width="16" height="16" style="display:inline-block;vertical-align:middle;margin-right:4px;"> <span style="color:#5f6368;font-size:12px;font-weight:600;vertical-align:middle;">Google</span></div>
-        <span class="review-stars-sm">★★★★★</span>
-      </div>
-      <p class="review-text">"I just switched from another pharmacy to Fenkell RX. Syed, the pharmacist goes above and beyond to make sure I have the medications I need that are essential to my well being in a timely manner. He is a professional with a personal touch that will make a great addition to our community."</p>
-      <div class="reviewer">
-        <div class="reviewer-avatar" style="background:#FEF3C7;color:#D97706;">MF</div>
-        <div><div class="reviewer-name">Matilda F.</div><div class="reviewer-time">11 months ago</div></div>
-      </div>
-    </div>
+
   </div>
 </section>
 
