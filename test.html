@@ -525,18 +525,18 @@ nav{
 .services-subtitle{font-size:14.5px;color:var(--text-light);line-height:1.7;max-width:560px;margin:0 auto;}
 .services-row{
   display:grid;
-  grid-template-columns:repeat(6,1fr);
+  grid-template-columns:repeat(5,1fr);
   gap:20px;
 }
 .svc-card{
-  background:#fff;border-radius:14px;overflow:visible;
+  background:#fff;border-radius:14px;overflow:hidden;
   box-shadow:0 2px 16px rgba(0,0,0,0.07);
   transition:transform 0.22s,box-shadow 0.22s;
   display:flex;flex-direction:column;
 }
 .svc-card:hover{transform:translateY(-5px);box-shadow:0 8px 28px rgba(0,0,0,0.13);}
 .svc-photo{
-  position:relative;height:180px;border-radius:14px 14px 0 0;
+  height:180px;border-radius:14px 14px 0 0;
   overflow:hidden;flex-shrink:0;
 }
 .svc-photo-img{width:100%;height:100%;object-fit:cover;display:block;}
@@ -546,23 +546,9 @@ nav{
   display:flex;align-items:center;justify-content:center;
 }
 .svc-photo-placeholder span{font-size:10px;color:#8fa0b0;text-transform:uppercase;letter-spacing:0.07em;font-weight:600;}
-.svc-icon-badge{
-  position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);
-  width:46px;height:46px;background:#fff;border-radius:50%;
-  border:3px solid var(--cream);
-  box-shadow:0 3px 10px rgba(0,0,0,0.14);
-  display:flex;align-items:center;justify-content:center;z-index:3;
-}
-.svc-icon-badge svg{width:22px;height:22px;stroke:var(--red);fill:none;}
-.svc-body{padding:34px 14px 20px;flex:1;display:flex;flex-direction:column;}
+.svc-body{padding:18px 14px 20px;flex:1;display:flex;flex-direction:column;}
 .svc-name{font-size:13px;font-weight:800;color:var(--navy);margin-bottom:8px;line-height:1.35;text-align:center;}
-.svc-desc{font-size:11.5px;color:var(--text-light);line-height:1.65;text-align:center;margin-bottom:14px;flex:1;}
-.svc-learn{
-  display:block;text-align:center;font-size:12px;font-weight:700;
-  color:var(--red);text-decoration:none;letter-spacing:0.01em;
-  transition:color 0.15s;
-}
-.svc-learn:hover{color:var(--gold-dark);}
+.svc-desc{font-size:11.5px;color:var(--text-light);line-height:1.65;text-align:center;flex:1;}
 .btn-navy{
   display:inline-flex;align-items:center;gap:8px;
   background:var(--navy);color:#fff;
@@ -862,7 +848,7 @@ footer{
   .hero-inner{grid-template-columns:1fr 1fr;min-height:auto;}
   .nav-links{gap:12px;font-size:12px;}
   .reviews-track{grid-template-columns:repeat(3,1fr);}
-  .services-row{grid-template-columns:repeat(3,1fr);}
+  .services-row{grid-template-columns:repeat(3,1fr);gap:14px;}
   .mid-inner-full{grid-template-columns:1fr 1fr;}
   .bottom-grid{grid-template-columns:1fr 1fr;}
   .footer-inner{grid-template-columns:1fr 1fr;gap:32px;}
@@ -1364,14 +1350,10 @@ footer{
       <div class="svc-card">
         <div class="svc-photo">
           <img src="/delivery-car.jpg" alt="Fenkell Rx free prescription home delivery" class="svc-photo-img">
-          <div class="svc-icon-badge">
-            <svg viewBox="0 0 24 24" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-          </div>
         </div>
         <div class="svc-body">
           <div class="svc-name">Free Local Home Delivery</div>
           <div class="svc-desc">100% free prescription delivery to your home. Same-day available.</div>
-          <a href="#services" class="svc-learn">Learn More →</a>
         </div>
       </div>
 
@@ -1379,14 +1361,10 @@ footer{
       <div class="svc-card">
         <div class="svc-photo">
           <img src="/immunizations.jpg" alt="Immunizations and vaccines at Fenkell Rx Pharmacy Detroit" class="svc-photo-img">
-          <div class="svc-icon-badge">
-            <svg viewBox="0 0 24 24" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
         </div>
         <div class="svc-body">
           <div class="svc-name">Immunizations &amp; Shots</div>
           <div class="svc-desc">Walk-in vaccines for flu, shingles, pneumonia, COVID-19 &amp; more.</div>
-          <a href="#services" class="svc-learn">Learn More →</a>
         </div>
       </div>
 
@@ -1394,14 +1372,10 @@ footer{
       <div class="svc-card">
         <div class="svc-photo">
           <img src="/diabetic-supplies.jpg" alt="Diabetic supplies — glucose meter, test strips and lancets at Fenkell Rx Detroit" class="svc-photo-img">
-          <div class="svc-icon-badge">
-            <svg viewBox="0 0 24 24" stroke-width="2"><path d="M9 3h6l2 18H7L9 3z"/><path d="M6 9h12"/></svg>
-          </div>
         </div>
         <div class="svc-body">
           <div class="svc-name">Diabetic Supplies</div>
           <div class="svc-desc">Meters, test strips, lancets, CGM supplies &amp; more. We contact your doctor.</div>
-          <a href="#services" class="svc-learn">Learn More →</a>
         </div>
       </div>
 
@@ -1409,14 +1383,10 @@ footer{
       <div class="svc-card">
         <div class="svc-photo">
           <img src="/compounding.jpg" alt="Custom compounding pharmacy — personalized medications at Fenkell Rx Detroit" class="svc-photo-img">
-          <div class="svc-icon-badge">
-            <svg viewBox="0 0 24 24" stroke-width="2"><path d="M9 3h6l1 7H8L9 3z"/><path d="M8 10s-2 1-2 4h12c0-3-2-4-2-4"/><path d="M10 17v4M14 17v4"/></svg>
-          </div>
         </div>
         <div class="svc-body">
           <div class="svc-name">Custom Compounding Pharmacy</div>
           <div class="svc-desc">Medications tailored to your doctor's specifications — for you or your pets.</div>
-          <a href="#services" class="svc-learn">Learn More →</a>
         </div>
       </div>
 
@@ -1424,14 +1394,10 @@ footer{
       <div class="svc-card">
         <div class="svc-photo">
           <img src="/blister-pack.jpg" alt="Blister packaging — pre-sorted daily dose pill packs at Fenkell Rx Detroit" class="svc-photo-img">
-          <div class="svc-icon-badge">
-            <svg viewBox="0 0 24 24" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
-          </div>
         </div>
         <div class="svc-body">
           <div class="svc-name">Blister Packaging</div>
           <div class="svc-desc">Pre-sorted daily dose packaging for easy, accurate medication management.</div>
-          <a href="#services" class="svc-learn">Learn More →</a>
         </div>
       </div>
 
