@@ -577,7 +577,7 @@ nav{
 }
 /* reflow mid section */
 .mid-inner-full{
-  max-width:1280px;margin:0 auto;padding:0 2rem;
+  max-width:1340px;margin:0 auto;padding:0 2rem;
   display:grid;grid-template-columns:2.2fr 1.4fr 1fr;
   gap:28px;align-items:stretch;
 }
@@ -600,8 +600,9 @@ nav{
 .contact-card-sub{font-size:11px;color:var(--text-light);margin-top:2px;}
 .contact-grid{
   display:grid;grid-template-columns:1fr 1fr;
-  gap:18px 24px;margin-bottom:16px;
+  gap:14px 24px;margin-bottom:16px;
 }
+.contact-item-full{grid-column:1/-1;}
 .contact-item{display:flex;align-items:flex-start;gap:11px;}
 .contact-item-icon{
   width:36px;height:36px;background:#EAF4FD;border-radius:50%;
@@ -622,10 +623,10 @@ nav{
 }
 .contact-hours-icon svg{width:14px;height:14px;stroke:var(--blue);fill:none;}
 .contact-hours-body{flex:1;}
-.contact-hours-label{font-size:10px;font-weight:800;color:var(--navy);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;}
+.contact-hours-label{font-size:11px;font-weight:800;color:var(--navy);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:10px;}
 .contact-hours-row{
   display:flex;justify-content:space-between;align-items:center;
-  font-size:13px;color:#333;padding:5px 0;border-bottom:1px solid #f3f6fa;
+  font-size:14px;color:#333;padding:6px 0;border-bottom:1px solid #f3f6fa;
 }
 .contact-hours-row:last-child{border-bottom:none;}
 .contact-hours-day{font-weight:600;color:var(--navy);}
@@ -1461,14 +1462,14 @@ footer{
       </div>
 
       <div class="contact-grid">
-        <!-- Address -->
-        <div class="contact-item">
+        <!-- Address — full row -->
+        <div class="contact-item contact-item-full">
           <div class="contact-item-icon">
             <svg viewBox="0 0 24 24" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
           </div>
           <div>
             <div class="contact-item-label">Address</div>
-            <div class="contact-item-val">18360 Fenkell Ave,<br>Detroit, MI 48223</div>
+            <div class="contact-item-val">18360 Fenkell Ave, Detroit, MI 48223</div>
           </div>
         </div>
         <!-- Phone -->
@@ -1481,16 +1482,6 @@ footer{
             <div class="contact-item-val"><a href="tel:3135195700">(313) 519-5700</a><br><span style="color:#888;font-size:11px;">Main pharmacy</span></div>
           </div>
         </div>
-        <!-- Email -->
-        <div class="contact-item">
-          <div class="contact-item-icon">
-            <svg viewBox="0 0 24 24" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          </div>
-          <div>
-            <div class="contact-item-label">Email</div>
-            <div class="contact-item-val"><a href="mailto:care@fenkellrxpharmacy.com" style="font-size:11px;">care@fenkellrxpharmacy.com</a></div>
-          </div>
-        </div>
         <!-- Fax -->
         <div class="contact-item">
           <div class="contact-item-icon">
@@ -1499,6 +1490,16 @@ footer{
           <div>
             <div class="contact-item-label">Fax (Prescriber)</div>
             <div class="contact-item-val"><a href="tel:3138997389">(313) 899-7389</a><br><span style="color:#888;font-size:11px;">Physician offices only</span></div>
+          </div>
+        </div>
+        <!-- Email — full row -->
+        <div class="contact-item contact-item-full">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Email</div>
+            <div class="contact-item-val"><a href="mailto:care@fenkellrxpharmacy.com">care@fenkellrxpharmacy.com</a></div>
           </div>
         </div>
       </div>
