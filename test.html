@@ -584,35 +584,53 @@ nav{
 /* ── CONTACT CARD ── */
 .contact-card{
   background:#fff;border:1.5px solid #d8e8f5;border-radius:12px;
-  padding:20px;
+  padding:20px;display:flex;flex-direction:column;gap:0;
 }
 .contact-card-header{
-  display:flex;align-items:center;gap:14px;
-  margin-bottom:20px;padding-bottom:16px;
+  display:flex;align-items:center;gap:12px;
+  margin-bottom:16px;padding-bottom:14px;
   border-bottom:1px solid #eef3f8;
 }
 .contact-card-icon{
-  width:46px;height:46px;background:var(--red);border-radius:50%;
+  width:44px;height:44px;background:var(--red);border-radius:50%;
   flex-shrink:0;display:flex;align-items:center;justify-content:center;
 }
-.contact-card-icon svg{width:22px;height:22px;stroke:#fff;fill:none;}
-.contact-card-heading{font-size:16px;font-weight:900;color:var(--navy);line-height:1.2;}
-.contact-card-sub{font-size:11.5px;color:var(--text-light);margin-top:2px;}
+.contact-card-icon svg{width:20px;height:20px;stroke:#fff;fill:none;}
+.contact-card-heading{font-size:15px;font-weight:900;color:var(--navy);line-height:1.2;}
+.contact-card-sub{font-size:11px;color:var(--text-light);margin-top:2px;}
 .contact-grid{
   display:grid;grid-template-columns:1fr 1fr;
-  gap:16px 20px;
+  gap:14px 16px;margin-bottom:14px;
 }
-.contact-item{display:flex;align-items:flex-start;gap:10px;}
+.contact-item{display:flex;align-items:flex-start;gap:9px;}
 .contact-item-icon{
-  width:34px;height:34px;background:#EAF4FD;border-radius:50%;
-  flex-shrink:0;display:flex;align-items:center;justify-content:center;
+  width:32px;height:32px;background:#EAF4FD;border-radius:50%;
+  flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:1px;
 }
-.contact-item-icon svg{width:16px;height:16px;stroke:var(--blue);fill:none;}
-.contact-item-label{font-size:10.5px;font-weight:800;color:var(--navy);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:2px;}
-.contact-item-val{font-size:12px;color:#333;line-height:1.5;}
+.contact-item-icon svg{width:14px;height:14px;stroke:var(--blue);fill:none;}
+.contact-item-label{font-size:10px;font-weight:800;color:var(--navy);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:2px;}
+.contact-item-val{font-size:12px;color:#333;line-height:1.5;word-break:break-word;}
 .contact-item-val a{color:var(--blue);text-decoration:none;font-weight:700;}
 .contact-item-val a:hover{text-decoration:underline;}
-.contact-item-val .closed{color:var(--red);font-weight:700;}
+.contact-hours{
+  border-top:1px solid #eef3f8;padding-top:14px;
+  display:flex;gap:9px;align-items:flex-start;
+}
+.contact-hours-icon{
+  width:32px;height:32px;background:#EAF4FD;border-radius:50%;
+  flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:1px;
+}
+.contact-hours-icon svg{width:14px;height:14px;stroke:var(--blue);fill:none;}
+.contact-hours-body{flex:1;}
+.contact-hours-label{font-size:10px;font-weight:800;color:var(--navy);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;}
+.contact-hours-row{
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:12px;color:#333;padding:4px 0;border-bottom:1px solid #f3f6fa;
+}
+.contact-hours-row:last-child{border-bottom:none;}
+.contact-hours-day{font-weight:600;color:var(--navy);}
+.contact-hours-time{color:#555;}
+.contact-closed{color:var(--red);font-weight:700;}
 
 .team-card{
   background:#fff;border:1.5px solid var(--border);border-radius:12px;
@@ -1441,6 +1459,7 @@ footer{
           <div class="contact-card-sub">We're easy to reach and here to help.</div>
         </div>
       </div>
+
       <div class="contact-grid">
         <!-- Address -->
         <div class="contact-item">
@@ -1452,16 +1471,6 @@ footer{
             <div class="contact-item-val">18360 Fenkell Ave,<br>Detroit, MI 48223</div>
           </div>
         </div>
-        <!-- Fax -->
-        <div class="contact-item">
-          <div class="contact-item-icon">
-            <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="22 17 13 17"/><path d="M8 17H2v-5l5-5h6v5"/><rect x="13" y="12" width="9" height="9" rx="1"/></svg>
-          </div>
-          <div>
-            <div class="contact-item-label">Fax (Prescriber Line)</div>
-            <div class="contact-item-val"><a href="tel:3138997389">(313) 899-7389</a><br>For physician offices and care providers</div>
-          </div>
-        </div>
         <!-- Phone -->
         <div class="contact-item">
           <div class="contact-item-icon">
@@ -1469,7 +1478,7 @@ footer{
           </div>
           <div>
             <div class="contact-item-label">Phone</div>
-            <div class="contact-item-val"><a href="tel:3135195700">(313) 519-5700</a><br>Main pharmacy</div>
+            <div class="contact-item-val"><a href="tel:3135195700">(313) 519-5700</a><br><span style="color:#888;font-size:11px;">Main pharmacy</span></div>
           </div>
         </div>
         <!-- Email -->
@@ -1479,24 +1488,43 @@ footer{
           </div>
           <div>
             <div class="contact-item-label">Email</div>
-            <div class="contact-item-val"><a href="mailto:care@fenkellrxpharmacy.com">care@fenkellrx<br>pharmacy.com</a></div>
+            <div class="contact-item-val"><a href="mailto:care@fenkellrxpharmacy.com" style="font-size:11px;">care@fenkellrxpharmacy.com</a></div>
           </div>
         </div>
-        <!-- Hours -->
-        <div class="contact-item" style="grid-column:1/-1;border-top:1px solid #eef3f8;padding-top:14px;margin-top:2px;">
-          <div class="contact-item-icon" style="width:40px;height:40px;">
-            <svg viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <!-- Fax -->
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="22 17 13 17"/><path d="M8 17H2v-5l5-5h6v5"/><rect x="13" y="12" width="9" height="9" rx="1"/></svg>
           </div>
-          <div style="flex:1;">
-            <div class="contact-item-label" style="font-size:12px;margin-bottom:8px;">Pharmacy Hours</div>
-            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
-              <div style="font-size:13px;color:#333;line-height:1.5;"><span style="font-weight:700;color:var(--navy);display:block;">Mon – Fri</span>9:30 AM – 6:00 PM</div>
-              <div style="font-size:13px;color:#333;line-height:1.5;"><span style="font-weight:700;color:var(--navy);display:block;">Saturday</span>9:30 AM – 3:00 PM</div>
-              <div style="font-size:13px;line-height:1.5;"><span style="font-weight:700;color:var(--navy);display:block;">Sun &amp; Holidays</span><span class="closed">Closed</span></div>
-            </div>
+          <div>
+            <div class="contact-item-label">Fax (Prescriber)</div>
+            <div class="contact-item-val"><a href="tel:3138997389">(313) 899-7389</a><br><span style="color:#888;font-size:11px;">Physician offices only</span></div>
           </div>
         </div>
       </div>
+
+      <!-- Hours — full width -->
+      <div class="contact-hours">
+        <div class="contact-hours-icon">
+          <svg viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="contact-hours-body">
+          <div class="contact-hours-label">Pharmacy Hours</div>
+          <div class="contact-hours-row">
+            <span class="contact-hours-day">Mon – Fri</span>
+            <span class="contact-hours-time">9:30 AM – 6:00 PM</span>
+          </div>
+          <div class="contact-hours-row">
+            <span class="contact-hours-day">Saturday</span>
+            <span class="contact-hours-time">9:30 AM – 3:00 PM</span>
+          </div>
+          <div class="contact-hours-row">
+            <span class="contact-hours-day">Sun &amp; Holidays</span>
+            <span class="contact-closed">Closed</span>
+          </div>
+        </div>
+      </div>
+
     </div>
     <div class="team-card" id="team">
       <div class="team-photo">
