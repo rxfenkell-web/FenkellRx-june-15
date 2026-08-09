@@ -1483,13 +1483,17 @@ footer{
           </div>
         </div>
         <!-- Hours -->
-        <div class="contact-item">
-          <div class="contact-item-icon">
+        <div class="contact-item" style="grid-column:1/-1;border-top:1px solid #eef3f8;padding-top:14px;margin-top:2px;">
+          <div class="contact-item-icon" style="width:40px;height:40px;">
             <svg viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           </div>
-          <div>
-            <div class="contact-item-label">Pharmacy Hours</div>
-            <div class="contact-item-val">Mon – Fri: 9:30 AM – 6:00 PM<br>Sat: 9:30 AM – 3:00 PM<br>Sun &amp; Holidays: <span class="closed">Closed</span></div>
+          <div style="flex:1;">
+            <div class="contact-item-label" style="font-size:12px;margin-bottom:8px;">Pharmacy Hours</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+              <div style="font-size:13px;color:#333;line-height:1.5;"><span style="font-weight:700;color:var(--navy);display:block;">Mon – Fri</span>9:30 AM – 6:00 PM</div>
+              <div style="font-size:13px;color:#333;line-height:1.5;"><span style="font-weight:700;color:var(--navy);display:block;">Saturday</span>9:30 AM – 3:00 PM</div>
+              <div style="font-size:13px;line-height:1.5;"><span style="font-weight:700;color:var(--navy);display:block;">Sun &amp; Holidays</span><span class="closed">Closed</span></div>
+            </div>
           </div>
         </div>
       </div>
