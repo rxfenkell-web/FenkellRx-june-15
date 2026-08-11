@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prescription Refills | Fenkell Rx Pharmacy Detroit — Online Refill Request</title>
+<meta name="description" content="Refill your prescriptions online at Fenkell Rx Pharmacy in Detroit, MI. Quick, easy, and secure. Free same-day delivery available. Call (313) 519-5700.">
+<meta name="keywords" content="prescription refill Detroit, online refill pharmacy Detroit, Fenkell Rx refill, pharmacy refill Detroit MI, free delivery prescription Detroit">
+<link rel="canonical" href="https://fenkellrxpharmacy.com/refills">
+<meta property="og:title" content="Prescription Refills | Fenkell Rx Pharmacy Detroit">
+<meta property="og:description" content="Refill your prescriptions online. Quick, easy, secure. Free same-day delivery in Detroit, MI.">
+<meta property="og:url" content="https://fenkellrxpharmacy.com/refills">
+<link rel="icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Pharmacy",
+  "name": "Fenkell Rx Pharmacy",
+  "url": "https://fenkellrxpharmacy.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "18360 Fenkell Ave",
+    "addressLocality": "Detroit",
+    "addressRegion": "MI",
+    "postalCode": "48223",
+    "addressCountry": "US"
+  },
+  "telephone": "(313) 519-5700",
+  "hasMap": "https://maps.google.com/?q=Fenkell+Rx+Pharmacy+Detroit+MI"
+}
+</script>
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --navy:#0D1B2A;
+  --navy-mid:#1A2F45;
+  --red:#CC001C;
+  --red-dark:#A50016;
+  --red-light:#FCE8EB;
+  --blue:#00AEEF;
+  --blue-dark:#005B8E;
+  --blue-light:#E6F7FD;
+  --cream:#F8F5F0;
+  --cream-dark:#F0EBE1;
+  --border:#E2E8F0;
+  --text-light:#6B7280;
+  --text-mid:#374151;
+}
+body{font-family:'DM Sans',sans-serif;color:var(--navy);background:#fff;line-height:1.6;}
+a{text-decoration:none;color:inherit;}
+img{display:block;max-width:100%;}
+
+/* ── TOPBAR ── */
+.topbar{background:var(--navy);padding:9px 0;}
+.topbar-inner{max-width:1340px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.topbar-left{display:flex;align-items:center;gap:0;}
+.topbar-item{display:flex;align-items:center;gap:6px;font-size:11.5px;color:rgba(255,255,255,0.75);font-weight:500;}
+.topbar-item svg{width:13px;height:13px;stroke:var(--blue);flex-shrink:0;}
+.topbar-sep{width:1px;height:14px;background:rgba(255,255,255,0.15);margin:0 14px;}
+.topbar-right{display:flex;align-items:center;gap:16px;}
+.topbar-phone{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:#fff;}
+.topbar-phone svg{width:13px;height:13px;stroke:#fff;}
+.topbar-open{display:flex;align-items:center;gap:6px;font-size:11.5px;color:rgba(255,255,255,0.7);}
+.topbar-open-dot{width:7px;height:7px;border-radius:50%;background:#4ADE80;flex-shrink:0;}
+
+/* ── NAV ── */
+nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 1px 8px rgba(0,0,0,0.06);}
+.nav-inner{max-width:1340px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;gap:32px;height:64px;}
+.nav-logo img{height:44px;width:auto;}
+.nav-logo-fallback{display:flex;flex-direction:column;line-height:1.1;}
+.nav-logo-top{font-size:20px;font-weight:900;color:var(--navy);letter-spacing:-0.5px;}
+.nav-logo-top span{color:var(--red);}
+.nav-logo-bot{font-size:11px;font-weight:600;color:var(--blue);letter-spacing:0.05em;text-transform:uppercase;}
+.nav-links{list-style:none;display:flex;align-items:center;gap:4px;flex:1;}
+.nav-links li a{font-size:13px;font-weight:600;color:var(--navy);padding:6px 10px;border-radius:6px;transition:color 0.15s,background 0.15s;display:flex;align-items:center;gap:4px;white-space:nowrap;}
+.nav-links li a:hover{color:var(--red);background:var(--red-light);}
+.nav-links li a.active{color:var(--red);font-weight:800;}
+.nav-links li a svg{width:13px;height:13px;stroke:currentColor;stroke-width:2.5;}
+.nav-cta{margin-left:auto;background:var(--red);color:#fff;font-size:13px;font-weight:800;padding:10px 20px;border-radius:8px;white-space:nowrap;display:flex;align-items:center;gap:8px;transition:background 0.2s;}
+.nav-cta:hover{background:var(--red-dark);color:#fff;}
+.nav-cta svg{width:14px;height:14px;stroke:#fff;stroke-width:2.5;}
+.nav-mobile-call{display:none;}
+
+/* ── HERO ── */
+.refill-hero{background:var(--cream);overflow:hidden;border-bottom:1px solid var(--border);}
+.refill-hero-inner{max-width:1340px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1fr 1fr;align-items:center;min-height:440px;gap:0;}
+.refill-hero-left{padding:56px 48px 56px 0;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue-dark);margin-bottom:16px;}
+.hero-eyebrow::before{content:'';width:24px;height:2px;background:var(--blue);}
+.refill-hero h1{font-family:'DM Serif Display',serif;font-size:clamp(34px,4vw,52px);color:var(--navy);line-height:1.1;letter-spacing:-1px;margin-bottom:18px;}
+.refill-hero h1 span{color:var(--red);}
+.refill-hero-sub{font-size:16px;color:var(--text-mid);line-height:1.7;margin-bottom:32px;max-width:440px;}
+.refill-features{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.refill-feat{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;}
+.refill-feat-icon{width:44px;height:44px;border-radius:50%;background:#fff;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,0.06);}
+.refill-feat-icon svg{width:20px;height:20px;}
+.refill-feat-label{font-size:11.5px;font-weight:800;color:var(--navy);}
+.refill-feat-desc{font-size:10.5px;color:var(--text-light);line-height:1.4;}
+.refill-hero-right{height:100%;min-height:440px;overflow:hidden;position:relative;}
+.refill-hero-right img{width:100%;height:100%;object-fit:cover;object-position:center;}
+
+/* ── TRUST BAR ── */
+.trust-bar{background:#fff;border-bottom:1px solid var(--border);padding:20px 0;}
+.trust-bar-inner{max-width:1340px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:repeat(3,1fr);gap:0;}
+.trust-item{display:flex;align-items:center;gap:14px;padding:4px 28px;border-right:1px solid var(--border);}
+.trust-item:first-child{padding-left:0;}
+.trust-item:last-child{border-right:none;}
+.trust-icon{width:38px;height:38px;border-radius:50%;background:var(--blue-light);flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+.trust-icon svg{width:18px;height:18px;stroke:var(--blue-dark);stroke-width:2;}
+.trust-icon.red{background:var(--red-light);}
+.trust-icon.red svg{stroke:var(--red);}
+.trust-icon.gold{background:#FEF3C7;}
+.trust-icon.gold svg{stroke:#D97706;}
+.trust-title{font-size:13px;font-weight:800;color:var(--navy);}
+.trust-desc{font-size:11.5px;color:var(--text-light);line-height:1.4;}
+.trust-stars{color:#F59E0B;font-size:13px;letter-spacing:1px;}
+.trust-score{font-size:22px;font-weight:900;color:var(--navy);line-height:1;}
+
+/* ── MAIN FORM SECTION ── */
+.refill-main{background:var(--cream);padding:56px 0;}
+.refill-main-inner{max-width:1340px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1.6fr 1fr;gap:32px;align-items:start;}
+
+/* Form card */
+.form-card{background:#fff;border-radius:16px;padding:36px;box-shadow:0 4px 24px rgba(0,0,0,0.07);border:1px solid var(--border);}
+.form-card-header{display:flex;align-items:center;gap:14px;margin-bottom:28px;padding-bottom:20px;border-bottom:1px solid var(--border);}
+.form-card-icon{width:48px;height:48px;background:var(--blue-light);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.form-card-icon svg{width:24px;height:24px;stroke:var(--blue-dark);stroke-width:2;}
+.form-card-title{font-size:22px;font-weight:900;color:var(--navy);}
+.form-card-sub{font-size:13px;color:var(--text-light);margin-top:2px;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.form-full{grid-column:1/-1;}
+.form-group{display:flex;flex-direction:column;gap:6px;}
+.form-label{font-size:12.5px;font-weight:700;color:var(--navy);}
+.form-label span{color:var(--red);}
+.form-input,.form-select,.form-textarea{
+  width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:8px;
+  font-family:'DM Sans',sans-serif;font-size:14px;color:var(--navy);
+  background:#fff;transition:border-color 0.15s,box-shadow 0.15s;outline:none;
+}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,174,239,0.12);}
+.form-input::placeholder,.form-textarea::placeholder{color:#CBD5E1;}
+.form-textarea{resize:vertical;min-height:88px;}
+.form-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;background-size:16px;padding-right:36px;}
+.btn-submit{
+  width:100%;padding:15px 24px;border:none;border-radius:10px;cursor:pointer;
+  background:var(--red);color:#fff;font-family:'DM Sans',sans-serif;
+  font-size:16px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:10px;
+  transition:background 0.2s,transform 0.15s;margin-top:8px;
+}
+.btn-submit:hover{background:var(--red-dark);transform:translateY(-1px);}
+.btn-submit svg{width:18px;height:18px;stroke:#fff;stroke-width:2.5;}
+.form-security{display:flex;align-items:center;justify-content:center;gap:6px;font-size:11.5px;color:var(--text-light);margin-top:12px;}
+.form-security svg{width:13px;height:13px;stroke:var(--text-light);}
+
+/* Side card */
+.side-card{display:flex;flex-direction:column;gap:20px;}
+.why-card{background:#fff;border-radius:16px;padding:28px;box-shadow:0 4px 24px rgba(0,0,0,0.07);border:1px solid var(--border);}
+.why-title{font-size:18px;font-weight:900;color:var(--navy);margin-bottom:20px;}
+.why-list{display:flex;flex-direction:column;gap:14px;}
+.why-item{display:flex;align-items:flex-start;gap:12px;}
+.why-check{width:22px;height:22px;border-radius:50%;background:var(--red);flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:1px;}
+.why-check svg{width:12px;height:12px;stroke:#fff;stroke-width:3;}
+.why-text{font-size:13.5px;color:var(--text-mid);line-height:1.5;}
+.why-text strong{color:var(--navy);}
+.help-card{background:var(--navy);border-radius:16px;padding:28px;}
+.help-title{font-size:16px;font-weight:900;color:#fff;margin-bottom:6px;}
+.help-sub{font-size:13px;color:rgba(255,255,255,0.65);margin-bottom:18px;}
+.help-phone{display:flex;align-items:center;gap:10px;margin-bottom:16px;}
+.help-phone-icon{width:40px;height:40px;background:rgba(255,255,255,0.1);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.help-phone-icon svg{width:20px;height:20px;stroke:#00AEEF;}
+.help-phone-num{font-size:22px;font-weight:900;color:var(--blue);letter-spacing:-0.5px;}
+.help-hours{display:flex;flex-direction:column;gap:6px;}
+.help-hour-row{display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,0.7);padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.08);}
+.help-hour-row:last-child{border-bottom:none;}
+.help-hour-row span:last-child{font-weight:700;color:rgba(255,255,255,0.9);}
+.help-closed{color:#F87171!important;}
+
+/* ── FOOTER TRUST ── */
+.footer-trust{background:var(--navy);padding:28px 0;}
+.footer-trust-inner{max-width:1340px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:repeat(4,1fr);gap:0;}
+.ft-item{display:flex;align-items:center;gap:14px;padding:0 24px;border-right:1px solid rgba(255,255,255,0.1);}
+.ft-item:first-child{padding-left:0;}
+.ft-item:last-child{border-right:none;}
+.ft-icon{width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,0.08);flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+.ft-icon svg{width:20px;height:20px;stroke:var(--blue);stroke-width:2;}
+.ft-label{font-size:13px;font-weight:800;color:#fff;}
+.ft-sub{font-size:11px;color:rgba(255,255,255,0.55);margin-top:2px;}
+
+/* Screen-reader / SEO only */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .refill-hero-inner{grid-template-columns:1fr;min-height:auto;}
+  .refill-hero-left{padding:40px 0 32px;}
+  .refill-hero-right{min-height:280px;}
+  .refill-main-inner{grid-template-columns:1fr;}
+  .footer-trust-inner{grid-template-columns:repeat(2,1fr);gap:16px;}
+  .ft-item{padding:12px;border-right:none;border-bottom:1px solid rgba(255,255,255,0.1);}
+}
+@media(max-width:768px){
+  .topbar{display:none;}
+  .nav-links{display:none;}
+  .nav-mobile-call{display:flex;align-items:center;gap:6px;margin-left:auto;background:var(--red);color:#fff;font-size:12px;font-weight:700;padding:8px 14px;border-radius:6px;}
+  .nav-mobile-call svg{width:14px;height:14px;stroke:#fff;}
+  .nav-cta{display:none;}
+  .refill-features{grid-template-columns:repeat(2,1fr);}
+  .trust-bar-inner{grid-template-columns:1fr;gap:14px;}
+  .trust-item{border-right:none;padding:0;}
+  .form-grid{grid-template-columns:1fr;}
+  .footer-trust-inner{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-left">
+      <div class="topbar-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Detroit's 4.9★ Independent Pharmacy
+      </div>
+      <div class="topbar-sep"></div>
+      <div class="topbar-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        Free Same-Day Delivery
+      </div>
+      <div class="topbar-sep"></div>
+      <div class="topbar-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        Local. Trusted. Here for You.
+      </div>
+    </div>
+    <div class="topbar-right">
+      <div class="topbar-phone">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 13.87a19.79 19.79 0 01-3.07-8.67A2 2 0 012 3h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 18v-.08z"/></svg>
+        Call Us (313) 519-5700
+      </div>
+      <div class="topbar-open">
+        <span class="topbar-open-dot"></span>
+        Open Now · Closes 6:00 PM
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <img src="/logo.png" alt="Fenkell Rx Pharmacy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="nav-logo-fallback" style="display:none;">
+        <div class="nav-logo-top">FENKELL <span>Rx</span></div>
+        <div class="nav-logo-bot">Pharmacy</div>
+      </div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="/#services">Services</a></li>
+      <li><a href="/refills" class="active">Refills</a></li>
+      <li><a href="/#wellness">Wellness</a></li>
+      <li><a href="/vaccines-detroit">Vaccines</a></li>
+      <li><a href="/diabetic-supplies-detroit">Diabetic Supplies</a></li>
+      <li><a href="/availability">Meds In Stock</a></li>
+      <li><a href="/#team">Team</a></li>
+    </ul>
+    <a href="/transfer" class="nav-cta">
+      Switch My Pharmacy
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+    <a href="tel:3135195700" class="nav-mobile-call">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 13.87a19.79 19.79 0 01-3.07-8.67A2 2 0 012 3h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 18v-.08z"/></svg>
+      Call Us
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="refill-hero">
+  <div class="refill-hero-inner">
+    <div class="refill-hero-left">
+      <div class="hero-eyebrow">Online Rx Refills</div>
+      <h1>Refill your <span>prescriptions</span><br>the easy way.</h1>
+      <p class="refill-hero-sub">Skip the lines and save time. Request your prescription refills online and we'll take care of the rest.</p>
+      <div class="refill-features">
+        <div class="refill-feat">
+          <div class="refill-feat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#00AEEF" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="refill-feat-label">Quick &amp; Easy</div>
+          <div class="refill-feat-desc">Refill in minutes online or by phone.</div>
+        </div>
+        <div class="refill-feat">
+          <div class="refill-feat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#CC001C" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          </div>
+          <div class="refill-feat-label">Secure &amp; Private</div>
+          <div class="refill-feat-desc">Your information is always protected.</div>
+        </div>
+        <div class="refill-feat">
+          <div class="refill-feat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#00AEEF" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+          </div>
+          <div class="refill-feat-label">On-Time</div>
+          <div class="refill-feat-desc">We'll alert you when your meds are ready.</div>
+        </div>
+        <div class="refill-feat">
+          <div class="refill-feat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#CC001C" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          </div>
+          <div class="refill-feat-label">Free Delivery</div>
+          <div class="refill-feat-desc">Free same-day delivery in Detroit.</div>
+        </div>
+      </div>
+    </div>
+    <div class="refill-hero-right">
+      <img src="/pill-bottle.webp" alt="Fenkell Rx Pharmacy prescription pill bottle for refill" loading="eager" width="600">
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-bar-inner">
+    <div class="trust-item">
+      <div class="trust-icon red">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div>
+        <div class="trust-title">Your Health. Our Priority.</div>
+        <div class="trust-desc">Trusted by Detroit for personalized care and reliable prescription service.</div>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+      </div>
+      <div>
+        <div class="trust-title">Local. Independent. Here for You.</div>
+        <div class="trust-desc">We're part of the Detroit community and treat every patient like family.</div>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon gold">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </div>
+      <div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div class="trust-score">4.9</div>
+          <div class="trust-stars">★★★★★</div>
+        </div>
+        <div class="trust-desc">Rated 4.9 stars by our patients on Google.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<section class="refill-main">
+  <div class="refill-main-inner">
+
+    <!-- FORM CARD -->
+    <div class="form-card">
+      <div class="form-card-header">
+        <div class="form-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <div>
+          <div class="form-card-title">Request a Prescription Refill</div>
+          <div class="form-card-sub">Submit your request and we'll notify you when it's ready.</div>
+        </div>
+      </div>
+
+      <div class="form-grid">
+        <div class="form-group form-full">
+          <label class="form-label" for="rf-rx">Rx Number(s) <span>*</span></label>
+          <input class="form-input" type="text" id="rf-rx" placeholder="e.g. 1234567, 1234568" autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="rf-first">First Name <span>*</span></label>
+          <input class="form-input" type="text" id="rf-first" placeholder="First name" autocomplete="given-name">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="rf-last">Last Name <span>*</span></label>
+          <input class="form-input" type="text" id="rf-last" placeholder="Last name" autocomplete="family-name">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="rf-dob">Date of Birth <span>*</span></label>
+          <input class="form-input" type="date" id="rf-dob" autocomplete="bday">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="rf-phone">Phone Number <span>*</span></label>
+          <input class="form-input" type="tel" id="rf-phone" placeholder="(313) 555-1234" autocomplete="tel">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="rf-method">Preferred Method <span>*</span></label>
+          <select class="form-select" id="rf-method">
+            <option value="In-store pickup">In-store pickup</option>
+            <option value="Home delivery (free)">Home delivery (free)</option>
+            <option value="Curbside pickup">Curbside pickup</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="rf-email">Email Address <span style="font-weight:400;color:var(--text-light);">(optional)</span></label>
+          <input class="form-input" type="email" id="rf-email" placeholder="name@email.com" autocomplete="email">
+        </div>
+        <div class="form-group form-full">
+          <label class="form-label" for="rf-notes">Notes <span style="font-weight:400;color:var(--text-light);">(optional)</span></label>
+          <textarea class="form-textarea" id="rf-notes" placeholder="Any special instructions or notes..."></textarea>
+        </div>
+      </div>
+
+      <button class="btn-submit" onclick="submitRefill()">
+        Submit Refill Request
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </button>
+      <div class="form-security">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+        Your information is safe and secure. We never share your data.
+      </div>
+    </div>
+
+    <!-- SIDE CARDS -->
+    <div class="side-card">
+      <div class="why-card">
+        <div class="why-title">Why Refill With Us?</div>
+        <div class="why-list">
+          <div class="why-item">
+            <div class="why-check"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="why-text">Refill requests are processed during business hours.</div>
+          </div>
+          <div class="why-item">
+            <div class="why-check"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="why-text">We'll contact you when your prescription is ready for pickup or out for delivery.</div>
+          </div>
+          <div class="why-item">
+            <div class="why-check"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="why-text">Please have your <strong>Rx number</strong> and <strong>medication name</strong> ready.</div>
+          </div>
+          <div class="why-item">
+            <div class="why-check"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="why-text">For controlled medications, new prescriptions may be required.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="help-card">
+        <div class="help-title">Need Help?</div>
+        <div class="help-sub">Our friendly team is here to help.</div>
+        <a href="tel:3135195700" class="help-phone">
+          <div class="help-phone-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 13.87a19.79 19.79 0 01-3.07-8.67A2 2 0 012 3h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 18v-.08z"/></svg>
+          </div>
+          <div class="help-phone-num">(313) 519-5700</div>
+        </a>
+        <div class="help-hours">
+          <div class="help-hour-row"><span>Monday – Friday</span><span>9:30 AM – 6:00 PM</span></div>
+          <div class="help-hour-row"><span>Saturday</span><span>9:30 AM – 3:00 PM</span></div>
+          <div class="help-hour-row"><span>Sunday &amp; Holidays</span><span class="help-closed">Closed</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER TRUST BAR -->
+<div class="footer-trust">
+  <div class="footer-trust-inner">
+    <div class="ft-item">
+      <div class="ft-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+      </div>
+      <div>
+        <div class="ft-label">Free Same-Day Delivery</div>
+        <div class="ft-sub">Across Detroit</div>
+      </div>
+    </div>
+    <div class="ft-item">
+      <div class="ft-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div>
+        <div class="ft-label">We Accept Most Insurance</div>
+        <div class="ft-sub">Medicare, Medicaid &amp; more</div>
+      </div>
+    </div>
+    <div class="ft-item">
+      <div class="ft-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+      </div>
+      <div>
+        <div class="ft-label">Independent Pharmacy</div>
+        <div class="ft-sub">Detroit's 4.9 ★ Pharmacy</div>
+      </div>
+    </div>
+    <div class="ft-item">
+      <div class="ft-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <div>
+        <div class="ft-label">Store Hours</div>
+        <div class="ft-sub">Mon–Fri 9:30–6 · Sat 9:30–3 · Sun Closed</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function submitRefill() {
+  var rx     = document.getElementById('rf-rx').value.trim();
+  var first  = document.getElementById('rf-first').value.trim();
+  var last   = document.getElementById('rf-last').value.trim();
+  var dob    = document.getElementById('rf-dob').value.trim();
+  var phone  = document.getElementById('rf-phone').value.trim();
+  var method = document.getElementById('rf-method').value;
+  var notes  = document.getElementById('rf-notes').value.trim();
+  var email  = document.getElementById('rf-email').value.trim();
+
+  if (!rx || !first || !last || !dob || !phone) {
+    alert('Please fill in all required fields before submitting.');
+    return;
+  }
+
+  fetch('/api/email', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      type: 'Refill Request',
+      subject: 'Refill Request – ' + first + ' ' + last,
+      body:
+        'REFILL REQUEST\n' +
+        '==============================\n\n' +
+        'Patient Name:     ' + first + ' ' + last + '\n' +
+        'Date of Birth:    ' + dob + '\n' +
+        'Phone:            ' + phone + '\n' +
+        'Rx Number(s):     ' + rx + '\n' +
+        'Preferred Method: ' + method + '\n' +
+        'Notes:            ' + (notes || 'None') + '\n\n' +
+        '==============================\n' +
+        'Submitted via FenkellRxPharmacy.com/refills',
+      customerEmail: email,
+      firstName: first,
+      lastName: last,
+      dob: dob,
+      phone: phone,
+      rx: rx,
+      method: method,
+      notes: notes || 'None'
+    })
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(d){
+    if (d.ok) {
+      alert('Thank you! You will be notified when your medication is ready for pick up.');
+      document.getElementById('rf-rx').value='';
+      document.getElementById('rf-first').value='';
+      document.getElementById('rf-last').value='';
+      document.getElementById('rf-dob').value='';
+      document.getElementById('rf-phone').value='';
+      document.getElementById('rf-email').value='';
+      document.getElementById('rf-notes').value='';
+    } else {
+      alert('Your request could not be sent. Please call us directly at (313) 519-5700.');
+    }
+  })
+  .catch(function(){
+    alert('Your request could not be sent. Please call us directly at (313) 519-5700.');
+  });
+}
+</script>
+
+</body>
+</html>
