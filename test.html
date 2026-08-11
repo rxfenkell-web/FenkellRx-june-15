@@ -455,6 +455,9 @@ nav{
 .reviews-scroll-row{
   display:flex;align-items:center;gap:8px;
 }
+.reviews-track-outer{
+  flex:1;overflow:hidden;border-radius:4px;
+}
 .scroll-arrow{
   width:40px;height:40px;border-radius:50%;
   border:1.5px solid var(--border);background:#fff;
@@ -468,8 +471,7 @@ nav{
 .reviews-track{
   display:flex;
   gap:12px;
-  overflow:hidden;
-  flex:1;
+  width:100%;
   cursor:grab;
 }
 .reviews-track:active{cursor:grabbing;}
@@ -1332,6 +1334,7 @@ footer{
         <button class="scroll-arrow" onclick="reviewsScroll(-1)">
           <svg viewBox="0 0 24 24" fill="none"><polyline points="15 18 9 12 15 6"/></svg>
         </button>
+        <div class="reviews-track-outer">
         <div class="reviews-track" id="reviewsTrack">
         <div class="review-card">
           <div class="review-google">
@@ -1398,6 +1401,7 @@ footer{
             <div class="reviewer-avatar" style="background:#E8F0FE;color:#1A73E8;">DW</div>
             <div><div class="reviewer-time">3 months ago</div></div>
           </div>
+        </div>
         </div>
         </div>
         <button class="scroll-arrow" onclick="reviewsScroll(1)">
@@ -1841,7 +1845,6 @@ footer{
 
   // Init
   track.style.display = 'flex';
-  track.style.overflow = 'visible';
   track.style.willChange = 'transform';
   goTo(0);
 })();
