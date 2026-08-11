@@ -666,6 +666,7 @@ nav{
 .insurance-card{
   background:#fff;border:1.5px solid #d8e8f5;border-radius:12px;
   padding:16px;display:flex;flex-direction:column;gap:12px;
+  height:100%;box-sizing:border-box;
 }
 .ins-compact-header{display:flex;align-items:center;gap:10px;padding-bottom:10px;border-bottom:1px solid #eef3f8;}
 .ins-compact-icon{
@@ -676,17 +677,13 @@ nav{
 .ins-compact-title{font-size:13.5px;font-weight:900;color:var(--navy);line-height:1.2;}
 .ins-compact-title span{color:var(--red);}
 .ins-compact-sub{font-size:10.5px;color:var(--text-light);margin-top:2px;}
-.ins-mini-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;}
-.ins-mini{
-  border-radius:10px;padding:10px 4px 8px;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;gap:6px;
+.ins-photo-area{
+  flex:1;border-radius:10px;overflow:hidden;
+  background:var(--cream);
+  display:flex;align-items:center;justify-content:center;
+  min-height:160px;
 }
-.ins-mini-circle{
-  width:44px;height:44px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;
-}
-.ins-mini-label{font-size:9.5px;font-weight:700;color:var(--navy);line-height:1.3;}
+.ins-photo-area img{width:100%;height:100%;object-fit:cover;display:block;}
 .btn-outline-navy{
   display:inline-flex;align-items:center;gap:8px;
   background:transparent;color:var(--navy);
@@ -1601,105 +1598,13 @@ footer{
           <div class="ins-compact-sub">Medicare, Medicaid &amp; private plans</div>
         </div>
       </div>
-      <div class="ins-mini-grid">
-        <!-- Medicare -->
-        <div class="ins-mini" style="background:#EBF2FF;">
-          <div class="ins-mini-circle" style="background:#D6E8FF;">
-            <svg width="26" height="26" viewBox="0 0 48 48" fill="none">
-              <rect x="8" y="12" width="32" height="24" rx="4" fill="#4A7BC8"/>
-              <rect x="8" y="18" width="32" height="6" fill="#1A3A6B"/>
-              <rect x="12" y="28" width="10" height="3" rx="1.5" fill="#fff" opacity="0.8"/>
-              <circle cx="35" cy="29.5" r="5" fill="#CC001C"/>
-              <path d="M32.5 29.5h5M35 27v5" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <span class="ins-mini-label" style="color:#1A3A6B;">Medicare</span>
-        </div>
-        <!-- Medicaid -->
-        <div class="ins-mini" style="background:#E8F5EE;">
-          <div class="ins-mini-circle" style="background:#C8EDD8;">
-            <svg width="26" height="26" viewBox="0 0 48 48" fill="none">
-              <rect x="14" y="8" width="20" height="26" rx="3" fill="#2E9E6B"/>
-              <rect x="14" y="8" width="20" height="26" rx="3" fill="url(#clip1)"/>
-              <path d="M14 13h20" stroke="#fff" stroke-width="1.5"/>
-              <rect x="18" y="18" width="12" height="2" rx="1" fill="#fff" opacity="0.7"/>
-              <rect x="18" y="22" width="9" height="2" rx="1" fill="#fff" opacity="0.7"/>
-              <rect x="18" y="26" width="10" height="2" rx="1" fill="#fff" opacity="0.7"/>
-              <path d="M21 6h6v4a1 1 0 01-1 1h-4a1 1 0 01-1-1V6z" fill="#1A7A52"/>
-            </svg>
-          </div>
-          <span class="ins-mini-label" style="color:#1A6B47;">Medicaid</span>
-        </div>
-        <!-- Private Insurance -->
-        <div class="ins-mini" style="background:#F0ECFF;">
-          <div class="ins-mini-circle" style="background:#DDD5FF;">
-            <svg width="26" height="26" viewBox="0 0 48 48" fill="none">
-              <circle cx="19" cy="17" r="6" fill="#7B5EA7"/>
-              <circle cx="29" cy="17" r="6" fill="#9B7EC7"/>
-              <path d="M8 36c0-6 5-10 11-10s11 4 11 10" fill="#7B5EA7"/>
-              <path d="M32 26c4 1 8 4 8 10" stroke="#9B7EC7" stroke-width="2" stroke-linecap="round"/>
-              <path d="M35 14l-8 5V28l8 4 8-4V19z" fill="#5B3E97" opacity="0.6"/>
-            </svg>
-          </div>
-          <span class="ins-mini-label" style="color:#5B3E97;">Private Ins.</span>
-        </div>
-        <!-- Priority Medicaid -->
-        <div class="ins-mini" style="background:#FEF5E4;">
-          <div class="ins-mini-circle" style="background:#FDEBC4;">
-            <svg width="26" height="26" viewBox="0 0 48 48" fill="none">
-              <circle cx="24" cy="24" r="16" fill="#0D3B82"/>
-              <text x="24" y="30" text-anchor="middle" font-family="Arial Black,sans-serif" font-weight="900" font-size="20" fill="#FFFFFF">P</text>
-            </svg>
-          </div>
-          <span class="ins-mini-label" style="color:#0D3B82;">Priority</span>
-        </div>
-        <!-- HAP Medicare -->
-        <div class="ins-mini" style="background:#FFF0E8;">
-          <div class="ins-mini-circle" style="background:#FFD9C0;">
-            <svg width="26" height="26" viewBox="0 0 48 48" fill="none">
-              <rect x="6" y="14" width="36" height="20" rx="5" fill="#E85C1A"/>
-              <text x="24" y="28" text-anchor="middle" font-family="Arial,sans-serif" font-weight="900" font-size="14" fill="#FFFFFF">hap</text>
-            </svg>
-          </div>
-          <span class="ins-mini-label" style="color:#C04A10;">HAP Medicare</span>
-        </div>
-        <!-- United Healthcare -->
-        <div class="ins-mini" style="background:#EBF2FF;">
-          <div class="ins-mini-circle" style="background:#C8DEFF;">
-            <svg width="26" height="26" viewBox="0 0 48 48" fill="none">
-              <path d="M24 6l14 5v10c0 9-6 16-14 18C16 37 10 30 10 21V11z" fill="#1A6BBF"/>
-              <rect x="18" y="16" width="12" height="2.5" rx="1.25" fill="#fff"/>
-              <rect x="18" y="21" width="12" height="2.5" rx="1.25" fill="#fff"/>
-              <rect x="18" y="26" width="8" height="2.5" rx="1.25" fill="#fff"/>
-            </svg>
-          </div>
-          <span class="ins-mini-label" style="color:#1A6BBF;">United Health</span>
-        </div>
-        <!-- Blue Cross Blue Shield -->
-        <div class="ins-mini" style="background:#E3F2FF;">
-          <div class="ins-mini-circle" style="background:#BBE0FF;">
-            <svg width="26" height="26" viewBox="0 0 48 48" fill="none">
-              <rect x="20" y="8" width="8" height="32" rx="4" fill="#0066CC"/>
-              <rect x="8" y="20" width="32" height="8" rx="4" fill="#0066CC"/>
-            </svg>
-          </div>
-          <span class="ins-mini-label" style="color:#0055AA;">Blue Cross</span>
-        </div>
-        <!-- And Many More -->
-        <div class="ins-mini" style="background:#F2F4F6;">
-          <div class="ins-mini-circle" style="background:#E0E4E8;">
-            <svg width="26" height="26" viewBox="0 0 48 48" fill="none">
-              <path d="M24 6l14 5v10c0 9-6 16-14 18C16 37 10 30 10 21V11z" fill="#8899AA"/>
-              <circle cx="24" cy="22" r="2" fill="#fff"/>
-              <circle cx="18" cy="26" r="2" fill="#fff"/>
-              <circle cx="30" cy="26" r="2" fill="#fff"/>
-              <circle cx="24" cy="30" r="2" fill="#fff"/>
-            </svg>
-          </div>
-          <span class="ins-mini-label" style="color:#556677;">And Many More</span>
-        </div>
+      <div class="ins-photo-area" id="insPhoto">
+        <!-- Upload an insurance photo here -->
       </div>
-      <a href="#insurance" class="btn-outline-navy" style="font-size:12px;padding:9px 16px;border-radius:6px;margin-top:4px;">View All Insurances →</a>
+      <a href="#insurance" class="btn-outline-navy" style="font-size:13px;padding:10px 18px;border-radius:8px;display:flex;align-items:center;justify-content:center;gap:8px;font-weight:800;">
+        View All Insurances
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
     </div>
   </div>
 </section>
