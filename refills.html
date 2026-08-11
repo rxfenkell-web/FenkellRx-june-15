@@ -134,8 +134,14 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
 }
 
 /* ── NEED HELP BAR ── */
-.need-help-bar{background:rgba(0,174,239,0.09);border-top:1px solid rgba(0,174,239,0.18);border-bottom:1px solid rgba(0,174,239,0.18);padding:11px 0;}
-.need-help-bar-inner{max-width:1340px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:32px;}
+.need-help-bar{background:var(--cream);padding:8px 0;}
+.need-help-bar-inner{
+  max-width:1340px;margin:0 auto;padding:10px 2rem;
+  background:rgba(0,174,239,0.09);
+  border:1px solid rgba(0,174,239,0.18);
+  border-radius:10px;
+  display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:32px;
+}
 .nh-left{display:flex;align-items:center;gap:6px;flex-wrap:nowrap;}
 .nh-title{font-size:13px;font-weight:800;color:var(--navy);white-space:nowrap;}
 .nh-sep{font-size:13px;color:var(--blue);font-weight:400;}
