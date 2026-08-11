@@ -578,7 +578,7 @@ nav{
 /* reflow mid section */
 .mid-inner-full{
   max-width:1340px;margin:0 auto;padding:0 2rem;
-  display:grid;grid-template-columns:1.5fr 1.4fr 1fr;
+  display:grid;grid-template-columns:1.5fr 1.4fr;
   gap:28px;align-items:stretch;
 }
 /* ── CONTACT CARD ── */
@@ -660,32 +660,56 @@ nav{
 .btn-gold-sm:hover{background:var(--gold-dark);}
 .btn-gold-sm svg{width:13px;height:13px;stroke:#fff;}
 
-.insurance-card{
-  background:#fff;border:1.5px solid var(--border);border-radius:12px;
-  padding:22px;
-  display:flex;flex-direction:column;
-  align-items:flex-start;
-}
-.insurance-shield{
-  width:52px;height:52px;
-  background:var(--blue-dark);border-radius:12px;
-  display:flex;align-items:center;justify-content:center;
-  margin-bottom:14px;
-}
-.insurance-shield svg{width:28px;height:28px;stroke:#fff;}
-.insurance-title{font-size:17px;font-weight:800;color:var(--navy);margin-bottom:6px;line-height:1.3;}
-.insurance-sub{font-size:13px;color:var(--text-light);line-height:1.6;margin-bottom:14px;}
+/* kept for compat */
+.insurance-card{display:none;}
 .btn-outline-navy{
-  display:inline-flex;align-items:center;gap:6px;
+  display:inline-flex;align-items:center;gap:8px;
   background:transparent;color:var(--navy);
-  font-size:12.5px;font-weight:700;
-  padding:10px 18px;border-radius:6px;
+  font-size:14px;font-weight:700;
+  padding:13px 28px;border-radius:50px;
   border:2px solid var(--navy);
-  text-transform:uppercase;letter-spacing:0.04em;
   transition:background 0.2s,color 0.2s;
   white-space:nowrap;
 }
 .btn-outline-navy:hover{background:var(--navy);color:#fff;}
+/* ── INSURANCE SECTION ── */
+.insurance-section{
+  background:#fff;padding:56px 0;
+  border-top:1px solid var(--border);
+}
+.insurance-wrap{max-width:1340px;margin:0 auto;padding:0 2rem;}
+.insurance-header{text-align:center;margin-bottom:36px;}
+.insurance-heading{
+  display:flex;align-items:center;justify-content:center;gap:14px;
+  margin-bottom:10px;
+}
+.insurance-heading-icon{
+  width:52px;height:52px;background:#EBF2FF;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.insurance-heading-icon svg{width:26px;height:26px;}
+.insurance-heading-text{font-size:32px;font-weight:900;color:var(--navy);}
+.insurance-heading-text span{color:var(--red);}
+.insurance-subtitle{font-size:15px;color:var(--text-light);line-height:1.6;}
+.insurance-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:16px;margin-bottom:32px;
+}
+.ins-card{
+  background:#fff;border:1.5px solid #e8eef5;border-radius:14px;
+  padding:24px 16px 20px;
+  display:flex;flex-direction:column;align-items:center;text-align:center;
+  transition:box-shadow 0.2s,transform 0.2s;
+}
+.ins-card:hover{box-shadow:0 6px 24px rgba(0,0,0,0.09);transform:translateY(-3px);}
+.ins-icon{
+  width:72px;height:72px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:14px;font-size:22px;font-weight:900;
+}
+.ins-name{font-size:15px;font-weight:800;color:var(--navy);margin-bottom:5px;}
+.ins-desc{font-size:12.5px;color:var(--text-light);line-height:1.5;}
+.insurance-footer{text-align:center;}
 
 /* ── BOTTOM 4-COL ── */
 .bottom-grid-section{background:#fff;padding:0;border-top:1px solid var(--border);}
@@ -1539,17 +1563,129 @@ footer{
         </blockquote>
       </div>
     </div>
-    <div class="insurance-card">
-      <div class="insurance-shield">
-        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+  </div>
+</section>
+
+<!-- INSURANCE -->
+<section class="insurance-section" id="insurance">
+  <div class="insurance-wrap">
+
+    <div class="insurance-header">
+      <div class="insurance-heading">
+        <div class="insurance-heading-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="#1A3A6B"/><polyline points="9 12 11 14 15 10" stroke="#CC001C" stroke-width="2.5"/></svg>
+        </div>
+        <div class="insurance-heading-text">We Accept <span>Most Insurance</span></div>
       </div>
-      <div class="insurance-title">We Accept Most Insurances</div>
-      <div class="insurance-sub">Including Medicare Part D Plans.</div>
+      <p class="insurance-subtitle">We proudly accept Medicare, Medicaid, and a variety of private insurance plans.</p>
+    </div>
+
+    <div class="insurance-grid">
+      <!-- Medicare -->
+      <div class="ins-card">
+        <div class="ins-icon" style="background:#EBF2FF;">
+          <svg viewBox="0 0 48 48" fill="none" width="40" height="40">
+            <rect x="8" y="12" width="28" height="22" rx="3" fill="#4A7BC8" opacity="0.15"/>
+            <rect x="8" y="12" width="28" height="22" rx="3" stroke="#4A7BC8" stroke-width="2"/>
+            <line x1="12" y1="20" x2="28" y2="20" stroke="#4A7BC8" stroke-width="2"/>
+            <line x1="12" y1="26" x2="22" y2="26" stroke="#4A7BC8" stroke-width="2"/>
+            <circle cx="34" cy="32" r="7" fill="#CC001C"/>
+            <line x1="34" y1="29" x2="34" y2="35" stroke="white" stroke-width="2"/>
+            <line x1="31" y1="32" x2="37" y2="32" stroke="white" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="ins-name">Medicare</div>
+        <div class="ins-desc">We accept most Medicare plans</div>
+      </div>
+      <!-- Medicaid -->
+      <div class="ins-card">
+        <div class="ins-icon" style="background:#E8F5EE;">
+          <svg viewBox="0 0 48 48" fill="none" width="40" height="40">
+            <rect x="14" y="8" width="20" height="26" rx="3" fill="#2E9E6B" opacity="0.12"/>
+            <rect x="14" y="8" width="20" height="26" rx="3" stroke="#2E9E6B" stroke-width="2"/>
+            <line x1="19" y1="16" x2="29" y2="16" stroke="#2E9E6B" stroke-width="2"/>
+            <line x1="19" y1="21" x2="29" y2="21" stroke="#2E9E6B" stroke-width="2"/>
+            <line x1="19" y1="26" x2="25" y2="26" stroke="#2E9E6B" stroke-width="2"/>
+            <path d="M26 34l4-4 2 2 5-5" stroke="#2E9E6B" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="ins-name">Medicaid</div>
+        <div class="ins-desc">We accept most Medicaid plans</div>
+      </div>
+      <!-- Private Insurance -->
+      <div class="ins-card">
+        <div class="ins-icon" style="background:#F0ECFF;">
+          <svg viewBox="0 0 48 48" fill="none" width="40" height="40">
+            <circle cx="18" cy="18" r="6" stroke="#7B5EA7" stroke-width="2"/>
+            <circle cx="30" cy="18" r="6" stroke="#7B5EA7" stroke-width="2"/>
+            <path d="M8 38c0-6 4-10 10-10h12c6 0 10 4 10 10" stroke="#7B5EA7" stroke-width="2" stroke-linecap="round"/>
+            <path d="M30 34l3-3 1.5 1.5 3.5-3.5" stroke="#7B5EA7" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="ins-name">Private Insurance</div>
+        <div class="ins-desc">We accept most private insurance plans</div>
+      </div>
+      <!-- Priority Medicaid -->
+      <div class="ins-card">
+        <div class="ins-icon" style="background:#FEF5E4;">
+          <div style="font-size:28px;font-weight:900;color:#0D3B82;font-family:'DM Sans',sans-serif;line-height:1;">P</div>
+        </div>
+        <div class="ins-name">Priority Medicaid</div>
+        <div class="ins-desc">Proudly accepted</div>
+      </div>
+      <!-- HAP Medicare -->
+      <div class="ins-card">
+        <div class="ins-icon" style="background:#FFF0E8;">
+          <div style="background:#E85C1A;color:#fff;font-size:15px;font-weight:900;padding:6px 10px;border-radius:8px;letter-spacing:-0.02em;font-family:'DM Sans',sans-serif;">hap</div>
+        </div>
+        <div class="ins-name">HAP Medicare</div>
+        <div class="ins-desc">Proudly accepted</div>
+      </div>
+      <!-- United Healthcare -->
+      <div class="ins-card">
+        <div class="ins-icon" style="background:#EBF2FF;">
+          <svg viewBox="0 0 48 48" fill="none" width="40" height="40">
+            <path d="M24 6l14 5v10c0 9-6 16-14 19C16 37 10 30 10 21V11z" fill="#1A6BBF" opacity="0.15" stroke="#1A6BBF" stroke-width="2"/>
+            <line x1="18" y1="16" x2="30" y2="16" stroke="#1A6BBF" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="18" y1="22" x2="30" y2="22" stroke="#1A6BBF" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="18" y1="28" x2="26" y2="28" stroke="#1A6BBF" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="ins-name">United Healthcare</div>
+        <div class="ins-desc">Proudly accepted</div>
+      </div>
+      <!-- Blue Cross -->
+      <div class="ins-card">
+        <div class="ins-icon" style="background:#E3F2FF;">
+          <svg viewBox="0 0 48 48" fill="none" width="40" height="40">
+            <rect x="20" y="10" width="8" height="28" rx="4" fill="#0066CC"/>
+            <rect x="10" y="20" width="28" height="8" rx="4" fill="#0066CC"/>
+          </svg>
+        </div>
+        <div class="ins-name">Blue Cross</div>
+        <div class="ins-desc">Proudly accepted</div>
+      </div>
+      <!-- And Many More -->
+      <div class="ins-card">
+        <div class="ins-icon" style="background:#F2F4F6;">
+          <svg viewBox="0 0 48 48" fill="none" width="40" height="40">
+            <path d="M24 6l14 5v10c0 9-6 16-14 19C16 37 10 30 10 21V11z" stroke="#888" stroke-width="2"/>
+            <circle cx="18" cy="24" r="2" fill="#888"/>
+            <circle cx="24" cy="24" r="2" fill="#888"/>
+            <circle cx="30" cy="24" r="2" fill="#888"/>
+          </svg>
+        </div>
+        <div class="ins-name">And Many More</div>
+        <div class="ins-desc">Ask our team if we accept your plan</div>
+      </div>
+    </div>
+
+    <div class="insurance-footer">
       <a href="#insurance" class="btn-outline-navy">
-        VIEW ALL INSURANCES
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" width="13" height="13"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        View All Insurances &nbsp;→
       </a>
     </div>
+
   </div>
 </section>
 
