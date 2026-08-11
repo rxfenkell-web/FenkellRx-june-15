@@ -134,21 +134,22 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
   display:block;
 }
 
-/* ── NEED HELP BAR (replaces trust bar) ── */
-.need-help-bar{background:var(--navy);border-bottom:1px solid rgba(255,255,255,0.08);padding:14px 0;}
-.need-help-bar-inner{max-width:1340px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:40px;}
-.nh-left{}
-.nh-title{font-size:15px;font-weight:900;color:#fff;}
-.nh-sub{font-size:12px;color:rgba(255,255,255,0.55);margin-top:1px;}
-.nh-phone{display:flex;align-items:center;gap:10px;text-decoration:none;}
-.nh-phone-icon{width:36px;height:36px;background:rgba(255,255,255,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.nh-phone-icon svg{width:17px;height:17px;stroke:var(--blue);}
-.nh-phone-num{font-size:22px;font-weight:900;color:var(--blue);letter-spacing:-0.5px;}
-.nh-hours{display:flex;gap:20px;}
-.nh-hour-row{display:flex;flex-direction:column;align-items:center;gap:2px;}
-.nh-hour-label{font-size:10px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.06em;}
-.nh-hour-val{font-size:12px;font-weight:700;color:rgba(255,255,255,0.85);}
-.nh-hour-closed{color:#F87171!important;}
+/* ── NEED HELP BAR ── */
+.need-help-bar{background:rgba(0,174,239,0.09);border-top:1px solid rgba(0,174,239,0.18);border-bottom:1px solid rgba(0,174,239,0.18);padding:11px 0;}
+.need-help-bar-inner{max-width:1340px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:32px;}
+.nh-left{display:flex;align-items:center;gap:6px;flex-wrap:nowrap;}
+.nh-title{font-size:13px;font-weight:800;color:var(--navy);white-space:nowrap;}
+.nh-sep{font-size:13px;color:var(--blue);font-weight:400;}
+.nh-sub{font-size:13px;color:var(--text-mid);white-space:nowrap;}
+.nh-phone{display:flex;align-items:center;gap:8px;text-decoration:none;}
+.nh-phone-icon{width:30px;height:30px;background:rgba(0,174,239,0.15);border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.nh-phone-icon svg{width:14px;height:14px;stroke:var(--blue-dark);}
+.nh-phone-num{font-size:17px;font-weight:900;color:var(--red);letter-spacing:-0.3px;}
+.nh-hours{display:flex;gap:18px;}
+.nh-hour-row{display:flex;flex-direction:column;align-items:center;gap:1px;}
+.nh-hour-label{font-size:9.5px;color:var(--text-light);text-transform:uppercase;letter-spacing:0.06em;}
+.nh-hour-val{font-size:11.5px;font-weight:700;color:var(--navy);}
+.nh-hour-closed{color:var(--red)!important;}
 
 /* ── MAIN FORM SECTION ── */
 .refill-main{background:var(--cream);padding:20px 0 24px;}
@@ -346,8 +347,9 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
 <div class="need-help-bar">
   <div class="need-help-bar-inner">
     <div class="nh-left">
-      <div class="nh-title">Need Help?</div>
-      <div class="nh-sub">Our friendly team is here to assist you with your prescription refill.</div>
+      <span class="nh-title">Need Help?</span>
+      <span class="nh-sep">·</span>
+      <span class="nh-sub">Our friendly team is here to assist you with your prescription refill.</span>
     </div>
     <a href="tel:3135195700" class="nh-phone">
       <div class="nh-phone-icon">
