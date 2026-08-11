@@ -129,26 +129,25 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
   transform-origin:center top;
 }
 
-/* ── TRUST BAR ── */
-.trust-bar{background:#fff;border-bottom:1px solid var(--border);padding:12px 0;}
-.trust-bar-inner{max-width:1340px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:repeat(3,1fr);gap:0;}
-.trust-item{display:flex;align-items:center;gap:10px;padding:2px 20px;border-right:1px solid var(--border);}
-.trust-item:first-child{padding-left:0;}
-.trust-item:last-child{border-right:none;}
-.trust-icon{width:32px;height:32px;border-radius:50%;background:var(--blue-light);flex-shrink:0;display:flex;align-items:center;justify-content:center;}
-.trust-icon svg{width:15px;height:15px;stroke:var(--blue-dark);stroke-width:2;}
-.trust-icon.red{background:var(--red-light);}
-.trust-icon.red svg{stroke:var(--red);}
-.trust-icon.gold{background:#FEF3C7;}
-.trust-icon.gold svg{stroke:#D97706;}
-.trust-title{font-size:12px;font-weight:800;color:var(--navy);}
-.trust-desc{font-size:10.5px;color:var(--text-light);line-height:1.3;}
-.trust-stars{color:#F59E0B;font-size:12px;letter-spacing:1px;}
-.trust-score{font-size:18px;font-weight:900;color:var(--navy);line-height:1;}
+/* ── NEED HELP BAR (replaces trust bar) ── */
+.need-help-bar{background:var(--navy);border-bottom:1px solid rgba(255,255,255,0.08);padding:14px 0;}
+.need-help-bar-inner{max-width:1340px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:40px;}
+.nh-left{}
+.nh-title{font-size:15px;font-weight:900;color:#fff;}
+.nh-sub{font-size:12px;color:rgba(255,255,255,0.55);margin-top:1px;}
+.nh-phone{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nh-phone-icon{width:36px;height:36px;background:rgba(255,255,255,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.nh-phone-icon svg{width:17px;height:17px;stroke:var(--blue);}
+.nh-phone-num{font-size:22px;font-weight:900;color:var(--blue);letter-spacing:-0.5px;}
+.nh-hours{display:flex;gap:20px;}
+.nh-hour-row{display:flex;flex-direction:column;align-items:center;gap:2px;}
+.nh-hour-label{font-size:10px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.06em;}
+.nh-hour-val{font-size:12px;font-weight:700;color:rgba(255,255,255,0.85);}
+.nh-hour-closed{color:#F87171!important;}
 
 /* ── MAIN FORM SECTION ── */
 .refill-main{background:var(--cream);padding:20px 0 24px;}
-.refill-main-inner{max-width:1340px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1.6fr 1fr;gap:20px;align-items:start;}
+.refill-main-inner{max-width:1100px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1.3fr 1fr;gap:20px;align-items:start;}
 
 /* Form card */
 .form-card{background:#fff;border-radius:14px;padding:22px 24px;box-shadow:0 4px 24px rgba(0,0,0,0.07);border:1px solid var(--border);}
@@ -192,18 +191,6 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
 .why-check svg{width:10px;height:10px;stroke:#fff;stroke-width:3;}
 .why-text{font-size:12.5px;color:var(--text-mid);line-height:1.45;}
 .why-text strong{color:var(--navy);}
-.help-card{background:var(--navy);border-radius:14px;padding:18px 20px;}
-.help-title{font-size:14px;font-weight:900;color:#fff;margin-bottom:4px;}
-.help-sub{font-size:12px;color:rgba(255,255,255,0.65);margin-bottom:12px;}
-.help-phone{display:flex;align-items:center;gap:8px;margin-bottom:12px;}
-.help-phone-icon{width:34px;height:34px;background:rgba(255,255,255,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.help-phone-icon svg{width:16px;height:16px;stroke:#00AEEF;}
-.help-phone-num{font-size:19px;font-weight:900;color:var(--blue);letter-spacing:-0.5px;}
-.help-hours{display:flex;flex-direction:column;gap:4px;}
-.help-hour-row{display:flex;justify-content:space-between;font-size:11px;color:rgba(255,255,255,0.7);padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.08);}
-.help-hour-row:last-child{border-bottom:none;}
-.help-hour-row span:last-child{font-weight:700;color:rgba(255,255,255,0.9);}
-.help-closed{color:#F87171!important;}
 
 /* ── FOOTER TRUST ── */
 .footer-trust{background:var(--navy);padding:18px 0;}
@@ -235,8 +222,8 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
   .nav-mobile-call svg{width:14px;height:14px;stroke:#fff;}
   .nav-cta{display:none;}
   .refill-features{grid-template-columns:repeat(2,1fr);}
-  .trust-bar-inner{grid-template-columns:1fr;gap:14px;}
-  .trust-item{border-right:none;padding:0;}
+  .need-help-bar-inner{grid-template-columns:1fr;gap:12px;}
+  .nh-hours{display:none;}
   .form-grid{grid-template-columns:1fr;}
   .footer-trust-inner{grid-template-columns:1fr;}
 }
@@ -350,37 +337,31 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
   </div>
 </section>
 
-<!-- TRUST BAR -->
-<div class="trust-bar">
-  <div class="trust-bar-inner">
-    <div class="trust-item">
-      <div class="trust-icon red">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      </div>
-      <div>
-        <div class="trust-title">Your Health. Our Priority.</div>
-        <div class="trust-desc">Trusted by Detroit for personalized care and reliable prescription service.</div>
-      </div>
+<!-- NEED HELP BAR -->
+<div class="need-help-bar">
+  <div class="need-help-bar-inner">
+    <div class="nh-left">
+      <div class="nh-title">Need Help?</div>
+      <div class="nh-sub">Our friendly team is here to assist you with your prescription refill.</div>
     </div>
-    <div class="trust-item">
-      <div class="trust-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+    <a href="tel:3135195700" class="nh-phone">
+      <div class="nh-phone-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 13.87a19.79 19.79 0 01-3.07-8.67A2 2 0 012 3h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 18v-.08z"/></svg>
       </div>
-      <div>
-        <div class="trust-title">Local. Independent. Here for You.</div>
-        <div class="trust-desc">We're part of the Detroit community and treat every patient like family.</div>
+      <div class="nh-phone-num">(313) 519-5700</div>
+    </a>
+    <div class="nh-hours">
+      <div class="nh-hour-row">
+        <div class="nh-hour-label">Mon – Fri</div>
+        <div class="nh-hour-val">9:30 AM – 6:00 PM</div>
       </div>
-    </div>
-    <div class="trust-item">
-      <div class="trust-icon gold">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      <div class="nh-hour-row">
+        <div class="nh-hour-label">Saturday</div>
+        <div class="nh-hour-val">9:30 AM – 3:00 PM</div>
       </div>
-      <div>
-        <div style="display:flex;align-items:center;gap:8px;">
-          <div class="trust-score">4.9</div>
-          <div class="trust-stars">★★★★★</div>
-        </div>
-        <div class="trust-desc">Rated 4.9 stars by our patients on Google.</div>
+      <div class="nh-hour-row">
+        <div class="nh-hour-label">Sunday</div>
+        <div class="nh-hour-val nh-hour-closed">Closed</div>
       </div>
     </div>
   </div>
@@ -423,14 +404,6 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
           <label class="form-label" for="rf-phone">Phone Number <span>*</span></label>
           <input class="form-input" type="tel" id="rf-phone" placeholder="(313) 555-1234" autocomplete="tel">
         </div>
-        <div class="form-group">
-          <label class="form-label" for="rf-method">Preferred Method <span>*</span></label>
-          <select class="form-select" id="rf-method">
-            <option value="In-store pickup">In-store pickup</option>
-            <option value="Home delivery (free)">Home delivery (free)</option>
-            <option value="Curbside pickup">Curbside pickup</option>
-          </select>
-        </div>
         <div class="form-group form-full">
           <label class="form-label" for="rf-notes">Notes <span style="font-weight:400;color:var(--text-light);">(optional)</span></label>
           <textarea class="form-textarea" id="rf-notes" placeholder="Any special instructions or notes..."></textarea>
@@ -471,21 +444,6 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
         </div>
       </div>
 
-      <div class="help-card">
-        <div class="help-title">Need Help?</div>
-        <div class="help-sub">Our friendly team is here to help.</div>
-        <a href="tel:3135195700" class="help-phone">
-          <div class="help-phone-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 13.87a19.79 19.79 0 01-3.07-8.67A2 2 0 012 3h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 18v-.08z"/></svg>
-          </div>
-          <div class="help-phone-num">(313) 519-5700</div>
-        </a>
-        <div class="help-hours">
-          <div class="help-hour-row"><span>Monday – Friday</span><span>9:30 AM – 6:00 PM</span></div>
-          <div class="help-hour-row"><span>Saturday</span><span>9:30 AM – 3:00 PM</span></div>
-          <div class="help-hour-row"><span>Sunday &amp; Holidays</span><span class="help-closed">Closed</span></div>
-        </div>
-      </div>
     </div>
 
   </div>
@@ -540,7 +498,6 @@ function submitRefill() {
   var last   = document.getElementById('rf-last').value.trim();
   var dob    = document.getElementById('rf-dob').value.trim();
   var phone  = document.getElementById('rf-phone').value.trim();
-  var method = document.getElementById('rf-method').value;
   var notes  = document.getElementById('rf-notes').value.trim();
   var email  = '';
 
@@ -562,7 +519,6 @@ function submitRefill() {
         'Date of Birth:    ' + dob + '\n' +
         'Phone:            ' + phone + '\n' +
         'Rx Number(s):     ' + rx + '\n' +
-        'Preferred Method: ' + method + '\n' +
         'Notes:            ' + (notes || 'None') + '\n\n' +
         '==============================\n' +
         'Submitted via FenkellRxPharmacy.com/refills',
@@ -572,7 +528,6 @@ function submitRefill() {
       dob: dob,
       phone: phone,
       rx: rx,
-      method: method,
       notes: notes || 'None'
     })
   })
