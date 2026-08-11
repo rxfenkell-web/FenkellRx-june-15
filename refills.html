@@ -128,28 +128,19 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
   display:block;
 }
 
-/* ── NEED HELP BAR ── */
-.need-help-bar{background:var(--cream);padding:8px 0;}
-.need-help-bar-inner{
-  max-width:1340px;margin:0 auto;padding:10px 2rem;
-  background:rgba(0,174,239,0.09);
-  border:1px solid rgba(0,174,239,0.18);
-  border-radius:10px;
-  display:flex;align-items:center;justify-content:center;gap:32px;
-}
-.nh-left{display:flex;align-items:center;gap:6px;flex-wrap:nowrap;}
-.nh-title{font-size:13px;font-weight:800;color:var(--navy);white-space:nowrap;}
-.nh-sep{font-size:13px;color:var(--blue);font-weight:400;}
-.nh-sub{font-size:13px;color:var(--text-mid);white-space:nowrap;}
-.nh-phone{display:flex;align-items:center;gap:8px;text-decoration:none;}
-.nh-phone-icon{width:30px;height:30px;background:rgba(0,174,239,0.15);border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.nh-phone-icon svg{width:14px;height:14px;stroke:var(--blue-dark);}
-.nh-phone-num{font-size:17px;font-weight:900;color:var(--red);letter-spacing:-0.3px;}
-.nh-hours{display:flex;gap:18px;}
-.nh-hour-row{display:flex;flex-direction:column;align-items:center;gap:1px;}
-.nh-hour-label{font-size:9.5px;color:var(--text-light);text-transform:uppercase;letter-spacing:0.06em;}
-.nh-hour-val{font-size:11.5px;font-weight:700;color:var(--navy);}
-.nh-hour-closed{color:var(--red)!important;}
+/* Help card */
+.help-card{background:var(--navy);border-radius:14px;padding:18px 20px;}
+.help-title{font-size:14px;font-weight:900;color:#fff;margin-bottom:4px;}
+.help-sub{font-size:12px;color:rgba(255,255,255,0.65);margin-bottom:12px;}
+.help-phone{display:flex;align-items:center;gap:8px;margin-bottom:12px;}
+.help-phone-icon{width:34px;height:34px;background:rgba(255,255,255,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.help-phone-icon svg{width:16px;height:16px;stroke:#00AEEF;}
+.help-phone-num{font-size:19px;font-weight:900;color:var(--blue);letter-spacing:-0.5px;}
+.help-hours{display:flex;flex-direction:column;gap:4px;}
+.help-hour-row{display:flex;justify-content:space-between;font-size:11px;color:rgba(255,255,255,0.7);padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.08);}
+.help-hour-row:last-child{border-bottom:none;}
+.help-hour-row span:last-child{font-weight:700;color:rgba(255,255,255,0.9);}
+.help-closed{color:#F87171!important;}
 
 /* ── MAIN FORM SECTION ── */
 .refill-main{background:var(--cream);padding:20px 0 24px;}
@@ -343,36 +334,6 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
   </div>
 </section>
 
-<!-- NEED HELP BAR -->
-<div class="need-help-bar">
-  <div class="need-help-bar-inner">
-    <div class="nh-left">
-      <span class="nh-title">Need Help?</span>
-      <span class="nh-sep">·</span>
-      <span class="nh-sub">Our friendly team is here to assist you with your prescription refill.</span>
-    </div>
-    <a href="tel:3135195700" class="nh-phone">
-      <div class="nh-phone-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 13.87a19.79 19.79 0 01-3.07-8.67A2 2 0 012 3h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 18v-.08z"/></svg>
-      </div>
-      <div class="nh-phone-num">(313) 519-5700</div>
-    </a>
-    <div class="nh-hours">
-      <div class="nh-hour-row">
-        <div class="nh-hour-label">Mon – Fri</div>
-        <div class="nh-hour-val">9:30 AM – 6:00 PM</div>
-      </div>
-      <div class="nh-hour-row">
-        <div class="nh-hour-label">Saturday</div>
-        <div class="nh-hour-val">9:30 AM – 3:00 PM</div>
-      </div>
-      <div class="nh-hour-row">
-        <div class="nh-hour-label">Sunday</div>
-        <div class="nh-hour-val nh-hour-closed">Closed</div>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- MAIN CONTENT -->
 <section class="refill-main">
@@ -448,6 +409,22 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
             <div class="why-check"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
             <div class="why-text">For controlled medications, new prescriptions may be required.</div>
           </div>
+        </div>
+      </div>
+
+      <div class="help-card">
+        <div class="help-title">Need Help?</div>
+        <div class="help-sub">Our friendly team is here to help.</div>
+        <a href="tel:3135195700" class="help-phone">
+          <div class="help-phone-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 13.87a19.79 19.79 0 01-3.07-8.67A2 2 0 012 3h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 18v-.08z"/></svg>
+          </div>
+          <div class="help-phone-num">(313) 519-5700</div>
+        </a>
+        <div class="help-hours">
+          <div class="help-hour-row"><span>Monday – Friday</span><span>9:30 AM – 6:00 PM</span></div>
+          <div class="help-hour-row"><span>Saturday</span><span>9:30 AM – 3:00 PM</span></div>
+          <div class="help-hour-row"><span>Sunday &amp; Holidays</span><span class="help-closed">Closed</span></div>
         </div>
       </div>
 
