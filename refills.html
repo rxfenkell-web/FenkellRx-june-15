@@ -406,10 +406,6 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
             <option value="Curbside pickup">Curbside pickup</option>
           </select>
         </div>
-        <div class="form-group">
-          <label class="form-label" for="rf-email">Email Address <span style="font-weight:400;color:var(--text-light);">(optional)</span></label>
-          <input class="form-input" type="email" id="rf-email" placeholder="name@email.com" autocomplete="email">
-        </div>
         <div class="form-group form-full">
           <label class="form-label" for="rf-notes">Notes <span style="font-weight:400;color:var(--text-light);">(optional)</span></label>
           <textarea class="form-textarea" id="rf-notes" placeholder="Any special instructions or notes..."></textarea>
@@ -521,7 +517,7 @@ function submitRefill() {
   var phone  = document.getElementById('rf-phone').value.trim();
   var method = document.getElementById('rf-method').value;
   var notes  = document.getElementById('rf-notes').value.trim();
-  var email  = document.getElementById('rf-email').value.trim();
+  var email  = '';
 
   if (!rx || !first || !last || !dob || !phone) {
     alert('Please fill in all required fields before submitting.');
@@ -564,7 +560,6 @@ function submitRefill() {
       document.getElementById('rf-last').value='';
       document.getElementById('rf-dob').value='';
       document.getElementById('rf-phone').value='';
-      document.getElementById('rf-email').value='';
       document.getElementById('rf-notes').value='';
     } else {
       alert('Your request could not be sent. Please call us directly at (313) 519-5700.');
