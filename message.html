@@ -38,7 +38,6 @@ img{display:block;max-width:100%;}
 .topbar-item{display:flex;align-items:center;gap:6px;font-size:11.5px;color:rgba(255,255,255,0.75);font-weight:500;}
 .topbar-item svg{width:13px;height:13px;stroke:var(--blue);flex-shrink:0;}
 .topbar-sep{width:1px;height:14px;background:rgba(255,255,255,0.15);margin:0 14px;}
-.topbar-right{display:flex;align-items:center;gap:16px;}
 .topbar-open{display:flex;align-items:center;gap:6px;font-size:11.5px;color:rgba(255,255,255,0.7);}
 .topbar-open-dot{width:7px;height:7px;border-radius:50%;background:#4ADE80;flex-shrink:0;}
 .topbar-socials{display:flex;align-items:center;gap:10px;}
@@ -65,22 +64,82 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
 /* ── HERO ── */
 .message-hero{background:var(--cream);overflow:hidden;border-bottom:1px solid var(--border);}
 .message-hero-inner{
-  max-width:1340px;margin:0 auto;padding:0 0 0 2rem;
-  display:grid;grid-template-columns:1.15fr 0.85fr;
-  align-items:stretch;min-height:320px;gap:0;
+  max-width:1340px;margin:0 auto;
+  padding:0 0 0 2rem;
+  display:grid;
+  grid-template-columns:1.15fr 0.85fr;
+  align-items:stretch;
+  gap:0;
 }
+
+/* Left column: headline + form */
 .message-hero-left{
   padding:36px 48px 36px 0;
-  display:flex;flex-direction:column;justify-content:center;
+  display:flex;flex-direction:column;justify-content:flex-start;
 }
 .hero-eyebrow{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue-dark);margin-bottom:14px;}
 .hero-eyebrow::before{content:'';width:20px;height:2px;background:var(--blue);}
-.message-hero h1{font-family:'DM Serif Display',serif;font-size:clamp(30px,3.8vw,50px);color:var(--navy);line-height:1.08;letter-spacing:-0.5px;margin-bottom:10px;}
+.message-hero h1{font-family:'DM Serif Display',serif;font-size:clamp(30px,3.8vw,50px);color:var(--navy);line-height:1.08;letter-spacing:-0.5px;margin-bottom:8px;}
 .message-hero h1 .red{color:var(--red);}
 .message-hero-sub{font-size:15px;color:var(--text-mid);line-height:1.65;margin-bottom:22px;max-width:460px;}
 
-/* Prefer to call card — matches help-card from refills */
-.call-card{background:rgba(0,174,239,0.18);border:1px solid rgba(0,174,239,0.32);border-radius:14px;padding:16px 18px;max-width:340px;}
+/* Form card — inside hero left */
+.form-card{background:#fff;border-radius:14px;padding:20px 22px;box-shadow:0 4px 24px rgba(0,0,0,0.07);border:1px solid var(--border);}
+.form-card-header{display:flex;align-items:center;gap:11px;margin-bottom:16px;padding-bottom:13px;border-bottom:1px solid var(--border);}
+.form-card-icon{width:38px;height:38px;background:var(--blue-light);border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.form-card-icon svg{width:19px;height:19px;stroke:var(--blue-dark);stroke-width:2;}
+.form-card-title{font-size:16px;font-weight:900;color:var(--navy);}
+.form-card-sub{font-size:11.5px;color:var(--text-light);margin-top:1px;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+.form-full{grid-column:1/-1;}
+.form-group{display:flex;flex-direction:column;gap:3px;margin-bottom:1px;}
+.form-label{font-size:11px;font-weight:700;color:var(--navy);}
+.form-label .req{color:var(--red);}
+.form-label .opt{font-weight:400;color:var(--text-light);}
+.form-input,.form-select,.form-textarea{
+  width:100%;padding:8px 11px;border:1.5px solid var(--border);border-radius:7px;
+  font-family:'DM Sans',sans-serif;font-size:13px;color:var(--navy);
+  background:#fff;transition:border-color 0.15s,box-shadow 0.15s;outline:none;
+}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,174,239,0.12);}
+.form-input::placeholder,.form-textarea::placeholder{color:#CBD5E1;}
+.form-textarea{resize:vertical;min-height:76px;}
+.form-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;background-size:14px;padding-right:30px;}
+.btn-submit{
+  width:100%;padding:12px 20px;border:none;border-radius:9px;cursor:pointer;
+  background:var(--red);color:#fff;font-family:'DM Sans',sans-serif;
+  font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:8px;
+  transition:background 0.2s,transform 0.15s;margin-top:10px;
+}
+.btn-submit:hover{background:var(--red-dark);transform:translateY(-1px);}
+.btn-submit svg{width:15px;height:15px;stroke:#fff;stroke-width:2.5;}
+.form-security{display:flex;align-items:center;justify-content:center;gap:6px;font-size:11px;color:var(--text-light);margin-top:8px;}
+.form-security svg{width:11px;height:11px;stroke:var(--text-light);}
+
+/* Right column: image (flex-1) + call card below */
+.message-hero-right{
+  display:flex;flex-direction:column;
+}
+.hero-image-wrap{
+  flex:1;position:relative;overflow:hidden;min-height:280px;
+}
+.hero-image-wrap::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:28%;
+  background:linear-gradient(to right,#F8F5F0 0%,rgba(248,245,240,0) 100%);
+  z-index:1;pointer-events:none;
+}
+.hero-image-wrap::after{
+  content:'';position:absolute;right:0;top:0;bottom:0;width:16%;
+  background:linear-gradient(to left,#F8F5F0 0%,rgba(248,245,240,0) 100%);
+  z-index:1;pointer-events:none;
+}
+.hero-image-wrap img{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;}
+
+/* Prefer to Call card — under the image */
+.call-card{
+  background:rgba(0,174,239,0.18);border-top:1px solid rgba(0,174,239,0.32);
+  padding:16px 20px;
+}
 .call-card-title{font-size:13px;font-weight:900;color:var(--navy);margin-bottom:3px;}
 .call-card-sub{font-size:11.5px;color:var(--text-mid);margin-bottom:12px;}
 .call-phone-row{display:flex;align-items:center;gap:8px;margin-bottom:12px;}
@@ -92,62 +151,6 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
 .call-hour-row:last-child{border-bottom:none;}
 .call-hour-row span:last-child{font-weight:700;color:var(--navy);}
 .call-closed{color:var(--red)!important;}
-
-/* Hero right — image with fades */
-.message-hero-right{position:relative;overflow:hidden;min-height:320px;}
-.message-hero-right::before{content:'';position:absolute;left:0;top:0;bottom:0;width:28%;background:linear-gradient(to right,#F8F5F0 0%,rgba(248,245,240,0) 100%);z-index:1;pointer-events:none;}
-.message-hero-right::after{content:'';position:absolute;right:0;top:0;bottom:0;width:16%;background:linear-gradient(to left,#F8F5F0 0%,rgba(248,245,240,0) 100%);z-index:1;pointer-events:none;}
-.message-hero-right img{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;}
-
-/* ── MAIN FORM SECTION ── */
-.message-main{background:var(--cream);padding:24px 0 28px;}
-.message-main-inner{max-width:1100px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1.3fr 1fr;gap:20px;align-items:start;}
-
-/* Form card */
-.form-card{background:#fff;border-radius:14px;padding:24px 26px;box-shadow:0 4px 24px rgba(0,0,0,0.07);border:1px solid var(--border);}
-.form-card-header{display:flex;align-items:center;gap:12px;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--border);}
-.form-card-icon{width:42px;height:42px;background:var(--blue-light);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.form-card-icon svg{width:21px;height:21px;stroke:var(--blue-dark);stroke-width:2;}
-.form-card-title{font-size:18px;font-weight:900;color:var(--navy);}
-.form-card-sub{font-size:12px;color:var(--text-light);margin-top:1px;}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.form-full{grid-column:1/-1;}
-.form-group{display:flex;flex-direction:column;gap:4px;margin-bottom:2px;}
-.form-label{font-size:11.5px;font-weight:700;color:var(--navy);}
-.form-label .req{color:var(--red);}
-.form-label .opt{font-weight:400;color:var(--text-light);}
-.form-input,.form-select,.form-textarea{
-  width:100%;padding:9px 12px;border:1.5px solid var(--border);border-radius:7px;
-  font-family:'DM Sans',sans-serif;font-size:13px;color:var(--navy);
-  background:#fff;transition:border-color 0.15s,box-shadow 0.15s;outline:none;
-}
-.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,174,239,0.12);}
-.form-input::placeholder,.form-textarea::placeholder{color:#CBD5E1;}
-.form-textarea{resize:vertical;min-height:88px;}
-.form-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;background-size:14px;padding-right:30px;}
-.btn-submit{
-  width:100%;padding:13px 20px;border:none;border-radius:9px;cursor:pointer;
-  background:var(--red);color:#fff;font-family:'DM Sans',sans-serif;
-  font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:8px;
-  transition:background 0.2s,transform 0.15s;margin-top:10px;
-}
-.btn-submit:hover{background:var(--red-dark);transform:translateY(-1px);}
-.btn-submit svg{width:16px;height:16px;stroke:#fff;stroke-width:2.5;}
-.form-security{display:flex;align-items:center;justify-content:center;gap:6px;font-size:11px;color:var(--text-light);margin-top:8px;}
-.form-security svg{width:12px;height:12px;stroke:var(--text-light);}
-
-/* Side card — Refill or Transfer */
-.side-card{display:flex;flex-direction:column;gap:14px;}
-.action-card{background:#fff;border-radius:14px;padding:20px;box-shadow:0 4px 24px rgba(0,0,0,0.07);border:1px solid var(--border);}
-.action-card-title{font-size:15px;font-weight:900;color:var(--navy);margin-bottom:6px;}
-.action-card-sub{font-size:13px;color:var(--text-mid);line-height:1.5;margin-bottom:14px;}
-.action-btns{display:flex;flex-direction:column;gap:8px;}
-.btn-action{display:flex;align-items:center;justify-content:center;gap:8px;padding:11px 16px;border-radius:8px;font-size:13px;font-weight:700;transition:background 0.15s,transform 0.15s;text-align:center;}
-.btn-action-red{background:var(--red);color:#fff;}
-.btn-action-red:hover{background:var(--red-dark);transform:translateY(-1px);}
-.btn-action-outline{border:1.5px solid var(--border);color:var(--navy);}
-.btn-action-outline:hover{border-color:var(--blue);color:var(--blue-dark);}
-.btn-action svg{width:14px;height:14px;stroke:currentColor;stroke-width:2.5;}
 
 /* ── FOOTER TRUST ── */
 .footer-trust{background:var(--navy);padding:18px 0;}
@@ -162,10 +165,10 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
 
 /* ── RESPONSIVE ── */
 @media(max-width:1024px){
-  .message-hero-inner{grid-template-columns:1fr;min-height:auto;}
-  .message-hero-left{padding:40px 0 32px;}
-  .message-hero-right{min-height:260px;}
-  .message-main-inner{grid-template-columns:1fr;}
+  .message-hero-inner{grid-template-columns:1fr;padding:0;}
+  .message-hero-left{padding:36px 2rem 32px;}
+  .hero-image-wrap{min-height:260px;flex:none;}
+  .message-hero-sub{max-width:none;}
   .footer-trust-inner{grid-template-columns:repeat(3,1fr);gap:16px;}
   .ft-item{padding:12px;border-right:none;border-bottom:1px solid rgba(255,255,255,0.1);}
 }
@@ -177,7 +180,6 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
   .nav-cta{display:none;}
   .form-grid{grid-template-columns:1fr;}
   .footer-trust-inner{grid-template-columns:1fr;}
-  .call-card{max-width:none;}
 }
 </style>
 </head>
@@ -242,15 +244,80 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
   </div>
 </nav>
 
-<!-- HERO -->
+<!-- HERO: left = headline + form | right = image + call card -->
 <section class="message-hero">
   <div class="message-hero-inner">
+
+    <!-- LEFT: headline + form -->
     <div class="message-hero-left">
       <div class="hero-eyebrow">Contact Detroit Pharmacy</div>
       <h1>Have an Rx Question?<br>Our Pharmacists Are <span class="red">Here.</span></h1>
       <p class="message-hero-sub">Ask our clinical staff about specific medications, stock availability, insurance plans, or our free delivery services.</p>
 
-      <!-- Prefer to Call card -->
+      <div class="form-card">
+        <div class="form-card-header">
+          <div class="form-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          </div>
+          <div>
+            <div class="form-card-title">Send a Message to Our Pharmacists</div>
+            <div class="form-card-sub">We respond directly within 1 business day.</div>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label" for="msg-first">First Name <span class="req">*</span></label>
+            <input class="form-input" type="text" id="msg-first" placeholder="Jane" autocomplete="given-name">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="msg-last">Last Name <span class="req">*</span></label>
+            <input class="form-input" type="text" id="msg-last" placeholder="Smith" autocomplete="family-name">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="msg-phone">Phone Number <span class="req">*</span></label>
+            <input class="form-input" type="tel" id="msg-phone" placeholder="(313) 000-0000" autocomplete="tel">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="msg-email">Email Address <span class="opt">(Optional)</span></label>
+            <input class="form-input" type="email" id="msg-email" placeholder="jane@email.com" autocomplete="email">
+          </div>
+          <div class="form-group form-full">
+            <label class="form-label" for="msg-topic">Topic <span class="req">*</span></label>
+            <select class="form-select" id="msg-topic">
+              <option value="" disabled selected>Select a topic...</option>
+              <option value="General Question">General Question</option>
+              <option value="Medication Availability">Medication Availability</option>
+              <option value="Insurance &amp; Coverage">Insurance &amp; Coverage</option>
+              <option value="Prescription Refill">Prescription Refill</option>
+              <option value="Pharmacy Transfer">Pharmacy Transfer</option>
+              <option value="Free Delivery">Free Delivery</option>
+              <option value="Billing Question">Billing Question</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="form-group form-full">
+            <label class="form-label" for="msg-message">Message <span class="req">*</span></label>
+            <textarea class="form-textarea" id="msg-message" placeholder="How can we help you?"></textarea>
+          </div>
+        </div>
+
+        <button class="btn-submit" onclick="submitMessage()">
+          Send Message
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+        <div class="form-security">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          Your information is safe and secure. We never share your data.
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: image + call card below -->
+    <div class="message-hero-right">
+      <div class="hero-image-wrap">
+        <img src="/message-hero.webp" alt="Patient contacting Fenkell Rx Pharmacy pharmacists in Detroit, MI" loading="eager" width="1400">
+      </div>
       <div class="call-card">
         <div class="call-card-title">Prefer to Call?</div>
         <div class="call-card-sub">Speak directly with our team — no hold music.</div>
@@ -264,93 +331,6 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
           <div class="call-hour-row"><span>Monday – Friday</span><span>9:30 AM – 6:00 PM</span></div>
           <div class="call-hour-row"><span>Saturday</span><span>9:30 AM – 3:00 PM</span></div>
           <div class="call-hour-row"><span>Sunday &amp; Holidays</span><span class="call-closed">Closed</span></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="message-hero-right">
-      <img src="/message-hero.webp" alt="Fenkell Rx Pharmacy — contact our pharmacists in Detroit, MI" loading="eager" width="1400">
-    </div>
-  </div>
-</section>
-
-<!-- MAIN CONTENT -->
-<section class="message-main" id="message-form">
-  <div class="message-main-inner">
-
-    <!-- Form card -->
-    <div class="form-card">
-      <div class="form-card-header">
-        <div class="form-card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-        </div>
-        <div>
-          <div class="form-card-title">Send a Message to Our Pharmacists</div>
-          <div class="form-card-sub">We respond directly within 1 business day.</div>
-        </div>
-      </div>
-
-      <div class="form-grid">
-        <div class="form-group">
-          <label class="form-label" for="msg-first">First Name <span class="req">*</span></label>
-          <input class="form-input" type="text" id="msg-first" placeholder="Jane" autocomplete="given-name">
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="msg-last">Last Name <span class="req">*</span></label>
-          <input class="form-input" type="text" id="msg-last" placeholder="Smith" autocomplete="family-name">
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="msg-phone">Phone Number <span class="req">*</span></label>
-          <input class="form-input" type="tel" id="msg-phone" placeholder="(313) 000-0000" autocomplete="tel">
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="msg-email">Email Address <span class="opt">(Optional)</span></label>
-          <input class="form-input" type="email" id="msg-email" placeholder="jane@email.com" autocomplete="email">
-        </div>
-        <div class="form-group form-full">
-          <label class="form-label" for="msg-topic">Topic <span class="req">*</span></label>
-          <select class="form-select" id="msg-topic">
-            <option value="" disabled selected>Select a topic...</option>
-            <option value="General Question">General Question</option>
-            <option value="Medication Availability">Medication Availability</option>
-            <option value="Insurance &amp; Coverage">Insurance &amp; Coverage</option>
-            <option value="Prescription Refill">Prescription Refill</option>
-            <option value="Pharmacy Transfer">Pharmacy Transfer</option>
-            <option value="Free Delivery">Free Delivery</option>
-            <option value="Billing Question">Billing Question</option>
-            <option value="Other">Other</option>
-          </select>
-        </div>
-        <div class="form-group form-full">
-          <label class="form-label" for="msg-message">Message <span class="req">*</span></label>
-          <textarea class="form-textarea" id="msg-message" placeholder="How can we help you?"></textarea>
-        </div>
-      </div>
-
-      <button class="btn-submit" onclick="submitMessage()">
-        Send Message
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </button>
-      <div class="form-security">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-        Your information is safe and secure. We never share your data.
-      </div>
-    </div>
-
-    <!-- Side card -->
-    <div class="side-card">
-      <div class="action-card">
-        <div class="action-card-title">Refill or Transfer?</div>
-        <div class="action-card-sub">Skip the message — manage your prescriptions online right now.</div>
-        <div class="action-btns">
-          <a href="/refills" class="btn-action btn-action-red">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>
-            Refill a Prescription
-          </a>
-          <a href="/testtransfer" class="btn-action btn-action-outline">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            Switch My Pharmacy
-          </a>
         </div>
       </div>
     </div>
