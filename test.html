@@ -1727,7 +1727,7 @@ footer{
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 13.87a19.79 19.79 0 01-3.07-8.67A2 2 0 012 3h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 18v-.08z"/></svg>
         (313) 519-5700
       </div>
-      <div class="footer-contact-item">
+      <div class="footer-contact-item" id="footer-open-status">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         Open Now · Closes 6:00 PM
       </div>
@@ -1777,6 +1777,39 @@ footer{
   track.style.display = 'flex';
   track.style.willChange = 'transform';
   goTo(0);
+})();
+</script>
+
+<script>
+(function(){
+  function etNow(){var d=new Date(new Date().toLocaleString('en-US',{timeZone:'America/Detroit'}));return{day:d.getDay(),mins:d.getHours()*60+d.getMinutes()};}
+  function hm(h,m){return h*60+m;}
+  function getStatus(){
+    var t=etNow(),now=t.mins,open=hm(9,30);
+    if(t.day===0) return{isOpen:false,text:'Closed · Opens Mon 9:30 AM'};
+    if(t.day===6){
+      if(now>=open&&now<hm(15,0)) return{isOpen:true,text:'Open Now · Closes 3:00 PM'};
+      if(now<open) return{isOpen:false,text:'Closed · Opens 9:30 AM'};
+      return{isOpen:false,text:'Closed · Opens Mon 9:30 AM'};
+    }
+    if(now>=open&&now<hm(18,0)) return{isOpen:true,text:'Open Now · Closes 6:00 PM'};
+    if(now<open) return{isOpen:false,text:'Closed · Opens 9:30 AM'};
+    if(t.day===5) return{isOpen:false,text:'Closed · Opens Sat 9:30 AM'};
+    return{isOpen:false,text:'Closed · Opens Tomorrow 9:30 AM'};
+  }
+  var s=getStatus();
+  document.querySelectorAll('.topbar-open').forEach(function(el){
+    el.childNodes.forEach(function(n){if(n.nodeType===3)n.textContent=' '+s.text;});
+    var dot=el.querySelector('.topbar-open-dot');
+    if(dot)dot.style.background=s.isOpen?'#4ADE80':'#9CA3AF';
+  });
+  var footer=document.getElementById('footer-open-status');
+  if(footer){
+    var svg=footer.querySelector('svg');
+    footer.innerHTML='';
+    if(svg)footer.appendChild(svg);
+    footer.appendChild(document.createTextNode(' '+s.text));
+  }
 })();
 </script>
 
