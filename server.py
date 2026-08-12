@@ -1108,7 +1108,7 @@ class Handler(SimpleHTTPRequestHandler):
                     msg = {"text": notice[1], "kind": notice[0]}
             self._respond(200, {"ok": True, "message": msg})
         elif path in ("/", "/index.html"):
-            self._serve_html_with_seo(os.path.join(BASE_DIR, "index.html"))
+            self._serve_html_with_seo(os.path.join(BASE_DIR, "test.html"))
         elif path == "/availability":
             try:
                 fpath = os.path.join(BASE_DIR, "availability.html")
@@ -1145,8 +1145,6 @@ class Handler(SimpleHTTPRequestHandler):
             self._serve_html_with_seo(os.path.join(BASE_DIR, "blister-packaging-detroit.html"))
         elif path == "/diabetic-supplies-detroit":
             self._serve_html_with_seo(os.path.join(BASE_DIR, "diabetic-supplies-detroit.html"))
-        elif path == "/test":
-            self._serve_html_with_seo(os.path.join(BASE_DIR, "test.html"))
         elif path == "/refills":
             self._serve_html_with_seo(os.path.join(BASE_DIR, "refills.html"))
         elif path == "/message":
