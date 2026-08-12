@@ -418,7 +418,7 @@ function submitMessage() {
   }
   var s=getStatus();
   document.querySelectorAll('.topbar-open').forEach(function(el){
-    el.childNodes.forEach(function(n){if(n.nodeType===3)n.textContent=' '+s.text;});
+    el.childNodes.forEach(function(n){if(n.nodeType===3&&n.textContent.trim())n.textContent=' '+s.text;});
     var dot=el.querySelector('.topbar-open-dot');
     if(dot)dot.style.background=s.isOpen?'#4ADE80':'#9CA3AF';
   });
