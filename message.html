@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Our Pharmacists | Fenkell Rx Pharmacy Detroit</title>
+<meta name="description" content="Have an Rx question? Send a message to Fenkell Rx Pharmacy pharmacists in Detroit, MI. We respond within 1 business day. Call (313) 519-5700.">
+<link rel="canonical" href="https://fenkellrxpharmacy.com/message">
+<link rel="icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Pharmacy",
+  "name": "Fenkell Rx Pharmacy",
+  "url": "https://fenkellrxpharmacy.com",
+  "telephone": "+13135195700",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "18360 Fenkell Ave",
+    "addressLocality": "Detroit",
+    "addressRegion": "MI",
+    "postalCode": "48223",
+    "addressCountry": "US"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer service",
+    "telephone": "+13135195700",
+    "availableLanguage": "English"
+  }
+}
+</script>
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --navy:#0D1B2A;
+  --navy-mid:#1A2F45;
+  --red:#CC001C;
+  --red-dark:#A50016;
+  --red-light:#FCE8EB;
+  --blue:#00AEEF;
+  --blue-dark:#005B8E;
+  --blue-light:#E6F7FD;
+  --teal:#007B6E;
+  --teal-dark:#005F54;
+  --cream:#F8F5F0;
+  --border:#E2E8F0;
+  --text-light:#6B7280;
+  --text-mid:#374151;
+}
+body{font-family:'DM Sans',sans-serif;color:var(--navy);background:#fff;line-height:1.6;}
+a{text-decoration:none;color:inherit;}
+img{display:block;max-width:100%;}
+
+/* ── TOPBAR ── */
+.topbar{background:var(--navy);padding:9px 0;}
+.topbar-inner{max-width:1340px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.topbar-item{display:flex;align-items:center;gap:6px;font-size:11.5px;color:rgba(255,255,255,0.75);font-weight:500;}
+.topbar-item svg{width:13px;height:13px;stroke:var(--blue);flex-shrink:0;}
+.topbar-sep{width:1px;height:14px;background:rgba(255,255,255,0.15);margin:0 14px;}
+.topbar-right{display:flex;align-items:center;gap:16px;}
+.topbar-phone{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:#fff;}
+.topbar-open{display:flex;align-items:center;gap:6px;font-size:11.5px;color:rgba(255,255,255,0.7);}
+.topbar-open-dot{width:7px;height:7px;border-radius:50%;background:#4ADE80;flex-shrink:0;}
+.topbar-socials{display:flex;align-items:center;gap:10px;}
+.topbar-socials a{display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,0.1);transition:background 0.15s;}
+.topbar-socials a:hover{background:rgba(255,255,255,0.2);}
+.topbar-socials svg{width:13px;height:13px;stroke:#fff;fill:none;}
+
+/* ── NAV ── */
+nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 1px 8px rgba(0,0,0,0.06);}
+.nav-inner{max-width:1340px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;gap:32px;height:64px;}
+.nav-logo img{height:44px;width:auto;}
+.nav-logo-fallback{display:flex;flex-direction:column;line-height:1.1;}
+.nav-logo-top{font-size:20px;font-weight:900;color:var(--navy);letter-spacing:-0.5px;}
+.nav-logo-top span{color:var(--red);}
+.nav-logo-bot{font-size:11px;font-weight:600;color:var(--blue);letter-spacing:0.05em;text-transform:uppercase;}
+.nav-links{list-style:none;display:flex;align-items:center;gap:4px;flex:1;}
+.nav-links li a{font-size:13px;font-weight:600;color:var(--navy);padding:6px 10px;border-radius:6px;transition:color 0.15s,background 0.15s;white-space:nowrap;}
+.nav-links li a:hover{color:var(--red);background:var(--red-light);}
+.nav-cta{margin-left:auto;background:var(--red);color:#fff;font-size:13px;font-weight:800;padding:10px 20px;border-radius:8px;white-space:nowrap;display:flex;align-items:center;gap:8px;transition:background 0.2s;}
+.nav-cta:hover{background:var(--red-dark);color:#fff;}
+.nav-cta svg{width:14px;height:14px;stroke:#fff;stroke-width:2.5;}
+.nav-mobile-call{display:none;}
+
+/* ── HERO ── */
+.message-hero{position:relative;overflow:hidden;border-bottom:1px solid var(--border);}
+.hero-bg{position:absolute;inset:0;background-image:url('/wellness.webp');background-size:cover;background-position:center 40%;}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,rgba(13,27,42,0.72) 0%,rgba(13,27,42,0.55) 45%,rgba(13,27,42,0.18) 100%);}
+.message-hero-inner{
+  position:relative;z-index:1;
+  max-width:1200px;margin:0 auto;padding:52px 2rem;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:48px;align-items:center;
+}
+/* Left text */
+.hero-text{display:flex;flex-direction:column;justify-content:center;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:var(--blue);margin-bottom:16px;}
+.hero-eyebrow::before{content:'';width:20px;height:2px;background:var(--blue);}
+.message-hero h1{font-family:'DM Serif Display',serif;font-size:clamp(28px,3.5vw,46px);color:#fff;line-height:1.1;letter-spacing:-0.3px;margin-bottom:14px;}
+.message-hero h1 span{color:#FF6B7A;}
+.hero-sub{font-size:15px;color:rgba(255,255,255,0.8);line-height:1.65;margin-bottom:28px;max-width:420px;}
+.hero-features{display:flex;flex-direction:column;gap:16px;}
+.hero-feat{display:flex;align-items:center;gap:14px;}
+.hero-feat-icon{width:42px;height:42px;border-radius:10px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.18);flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+.hero-feat-icon svg{width:20px;height:20px;stroke:var(--blue);stroke-width:1.8;}
+.hero-feat-text .feat-title{font-size:14px;font-weight:800;color:#fff;}
+.hero-feat-text .feat-desc{font-size:12.5px;color:rgba(255,255,255,0.65);margin-top:1px;}
+
+/* Right form card */
+.hero-form-card{background:#fff;border-radius:16px;padding:28px 28px 24px;box-shadow:0 20px 60px rgba(0,0,0,0.22),0 4px 16px rgba(0,0,0,0.1);}
+.form-card-head{margin-bottom:20px;}
+.form-card-head-title{font-size:19px;font-weight:900;color:var(--navy);}
+.form-card-head-sub{font-size:12.5px;color:var(--text-light);margin-top:3px;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:0;}
+.form-full{grid-column:1/-1;}
+.form-group{display:flex;flex-direction:column;gap:4px;margin-bottom:10px;}
+.form-label{font-size:11.5px;font-weight:700;color:var(--navy);}
+.form-label .req{color:var(--red);}
+.form-label .opt{font-weight:400;color:var(--text-light);}
+.form-input,.form-select,.form-textarea{
+  width:100%;padding:9px 12px;
+  border:1.5px solid var(--border);border-radius:7px;
+  font-family:'DM Sans',sans-serif;font-size:13px;color:var(--navy);
+  background:#fff;transition:border-color 0.15s,box-shadow 0.15s;outline:none;
+}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(0,123,110,0.1);}
+.form-input::placeholder,.form-textarea::placeholder{color:#CBD5E1;}
+.form-textarea{resize:vertical;min-height:90px;}
+.form-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;background-size:14px;padding-right:30px;}
+.btn-submit-msg{
+  width:100%;padding:13px 20px;border:none;border-radius:9px;cursor:pointer;
+  background:var(--teal);color:#fff;font-family:'DM Sans',sans-serif;
+  font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:8px;
+  transition:background 0.2s,transform 0.15s;margin-top:4px;
+}
+.btn-submit-msg:hover{background:var(--teal-dark);transform:translateY(-1px);}
+.btn-submit-msg svg{width:16px;height:16px;stroke:#fff;stroke-width:2.5;}
+.form-security{display:flex;align-items:center;justify-content:center;gap:6px;font-size:11px;color:var(--text-light);margin-top:10px;}
+.form-security svg{width:12px;height:12px;stroke:var(--text-light);}
+
+/* ── QUICK ACTIONS ── */
+.quick-section{background:#fff;padding:36px 0;border-bottom:1px solid var(--border);}
+.quick-inner{max-width:1100px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.quick-card{display:flex;flex-direction:column;align-items:center;text-align:center;padding:24px 16px;border:1.5px solid var(--border);border-radius:14px;gap:10px;transition:border-color 0.15s,box-shadow 0.15s;}
+.quick-card:hover{border-color:var(--blue);box-shadow:0 4px 20px rgba(0,174,239,0.12);}
+.quick-icon{width:52px;height:52px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;}
+.quick-icon svg{width:24px;height:24px;stroke:var(--blue-dark);stroke-width:1.8;}
+.quick-title{font-size:15px;font-weight:900;color:var(--navy);}
+.quick-sub{font-size:12.5px;color:var(--text-light);line-height:1.45;}
+.quick-phone{font-size:21px;font-weight:900;color:var(--red);letter-spacing:-0.5px;line-height:1.1;}
+.quick-hours{font-size:11.5px;color:var(--text-mid);line-height:1.6;}
+.quick-hours .closed{color:var(--red);font-weight:700;}
+.quick-btn{margin-top:4px;padding:9px 20px;border-radius:8px;font-size:13px;font-weight:700;border:1.5px solid var(--border);color:var(--navy);background:#fff;cursor:pointer;font-family:'DM Sans',sans-serif;transition:border-color 0.15s,color 0.15s;white-space:nowrap;}
+.quick-btn:hover{border-color:var(--blue);color:var(--blue-dark);}
+a.quick-btn{display:inline-block;}
+
+/* ── FOOTER TRUST ── */
+.footer-trust{background:var(--navy);padding:18px 0;}
+.footer-trust-inner{max-width:1340px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:repeat(5,1fr);gap:0;}
+.ft-item{display:flex;align-items:center;gap:12px;padding:0 20px;border-right:1px solid rgba(255,255,255,0.1);}
+.ft-item:first-child{padding-left:0;}
+.ft-item:last-child{border-right:none;}
+.ft-icon{width:36px;height:36px;border-radius:9px;background:rgba(255,255,255,0.08);flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+.ft-icon svg{width:18px;height:18px;stroke:var(--blue);stroke-width:2;}
+.ft-label{font-size:12px;font-weight:800;color:#fff;line-height:1.3;}
+.ft-sub{font-size:10.5px;color:rgba(255,255,255,0.55);margin-top:2px;}
+
+/* ── BOTTOM CTA ── */
+.bottom-cta{background:var(--cream);padding:32px 0;border-top:1px solid var(--border);}
+.bottom-cta-inner{max-width:1100px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;gap:24px;justify-content:space-between;flex-wrap:wrap;}
+.bottom-cta-icon{width:56px;height:56px;border-radius:50%;background:var(--teal);flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+.bottom-cta-icon svg{width:26px;height:26px;stroke:#fff;stroke-width:1.8;}
+.bottom-cta-text .cta-title{font-size:19px;font-weight:900;color:var(--navy);}
+.bottom-cta-text .cta-sub{font-size:13.5px;color:var(--text-mid);margin-top:3px;}
+.bottom-cta-left{display:flex;align-items:center;gap:18px;}
+.btn-teal{background:var(--teal);color:#fff;font-size:14px;font-weight:800;padding:12px 24px;border-radius:9px;display:inline-flex;align-items:center;gap:8px;transition:background 0.2s,transform 0.15s;white-space:nowrap;}
+.btn-teal:hover{background:var(--teal-dark);transform:translateY(-1px);}
+.btn-teal svg{width:15px;height:15px;stroke:#fff;stroke-width:2.5;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .message-hero-inner{grid-template-columns:1fr;gap:32px;padding:40px 2rem;}
+  .hero-sub{max-width:none;}
+  .hero-form-card{max-width:560px;}
+  .quick-inner{grid-template-columns:repeat(2,1fr);}
+  .footer-trust-inner{grid-template-columns:repeat(3,1fr);gap:16px;}
+  .ft-item{padding:12px;border-right:none;border-bottom:1px solid rgba(255,255,255,0.1);}
+}
+@media(max-width:768px){
+  .topbar{display:none;}
+  .nav-links{display:none;}
+  .nav-mobile-call{display:flex;align-items:center;gap:6px;margin-left:auto;background:var(--red);color:#fff;font-size:12px;font-weight:700;padding:8px 14px;border-radius:6px;}
+  .nav-mobile-call svg{width:14px;height:14px;stroke:#fff;}
+  .nav-cta{display:none;}
+  .form-grid{grid-template-columns:1fr;}
+  .quick-inner{grid-template-columns:1fr;}
+  .footer-trust-inner{grid-template-columns:1fr;}
+  .bottom-cta-inner{flex-direction:column;align-items:flex-start;}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div style="display:flex;align-items:center;">
+      <div class="topbar-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        18360 Fenkell Ave, Detroit, MI 48223
+      </div>
+      <div class="topbar-sep"></div>
+      <div class="topbar-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 13.87a19.79 19.79 0 01-3.07-8.67A2 2 0 012 3h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 18v-.08z"/></svg>
+        (313) 519-5700
+      </div>
+      <div class="topbar-sep"></div>
+      <div class="topbar-open">
+        <span class="topbar-open-dot"></span>
+        Open Now · Closes 6:00 PM
+      </div>
+    </div>
+    <div class="topbar-right">
+      <div class="topbar-socials">
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="#" aria-label="Google"><svg viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <img src="/logo.png" alt="Fenkell Rx Pharmacy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="nav-logo-fallback" style="display:none;">
+        <div class="nav-logo-top">FENKELL <span>Rx</span></div>
+        <div class="nav-logo-bot">Pharmacy</div>
+      </div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="/#services">Services</a></li>
+      <li><a href="/refills">Refills</a></li>
+      <li><a href="/#wellness">Wellness</a></li>
+      <li><a href="/vaccines-detroit">Vaccines</a></li>
+      <li><a href="/diabetic-supplies-detroit">Diabetic Supplies</a></li>
+      <li><a href="/availability">Meds In Stock</a></li>
+      <li><a href="/#team">Team</a></li>
+    </ul>
+    <a href="/testtransfer" class="nav-cta">
+      Switch My Pharmacy
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+    <a href="tel:3135195700" class="nav-mobile-call">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 13.87a19.79 19.79 0 01-3.07-8.67A2 2 0 012 3h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 18v-.08z"/></svg>
+      Call Us
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="message-hero">
+  <div class="hero-bg"></div>
+  <div class="message-hero-inner">
+
+    <!-- Left text -->
+    <div class="hero-text">
+      <div class="hero-eyebrow">Contact Detroit Pharmacy</div>
+      <h1>Have an Rx Question?<br>Our Pharmacists Are <span>Here.</span></h1>
+      <p class="hero-sub">Ask our clinical staff about specific medications, stock availability, insurance plans, or our free delivery services.</p>
+      <div class="hero-features">
+        <div class="hero-feat">
+          <div class="hero-feat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <div class="hero-feat-text">
+            <div class="feat-title">Expert Pharmacists</div>
+            <div class="feat-desc">Get answers from our experienced, friendly team.</div>
+          </div>
+        </div>
+        <div class="hero-feat">
+          <div class="hero-feat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="hero-feat-text">
+            <div class="feat-title">Fast Response</div>
+            <div class="feat-desc">We respond directly within 1 business day.</div>
+          </div>
+        </div>
+        <div class="hero-feat">
+          <div class="hero-feat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          </div>
+          <div class="hero-feat-text">
+            <div class="feat-title">Private &amp; Secure</div>
+            <div class="feat-desc">Your information is safe and never shared.</div>
+          </div>
+        </div>
+        <div class="hero-feat">
+          <div class="hero-feat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+          </div>
+          <div class="hero-feat-text">
+            <div class="feat-title">Here for Your Health</div>
+            <div class="feat-desc">We're committed to your wellness every step of the way.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right form card -->
+    <div class="hero-form-card" id="message-form">
+      <div class="form-card-head">
+        <div class="form-card-head-title">Send a Message to Our Pharmacists</div>
+        <div class="form-card-head-sub">We respond directly within 1 business day.</div>
+      </div>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label" for="msg-first">First Name <span class="req">*</span></label>
+          <input class="form-input" type="text" id="msg-first" placeholder="Jane" autocomplete="given-name">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="msg-last">Last Name <span class="req">*</span></label>
+          <input class="form-input" type="text" id="msg-last" placeholder="Smith" autocomplete="family-name">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="msg-phone">Phone Number <span class="req">*</span></label>
+          <input class="form-input" type="tel" id="msg-phone" placeholder="(313) 000-0000" autocomplete="tel">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="msg-email">Email Address <span class="opt">(Optional)</span></label>
+          <input class="form-input" type="email" id="msg-email" placeholder="jane@email.com" autocomplete="email">
+        </div>
+        <div class="form-group form-full">
+          <label class="form-label" for="msg-topic">Topic <span class="req">*</span></label>
+          <select class="form-select" id="msg-topic">
+            <option value="" disabled selected>Select a topic...</option>
+            <option value="General Question">General Question</option>
+            <option value="Medication Availability">Medication Availability</option>
+            <option value="Insurance &amp; Coverage">Insurance &amp; Coverage</option>
+            <option value="Prescription Refill">Prescription Refill</option>
+            <option value="Pharmacy Transfer">Pharmacy Transfer</option>
+            <option value="Free Delivery">Free Delivery</option>
+            <option value="Billing Question">Billing Question</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="form-group form-full">
+          <label class="form-label" for="msg-message">Message <span class="req">*</span></label>
+          <textarea class="form-textarea" id="msg-message" placeholder="How can we help you?"></textarea>
+        </div>
+      </div>
+
+      <button class="btn-submit-msg" onclick="submitMessage()">
+        Send Message
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </button>
+      <div class="form-security">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+        Your information is safe and secure. We never share your data.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- QUICK ACTIONS -->
+<div class="quick-section">
+  <div class="quick-inner">
+
+    <div class="quick-card">
+      <div class="quick-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 13.87a19.79 19.79 0 01-3.07-8.67A2 2 0 012 3h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 18v-.08z"/></svg>
+      </div>
+      <div class="quick-title">Prefer to Call?</div>
+      <div class="quick-sub">Speak with our team directly.</div>
+      <a href="tel:3135195700" class="quick-phone">(313) 519-5700</a>
+      <div class="quick-hours">
+        Mon – Fri: 9:30 AM – 6:00 PM<br>
+        Sat: 9:30 AM – 3:00 PM<br>
+        Sun &amp; Holidays: <span class="closed">Closed</span>
+      </div>
+    </div>
+
+    <div class="quick-card">
+      <div class="quick-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      </div>
+      <div class="quick-title">Need Help Now?</div>
+      <div class="quick-sub">We're ready to assist you with anything you need.</div>
+      <a href="tel:3135195700" class="quick-btn">Call Now</a>
+    </div>
+
+    <div class="quick-card">
+      <div class="quick-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M11 8v4M5 10H3a1 1 0 00-1 1v8a1 1 0 001 1h18a1 1 0 001-1v-8a1 1 0 00-1-1h-2M13 8v4"/></svg>
+      </div>
+      <div class="quick-title">Refill or Transfer?</div>
+      <div class="quick-sub">Manage your medications quickly and easily.</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:4px;">
+        <a href="/refills" class="quick-btn">Refill Online</a>
+        <a href="/testtransfer" class="quick-btn">Switch Pharmacy</a>
+      </div>
+    </div>
+
+    <div class="quick-card">
+      <div class="quick-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+      </div>
+      <div class="quick-title">Free Delivery</div>
+      <div class="quick-sub">Enjoy free same-day delivery across Detroit.</div>
+      <a href="/testtransfer" class="quick-btn">Switch My Pharmacy</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER TRUST BAR -->
+<div class="footer-trust">
+  <div class="footer-trust-inner">
+    <div class="ft-item">
+      <div class="ft-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+      </div>
+      <div>
+        <div class="ft-label">Free Same-Day Delivery</div>
+        <div class="ft-sub">Across Detroit</div>
+      </div>
+    </div>
+    <div class="ft-item">
+      <div class="ft-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div>
+        <div class="ft-label">We Accept Most Insurance</div>
+        <div class="ft-sub">Medicare, Medicaid &amp; more</div>
+      </div>
+    </div>
+    <div class="ft-item">
+      <div class="ft-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+      </div>
+      <div>
+        <div class="ft-label">Independent Pharmacy You Can Count On</div>
+        <div class="ft-sub">Detroit's 4.9 ★ Pharmacy</div>
+      </div>
+    </div>
+    <div class="ft-item">
+      <div class="ft-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <div>
+        <div class="ft-label">Extended Hours</div>
+        <div class="ft-sub">Evening &amp; Saturday hours for your convenience</div>
+      </div>
+    </div>
+    <div class="ft-item">
+      <div class="ft-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+      </div>
+      <div>
+        <div class="ft-label">Local &amp; Trusted</div>
+        <div class="ft-sub">Proudly serving Detroit and surrounding areas</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BOTTOM CTA -->
+<div class="bottom-cta">
+  <div class="bottom-cta-inner">
+    <div class="bottom-cta-left">
+      <div class="bottom-cta-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/><path d="M12 8v4M12 16h.01"/></svg>
+      </div>
+      <div class="bottom-cta-text">
+        <div class="cta-title">We're More Than a Pharmacy. We're Your Health Partner.</div>
+        <div class="cta-sub">At Fenkell Rx Pharmacy, your health and well-being are our top priority.</div>
+      </div>
+    </div>
+    <a href="/" class="btn-teal">
+      Learn More About Us
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </div>
+</div>
+
+<script>
+function submitMessage() {
+  var first   = document.getElementById('msg-first').value.trim();
+  var last    = document.getElementById('msg-last').value.trim();
+  var phone   = document.getElementById('msg-phone').value.trim();
+  var email   = document.getElementById('msg-email').value.trim();
+  var topic   = document.getElementById('msg-topic').value;
+  var message = document.getElementById('msg-message').value.trim();
+
+  if (!first || !last || !phone || !topic || !message) {
+    alert('Please fill in all required fields before sending.');
+    return;
+  }
+
+  fetch('/api/email', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      type: 'Contact Inquiry',
+      subject: 'Patient Message: ' + topic + ' — ' + first + ' ' + last,
+      body:
+        'PATIENT MESSAGE\n' +
+        '==============================\n\n' +
+        'Name:    ' + first + ' ' + last + '\n' +
+        'Phone:   ' + phone + '\n' +
+        'Email:   ' + (email || 'Not provided') + '\n' +
+        'Topic:   ' + topic + '\n\n' +
+        'Message:\n' + message + '\n\n' +
+        '==============================\n' +
+        'Submitted via FenkellRxPharmacy.com/message',
+      first: first,
+      last: last,
+      phone: phone,
+      customerEmail: email || '',
+      topic: topic,
+      message: message
+    })
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(d){
+    if (d.ok) {
+      alert('Thank you! We received your message and will get back to you within 1 business day.');
+      ['msg-first','msg-last','msg-phone','msg-email','msg-message'].forEach(function(id){
+        document.getElementById(id).value = '';
+      });
+      document.getElementById('msg-topic').selectedIndex = 0;
+    } else {
+      alert('Your message could not be sent. Please call us directly at (313) 519-5700.');
+    }
+  })
+  .catch(function(){
+    alert('Your message could not be sent. Please call us directly at (313) 519-5700.');
+  });
+}
+</script>
+
+</body>
+</html>
