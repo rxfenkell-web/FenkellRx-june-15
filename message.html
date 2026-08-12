@@ -65,92 +65,87 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
 .message-hero{background:var(--cream);overflow:hidden;border-bottom:1px solid var(--border);}
 .message-hero-inner{
   max-width:1340px;margin:0 auto;
-  padding:0 0 0 2rem;
-  display:grid;
-  grid-template-columns:1.15fr 0.85fr;
-  align-items:stretch;
-  gap:0;
+  display:grid;grid-template-columns:1fr 1fr;
+  align-items:stretch;gap:0;
+  min-height:calc(100vh - 100px); /* fill viewport below topbar+nav */
+  max-height:820px;
 }
 
-/* Left column: headline + form */
+/* LEFT: text on top, image fills below */
 .message-hero-left{
-  padding:20px 36px 20px 0;
-  display:flex;flex-direction:column;justify-content:flex-start;
+  display:flex;flex-direction:column;overflow:hidden;
 }
-.hero-eyebrow{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue-dark);margin-bottom:8px;}
+.hero-text{
+  padding:28px 24px 20px 2rem;
+  flex-shrink:0;
+}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue-dark);margin-bottom:10px;}
 .hero-eyebrow::before{content:'';width:18px;height:2px;background:var(--blue);}
-.message-hero h1{font-family:'DM Serif Display',serif;font-size:clamp(22px,2.8vw,36px);color:var(--navy);line-height:1.1;letter-spacing:-0.5px;margin-bottom:6px;}
+.message-hero h1{font-family:'DM Serif Display',serif;font-size:clamp(24px,2.8vw,40px);color:var(--navy);line-height:1.1;letter-spacing:-0.5px;margin-bottom:8px;}
 .message-hero h1 .red{color:var(--red);}
-.message-hero-sub{font-size:13px;color:var(--text-mid);line-height:1.55;margin-bottom:14px;max-width:460px;}
+.message-hero-sub{font-size:13.5px;color:var(--text-mid);line-height:1.6;max-width:420px;}
 
-/* Form card — inside hero left */
-.form-card{background:#fff;border-radius:12px;padding:14px 16px;box-shadow:0 4px 24px rgba(0,0,0,0.07);border:1px solid var(--border);}
-.form-card-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border);}
-.form-card-icon{width:32px;height:32px;background:var(--blue-light);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.form-card-icon svg{width:16px;height:16px;stroke:var(--blue-dark);stroke-width:2;}
-.form-card-title{font-size:14px;font-weight:900;color:var(--navy);}
-.form-card-sub{font-size:11px;color:var(--text-light);margin-top:1px;}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;}
+/* Image fills remaining left space */
+.hero-image-wrap{
+  flex:1;position:relative;overflow:hidden;min-height:160px;
+}
+.hero-image-wrap::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:30%;
+  background:linear-gradient(to bottom,#F8F5F0 0%,rgba(248,245,240,0) 100%);
+  z-index:1;pointer-events:none;
+}
+.hero-image-wrap::after{
+  content:'';position:absolute;top:0;right:0;bottom:0;width:24%;
+  background:linear-gradient(to left,#F8F5F0 0%,rgba(248,245,240,0) 100%);
+  z-index:1;pointer-events:none;
+}
+.hero-image-wrap img{width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;}
+
+/* RIGHT: form takes full column */
+.message-hero-right{
+  padding:20px 2rem 20px 24px;
+  display:flex;flex-direction:column;
+  background:rgba(255,255,255,0.55);
+  border-left:1px solid var(--border);
+}
+
+/* Form card */
+.form-card{
+  background:#fff;border-radius:14px;padding:22px 24px;
+  box-shadow:0 4px 24px rgba(0,0,0,0.08);border:1px solid var(--border);
+  flex:1;display:flex;flex-direction:column;
+}
+.form-card-header{display:flex;align-items:center;gap:11px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--border);}
+.form-card-icon{width:36px;height:36px;background:var(--blue-light);border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.form-card-icon svg{width:18px;height:18px;stroke:var(--blue-dark);stroke-width:2;}
+.form-card-title{font-size:16px;font-weight:900;color:var(--navy);}
+.form-card-sub{font-size:11.5px;color:var(--text-light);margin-top:1px;}
+.form-body{flex:1;display:flex;flex-direction:column;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 .form-full{grid-column:1/-1;}
-.form-group{display:flex;flex-direction:column;gap:2px;}
-.form-label{font-size:10.5px;font-weight:700;color:var(--navy);}
+.form-group{display:flex;flex-direction:column;gap:3px;margin-bottom:4px;}
+.form-label{font-size:11px;font-weight:700;color:var(--navy);}
 .form-label .req{color:var(--red);}
 .form-label .opt{font-weight:400;color:var(--text-light);}
 .form-input,.form-select,.form-textarea{
-  width:100%;padding:6px 10px;border:1.5px solid var(--border);border-radius:6px;
-  font-family:'DM Sans',sans-serif;font-size:12.5px;color:var(--navy);
+  width:100%;padding:8px 12px;border:1.5px solid var(--border);border-radius:7px;
+  font-family:'DM Sans',sans-serif;font-size:13px;color:var(--navy);
   background:#fff;transition:border-color 0.15s,box-shadow 0.15s;outline:none;
 }
 .form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,174,239,0.12);}
 .form-input::placeholder,.form-textarea::placeholder{color:#CBD5E1;}
-.form-textarea{resize:vertical;min-height:56px;}
+.form-textarea{resize:vertical;min-height:72px;flex:1;}
 .form-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;background-size:13px;padding-right:28px;}
 .btn-submit{
-  width:100%;padding:9px 20px;border:none;border-radius:8px;cursor:pointer;
+  width:100%;padding:11px 20px;border:none;border-radius:9px;cursor:pointer;
   background:var(--red);color:#fff;font-family:'DM Sans',sans-serif;
-  font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:8px;
-  transition:background 0.2s,transform 0.15s;margin-top:8px;
+  font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:8px;
+  transition:background 0.2s,transform 0.15s;margin-top:10px;
 }
 .btn-submit:hover{background:var(--red-dark);transform:translateY(-1px);}
-.btn-submit svg{width:14px;height:14px;stroke:#fff;stroke-width:2.5;}
-.form-security{display:flex;align-items:center;justify-content:center;gap:5px;font-size:10.5px;color:var(--text-light);margin-top:6px;}
+.btn-submit svg{width:15px;height:15px;stroke:#fff;stroke-width:2.5;}
+.form-security{display:flex;align-items:center;justify-content:center;gap:5px;font-size:10.5px;color:var(--text-light);margin-top:7px;}
 .form-security svg{width:10px;height:10px;stroke:var(--text-light);}
-
-/* Right column: image (flex-1) + call card below */
-.message-hero-right{
-  display:flex;flex-direction:column;
-}
-.hero-image-wrap{
-  flex:1;position:relative;overflow:hidden;min-height:180px;
-}
-.hero-image-wrap::before{
-  content:'';position:absolute;left:0;top:0;bottom:0;width:28%;
-  background:linear-gradient(to right,#F8F5F0 0%,rgba(248,245,240,0) 100%);
-  z-index:1;pointer-events:none;
-}
-.hero-image-wrap::after{
-  content:'';position:absolute;right:0;top:0;bottom:0;width:16%;
-  background:linear-gradient(to left,#F8F5F0 0%,rgba(248,245,240,0) 100%);
-  z-index:1;pointer-events:none;
-}
-.hero-image-wrap img{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;}
-
-/* Prefer to Call card — under the image */
-.call-card{
-  background:rgba(0,174,239,0.18);border:1px solid rgba(0,174,239,0.32);
-  border-radius:12px;margin:12px 12px 12px 0;padding:11px 16px;
-}
-.call-card-title{font-size:12.5px;font-weight:900;color:var(--navy);margin-bottom:2px;}
-.call-card-sub{font-size:11px;color:var(--text-mid);margin-bottom:8px;}
-.call-phone-row{display:flex;align-items:center;gap:7px;margin-bottom:8px;}
-.call-phone-icon{width:28px;height:28px;background:rgba(0,174,239,0.2);border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.call-phone-icon svg{width:13px;height:13px;stroke:var(--blue-dark);}
-.call-phone-num{font-size:17px;font-weight:900;color:var(--red);letter-spacing:-0.5px;}
-.call-hours{display:flex;flex-direction:column;gap:2px;}
-.call-hour-row{display:flex;justify-content:space-between;font-size:10.5px;color:var(--text-mid);padding:2px 0;border-bottom:1px solid rgba(0,174,239,0.12);}
-.call-hour-row:last-child{border-bottom:none;}
-.call-hour-row span:last-child{font-weight:700;color:var(--navy);}
-.call-closed{color:var(--red)!important;}
 
 /* ── FOOTER TRUST ── */
 .footer-trust{background:var(--navy);padding:12px 0;}
@@ -165,10 +160,8 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
 
 /* ── RESPONSIVE ── */
 @media(max-width:1024px){
-  .message-hero-inner{grid-template-columns:1fr;padding:0;}
-  .message-hero-left{padding:36px 2rem 32px;}
-  .hero-image-wrap{min-height:260px;flex:none;}
-  .message-hero-sub{max-width:none;}
+  .message-hero-inner{grid-template-columns:1fr;min-height:auto;max-height:none;}
+  .message-hero-right{border-left:none;border-top:1px solid var(--border);padding:20px 2rem;}
   .footer-trust-inner{grid-template-columns:repeat(3,1fr);gap:16px;}
   .ft-item{padding:12px;border-right:none;border-bottom:1px solid rgba(255,255,255,0.1);}
 }
@@ -244,16 +237,24 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
   </div>
 </nav>
 
-<!-- HERO: left = headline + form | right = image + call card -->
+<!-- HERO: left = headline + image | right = full form -->
 <section class="message-hero">
   <div class="message-hero-inner">
 
-    <!-- LEFT: headline + form -->
+    <!-- LEFT: headline then image fills below -->
     <div class="message-hero-left">
-      <div class="hero-eyebrow">Contact Detroit Pharmacy</div>
-      <h1>Have an Rx Question?<br>Our Pharmacists Are <span class="red">Here.</span></h1>
-      <p class="message-hero-sub">Ask our clinical staff about specific medications, stock availability, insurance plans, or our free delivery services.</p>
+      <div class="hero-text">
+        <div class="hero-eyebrow">Contact Detroit Pharmacy</div>
+        <h1>Have an Rx Question?<br>Our Pharmacists Are <span class="red">Here.</span></h1>
+        <p class="message-hero-sub">Ask our clinical staff about specific medications, stock availability, insurance plans, or our free delivery services.</p>
+      </div>
+      <div class="hero-image-wrap">
+        <img src="/message-hero.webp" alt="Patient contacting Fenkell Rx Pharmacy pharmacists in Detroit, MI" loading="eager" width="1400">
+      </div>
+    </div>
 
+    <!-- RIGHT: form full height -->
+    <div class="message-hero-right">
       <div class="form-card">
         <div class="form-card-header">
           <div class="form-card-icon">
@@ -265,72 +266,52 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
           </div>
         </div>
 
-        <div class="form-grid">
-          <div class="form-group">
-            <label class="form-label" for="msg-first">First Name <span class="req">*</span></label>
-            <input class="form-input" type="text" id="msg-first" placeholder="Jane" autocomplete="given-name">
+        <div class="form-body">
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label" for="msg-first">First Name <span class="req">*</span></label>
+              <input class="form-input" type="text" id="msg-first" placeholder="Jane" autocomplete="given-name">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="msg-last">Last Name <span class="req">*</span></label>
+              <input class="form-input" type="text" id="msg-last" placeholder="Smith" autocomplete="family-name">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="msg-phone">Phone Number <span class="req">*</span></label>
+              <input class="form-input" type="tel" id="msg-phone" placeholder="(313) 000-0000" autocomplete="tel">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="msg-email">Email Address <span class="opt">(Optional)</span></label>
+              <input class="form-input" type="email" id="msg-email" placeholder="jane@email.com" autocomplete="email">
+            </div>
+            <div class="form-group form-full">
+              <label class="form-label" for="msg-topic">Topic <span class="req">*</span></label>
+              <select class="form-select" id="msg-topic">
+                <option value="" disabled selected>Select a topic...</option>
+                <option value="General Question">General Question</option>
+                <option value="Medication Availability">Medication Availability</option>
+                <option value="Insurance &amp; Coverage">Insurance &amp; Coverage</option>
+                <option value="Prescription Refill">Prescription Refill</option>
+                <option value="Pharmacy Transfer">Pharmacy Transfer</option>
+                <option value="Free Delivery">Free Delivery</option>
+                <option value="Billing Question">Billing Question</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="form-group form-full" style="flex:1;display:flex;flex-direction:column;">
+              <label class="form-label" for="msg-message">Message <span class="req">*</span></label>
+              <textarea class="form-textarea" id="msg-message" placeholder="How can we help you?" style="flex:1;"></textarea>
+            </div>
           </div>
-          <div class="form-group">
-            <label class="form-label" for="msg-last">Last Name <span class="req">*</span></label>
-            <input class="form-input" type="text" id="msg-last" placeholder="Smith" autocomplete="family-name">
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="msg-phone">Phone Number <span class="req">*</span></label>
-            <input class="form-input" type="tel" id="msg-phone" placeholder="(313) 000-0000" autocomplete="tel">
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="msg-email">Email Address <span class="opt">(Optional)</span></label>
-            <input class="form-input" type="email" id="msg-email" placeholder="jane@email.com" autocomplete="email">
-          </div>
-          <div class="form-group form-full">
-            <label class="form-label" for="msg-topic">Topic <span class="req">*</span></label>
-            <select class="form-select" id="msg-topic">
-              <option value="" disabled selected>Select a topic...</option>
-              <option value="General Question">General Question</option>
-              <option value="Medication Availability">Medication Availability</option>
-              <option value="Insurance &amp; Coverage">Insurance &amp; Coverage</option>
-              <option value="Prescription Refill">Prescription Refill</option>
-              <option value="Pharmacy Transfer">Pharmacy Transfer</option>
-              <option value="Free Delivery">Free Delivery</option>
-              <option value="Billing Question">Billing Question</option>
-              <option value="Other">Other</option>
-            </select>
-          </div>
-          <div class="form-group form-full">
-            <label class="form-label" for="msg-message">Message <span class="req">*</span></label>
-            <textarea class="form-textarea" id="msg-message" placeholder="How can we help you?"></textarea>
-          </div>
-        </div>
 
-        <button class="btn-submit" onclick="submitMessage()">
-          Send Message
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </button>
-        <div class="form-security">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-          Your information is safe and secure. We never share your data.
-        </div>
-      </div>
-    </div>
-
-    <!-- RIGHT: image + call card below -->
-    <div class="message-hero-right">
-      <div class="hero-image-wrap">
-        <img src="/message-hero.webp" alt="Patient contacting Fenkell Rx Pharmacy pharmacists in Detroit, MI" loading="eager" width="1400">
-      </div>
-      <div class="call-card">
-        <div class="call-card-title">Prefer to Call?</div>
-        <div class="call-card-sub">Speak directly with our team.</div>
-        <a href="tel:3135195700" class="call-phone-row">
-          <div class="call-phone-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 13.87a19.79 19.79 0 01-3.07-8.67A2 2 0 012 3h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 18v-.08z"/></svg>
+          <button class="btn-submit" onclick="submitMessage()">
+            Send Message
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+          <div class="form-security">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            Your information is safe and secure. We never share your data.
           </div>
-          <div class="call-phone-num">(313) 519-5700</div>
-        </a>
-        <div class="call-hours">
-          <div class="call-hour-row"><span>Monday – Friday</span><span>9:30 AM – 6:00 PM</span></div>
-          <div class="call-hour-row"><span>Saturday</span><span>9:30 AM – 3:00 PM</span></div>
-          <div class="call-hour-row"><span>Sunday &amp; Holidays</span><span class="call-closed">Closed</span></div>
         </div>
       </div>
     </div>
@@ -342,49 +323,24 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
 <div class="footer-trust">
   <div class="footer-trust-inner">
     <div class="ft-item">
-      <div class="ft-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-      </div>
-      <div>
-        <div class="ft-label">Free Same-Day Delivery</div>
-        <div class="ft-sub">Across Detroit</div>
-      </div>
+      <div class="ft-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+      <div><div class="ft-label">Free Same-Day Delivery</div><div class="ft-sub">Across Detroit</div></div>
     </div>
     <div class="ft-item">
-      <div class="ft-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      </div>
-      <div>
-        <div class="ft-label">We Accept Most Insurance</div>
-        <div class="ft-sub">Medicare, Medicaid &amp; more</div>
-      </div>
+      <div class="ft-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div><div class="ft-label">We Accept Most Insurance</div><div class="ft-sub">Medicare, Medicaid &amp; more</div></div>
     </div>
     <div class="ft-item">
-      <div class="ft-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-      </div>
-      <div>
-        <div class="ft-label">Independent Pharmacy You Can Count On</div>
-        <div class="ft-sub">Detroit's 4.9 ★ Pharmacy</div>
-      </div>
+      <div class="ft-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+      <div><div class="ft-label">Independent Pharmacy You Can Count On</div><div class="ft-sub">Detroit's 4.9 ★ Pharmacy</div></div>
     </div>
     <div class="ft-item">
-      <div class="ft-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      </div>
-      <div>
-        <div class="ft-label">Extended Hours</div>
-        <div class="ft-sub">Evening &amp; Saturday hours for your convenience</div>
-      </div>
+      <div class="ft-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+      <div><div class="ft-label">Extended Hours</div><div class="ft-sub">Evening &amp; Saturday hours</div></div>
     </div>
     <div class="ft-item">
-      <div class="ft-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-      </div>
-      <div>
-        <div class="ft-label">Local &amp; Trusted</div>
-        <div class="ft-sub">Proudly serving Detroit and surrounding areas</div>
-      </div>
+      <div class="ft-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
+      <div><div class="ft-label">Local &amp; Trusted</div><div class="ft-sub">Proudly serving Detroit</div></div>
     </div>
   </div>
 </div>
@@ -410,38 +366,28 @@ function submitMessage() {
       type: 'Contact Inquiry',
       subject: 'Patient Message: ' + topic + ' — ' + first + ' ' + last,
       body:
-        'PATIENT MESSAGE\n' +
-        '==============================\n\n' +
+        'PATIENT MESSAGE\n==============================\n\n' +
         'Name:    ' + first + ' ' + last + '\n' +
         'Phone:   ' + phone + '\n' +
         'Email:   ' + (email || 'Not provided') + '\n' +
         'Topic:   ' + topic + '\n\n' +
         'Message:\n' + message + '\n\n' +
-        '==============================\n' +
-        'Submitted via FenkellRxPharmacy.com/message',
-      first: first,
-      last: last,
-      phone: phone,
-      customerEmail: email || '',
-      topic: topic,
-      message: message
+        '==============================\nSubmitted via FenkellRxPharmacy.com/message',
+      first: first, last: last, phone: phone,
+      customerEmail: email || '', topic: topic, message: message
     })
   })
   .then(function(r){ return r.json(); })
   .then(function(d){
     if (d.ok) {
       alert('Thank you! We received your message and will get back to you within 1 business day.');
-      ['msg-first','msg-last','msg-phone','msg-email','msg-message'].forEach(function(id){
-        document.getElementById(id).value = '';
-      });
+      ['msg-first','msg-last','msg-phone','msg-email','msg-message'].forEach(function(id){ document.getElementById(id).value = ''; });
       document.getElementById('msg-topic').selectedIndex = 0;
     } else {
       alert('Your message could not be sent. Please call us directly at (313) 519-5700.');
     }
   })
-  .catch(function(){
-    alert('Your message could not be sent. Please call us directly at (313) 519-5700.');
-  });
+  .catch(function(){ alert('Your message could not be sent. Please call us directly at (313) 519-5700.'); });
 }
 </script>
 
