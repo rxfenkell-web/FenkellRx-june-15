@@ -142,7 +142,7 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
 .how-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;align-items:start;position:relative;}
 .how-step{display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 12px;position:relative;}
 .how-step:not(:last-child)::after{content:'→';position:absolute;right:-14px;top:32px;font-size:22px;color:var(--blue);font-weight:700;line-height:1;}
-.how-step-icon{width:70px;height:70px;border-radius:50%;background:var(--blue-light);border:2px solid #BAE6FD;display:flex;align-items:center;justify-content:center;margin-bottom:16px;flex-shrink:0;}
+.how-step-icon{width:80px;height:80px;border-radius:50%;background:var(--blue-light);border:2px solid #BAE6FD;display:flex;align-items:center;justify-content:center;margin-bottom:16px;flex-shrink:0;}
 .how-step-icon svg{width:32px;height:32px;stroke:var(--blue-dark);stroke-width:1.6;}
 .how-step-num{font-size:14px;font-weight:900;color:var(--red);margin-bottom:4px;}
 .how-step-title{font-size:14.5px;font-weight:800;color:var(--navy);margin-bottom:8px;}
@@ -336,8 +336,8 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 0 24px;}
     <div class="how-steps">
 
       <div class="how-step">
-        <div class="how-step-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        <div class="how-step-icon" style="background:transparent;border:none;overflow:visible;">
+          <img src="/quickcare-form-icon.webp" alt="Fill out form" style="width:80px;height:80px;object-fit:contain;">
         </div>
         <div class="how-step-num">1. Fill Out Form</div>
         <div class="how-step-title">Fill Out Form</div>
