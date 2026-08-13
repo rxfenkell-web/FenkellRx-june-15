@@ -525,14 +525,11 @@ loadMedications();
     var dot=el.querySelector('.topbar-open-dot');
     if(dot)dot.style.background=s.isOpen?'#4ADE80':'#9CA3AF';
   });
-  var logoImg=document.querySelector('.nav-logo img');
   var accBar=document.querySelector('.acc-bar');
-  if(!logoImg||!accBar)return;
-  var LARGE=76,SMALL=48,ticking=false;
+  if(!accBar)return;
+  var ticking=false;
   function applyUpdate(){
-    var scrolled=window.scrollY>10;
-    logoImg.style.height=(scrolled?SMALL:LARGE)+'px';
-    accBar.classList.toggle('acc-bar-hidden',scrolled);
+    accBar.classList.toggle('acc-bar-hidden',window.scrollY>10);
     ticking=false;
   }
   window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(applyUpdate);}},{passive:true});
