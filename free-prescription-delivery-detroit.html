@@ -177,9 +177,13 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
   .nav-logo img{height:44px !important;}
   .nav-hamburger{display:flex;align-items:center;margin-left:auto;}
 }
-  .hero { background: linear-gradient(135deg, #0077a8 0%, #00b4d8 45%, #48cae4 100%); color: #fff; padding: 60px 0 50px; }
-  .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 16px; line-height: 1.2; }
-  .hero p { font-size: 1.1rem; opacity: 0.88; max-width: 600px; line-height: 1.65; }
+/* ── HERO ── */
+.hero{position:relative;color:#fff;overflow:hidden;min-height:360px;display:flex;align-items:flex-end;}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,27,42,0.88) 0%,rgba(13,27,42,0.55) 55%,rgba(13,27,42,0.25) 100%);}
+.hero-content{position:relative;z-index:1;padding:56px 0 52px;width:100%;}
+.hero h1{font-family:'DM Serif Display',serif;font-size:clamp(1.9rem,4vw,2.8rem);margin-bottom:14px;line-height:1.2;text-shadow:0 2px 8px rgba(0,0,0,0.3);}
+.hero p{font-size:1.1rem;opacity:0.92;max-width:600px;line-height:1.65;text-shadow:0 1px 4px rgba(0,0,0,0.25);}
   .content { padding: 52px 0; }
   .content h2 { font-family: 'DM Serif Display', serif; font-size: 1.6rem; margin: 36px 0 14px; color: var(--slate); }
   .content h2:first-child { margin-top: 0; }
@@ -190,11 +194,11 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
   .badge { background: #F0FFF4; border: 1.5px solid #9AE6B4; border-radius: 10px; padding: 18px; text-align: center; }
   .badge .num { font-size: 1.8rem; font-weight: 700; color: #276749; }
   .badge .lbl { font-size: 13px; color: #4A5568; margin-top: 4px; }
-  .cta-box { background: linear-gradient(135deg, #0077a8 0%, #00b4d8 45%, #48cae4 100%); color: #fff; border-radius: 14px; padding: 36px 32px; text-align: center; margin: 44px 0 0; }
+  .cta-box { background: var(--navy); color: #fff; border-radius: 14px; padding: 36px 32px; text-align: center; margin: 44px 0 0; }
   .cta-box h3 { font-family: 'DM Serif Display', serif; font-size: 1.5rem; margin-bottom: 10px; }
   .cta-box p { opacity: 0.88; margin-bottom: 24px; font-size: 1rem; }
-  .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: #fff; color: #00695f; font-weight: 600; padding: 14px 28px; border-radius: 10px; text-decoration: none; font-size: 15px; margin: 0 8px 8px; transition: transform 0.15s, box-shadow 0.15s; }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+  .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--red); color: #fff; font-weight: 700; padding: 14px 28px; border-radius: 10px; text-decoration: none; font-size: 15px; margin: 0 8px 8px; transition: transform 0.15s, box-shadow 0.15s, background 0.15s; }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); background: var(--red-dark); }
   .btn-outline { display: inline-flex; align-items: center; gap: 8px; background: transparent; border: 1.5px solid rgba(255,255,255,0.4); color: #fff; font-weight: 500; padding: 14px 28px; border-radius: 10px; text-decoration: none; font-size: 15px; margin: 0 8px 8px; transition: background 0.15s, border-color 0.15s, transform 0.15s, box-shadow 0.15s; }
   .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.7); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
   footer { background: #1A202C; color: rgba(255,255,255,0.55); padding: 28px 0; font-size: 12px; text-align: center; line-height: 1.8; }
@@ -265,9 +269,13 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
 </div>
 
 <section class="hero">
-  <div class="container">
-    <h1>Free Prescription Delivery in Detroit, MI</h1>
-    <p>Need your medications delivered to your door? Fenkell Rx Pharmacy provides completely free home delivery throughout Detroit and surrounding communities — no fees, no minimum, no hassle.</p>
+  <img src="/delivery-car.jpg" alt="Free prescription home delivery in Detroit - Fenkell Rx Pharmacy" class="hero-img">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="container">
+      <h1>Free Prescription Delivery in Detroit, MI</h1>
+      <p>Need your medications delivered to your door? Fenkell Rx Pharmacy provides completely free home delivery throughout Detroit and surrounding communities — no fees, no minimum, no hassle.</p>
+    </div>
   </div>
 </section>
 
