@@ -168,14 +168,6 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
   .footer-trust-inner{grid-template-columns:repeat(3,1fr);gap:16px;}
   .ft-item{padding:12px;border-right:none;border-bottom:1px solid rgba(255,255,255,0.1);}
 }
-@media(max-width:768px){
-  .topbar{display:none;}
-  .nav-links{display:none;}
-  .nav-hamburger{display:flex;align-items:center;margin-left:auto;}
-    .nav-cta{display:none;}
-  .form-grid{grid-template-columns:1fr;}
-  .footer-trust-inner{grid-template-columns:1fr;}
-}
 
 /* ── HAMBURGER ── */
 .nav-hamburger{display:none;background:none;border:none;cursor:pointer;padding:6px;border-radius:6px;flex-shrink:0;line-height:0;-webkit-tap-highlight-color:transparent;}
@@ -189,6 +181,15 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
 .nav-mobile-menu a:hover{background:var(--red-light,#FCE8EB);color:var(--red,#CC001C);}
 .nav-mobile-menu .nav-m-cta{background:var(--red,#CC001C);color:#fff !important;margin:12px 16px 16px;border-radius:8px;text-align:center;border-bottom:none !important;display:block;}
 .nav-mobile-menu .nav-m-cta:hover{background:var(--red-dark,#A50016) !important;color:#fff !important;}
+@media(max-width:768px){
+  .topbar{display:none;}
+  .nav-links{display:none;}
+  .nav-hamburger{display:flex;align-items:center;margin-left:auto;}
+    .nav-cta{display:none;}
+  .form-grid{grid-template-columns:1fr;}
+  .footer-trust-inner{grid-template-columns:1fr;}
+}
+
 </style>
 </head>
 <body>
