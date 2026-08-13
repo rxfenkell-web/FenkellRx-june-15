@@ -690,6 +690,7 @@ def render_sitemap(meds):
         (SITE_URL + "/free-prescription-delivery-detroit", today, "0.8"),
         (SITE_URL + "/blister-packaging-detroit", today, "0.7"),
         (SITE_URL + "/diabetic-supplies-detroit", today, "0.8"),
+        (SITE_URL + "/insurance-detroit", today, "0.8"),
         (SITE_URL + "/compounding-pharmacy-detroit", today, "0.7"),
         (SITE_URL + "/privacy-policy", today, "0.3"),
     ]
@@ -1151,6 +1152,8 @@ class Handler(SimpleHTTPRequestHandler):
             self._serve_html_with_seo(os.path.join(BASE_DIR, "message.html"))
         elif path == "/vaccines-detroit":
             self._serve_html_with_seo(os.path.join(BASE_DIR, "vaccines-detroit.html"))
+        elif path == "/insurance-detroit":
+            self._serve_html_with_seo(os.path.join(BASE_DIR, "insurance-detroit.html"))
         elif path == "/privacy-policy":
             self._serve_html_with_seo(os.path.join(BASE_DIR, "privacy-policy.html"))
         elif path == "/medications" or path == "/medications/":
