@@ -37,6 +37,9 @@
   --red:#CC001C;
 }
 html{scroll-behavior:smooth;scroll-padding-top:70px;}
+.mid-section{scroll-margin-top:70px;}
+.services-section{scroll-margin-top:70px;}
+.bottom-grid-section{scroll-margin-top:70px;}
 body{font-family:'DM Sans',sans-serif;color:var(--text);background:#fff;line-height:1.6;overflow-x:hidden;}
 a{text-decoration:none;color:inherit;}
 img{display:block;max-width:100%;}
@@ -1774,6 +1777,19 @@ footer{
     if (!ticking){ ticking = true; requestAnimationFrame(applyUpdate); }
   }, { passive: true });
   applyUpdate();
+
+  // On fresh hash navigation (e.g. fenkellrxpharmacy.com/#location),
+  // wait for the acc-bar to fully collapse then re-snap to the target.
+  if (window.location.hash) {
+    window.addEventListener('load', function() {
+      var target = document.querySelector(window.location.hash);
+      if (!target) return;
+      setTimeout(function() {
+        var navH = document.querySelector('nav') ? document.querySelector('nav').offsetHeight : 70;
+        window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - navH, behavior: 'instant' });
+      }, 350); // after acc-bar transition (0.3s) completes
+    });
+  }
 })();
 </script>
 
