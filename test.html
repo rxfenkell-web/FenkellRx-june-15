@@ -1917,11 +1917,11 @@ function closeMobileNav(){
     if(b){b.setAttribute('aria-expanded','false');b.querySelector('svg').innerHTML='<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>';}
   }
 }
-// Close when clicking a menu link
-var menu=document.getElementById('navMobileMenu');
-if(menu){menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeMobileNav);});}
-// Close when clicking outside nav
-document.addEventListener('click',function(e){if(!e.target.closest('nav'))closeMobileNav();});
+// Close on menu link click (same-page anchors too) or outside-nav click
+document.addEventListener('click',function(e){
+  if(e.target.closest('#navMobileMenu a')){setTimeout(closeMobileNav,0);return;}
+  if(!e.target.closest('nav'))closeMobileNav();
+});
 </script>
 </body>
 </html>
