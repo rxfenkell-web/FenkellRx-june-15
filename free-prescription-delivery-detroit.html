@@ -113,20 +113,70 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root { --brand-red: #CC001C; --brand-blue: #00AEEF; --brand-blue-dark: #0082C8; --slate: #2D3748; }
-  body { font-family: 'DM Sans', sans-serif; color: var(--slate); background: #FBF8F2; }
-  a { color: var(--brand-blue-dark); }
-  .container { max-width: 860px; margin: 0 auto; padding: 0 24px; }
-  .site-nav { background: rgba(255,255,255,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid #E2E8F0; position: sticky; top: 0; z-index: 100; }
-  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 76px; gap: 1rem; }
-  .nav-logo-link { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
-  .nav-logo-link img { height: 56px; width: auto; display: block; }
-  .nav-actions { display: flex; gap: 10px; align-items: center; }
-  .nav-back { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 500; color: #4A5568; padding: 8px 16px; border: 1.5px solid #E2E8F0; border-radius: 50px; text-decoration: none; transition: all 0.2s; white-space: nowrap; }
-  .nav-back:hover { border-color: var(--brand-blue-dark); color: var(--brand-blue-dark); }
-  .nav-call { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 700; color: #fff !important; background: var(--brand-red); padding: 9px 18px; border-radius: 50px; text-decoration: none; white-space: nowrap; }
-  .nav-call:hover { background: #a50016; }
-  @media (max-width: 560px) { .nav-back span.label { display: none; } .nav-inner { height: 68px; } .nav-logo-link img { height: 46px; } }
+:root{
+  --brand-red:#CC001C;--brand-blue:#00AEEF;--brand-blue-dark:#0082C8;--slate:#2D3748;
+  --navy:#0D1B2A;--red:#CC001C;--red-dark:#A50016;--red-light:#FCE8EB;
+  --blue:#00AEEF;--blue-dark:#005B8E;--blue-light:#E6F7FD;
+  --cream:#F8F5F0;--border:#E2E8F0;--text-light:#6B7280;--text-mid:#374151;
+}
+body{font-family:'DM Sans',sans-serif;color:var(--slate);background:#FBF8F2;}
+a{color:var(--brand-blue-dark);}
+.container{max-width:860px;margin:0 auto;padding:0 24px;}
+
+/* ── ACC BAR ── */
+.acc-bar{background:var(--navy);transition:max-height 0.3s ease,opacity 0.3s ease;max-height:60px;opacity:1;overflow:hidden;}
+.acc-bar.acc-bar-hidden{max-height:0;opacity:0;}
+.acc-bar-panel{max-width:1340px;margin:0 auto;padding:9px 2rem;display:flex;align-items:center;justify-content:center;gap:0;}
+.acc-bar-item{display:flex;align-items:center;gap:7px;white-space:nowrap;padding:0 1.5rem;font-size:13px;color:rgba(255,255,255,0.9);font-weight:400;}
+.acc-bar-item+.acc-bar-item{border-left:1px solid rgba(255,255,255,0.25);}
+.acc-bar-item svg{width:13px;height:13px;stroke:rgba(255,255,255,0.85);flex-shrink:0;}
+.acc-bar-item a{color:rgba(255,255,255,0.9);text-decoration:none;transition:color 0.2s;}
+.acc-bar-item a:hover{color:#fff;}
+.topbar-open{display:flex;align-items:center;gap:6px;font-size:12.5px;color:rgba(255,255,255,0.9);}
+.topbar-open-dot{width:7px;height:7px;border-radius:50%;background:#34D399;flex-shrink:0;}
+@media(max-width:768px){
+  .acc-bar{max-height:120px;}
+  .acc-bar-panel{flex-direction:column;align-items:center;gap:4px;padding:8px 1rem;}
+  .acc-bar-item{padding:0;font-size:12px;border-left:none !important;}
+}
+
+/* ── NAV ── */
+nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 1px 8px rgba(0,0,0,0.06);}
+.nav-inner{max-width:1340px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;height:70px;gap:0;}
+.nav-logo{display:flex;align-items:center;}
+.nav-logo img{height:76px;width:auto;}
+.nav-logo-fallback{display:flex;flex-direction:column;line-height:1.1;}
+.nav-logo-top{font-size:22px;font-weight:900;letter-spacing:-0.5px;color:var(--navy);}
+.nav-logo-top span{color:var(--red);}
+.nav-logo-bot{font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-light);}
+.nav-links{list-style:none;display:flex;align-items:center;gap:4px;flex:1;margin-left:24px;}
+.nav-links a{font-size:13px;font-weight:600;color:var(--navy);padding:6px 10px;border-radius:6px;transition:color 0.15s,background 0.15s;white-space:nowrap;}
+.nav-links a:hover{color:var(--red);background:var(--red-light);}
+.nav-links a.active{color:var(--blue-dark);}
+.nav-cta{margin-left:auto;background:var(--red);color:#fff;font-size:13px;font-weight:800;padding:10px 20px;border-radius:8px;white-space:nowrap;display:flex;align-items:center;gap:8px;transition:background 0.2s;flex-shrink:0;text-decoration:none;}
+.nav-cta:hover{background:var(--red-dark);color:#fff;}
+.nav-cta svg{width:14px;height:14px;stroke:#fff;stroke-width:2.5;}
+.nav-mobile-call{display:none;}
+
+/* ── HAMBURGER ── */
+.nav-hamburger{display:none;background:none;border:none;cursor:pointer;padding:6px;border-radius:6px;flex-shrink:0;line-height:0;-webkit-tap-highlight-color:transparent;}
+.nav-hamburger:hover{background:#f5f5f5;}
+.nav-hamburger svg{width:22px;height:22px;stroke:var(--navy,#0D1B2A);stroke-width:2;display:block;}
+.nav-mobile-menu{display:none;background:#fff;border-top:1px solid var(--border,#E2E8F0);box-shadow:0 8px 24px rgba(0,0,0,0.1);}
+.nav-mobile-menu.open{display:block;}
+.nav-mobile-menu a{display:block;padding:14px 24px;font-size:15px;font-weight:600;color:var(--navy,#0D1B2A);border-bottom:1px solid #f0f0f0;text-decoration:none;font-family:'DM Sans',sans-serif;transition:background 0.15s,color 0.15s;}
+.nav-mobile-menu a:last-child{border-bottom:none;}
+.nav-mobile-menu a:hover{background:var(--red-light,#FCE8EB);color:var(--red,#CC001C);}
+.nav-mobile-menu .nav-m-cta{background:var(--red,#CC001C);color:#fff !important;margin:12px 16px 16px;border-radius:8px;text-align:center;border-bottom:none !important;display:block;}
+.nav-mobile-menu .nav-m-cta:hover{background:var(--red-dark,#A50016) !important;color:#fff !important;}
+
+@media(max-width:1024px){.nav-links{gap:2px;}.nav-links a{font-size:12px;padding:5px 8px;}}
+@media(max-width:768px){
+  .nav-links{display:none;}
+  .nav-cta{display:none;}
+  .nav-logo img{height:44px !important;}
+  .nav-hamburger{display:flex;align-items:center;margin-left:auto;}
+}
   .hero { background: linear-gradient(135deg, #0077a8 0%, #00b4d8 45%, #48cae4 100%); color: #fff; padding: 60px 0 50px; }
   .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 16px; line-height: 1.2; }
   .hero p { font-size: 1.1rem; opacity: 0.88; max-width: 600px; line-height: 1.65; }
@@ -154,17 +204,65 @@
 </head>
 <body>
 
-<nav class="site-nav">
-  <div class="container nav-inner">
-    <a href="/" class="nav-logo-link">
-      <img src="logo.png" alt="Fenkell Rx Pharmacy">
-    </a>
-    <div class="nav-actions">
-      <a href="/" class="nav-back">← <span class="label">Back to Home</span></a>
-      <a href="tel:3135195700" class="nav-call">(313) 519-5700</a>
+<!-- ACC BAR -->
+<div class="acc-bar">
+  <div class="acc-bar-panel">
+    <div class="acc-bar-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      18360 Fenkell Ave, Detroit, MI 48223
+    </div>
+    <div class="acc-bar-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 13.87a19.79 19.79 0 01-3.07-8.67A2 2 0 012 3h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 18v-.08z"/></svg>
+      <a href="tel:3135195700">(313) 519-5700</a>
+    </div>
+    <div class="acc-bar-item">
+      <div class="topbar-open">
+        <span class="topbar-open-dot"></span>
+        Open Now · Closes 6:00 PM
+      </div>
     </div>
   </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="https://fenkellrxpharmacy.com" class="nav-logo">
+      <img src="/logo.png" alt="Fenkell Rx Pharmacy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="nav-logo-fallback" style="display:none;">
+        <div class="nav-logo-top">FENKELL <span>Rx</span></div>
+        <div class="nav-logo-bot">Pharmacy</div>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/#services">Services</a></li>
+      <li><a href="/refills">Refills</a></li>
+      <li><a href="/vaccines-detroit">Vaccines</a></li>
+      <li><a href="/diabetic-supplies-detroit">Diabetic Supplies</a></li>
+      <li><a href="/availability">Meds In Stock</a></li>
+      <li><a href="/#location">Hours &amp; Location</a></li>
+    </ul>
+    <a href="/transfer" class="nav-cta">
+      Switch My Pharmacy
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false" onclick="toggleMobileNav()">
+      <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+  </div>
 </nav>
+<div class="nav-mobile-menu" id="navMobileMenu">
+  <a href="/#services">Services</a>
+  <a href="/refills">Refills</a>
+  <a href="/vaccines-detroit">Vaccines</a>
+  <a href="/diabetic-supplies-detroit">Diabetic Supplies</a>
+  <a href="/availability">Meds In Stock</a>
+  <a href="/insurance-detroit">Insurance</a>
+  <a href="/#location">Hours &amp; Location</a>
+  <a href="/transfer" class="nav-m-cta">Switch My Pharmacy &rarr;</a>
+</div>
 
 <section class="hero">
   <div class="container">
@@ -245,5 +343,52 @@
   </div>
 </footer>
 
+<script>
+// Acc bar + open status
+(function(){
+  function etNow(){var d=new Date(new Date().toLocaleString('en-US',{timeZone:'America/Detroit'}));return{day:d.getDay(),mins:d.getHours()*60+d.getMinutes()};}
+  function hm(h,m){return h*60+m;}
+  function getStatus(){
+    var t=etNow(),now=t.mins,open=hm(9,30);
+    if(t.day===0)return{isOpen:false,text:'Closed · Opens Mon 9:30 AM'};
+    if(t.day===6){if(now>=open&&now<hm(15,0))return{isOpen:true,text:'Open Now · Closes 3:00 PM'};if(now<open)return{isOpen:false,text:'Closed · Opens 9:30 AM'};return{isOpen:false,text:'Closed · Opens Mon 9:30 AM'};}
+    if(now>=open&&now<hm(18,0))return{isOpen:true,text:'Open Now · Closes 6:00 PM'};
+    if(now<open)return{isOpen:false,text:'Closed · Opens 9:30 AM'};
+    if(t.day===5)return{isOpen:false,text:'Closed · Opens Sat 9:30 AM'};
+    return{isOpen:false,text:'Closed · Opens Tomorrow 9:30 AM'};
+  }
+  var s=getStatus();
+  document.querySelectorAll('.topbar-open').forEach(function(el){
+    el.childNodes.forEach(function(n){if(n.nodeType===3&&n.textContent.trim())n.textContent=' '+s.text;});
+    var dot=el.querySelector('.topbar-open-dot');
+    if(dot)dot.style.background=s.isOpen?'#4ADE80':'#9CA3AF';
+  });
+  var accBar=document.querySelector('.acc-bar');
+  if(!accBar)return;
+  var ticking=false;
+  function applyUpdate(){accBar.classList.toggle('acc-bar-hidden',window.scrollY>10);ticking=false;}
+  window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(applyUpdate);}},{passive:true});
+  applyUpdate();
+})();
+// Hamburger menu
+function toggleMobileNav(){
+  var m=document.getElementById('navMobileMenu');
+  var b=document.getElementById('navHamburger');
+  if(!m||!b)return;
+  var open=m.classList.toggle('open');
+  b.setAttribute('aria-expanded',open);
+  b.querySelector('svg').innerHTML=open
+    ?'<line x1="18" y1="6" x2="6" y2="18" stroke-linecap="round"/><line x1="6" y1="6" x2="18" y2="18" stroke-linecap="round"/>'
+    :'<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>';
+}
+function closeMobileNav(){
+  var m=document.getElementById('navMobileMenu');var b=document.getElementById('navHamburger');
+  if(m&&m.classList.contains('open')){m.classList.remove('open');if(b){b.setAttribute('aria-expanded','false');b.querySelector('svg').innerHTML='<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>';}}
+}
+document.addEventListener('click',function(e){
+  if(e.target.closest('#navMobileMenu a')){setTimeout(closeMobileNav,0);return;}
+  if(!e.target.closest('nav'))closeMobileNav();
+});
+</script>
 </body>
 </html>
