@@ -141,7 +141,7 @@
   @media(max-width:1024px){.nav-links{gap:2px;}.nav-links a{font-size:12px;padding:5px 8px;}}
   @media(max-width:768px){
     .nav-links{display:none;}
-    .nav-mobile-call{display:flex;align-items:center;gap:6px;margin-left:auto;background:var(--red);color:#fff;font-size:12px;font-weight:700;padding:8px 14px;border-radius:6px;text-decoration:none;}
+    .nav-mobile-call{display:flex;align-items:center;gap:6px;margin:0 auto;background:var(--red);color:#fff;font-size:12px;font-weight:700;padding:8px 14px;border-radius:6px;text-decoration:none;}
     .nav-mobile-call svg{width:14px;height:14px;stroke:#fff;}
     .nav-cta{display:none;}
     .nav-logo img{height:44px !important;}
@@ -192,6 +192,19 @@
   footer { background: #1A202C; color: rgba(255,255,255,0.55); padding: 28px 0; font-size: 12px; text-align: center; line-height: 1.8; }
   footer a { color: rgba(255,255,255,0.55); text-decoration: none; }
   footer strong { color: rgba(255,255,255,0.75); }
+
+/* ── HAMBURGER ── */
+.nav-hamburger{display:none;background:none;border:none;cursor:pointer;padding:6px;border-radius:6px;flex-shrink:0;line-height:0;-webkit-tap-highlight-color:transparent;}
+.nav-hamburger:hover{background:#f5f5f5;}
+.nav-hamburger svg{width:22px;height:22px;stroke:var(--navy,#0D1B2A);stroke-width:2;display:block;}
+/* Mobile dropdown */
+.nav-mobile-menu{display:none;background:#fff;border-top:1px solid var(--border,#E2E8F0);box-shadow:0 8px 24px rgba(0,0,0,0.1);}
+.nav-mobile-menu.open{display:block;}
+.nav-mobile-menu a{display:block;padding:14px 24px;font-size:15px;font-weight:600;color:var(--navy,#0D1B2A);border-bottom:1px solid #f0f0f0;text-decoration:none;font-family:'DM Sans',sans-serif;transition:background 0.15s,color 0.15s;}
+.nav-mobile-menu a:last-child{border-bottom:none;}
+.nav-mobile-menu a:hover{background:var(--red-light,#FCE8EB);color:var(--red,#CC001C);}
+.nav-mobile-menu .nav-m-cta{background:var(--red,#CC001C);color:#fff !important;margin:12px 16px 16px;border-radius:8px;text-align:center;border-bottom:none !important;display:block;}
+.nav-mobile-menu .nav-m-cta:hover{background:var(--red-dark,#A50016) !important;color:#fff !important;}
 </style>
 </head>
 <body>
@@ -243,7 +256,22 @@
       <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 13.87a19.79 19.79 0 01-3.07-8.67A2 2 0 012 3h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 18v-.08z"/></svg>
       Call Us
     </a>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false" onclick="toggleMobileNav()">
+      <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
   </div>
+<div class="nav-mobile-menu" id="navMobileMenu">
+  <a href="/#services">Services</a>
+  <a href="/refills">Refills</a>
+  <a href="/vaccines-detroit">Vaccines</a>
+  <a href="/diabetic-supplies-detroit">Diabetic Supplies</a>
+  <a href="/availability">Meds In Stock</a>
+  <a href="/insurance-detroit">Insurance</a>
+  <a href="/#location">Hours &amp; Location</a>
+  <a href="/transfer" class="nav-m-cta">Switch My Pharmacy &rarr;</a>
+</div>
 </nav>
 
 <section class="hero">
