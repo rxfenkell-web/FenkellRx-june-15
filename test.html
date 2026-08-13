@@ -1909,16 +1909,19 @@ function toggleMobileNav(){
     ?'<line x1="18" y1="6" x2="6" y2="18" stroke-linecap="round"/><line x1="6" y1="6" x2="18" y2="18" stroke-linecap="round"/>'
     :'<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>';
 }
-document.addEventListener('click',function(e){
-  if(!e.target.closest('nav')){
-    var m=document.getElementById('navMobileMenu');
-    var b=document.getElementById('navHamburger');
-    if(m&&m.classList.contains('open')){
-      m.classList.remove('open');
-      if(b){b.setAttribute('aria-expanded','false');b.querySelector('svg').innerHTML='<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>';}
-    }
+function closeMobileNav(){
+  var m=document.getElementById('navMobileMenu');
+  var b=document.getElementById('navHamburger');
+  if(m&&m.classList.contains('open')){
+    m.classList.remove('open');
+    if(b){b.setAttribute('aria-expanded','false');b.querySelector('svg').innerHTML='<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>';}
   }
-});
+}
+// Close when clicking a menu link
+var menu=document.getElementById('navMobileMenu');
+if(menu){menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeMobileNav);});}
+// Close when clicking outside nav
+document.addEventListener('click',function(e){if(!e.target.closest('nav'))closeMobileNav();});
 </script>
 </body>
 </html>
