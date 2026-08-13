@@ -384,25 +384,25 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 0 24px;}
         <p>Fill out the form to begin your visit. We'll connect you with a licensed provider today.</p>
       </div>
       <div class="form-card-right">
-        <form onsubmit="return false;">
+        <form id="quickcare-form" onsubmit="submitQuickCare(event);">
           <div class="form-field">
             <label for="patient-name">Patient Name</label>
-            <input type="text" id="patient-name" placeholder="Full name" autocomplete="name">
+            <input type="text" id="patient-name" placeholder="Full name" autocomplete="name" required>
           </div>
           <div class="form-field">
             <label for="dob">Date of Birth</label>
-            <input type="date" id="dob" placeholder="MM / DD / YYYY">
+            <input type="date" id="dob" required>
           </div>
           <div class="form-field">
             <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" placeholder="(313) 123-4567" autocomplete="tel">
+            <input type="tel" id="phone" placeholder="(313) 123-4567" autocomplete="tel" required>
           </div>
           <div class="form-field">
             <label for="address">Address</label>
-            <input type="text" id="address" placeholder="Street address, City, State, ZIP" autocomplete="street-address">
+            <input type="text" id="address" placeholder="Street address, City, State, ZIP" autocomplete="street-address" required>
           </div>
           <div class="form-submit-row">
-            <button type="submit" class="btn-red">
+            <button type="submit" class="btn-red" id="quickcare-btn">
               Continue to Pay &amp; Book
               <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </button>
@@ -557,6 +557,50 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 0 24px;}
   window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(applyUpdate);}},{passive:true});
   applyUpdate();
 })();
+function submitQuickCare(e) {
+  e.preventDefault();
+  var name    = document.getElementById('patient-name').value.trim();
+  var dob     = document.getElementById('dob').value.trim();
+  var phone   = document.getElementById('phone').value.trim();
+  var address = document.getElementById('address').value.trim();
+  var btn     = document.getElementById('quickcare-btn');
+
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+
+  var body = [
+    'QuickCare Appointment Request',
+    '──────────────────────────',
+    'Patient Name:  ' + name,
+    'Date of Birth: ' + dob,
+    'Phone:         ' + phone,
+    'Address:       ' + address,
+    '──────────────────────────',
+    'Submitted via fenkellrxpharmacy.com/quickcare'
+  ].join('\n');
+
+  fetch('/api/email', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      type: 'QuickCare Appointment',
+      subject: 'New QuickCare Appointment Request — ' + name,
+      body: body,
+      name: name,
+      dob: dob,
+      phone: phone,
+      address: address
+    })
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(){
+    window.location.href = 'https://drchrono.com/scheduling/offices/dGhpcyBpcyAxNiBjaGFyc_LMd4QZeXkpOWc2cezo16Y=';
+  })
+  .catch(function(){
+    // Even if email fails, send patient to booking page
+    window.location.href = 'https://drchrono.com/scheduling/offices/dGhpcyBpcyAxNiBjaGFyc_LMd4QZeXkpOWc2cezo16Y=';
+  });
+}
 function toggleMobileNav(){
   var m=document.getElementById('navMobileMenu');var b=document.getElementById('navHamburger');
   if(!m||!b)return;
