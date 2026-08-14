@@ -863,17 +863,17 @@ nav{
   gap:18px;padding-top:16px;
 }
 .nqa-annotation{
-  position:absolute;
-  bottom:248px;left:50%;transform:translateX(-60%);
-  z-index:20;pointer-events:none;
+  position:relative;display:flex;align-items:flex-end;justify-content:center;
+  margin-top:2px;height:72px;pointer-events:none;
+}
+.nqa-annotation-inner{
   display:flex;flex-direction:column;align-items:center;
+  position:relative;
 }
 .nqa-annotation-text{
   font-family:'Caveat',cursive;font-size:26px;font-weight:600;
   color:#E8A800;line-height:1.2;text-align:center;
-  transform:rotate(-6deg);
-  text-shadow:0 1px 6px rgba(0,0,0,0.25);
-  margin-bottom:4px;
+  transform:rotate(-4deg);margin-bottom:2px;
 }
 .nqa-annotation svg{display:block;}
 @media(max-width:768px){.nqa-annotation{display:none;}}
@@ -1339,16 +1339,18 @@ nav{
             <div class="nqa-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
           </a>
         </div>
-      </div>
-    </div>
         <!-- ANNOTATION ARROW -->
         <div class="nqa-annotation">
-          <div class="nqa-annotation-text">Book your doctor visit online!</div>
-          <svg width="54" height="60" viewBox="0 0 54 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M28 4 C32 20, 36 36, 26 54" stroke="#E8A800" stroke-width="2.4" stroke-linecap="round" fill="none"/>
-            <path d="M20 50 L26 54 L30 48" stroke="#E8A800" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          </svg>
+          <div class="nqa-annotation-inner">
+            <div class="nqa-annotation-text">Book your doctor visit online!</div>
+            <svg width="60" height="44" viewBox="0 0 60 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M30 40 C20 30, 10 15, 28 4" stroke="#E8A800" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+              <path d="M24 3 L28 4 L26 8" stroke="#E8A800" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </svg>
+          </div>
         </div>
+      </div>
+    </div>
   </div>
 </section>
 
