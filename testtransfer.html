@@ -32,31 +32,38 @@ body{font-family:'DM Sans',sans-serif;color:var(--navy);background:#fff;line-hei
 a{text-decoration:none;color:inherit;}
 img{display:block;max-width:100%;}
 
-/* ── TOPBAR ── */
-.topbar{background:var(--navy);padding:9px 0;}
-.topbar-inner{max-width:1340px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;gap:16px;}
-.topbar-left{display:flex;align-items:center;gap:0;}
-.topbar-item{display:flex;align-items:center;gap:6px;font-size:11.5px;color:rgba(255,255,255,0.75);font-weight:500;}
-.topbar-item svg{width:13px;height:13px;stroke:var(--blue);flex-shrink:0;}
-.topbar-sep{width:1px;height:14px;background:rgba(255,255,255,0.15);margin:0 14px;}
-.topbar-right{display:flex;align-items:center;gap:16px;}
-.topbar-phone{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:#fff;}
-.topbar-phone svg{width:13px;height:13px;stroke:#fff;}
-.topbar-open{display:flex;align-items:center;gap:6px;font-size:11.5px;color:rgba(255,255,255,0.7);}
-.topbar-open-dot{width:7px;height:7px;border-radius:50%;background:#4ADE80;flex-shrink:0;}
+/* ── ACC BAR ── */
+.acc-bar{background:var(--navy);transition:max-height 0.3s ease,opacity 0.3s ease;max-height:60px;opacity:1;overflow:hidden;}
+.acc-bar.acc-bar-hidden{max-height:0;opacity:0;}
+.acc-bar-panel{max-width:1340px;margin:0 auto;padding:9px 2rem;display:flex;align-items:center;justify-content:center;gap:0;}
+.acc-bar-item{display:flex;align-items:center;gap:7px;white-space:nowrap;padding:0 1.5rem;font-size:13px;color:rgba(255,255,255,0.9);font-weight:400;}
+.acc-bar-item+.acc-bar-item{border-left:1px solid rgba(255,255,255,0.25);}
+.acc-bar-item svg{width:13px;height:13px;stroke:rgba(255,255,255,0.85);flex-shrink:0;}
+.acc-bar-item a{color:rgba(255,255,255,0.9);text-decoration:none;transition:color 0.2s;}
+.acc-bar-item a:hover{color:#fff;}
+.topbar-open{display:flex;align-items:center;gap:6px;font-size:12.5px;color:rgba(255,255,255,0.9);}
+.topbar-open-dot{width:7px;height:7px;border-radius:50%;background:#34D399;flex-shrink:0;}
+@media(max-width:768px){
+  .acc-bar{max-height:120px;}
+  .acc-bar-panel{flex-direction:column;align-items:center;gap:4px;padding:8px 1rem;}
+  .acc-bar-item{padding:0;font-size:12px;border-left:none !important;}
+}
+
 
 /* ── NAV ── */
 nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 1px 8px rgba(0,0,0,0.06);}
-.nav-inner{max-width:1340px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;gap:32px;height:64px;}
-.nav-logo img{height:44px;width:auto;}
+.nav-inner{max-width:1340px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;height:70px;gap:0;}
+.nav-logo{display:flex;align-items:center;}
+.nav-logo img{height:76px;width:auto;transition:height 0.25s ease;}
 .nav-logo-fallback{display:flex;flex-direction:column;line-height:1.1;}
-.nav-logo-top{font-size:20px;font-weight:900;color:var(--navy);letter-spacing:-0.5px;}
+.nav-logo-top{font-size:22px;font-weight:900;letter-spacing:-0.5px;color:var(--navy);}
 .nav-logo-top span{color:var(--red);}
-.nav-logo-bot{font-size:11px;font-weight:600;color:var(--blue);letter-spacing:0.05em;text-transform:uppercase;}
-.nav-links{list-style:none;display:flex;align-items:center;gap:4px;flex:1;}
-.nav-links li a{font-size:13px;font-weight:600;color:var(--navy);padding:6px 10px;border-radius:6px;transition:color 0.15s,background 0.15s;white-space:nowrap;}
-.nav-links li a:hover{color:var(--red);background:var(--red-light);}
-.nav-links li a.active{color:var(--red);font-weight:800;}
+.nav-logo-bot{font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-light);}
+.nav-links{list-style:none;display:flex;align-items:center;gap:4px;flex:1;margin-left:24px;}
+.nav-links a{font-size:13px;font-weight:600;color:var(--navy);padding:6px 10px;border-radius:6px;transition:color 0.15s,background 0.15s;white-space:nowrap;}
+.nav-links a:hover{color:var(--red);background:var(--red-light);}
+.nav-links a.active{color:var(--blue-dark);}
+@media(max-width:1024px){.nav-links{gap:2px;}.nav-links a{font-size:12px;padding:5px 8px;}}
 .nav-cta{margin-left:auto;background:var(--red);color:#fff;font-size:13px;font-weight:800;padding:10px 20px;border-radius:8px;white-space:nowrap;display:flex;align-items:center;gap:8px;transition:background 0.2s;}
 .nav-cta:hover{background:var(--red-dark);color:#fff;}
 .nav-cta svg{width:14px;height:14px;stroke:#fff;stroke-width:2.5;}
@@ -206,10 +213,10 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
   .ft-item{padding:12px;border-right:none;border-bottom:1px solid rgba(255,255,255,0.1);}
 }
 @media(max-width:768px){
-  .topbar{display:none;}
   .nav-links{display:none;}
   .nav-hamburger{display:flex;align-items:center;margin-left:auto;}
   .nav-cta{display:none;}
+  .nav-logo img{height:44px !important;}
   .transfer-features{grid-template-columns:repeat(2,1fr);}
   .how-steps{flex-direction:column;align-items:center;gap:24px;}
   .how-arrow{display:none;}
@@ -239,30 +246,18 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
 <body>
 
 <!--FRX_BANNER-->
-<!-- TOP BAR -->
-<div class="topbar">
-  <div class="topbar-inner">
-    <div class="topbar-left">
-      <div class="topbar-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        Detroit's 4.9★ Independent Pharmacy
-      </div>
-      <div class="topbar-sep"></div>
-      <div class="topbar-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-        Free Same-Day Delivery
-      </div>
-      <div class="topbar-sep"></div>
-      <div class="topbar-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-        Local. Trusted. Here for You.
-      </div>
+<!-- ACC BAR -->
+<div class="acc-bar">
+  <div class="acc-bar-panel">
+    <div class="acc-bar-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      18360 Fenkell Ave, Detroit, MI 48223
     </div>
-    <div class="topbar-right">
-      <div class="topbar-phone">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 13.87a19.79 19.79 0 01-3.07-8.67A2 2 0 012 3h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 18v-.08z"/></svg>
-        Call Us (313) 519-5700
-      </div>
+    <div class="acc-bar-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 13.87a19.79 19.79 0 01-3.07-8.67A2 2 0 012 3h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 18v-.08z"/></svg>
+      <a href="tel:3135195700">(313) 519-5700</a>
+    </div>
+    <div class="acc-bar-item">
       <div class="topbar-open">
         <span class="topbar-open-dot"></span>
         Open Now · Closes 6:00 PM
@@ -564,7 +559,7 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
         <a href="/#team">Our Team</a>
         <a href="/insurance-detroit">Insurance Accepted</a>
         <a href="/#location">Location &amp; Hours</a>
-        <a href="/transfer">Transfer Prescription</a>
+        <a href="/transfer" class="active">Transfer Prescription</a>
       </div>
     </div>
   </div>

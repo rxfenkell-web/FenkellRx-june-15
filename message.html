@@ -32,30 +32,38 @@ body{font-family:'DM Sans',sans-serif;color:var(--navy);background:#fff;line-hei
 a{text-decoration:none;color:inherit;}
 img{display:block;max-width:100%;}
 
-/* ── TOPBAR ── */
-.topbar{background:var(--navy);padding:9px 0;}
-.topbar-inner{max-width:1340px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;gap:16px;}
-.topbar-item{display:flex;align-items:center;gap:6px;font-size:11.5px;color:rgba(255,255,255,0.75);font-weight:500;}
-.topbar-item svg{width:13px;height:13px;stroke:var(--blue);flex-shrink:0;}
-.topbar-sep{width:1px;height:14px;background:rgba(255,255,255,0.15);margin:0 14px;}
-.topbar-open{display:flex;align-items:center;gap:6px;font-size:11.5px;color:rgba(255,255,255,0.7);}
-.topbar-open-dot{width:7px;height:7px;border-radius:50%;background:#4ADE80;flex-shrink:0;}
-.topbar-socials{display:flex;align-items:center;gap:10px;}
-.topbar-socials a{display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,0.1);transition:background 0.15s;}
-.topbar-socials a:hover{background:rgba(255,255,255,0.2);}
-.topbar-socials svg{width:13px;height:13px;stroke:#fff;fill:none;}
+/* ── ACC BAR ── */
+.acc-bar{background:var(--navy);transition:max-height 0.3s ease,opacity 0.3s ease;max-height:60px;opacity:1;overflow:hidden;}
+.acc-bar.acc-bar-hidden{max-height:0;opacity:0;}
+.acc-bar-panel{max-width:1340px;margin:0 auto;padding:9px 2rem;display:flex;align-items:center;justify-content:center;gap:0;}
+.acc-bar-item{display:flex;align-items:center;gap:7px;white-space:nowrap;padding:0 1.5rem;font-size:13px;color:rgba(255,255,255,0.9);font-weight:400;}
+.acc-bar-item+.acc-bar-item{border-left:1px solid rgba(255,255,255,0.25);}
+.acc-bar-item svg{width:13px;height:13px;stroke:rgba(255,255,255,0.85);flex-shrink:0;}
+.acc-bar-item a{color:rgba(255,255,255,0.9);text-decoration:none;transition:color 0.2s;}
+.acc-bar-item a:hover{color:#fff;}
+.topbar-open{display:flex;align-items:center;gap:6px;font-size:12.5px;color:rgba(255,255,255,0.9);}
+.topbar-open-dot{width:7px;height:7px;border-radius:50%;background:#34D399;flex-shrink:0;}
+@media(max-width:768px){
+  .acc-bar{max-height:120px;}
+  .acc-bar-panel{flex-direction:column;align-items:center;gap:4px;padding:8px 1rem;}
+  .acc-bar-item{padding:0;font-size:12px;border-left:none !important;}
+}
+
 
 /* ── NAV ── */
 nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 1px 8px rgba(0,0,0,0.06);}
-.nav-inner{max-width:1340px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;gap:32px;height:64px;}
-.nav-logo img{height:44px;width:auto;}
+.nav-inner{max-width:1340px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;height:70px;gap:0;}
+.nav-logo{display:flex;align-items:center;}
+.nav-logo img{height:76px;width:auto;transition:height 0.25s ease;}
 .nav-logo-fallback{display:flex;flex-direction:column;line-height:1.1;}
-.nav-logo-top{font-size:20px;font-weight:900;color:var(--navy);letter-spacing:-0.5px;}
+.nav-logo-top{font-size:22px;font-weight:900;letter-spacing:-0.5px;color:var(--navy);}
 .nav-logo-top span{color:var(--red);}
-.nav-logo-bot{font-size:11px;font-weight:600;color:var(--blue);letter-spacing:0.05em;text-transform:uppercase;}
-.nav-links{list-style:none;display:flex;align-items:center;gap:4px;flex:1;}
-.nav-links li a{font-size:13px;font-weight:600;color:var(--navy);padding:6px 10px;border-radius:6px;transition:color 0.15s,background 0.15s;white-space:nowrap;}
-.nav-links li a:hover{color:var(--red);background:var(--red-light);}
+.nav-logo-bot{font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-light);}
+.nav-links{list-style:none;display:flex;align-items:center;gap:4px;flex:1;margin-left:24px;}
+.nav-links a{font-size:13px;font-weight:600;color:var(--navy);padding:6px 10px;border-radius:6px;transition:color 0.15s,background 0.15s;white-space:nowrap;}
+.nav-links a:hover{color:var(--red);background:var(--red-light);}
+.nav-links a.active{color:var(--blue-dark);}
+@media(max-width:1024px){.nav-links{gap:2px;}.nav-links a{font-size:12px;padding:5px 8px;}}
 .nav-cta{margin-left:auto;background:var(--red);color:#fff;font-size:13px;font-weight:800;padding:10px 20px;border-radius:8px;white-space:nowrap;display:flex;align-items:center;gap:8px;transition:background 0.2s;}
 .nav-cta:hover{background:var(--red-dark);color:#fff;}
 .nav-cta svg{width:14px;height:14px;stroke:#fff;stroke-width:2.5;}
@@ -66,7 +74,7 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
   max-width:1340px;margin:0 auto;
   display:grid;grid-template-columns:1fr 1fr;
   align-items:stretch;gap:0;
-  min-height:calc(100vh - 100px); /* fill viewport below topbar+nav */
+  min-height:calc(100vh - 70px); /* fill viewport below topbar+nav */
   max-height:820px;
 }
 
@@ -182,10 +190,10 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
 .nav-mobile-menu .nav-m-cta{background:var(--red,#CC001C);color:#fff !important;margin:12px 16px 16px;border-radius:8px;text-align:center;border-bottom:none !important;display:block;}
 .nav-mobile-menu .nav-m-cta:hover{background:var(--red-dark,#A50016) !important;color:#fff !important;}
 @media(max-width:768px){
-  .topbar{display:none;}
   .nav-links{display:none;}
   .nav-hamburger{display:flex;align-items:center;margin-left:auto;}
-    .nav-cta{display:none;}
+  .nav-cta{display:none;}
+  .nav-logo img{height:44px !important;}
   .form-grid{grid-template-columns:1fr;}
   .footer-trust-inner{grid-template-columns:1fr;}
 }
@@ -194,30 +202,21 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
 </head>
 <body>
 
-<!-- TOP BAR -->
-<div class="topbar">
-  <div class="topbar-inner">
-    <div style="display:flex;align-items:center;">
-      <div class="topbar-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        18360 Fenkell Ave, Detroit, MI 48223
-      </div>
-      <div class="topbar-sep"></div>
-      <div class="topbar-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 13.87a19.79 19.79 0 01-3.07-8.67A2 2 0 012 3h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 18v-.08z"/></svg>
-        (313) 519-5700
-      </div>
-      <div class="topbar-sep"></div>
+<!-- ACC BAR -->
+<div class="acc-bar">
+  <div class="acc-bar-panel">
+    <div class="acc-bar-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      18360 Fenkell Ave, Detroit, MI 48223
+    </div>
+    <div class="acc-bar-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 13.87a19.79 19.79 0 01-3.07-8.67A2 2 0 012 3h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 18v-.08z"/></svg>
+      <a href="tel:3135195700">(313) 519-5700</a>
+    </div>
+    <div class="acc-bar-item">
       <div class="topbar-open">
         <span class="topbar-open-dot"></span>
         Open Now · Closes 6:00 PM
-      </div>
-    </div>
-    <div class="topbar-right">
-      <div class="topbar-socials">
-        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
-        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
-        <a href="#" aria-label="Google"><svg viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></a>
       </div>
     </div>
   </div>
@@ -236,11 +235,11 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
     <ul class="nav-links">
       <li><a href="/#services">Services</a></li>
       <li><a href="/refills">Refills</a></li>
-      <li><a href="/#wellness">Wellness</a></li>
       <li><a href="/vaccines-detroit">Vaccines</a></li>
       <li><a href="/diabetic-supplies-detroit">Diabetic Supplies</a></li>
       <li><a href="/availability">Meds In Stock</a></li>
-      <li><a href="/#team">Team</a></li>
+      <li><a href="/insurance-detroit">Insurance</a></li>
+      <li><a href="/#location">Hours &amp; Location</a></li>
     </ul>
     <a href="/transfer" class="nav-cta">
       Switch My Pharmacy
