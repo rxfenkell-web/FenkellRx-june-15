@@ -886,13 +886,14 @@ nav{
 }
 .nqa-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,0.15);}
 .nqa-card.red{background:#fff;border:1.5px solid var(--border);}
-.nqa-card.blue{background:#fff;border:2.5px solid #E8A800;box-shadow:0 4px 24px rgba(232,168,0,0.18);position:relative;margin-top:-6px;}
+.nqa-card.blue{background:#fff;border:2.5px solid #E8A800;box-shadow:0 4px 24px rgba(232,168,0,0.18);position:relative;margin-top:0;overflow:visible;}
 .nqa-card.white{background:#fff;border:1.5px solid var(--border);}
 .nqa-card.blue .most-popular-badge{
-  position:absolute;top:-14px;left:50%;transform:translateX(-50%);
+  position:absolute;top:-16px;left:50%;transform:translateX(-50%);
   background:#E8A800;color:#fff;font-size:11px;font-weight:800;
   letter-spacing:0.06em;text-transform:uppercase;
   padding:4px 14px;border-radius:20px;white-space:nowrap;
+  z-index:2;
 }
 .nqa-icon-wrap{
   width:74px;height:74px;flex-shrink:0;
@@ -1315,7 +1316,7 @@ nav{
             <div class="nqa-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
           </a>
           <a href="tel:3135195700" class="nqa-card blue">
-            <div class="most-popular-badge">Most Popular</div>
+            <div class="most-popular-badge">New</div>
             <div class="nqa-icon-wrap">
               <img src="/schedule-icon.png" alt="Schedule Appointment" style="width:48px;height:48px;flex-shrink:0;">
             </div>
@@ -1341,7 +1342,7 @@ nav{
         <!-- ANNOTATION ARROW -->
         <div class="nqa-annotation">
           <div class="nqa-annotation-inner">
-            <div class="nqa-annotation-text">Book your appointment online!</div>
+            <div class="nqa-annotation-text">Book your doctor visit online!</div>
             <svg width="60" height="44" viewBox="0 0 60 44" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M30 40 C20 30, 10 15, 28 4" stroke="#E8A800" stroke-width="2.2" stroke-linecap="round" fill="none"/>
               <path d="M24 3 L28 4 L26 8" stroke="#E8A800" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
