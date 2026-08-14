@@ -401,7 +401,7 @@ nav{
   flex-shrink:0;
 }
 .cant-find-icon svg{width:24px;height:24px;stroke:#fff;}
-.cant-find-text{flex:1;}
+.cant-find-text{flex:0 0 auto;}
 .cant-find-title{font-size:15px;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:0.05em;}
 .cant-find-sub{font-size:13.5px;color:rgba(255,255,255,0.7);margin-top:3px;}
 .btn-gold-outline{
@@ -862,16 +862,13 @@ nav{
   display:grid;grid-template-columns:repeat(3,1fr);
   gap:18px;
 }
-.cant-find-annotation{
-  display:flex;align-items:center;gap:6px;
-  border-left:1px solid rgba(255,255,255,0.15);
-  padding-left:20px;margin-left:4px;
+.nqa-curve-label{
+  position:absolute;
+  bottom:6px;left:10px;
+  width:180px;height:36px;
+  pointer-events:none;z-index:99;
 }
-.cant-find-annotation-text{
-  font-family:'Caveat',cursive;font-size:22px;font-weight:600;
-  color:#E8A800;line-height:1.1;white-space:nowrap;
-}
-@media(max-width:900px){.cant-find-annotation{display:none;}}
+@media(max-width:900px){.nqa-curve-label{display:none;}}
 .nqa-card{
   display:flex;align-items:center;gap:16px;
   padding:22px 20px;border-radius:14px;
@@ -1301,6 +1298,12 @@ nav{
         <div class="nqa-cards">
           <a href="https://fenkellrxpharmacy.com/quickcare" class="nqa-card blue">
             <div class="most-popular-badge">New</div>
+            <svg class="nqa-curve-label" aria-hidden="true" viewBox="0 0 180 36" xmlns="http://www.w3.org/2000/svg">
+              <defs><path id="arcL" d="M 4,30 Q 90,8 176,30"/></defs>
+              <text fill="#E8A800" font-family="Caveat,cursive" font-size="16" font-weight="700">
+                <textPath href="#arcL">Book your doctor visit online!</textPath>
+              </text>
+            </svg>
             <div class="nqa-icon-wrap">
               <img src="/schedule-icon.png" alt="Schedule Appointment" style="width:48px;height:48px;flex-shrink:0;">
             </div>
@@ -1348,13 +1351,6 @@ nav{
     <div class="cant-find-text">
       <div class="cant-find-title">CAN'T FIND IT ANYWHERE?</div>
       <div class="cant-find-sub">Check our live inventory — we have what others don't.</div>
-    </div>
-    <div class="cant-find-annotation">
-      <svg width="32" height="36" viewBox="0 0 32 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M16 32 C14 22, 10 12, 16 4" stroke="#E8A800" stroke-width="2.2" stroke-linecap="round" fill="none"/>
-        <path d="M11 7 L16 4 L18 9" stroke="#E8A800" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-      </svg>
-      <span class="cant-find-annotation-text">Book your doctor visit online!</span>
     </div>
     <a href="/availability" class="btn-gold-outline" style="margin-left:auto;">
       CHECK LIVE STOCK
