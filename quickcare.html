@@ -423,88 +423,89 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 0 24px;}
       <p style="font-size:14px;color:var(--text-mid);max-width:680px;margin:0 auto;line-height:1.75;">From common illnesses and same-day concerns to prescription refills and ongoing primary care, Fenkell Rx QuickCare makes it easier to connect with a healthcare provider online.</p>
     </div>
 
-    <!-- 6 Service Cards: big left card + 5 smaller right cards -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;align-items:stretch;">
-
-      <!-- Card 1: Common Illnesses — large left -->
-      <div style="background:#fff;border:1.5px solid var(--border);border-radius:16px;padding:28px;display:flex;flex-direction:column;">
-        <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px;">
-          <div style="width:72px;height:72px;border-radius:50%;background:transparent;flex-shrink:0;display:flex;align-items:center;justify-content:center;overflow:visible;">
-            <img src="/quickcare-illness-icon.webp" alt="Common Illnesses" style="width:72px;height:72px;object-fit:contain;" onerror="this.style.display='none'">
+    <!-- Card 1: Common Illnesses — full-width landscape -->
+    <div style="background:#fff;border:1.5px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:16px;">
+      <div style="display:grid;grid-template-columns:1fr 1.4fr;align-items:stretch;">
+        <!-- Left: text content -->
+        <div style="padding:28px 28px 28px 28px;display:flex;flex-direction:column;justify-content:center;">
+          <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px;">
+            <div style="width:60px;height:60px;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+              <img src="/quickcare-illness-icon.webp" alt="Common Illnesses" style="width:60px;height:60px;object-fit:contain;" onerror="this.style.display='none'">
+            </div>
+            <h3 style="font-size:20px;font-weight:800;color:var(--navy);line-height:1.3;">Common Illnesses &amp; Same-Day Care</h3>
           </div>
-          <h3 style="font-size:18px;font-weight:800;color:var(--navy);line-height:1.3;">Common Illnesses &amp; Same-Day Care</h3>
+          <div style="width:32px;height:2px;background:var(--blue);border-radius:2px;margin-bottom:14px;"></div>
+          <p style="font-size:14px;color:var(--text-mid);line-height:1.75;">Get convenient virtual care for many everyday health concerns that often lead patients to urgent care or a walk-in clinic, when appropriate for telehealth.</p>
         </div>
-        <div style="width:32px;height:2px;background:var(--blue);border-radius:2px;margin-bottom:12px;"></div>
-        <p style="font-size:14px;color:var(--text-mid);line-height:1.75;margin-bottom:18px;">Get convenient virtual care for many everyday health concerns that often lead patients to urgent care or a walk-in clinic, when appropriate for telehealth.</p>
-        <div style="border-radius:12px;text-align:center;">
-          <img src="/quickcare-conditions-grid.webp" alt="Common conditions treated: Cough, Sore Throat, Sinus Symptoms, Allergies, Pink Eye, UTI Symptoms, Rashes & Skin, Nausea & GI, Headaches, Ear Infections and more" style="width:60%;height:auto;display:inline-block;border-radius:12px;" onerror="this.style.display='none'">
+        <!-- Right: landscape image placeholder (swap with landscape image when provided) -->
+        <div style="min-height:280px;overflow:hidden;">
+          <img src="/quickcare-conditions-grid.webp" alt="Common conditions: Cough, Sore Throat, Sinus, Allergies, Pink Eye, UTI, Rashes, Nausea, Headaches, Ear Infections and more" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display='none'">
         </div>
       </div>
+    </div>
 
-      <!-- Right side: 5 smaller cards in 2-col sub-grid -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+    <!-- Cards 2–6: 5-column row -->
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:20px;">
 
-        <!-- Card 2: Primary Care -->
-        <div style="background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:18px;">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
-            <div style="width:48px;height:48px;border-radius:50%;background:transparent;flex-shrink:0;display:flex;align-items:center;justify-content:center;overflow:visible;">
-              <img src="/quickcare-primarycare-icon.webp" alt="Primary Care" style="width:48px;height:48px;object-fit:contain;" onerror="this.style.display='none'">
-            </div>
-            <h3 style="font-size:13px;font-weight:800;color:var(--navy);line-height:1.3;">Primary Care</h3>
+      <!-- Card 2: Primary Care -->
+      <div style="background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:18px;">
+        <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;margin-bottom:10px;">
+          <div style="width:52px;height:52px;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+            <img src="/quickcare-primarycare-icon.webp" alt="Primary Care" style="width:52px;height:52px;object-fit:contain;" onerror="this.style.display='none'">
           </div>
-          <div style="width:24px;height:2px;background:var(--blue);border-radius:2px;margin-bottom:8px;"></div>
-          <p style="font-size:12px;color:var(--text-mid);line-height:1.65;">Routine health concerns, preventive care, and ongoing health needs.</p>
+          <h3 style="font-size:13px;font-weight:800;color:var(--navy);line-height:1.3;">Primary Care</h3>
         </div>
+        <div style="width:24px;height:2px;background:var(--blue);border-radius:2px;margin:0 auto 8px;"></div>
+        <p style="font-size:12px;color:var(--text-mid);line-height:1.65;text-align:center;">Routine health concerns, preventive care, and ongoing health needs.</p>
+      </div>
 
-        <!-- Card 3: Medication Refill Visits -->
-        <div style="background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:18px;">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
-            <div style="width:48px;height:48px;border-radius:50%;background:transparent;flex-shrink:0;display:flex;align-items:center;justify-content:center;overflow:visible;">
-              <img src="/quickcare-refill-icon.webp" alt="Medication Refill" style="width:48px;height:48px;object-fit:contain;" onerror="this.style.display='none'">
-            </div>
-            <h3 style="font-size:13px;font-weight:800;color:var(--navy);line-height:1.3;">Medication Refill Visits</h3>
+      <!-- Card 3: Medication Refill Visits -->
+      <div style="background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:18px;">
+        <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;margin-bottom:10px;">
+          <div style="width:52px;height:52px;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+            <img src="/quickcare-refill-icon.webp" alt="Medication Refill" style="width:52px;height:52px;object-fit:contain;" onerror="this.style.display='none'">
           </div>
-          <div style="width:24px;height:2px;background:var(--blue);border-radius:2px;margin-bottom:8px;"></div>
-          <p style="font-size:12px;color:var(--text-mid);line-height:1.65;">Review medications and refill history when medically appropriate.*</p>
+          <h3 style="font-size:13px;font-weight:800;color:var(--navy);line-height:1.3;">Medication Refill Visits</h3>
         </div>
+        <div style="width:24px;height:2px;background:var(--blue);border-radius:2px;margin:0 auto 8px;"></div>
+        <p style="font-size:12px;color:var(--text-mid);line-height:1.65;text-align:center;">Review medications and refill history when medically appropriate.*</p>
+      </div>
 
-        <!-- Card 4: Diabetes & BP -->
-        <div style="background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:18px;">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
-            <div style="width:48px;height:48px;border-radius:50%;background:transparent;flex-shrink:0;display:flex;align-items:center;justify-content:center;overflow:visible;">
-              <img src="/quickcare-diabetes-icon.webp" alt="Diabetes and Blood Pressure" style="width:48px;height:48px;object-fit:contain;" onerror="this.style.display='none'">
-            </div>
-            <h3 style="font-size:13px;font-weight:800;color:var(--navy);line-height:1.3;">Diabetes &amp; Blood Pressure</h3>
+      <!-- Card 4: Diabetes & BP -->
+      <div style="background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:18px;">
+        <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;margin-bottom:10px;">
+          <div style="width:52px;height:52px;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+            <img src="/quickcare-diabetes-icon.webp" alt="Diabetes and Blood Pressure" style="width:52px;height:52px;object-fit:contain;" onerror="this.style.display='none'">
           </div>
-          <div style="width:24px;height:2px;background:var(--blue);border-radius:2px;margin-bottom:8px;"></div>
-          <p style="font-size:12px;color:var(--text-mid);line-height:1.65;">Virtual follow-up for diabetes and hypertension, medications, and home readings.</p>
+          <h3 style="font-size:13px;font-weight:800;color:var(--navy);line-height:1.3;">Diabetes &amp; Blood Pressure</h3>
         </div>
+        <div style="width:24px;height:2px;background:var(--blue);border-radius:2px;margin:0 auto 8px;"></div>
+        <p style="font-size:12px;color:var(--text-mid);line-height:1.65;text-align:center;">Virtual follow-up for diabetes and hypertension, medications, and home readings.</p>
+      </div>
 
-        <!-- Card 5: Lab Orders -->
-        <div style="background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:18px;">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
-            <div style="width:48px;height:48px;border-radius:50%;background:transparent;flex-shrink:0;display:flex;align-items:center;justify-content:center;overflow:visible;">
-              <img src="/quickcare-lab-icon.webp" alt="Lab Orders and Results" style="width:48px;height:48px;object-fit:contain;" onerror="this.style.display='none'">
-            </div>
-            <h3 style="font-size:13px;font-weight:800;color:var(--navy);line-height:1.3;">Lab Orders &amp; Results Review</h3>
+      <!-- Card 5: Lab Orders -->
+      <div style="background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:18px;">
+        <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;margin-bottom:10px;">
+          <div style="width:52px;height:52px;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+            <img src="/quickcare-lab-icon.webp" alt="Lab Orders and Results" style="width:52px;height:52px;object-fit:contain;" onerror="this.style.display='none'">
           </div>
-          <div style="width:24px;height:2px;background:var(--blue);border-radius:2px;margin-bottom:8px;"></div>
-          <p style="font-size:12px;color:var(--text-mid);line-height:1.65;">Routine lab testing orders and virtual review of your results.</p>
+          <h3 style="font-size:13px;font-weight:800;color:var(--navy);line-height:1.3;">Lab Orders &amp; Results Review</h3>
         </div>
+        <div style="width:24px;height:2px;background:var(--blue);border-radius:2px;margin:0 auto 8px;"></div>
+        <p style="font-size:12px;color:var(--text-mid);line-height:1.65;text-align:center;">Routine lab testing orders and virtual review of your results.</p>
+      </div>
 
-        <!-- Card 6: Men's & Women's Health — spans both columns -->
-        <div style="background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:18px;grid-column:span 2;display:flex;align-items:flex-start;gap:14px;">
-          <div style="width:56px;height:56px;border-radius:50%;background:transparent;flex-shrink:0;display:flex;align-items:center;justify-content:center;overflow:visible;">
-            <img src="/quickcare-gender-icon.webp" alt="Men's and Women's Health" style="width:56px;height:56px;object-fit:contain;" onerror="this.style.display='none'">
+      <!-- Card 6: Men's & Women's Health -->
+      <div style="background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:18px;">
+        <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;margin-bottom:10px;">
+          <div style="width:52px;height:52px;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+            <img src="/quickcare-gender-icon.webp" alt="Men's and Women's Health" style="width:52px;height:52px;object-fit:contain;" onerror="this.style.display='none'">
           </div>
-          <div>
-            <h3 style="font-size:13px;font-weight:800;color:var(--navy);margin-bottom:6px;">Men's &amp; Women's Health</h3>
-            <div style="width:24px;height:2px;background:var(--blue);border-radius:2px;margin-bottom:8px;"></div>
-            <p style="font-size:12px;color:var(--text-mid);line-height:1.65;">Private, convenient virtual care for many common men's and women's health concerns without a traditional waiting room.</p>
-          </div>
+          <h3 style="font-size:13px;font-weight:800;color:var(--navy);line-height:1.3;">Men's &amp; Women's Health</h3>
         </div>
-
-      </div><!-- end right sub-grid -->
+        <div style="width:24px;height:2px;background:var(--blue);border-radius:2px;margin:0 auto 8px;"></div>
+        <p style="font-size:12px;color:var(--text-mid);line-height:1.65;text-align:center;">Private, convenient virtual care for common men's and women's health concerns.</p>
+      </div>
 
     </div>
 
