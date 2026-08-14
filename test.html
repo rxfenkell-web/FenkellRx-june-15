@@ -12,7 +12,7 @@
 <link rel="icon" href="/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=DM+Serif+Display:ital@0;1&family=Caveat:wght@600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
@@ -862,6 +862,21 @@ nav{
   display:grid;grid-template-columns:repeat(3,1fr);
   gap:18px;padding-top:16px;
 }
+.nqa-annotation{
+  position:relative;display:flex;align-items:flex-end;justify-content:center;
+  margin-top:2px;height:72px;pointer-events:none;
+}
+.nqa-annotation-inner{
+  display:flex;flex-direction:column;align-items:center;
+  position:relative;
+}
+.nqa-annotation-text{
+  font-family:'Caveat',cursive;font-size:19px;font-weight:600;
+  color:#E8A800;line-height:1.2;text-align:center;
+  transform:rotate(-4deg);margin-bottom:2px;
+}
+.nqa-annotation svg{display:block;}
+@media(max-width:768px){.nqa-annotation{display:none;}}
 .nqa-card{
   display:flex;align-items:center;gap:16px;
   padding:22px 20px;border-radius:14px;
@@ -1322,6 +1337,16 @@ nav{
             </div>
             <div class="nqa-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
           </a>
+        </div>
+        <!-- ANNOTATION ARROW -->
+        <div class="nqa-annotation">
+          <div class="nqa-annotation-inner">
+            <div class="nqa-annotation-text">Book your appointment online!</div>
+            <svg width="60" height="44" viewBox="0 0 60 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M30 40 C20 30, 10 15, 28 4" stroke="#E8A800" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+              <path d="M24 3 L28 4 L26 8" stroke="#E8A800" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </svg>
+          </div>
         </div>
       </div>
     </div>
