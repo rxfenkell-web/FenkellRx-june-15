@@ -94,9 +94,11 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
 .nav-mobile-menu .nav-m-cta:hover{background:var(--red-dark) !important;color:#fff !important;}
 @media(max-width:768px){
   .nav-links{display:none;}
-  .nav-hamburger{display:flex;align-items:center;margin-left:auto;}
-  .nav-cta{display:none;}
+  .nav-hamburger{display:flex;align-items:center;}
+  .nav-cta{display:flex;font-size:11px;padding:7px 12px;margin-left:auto;}
+  .nav-cta svg{display:none;}
   .nav-logo img{height:44px !important;}
+  .nav-inner{gap:8px;}
 }
 
 /* ── BREADCRUMB ── */
@@ -131,8 +133,20 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
 .qc-hero-right::after{content:'';position:absolute;top:0;left:0;right:0;height:18%;background:linear-gradient(to bottom,#F8F5F0 0%,rgba(248,245,240,0) 100%);z-index:1;pointer-events:none;}
 @media(max-width:900px){
   .qc-hero-inner{grid-template-columns:1fr;max-height:none;}
-  .qc-hero-left{padding:32px 1.5rem;}
-  .qc-hero-right{height:280px;}
+  .qc-hero-left{padding:24px 1.25rem 20px;}
+  .qc-hero-right{height:220px;}
+}
+@media(max-width:768px){
+  .qc-hero h1{font-size:clamp(20px,5vw,28px);margin-bottom:10px;}
+  .qc-hero-sub{font-size:13px;line-height:1.6;margin-bottom:16px;max-width:100%;}
+  /* Services 5-col → 2-col on mobile */
+  .services-grid{grid-template-columns:1fr 1fr !important;}
+  /* Common Illnesses image: full width on mobile */
+  .qc-conditions-img{width:100% !important;}
+  /* Form */
+  .form-section{padding:28px 0;}
+  /* How-it-works box full width on mobile */
+  .qc-how-box{width:100% !important;margin-left:0 !important;margin-right:0 !important;}
 }
 
 /* ── HOW IT WORKS ── */
@@ -306,7 +320,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 0 24px;}
       <p class="qc-hero-sub">Skip the urgent care waiting room. Connect with a licensed provider from your phone, get treated for common illnesses, and have your prescription sent directly to Fenkell Rx Pharmacy on Fenkell Ave for same-day pickup or free delivery throughout Detroit and Redford Township.</p>
 
       <!-- How it works box -->
-      <div style="background:rgba(255,255,255,0.75);border:1.5px solid var(--border);border-radius:10px;padding:10px 12px;margin-top:16px;display:block;width:80%;box-sizing:border-box;margin-left:auto;margin-right:auto;">
+      <div class="qc-how-box" style="background:rgba(255,255,255,0.75);border:1.5px solid var(--border);border-radius:10px;padding:10px 12px;margin-top:16px;display:block;width:80%;box-sizing:border-box;margin-left:auto;margin-right:auto;">
         <div style="font-size:14px;font-weight:800;color:var(--blue-dark);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:8px;text-align:center;">How QuickCare Works</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
           <div style="display:flex;flex-direction:column;align-items:center;gap:5px;background:#F0F7FF;border-radius:8px;padding:8px 6px;text-align:center;">
@@ -402,12 +416,12 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 0 24px;}
       </div>
       <!-- Image below -->
       <div style="text-align:center;padding-bottom:12px;">
-        <img src="/quickcare-conditions-landscape.webp" alt="Common conditions: Cough, Sore Throat, Sinus, Allergies, Pink Eye, UTI, Rashes, Nausea, Headaches, Ear Infections and more" style="width:67%;height:auto;display:inline-block;" onerror="this.style.display='none'">
+        <img src="/quickcare-conditions-landscape.webp" alt="Common conditions: Cough, Sore Throat, Sinus, Allergies, Pink Eye, UTI, Rashes, Nausea, Headaches, Ear Infections and more" class="qc-conditions-img" style="width:67%;height:auto;display:inline-block;" onerror="this.style.display='none'">
       </div>
     </div>
 
     <!-- Cards 2–6: 5-column row -->
-    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:20px;">
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:20px;" class="services-grid">
 
       <!-- Card 2: Primary Care -->
       <div style="background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:18px;">
