@@ -862,20 +862,16 @@ nav{
   display:grid;grid-template-columns:repeat(3,1fr);
   gap:18px;
 }
-.nqa-annotation{
-  background:var(--navy);border-radius:0 0 12px 12px;
-  padding:10px 16px 12px;
-  display:flex;align-items:center;gap:10px;
-  position:relative;
+.cant-find-annotation{
+  display:flex;align-items:center;gap:6px;
+  border-left:1px solid rgba(255,255,255,0.15);
+  padding-left:20px;margin-left:4px;
 }
-.nqa-annotation-text{
+.cant-find-annotation-text{
   font-family:'Caveat',cursive;font-size:22px;font-weight:600;
-  color:#E8A800;line-height:1.2;flex:1;
+  color:#E8A800;line-height:1.1;white-space:nowrap;
 }
-.nqa-annotation-arrow{
-  flex-shrink:0;display:flex;align-items:center;
-}
-@media(max-width:768px){.nqa-annotation{display:none;}}
+@media(max-width:900px){.cant-find-annotation{display:none;}}
 .nqa-card{
   display:flex;align-items:center;gap:16px;
   padding:22px 20px;border-radius:14px;
@@ -1338,16 +1334,6 @@ nav{
             <div class="nqa-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
           </a>
         </div>
-        <!-- ANNOTATION ARROW -->
-        <div class="nqa-annotation">
-          <div class="nqa-annotation-text">Book your doctor visit online!</div>
-          <div class="nqa-annotation-arrow">
-            <svg width="52" height="48" viewBox="0 0 52 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M44 44 C36 32, 20 16, 8 6" stroke="#E8A800" stroke-width="2.4" stroke-linecap="round" fill="none"/>
-              <path d="M4 12 L8 6 L14 10" stroke="#E8A800" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-            </svg>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -1367,6 +1353,13 @@ nav{
       CHECK LIVE STOCK
       <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" width="14" height="14"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
     </a>
+    <div class="cant-find-annotation">
+      <svg width="32" height="36" viewBox="0 0 32 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 32 C14 22, 10 12, 16 4" stroke="#E8A800" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+        <path d="M11 7 L16 4 L18 9" stroke="#E8A800" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      <span class="cant-find-annotation-text">Book your doctor visit online!</span>
+    </div>
   </div>
 </div>
 
