@@ -136,15 +136,15 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
 }
 
 /* ── HOW IT WORKS ── */
-.how-section{background:var(--cream);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:20px 0;}
+.how-section{background:var(--cream);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:10px 0;}
 .how-inner{max-width:1340px;margin:0 auto;padding:0 2rem;}
-.how-title{font-family:'DM Serif Display',serif;font-size:clamp(16px,1.8vw,22px);color:var(--navy);text-align:center;margin-bottom:16px;}
-.how-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;align-items:start;position:relative;}
-.how-step{display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 12px;position:relative;}
-.how-step:not(:last-child)::after{content:'→';position:absolute;right:-14px;top:32px;font-size:22px;color:var(--blue);font-weight:700;line-height:1;}
-.how-step-icon{width:52px;height:52px;border-radius:50%;background:var(--blue-light);border:2px solid #BAE6FD;display:flex;align-items:center;justify-content:center;margin-bottom:8px;flex-shrink:0;}
-.how-step-icon svg{width:32px;height:32px;stroke:var(--blue-dark);stroke-width:1.6;}
-.how-step-num{font-size:14px;font-weight:900;color:var(--red);margin-bottom:4px;}
+.how-title{font-family:'DM Serif Display',serif;font-size:13px;font-weight:700;color:var(--text-mid);text-align:center;margin-bottom:8px;text-transform:uppercase;letter-spacing:0.08em;}
+.how-steps{display:flex;align-items:center;justify-content:center;gap:0;}
+.how-step{display:flex;align-items:center;gap:8px;padding:0 18px;position:relative;}
+.how-step:not(:last-child)::after{content:'→';position:absolute;right:-6px;font-size:14px;color:var(--blue);font-weight:700;}
+.how-step-icon{width:36px;height:36px;border-radius:50%;background:var(--blue-light);border:1.5px solid #BAE6FD;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.how-step-icon svg{width:18px;height:18px;stroke:var(--blue-dark);stroke-width:1.6;}
+.how-step-num{font-size:12px;font-weight:800;color:var(--navy);}
 .how-step-title{font-size:14.5px;font-weight:800;color:var(--navy);margin-bottom:8px;}
 .how-step-desc{font-size:13px;color:var(--text-mid);line-height:1.65;}
 @media(max-width:700px){
@@ -320,28 +320,28 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 0 24px;}
 
       <div class="how-step">
         <div class="how-step-icon" style="background:transparent;border:none;overflow:visible;">
-          <img src="/quickcare-form-icon.webp" alt="Fill out form" style="width:48px;height:48px;object-fit:contain;">
+          <img src="/quickcare-form-icon.webp" alt="Fill out form" style="width:36px;height:36px;object-fit:contain;">
         </div>
         <div class="how-step-num">1. Fill Out Form</div>
       </div>
 
       <div class="how-step">
         <div class="how-step-icon" style="background:transparent;border:none;overflow:visible;">
-          <img src="/quickcare-pay-icon.webp" alt="Pay $50 flat fee" style="width:48px;height:48px;object-fit:contain;">
+          <img src="/quickcare-pay-icon.webp" alt="Pay $50 flat fee" style="width:36px;height:36px;object-fit:contain;">
         </div>
         <div class="how-step-num">2. Pay &amp; Book</div>
       </div>
 
       <div class="how-step">
         <div class="how-step-icon" style="background:transparent;border:none;overflow:visible;">
-          <img src="/quickcare-provider-icon.webp" alt="See the provider" style="width:48px;height:48px;object-fit:contain;">
+          <img src="/quickcare-provider-icon.webp" alt="See the provider" style="width:36px;height:36px;object-fit:contain;">
         </div>
         <div class="how-step-num">3. See the Provider</div>
       </div>
 
       <div class="how-step">
         <div class="how-step-icon" style="background:transparent;border:none;overflow:visible;">
-          <img src="/quickcare-rx-icon.webp" alt="We fill your prescription" style="width:48px;height:48px;object-fit:contain;">
+          <img src="/quickcare-rx-icon.webp" alt="We fill your prescription" style="width:36px;height:36px;object-fit:contain;">
         </div>
         <div class="how-step-num">4. We Fill Your Prescription</div>
       </div>
