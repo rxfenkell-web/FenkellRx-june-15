@@ -255,6 +255,24 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 0 24px;}
 @media(max-width:900px){.footer-inner{grid-template-columns:1fr 1fr;gap:28px;}}
 @media(max-width:600px){.footer-inner{grid-template-columns:1fr;}}
 
+
+/* ── SITE FOOTER ── */
+.site-footer{background:var(--navy,#0D1B2A);color:rgba(255,255,255,0.7);}
+.sf-inner{max-width:1340px;margin:0 auto;padding:44px 2rem 40px;display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:40px;}
+.sf-logo img{height:44px;width:auto;margin-bottom:14px;}
+.sf-desc{font-size:12.5px;line-height:1.75;color:rgba(255,255,255,0.5);}
+.sf-col-title{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:0.12em;color:rgba(255,255,255,0.35);margin-bottom:14px;}
+.sf-links{display:flex;flex-direction:column;gap:9px;}
+.sf-links a{font-size:13px;color:rgba(255,255,255,0.6);text-decoration:none;transition:color 0.15s;}
+.sf-links a:hover{color:#fff;}
+.sf-bottom{border-top:1px solid rgba(255,255,255,0.08);background:rgba(0,0,0,0.15);}
+.sf-bottom-inner{max-width:1340px;margin:0 auto;padding:18px 2rem;display:flex;flex-direction:column;gap:5px;}
+.sf-bottom-address{font-size:12.5px;font-weight:600;color:rgba(255,255,255,0.7);}
+.sf-bottom-address a{color:var(--blue,#00AEEF);text-decoration:none;}
+.sf-bottom-service{font-size:11px;color:rgba(255,255,255,0.35);line-height:1.6;}
+.sf-bottom-copy{font-size:11px;color:rgba(255,255,255,0.35);}
+@media(max-width:900px){.sf-inner{grid-template-columns:1fr 1fr;gap:28px;}}
+@media(max-width:560px){.sf-inner{grid-template-columns:1fr;}.sf-logo img{height:36px;}}
 </style>
 </head>
 <body>
@@ -598,49 +616,51 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 0 24px;}
 </section>
 
 <!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <a href="https://fenkellrxpharmacy.com"><img src="/logo.png" alt="Fenkell Rx Pharmacy" onerror="this.style.display='none';"></a>
-      <p class="footer-brand-desc">Independently owned local pharmacy serving Detroit and surrounding communities. Free prescription delivery, medication synchronization, and blister packaging available.</p>
-      <div class="footer-social">
-        <a href="#" title="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
-        <a href="#" title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
-        <a href="#" title="Google"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></a>
-      </div>
+<footer class="site-footer">
+  <div class="sf-inner">
+    <div class="sf-about">
+      <a href="https://fenkellrxpharmacy.com" class="sf-logo">
+        <img src="/logo.png" alt="Fenkell Rx Pharmacy" onerror="this.style.display='none'">
+      </a>
+      <p class="sf-desc">Independently owned local pharmacy. Proudly serving Northwest Detroit, North Rosedale Park, Rosedale Park, Grandmont, Grandmont #1, Minock Park, Old Redford, Brightmoor, Castle Rouge, Schoolcraft, Southfield Plymouth, Eliza Howell, Greenfield-Grand River, Redford Township, and Southfield with professional, personalized pharmaceutical care.</p>
     </div>
-    <div>
-      <div class="footer-col-title">Services</div>
-      <div class="footer-links">
+    <div class="sf-col">
+      <div class="sf-col-title">Services</div>
+      <div class="sf-links">
         <a href="/refills">Prescription Refills</a>
+        <a href="/#services">Medication Sync</a>
+        <a href="/#services">MTM Consultation</a>
         <a href="/free-prescription-delivery-detroit">Free Delivery</a>
         <a href="/blister-packaging-detroit">Blister Packaging</a>
         <a href="/compounding-pharmacy-detroit">Compounding</a>
-        <a href="/#services">Medication Sync</a>
       </div>
     </div>
-    <div>
-      <div class="footer-col-title">Health &amp; Wellness</div>
-      <div class="footer-links">
+    <div class="sf-col">
+      <div class="sf-col-title">Health &amp; Wellness</div>
+      <div class="sf-links">
         <a href="/vaccines-detroit">Immunizations</a>
-        <a href="/diabetic-supplies-detroit">Diabetic Supplies</a>
-        <a href="/availability">Meds In Stock</a>
-        <a href="/insurance-detroit">Insurance Accepted</a>
+        <a href="/#screenings">Blood Pressure Check</a>
+        <a href="/#screenings">Diabetes Screening</a>
+        <a href="/#screenings">Smoking Cessation</a>
+        <a href="/#screenings">Wellness Programs</a>
       </div>
     </div>
-    <div>
-      <div class="footer-col-title">Information</div>
-      <div class="footer-links">
+    <div class="sf-col">
+      <div class="sf-col-title">Information</div>
+      <div class="sf-links">
+        <a href="/#team">Our Team</a>
+        <a href="/insurance-detroit">Insurance Accepted</a>
         <a href="/#location">Location &amp; Hours</a>
         <a href="/transfer">Transfer Prescription</a>
-        <a href="/insurance-detroit">Insurance Plans</a>
-        <a href="/message">Contact Us</a>
       </div>
     </div>
   </div>
-  <div class="footer-bottom">
-    <span style="color:#0D1B2A;font-weight:600;">Fenkell Rx Pharmacy &nbsp;·&nbsp; 18360 Fenkell Ave, Detroit, MI 48223 &nbsp;·&nbsp; Phone: <a href="tel:3135195700" style="color:#00AEEF;">(313) 519-5700</a> &nbsp;·&nbsp; Fax: (313) 899-7389</span>
-    <span style="font-size:11px;color:#374151;">© 2026 Fenkell Rx Pharmacy. All rights reserved. Licensed by the Michigan Board of Pharmacy.</span>
+  <div class="sf-bottom">
+    <div class="sf-bottom-inner">
+      <p class="sf-bottom-address">Fenkell Rx Pharmacy &nbsp;&middot;&nbsp; 18360 Fenkell Ave, Detroit, MI 48223 &nbsp;&middot;&nbsp; Phone: <a href="tel:3135195700">(313) 519-5700</a> &nbsp;&middot;&nbsp; Fax: (313) 899-7389</p>
+      <p class="sf-bottom-service">Serving North Rosedale, Detroit, MI 48223 and surrounding areas — Northwest Detroit, Rosedale Park, Grandmont, Grandmont #1, Minock Park, Old Redford, Brightmoor, Castle Rouge, Schoolcraft, Southfield Plymouth, Eliza Howell, Greenfield-Grand River, Redford Township, and Southfield.</p>
+      <p class="sf-bottom-copy">© 2026 Fenkell Rx Pharmacy. All rights reserved. Licensed by the Michigan Board of Pharmacy. 18360 Fenkell Ave, Detroit, MI 48223.</p>
+    </div>
   </div>
 </footer>
 

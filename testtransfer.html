@@ -195,16 +195,6 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
 .help-hour-row span:last-child{font-weight:700;color:var(--navy);}
 .help-closed{color:var(--red)!important;}
 
-/* ── FOOTER TRUST ── */
-.footer-trust{background:var(--navy);padding:18px 0;}
-.footer-trust-inner{max-width:1340px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:repeat(4,1fr);gap:0;}
-.ft-item{display:flex;align-items:center;gap:12px;padding:0 20px;border-right:1px solid rgba(255,255,255,0.1);}
-.ft-item:first-child{padding-left:0;}
-.ft-item:last-child{border-right:none;}
-.ft-icon{width:36px;height:36px;border-radius:9px;background:rgba(255,255,255,0.08);flex-shrink:0;display:flex;align-items:center;justify-content:center;}
-.ft-icon svg{width:18px;height:18px;stroke:var(--blue);stroke-width:2;}
-.ft-label{font-size:12px;font-weight:800;color:#fff;line-height:1.3;}
-.ft-sub{font-size:10.5px;color:rgba(255,255,255,0.55);margin-top:2px;}
 
 /* ── RESPONSIVE ── */
 @media(max-width:1024px){
@@ -226,6 +216,24 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
   .form-grid{grid-template-columns:1fr;}
   .footer-trust-inner{grid-template-columns:1fr;}
 }
+
+/* ── SITE FOOTER ── */
+.site-footer{background:var(--navy,#0D1B2A);color:rgba(255,255,255,0.7);}
+.sf-inner{max-width:1340px;margin:0 auto;padding:44px 2rem 40px;display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:40px;}
+.sf-logo img{height:44px;width:auto;margin-bottom:14px;}
+.sf-desc{font-size:12.5px;line-height:1.75;color:rgba(255,255,255,0.5);}
+.sf-col-title{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:0.12em;color:rgba(255,255,255,0.35);margin-bottom:14px;}
+.sf-links{display:flex;flex-direction:column;gap:9px;}
+.sf-links a{font-size:13px;color:rgba(255,255,255,0.6);text-decoration:none;transition:color 0.15s;}
+.sf-links a:hover{color:#fff;}
+.sf-bottom{border-top:1px solid rgba(255,255,255,0.08);background:rgba(0,0,0,0.15);}
+.sf-bottom-inner{max-width:1340px;margin:0 auto;padding:18px 2rem;display:flex;flex-direction:column;gap:5px;}
+.sf-bottom-address{font-size:12.5px;font-weight:600;color:rgba(255,255,255,0.7);}
+.sf-bottom-address a{color:var(--blue,#00AEEF);text-decoration:none;}
+.sf-bottom-service{font-size:11px;color:rgba(255,255,255,0.35);line-height:1.6;}
+.sf-bottom-copy{font-size:11px;color:rgba(255,255,255,0.35);}
+@media(max-width:900px){.sf-inner{grid-template-columns:1fr 1fr;gap:28px;}}
+@media(max-width:560px){.sf-inner{grid-template-columns:1fr;}.sf-logo img{height:36px;}}
 </style>
 </head>
 <body>
@@ -520,51 +528,54 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
   </div>
 </section>
 
-<!-- FOOTER TRUST BAR -->
-<div class="footer-trust">
-  <div class="footer-trust-inner">
-    <div class="ft-item">
-      <div class="ft-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-      </div>
-      <div>
-        <div class="ft-label">Free Same-Day Delivery</div>
-        <div class="ft-sub">Across Detroit</div>
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="sf-inner">
+    <div class="sf-about">
+      <a href="https://fenkellrxpharmacy.com" class="sf-logo">
+        <img src="/logo.png" alt="Fenkell Rx Pharmacy" onerror="this.style.display='none'">
+      </a>
+      <p class="sf-desc">Independently owned local pharmacy. Proudly serving Northwest Detroit, North Rosedale Park, Rosedale Park, Grandmont, Grandmont #1, Minock Park, Old Redford, Brightmoor, Castle Rouge, Schoolcraft, Southfield Plymouth, Eliza Howell, Greenfield-Grand River, Redford Township, and Southfield with professional, personalized pharmaceutical care.</p>
+    </div>
+    <div class="sf-col">
+      <div class="sf-col-title">Services</div>
+      <div class="sf-links">
+        <a href="/refills">Prescription Refills</a>
+        <a href="/#services">Medication Sync</a>
+        <a href="/#services">MTM Consultation</a>
+        <a href="/free-prescription-delivery-detroit">Free Delivery</a>
+        <a href="/blister-packaging-detroit">Blister Packaging</a>
+        <a href="/compounding-pharmacy-detroit">Compounding</a>
       </div>
     </div>
-    <div class="ft-item">
-      <div class="ft-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      </div>
-      <div>
-        <div class="ft-label">We Accept Most Insurance</div>
-        <div class="ft-sub">Medicare, Medicaid &amp; more</div>
-      </div>
-    </div>
-    <div class="ft-item">
-      <div class="ft-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-      </div>
-      <div>
-        <div class="ft-label">Independent Pharmacy You Can Count On</div>
-        <div class="ft-sub">Detroit's 4.9 ★ Pharmacy</div>
+    <div class="sf-col">
+      <div class="sf-col-title">Health &amp; Wellness</div>
+      <div class="sf-links">
+        <a href="/vaccines-detroit">Immunizations</a>
+        <a href="/#screenings">Blood Pressure Check</a>
+        <a href="/#screenings">Diabetes Screening</a>
+        <a href="/#screenings">Smoking Cessation</a>
+        <a href="/#screenings">Wellness Programs</a>
       </div>
     </div>
-    <div class="ft-item">
-      <div class="ft-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      </div>
-      <div>
-        <div class="ft-label">Store Hours</div>
-        <div class="ft-sub">Mon–Fri 9:30–6 · Sat 9:30–3 · Sun Closed</div>
+    <div class="sf-col">
+      <div class="sf-col-title">Information</div>
+      <div class="sf-links">
+        <a href="/#team">Our Team</a>
+        <a href="/insurance-detroit">Insurance Accepted</a>
+        <a href="/#location">Location &amp; Hours</a>
+        <a href="/transfer">Transfer Prescription</a>
       </div>
     </div>
   </div>
-</div>
-<div style="background:var(--navy);border-top:1px solid rgba(255,255,255,0.08);padding:10px 0;text-align:center;">
-  <span style="font-size:11px;color:rgba(255,255,255,0.4);">© 2026 Fenkell Rx Pharmacy. All rights reserved. Licensed by the Michigan Board of Pharmacy. 18360 Fenkell Ave, Detroit, MI 48223.</span>
-</div>
-
+  <div class="sf-bottom">
+    <div class="sf-bottom-inner">
+      <p class="sf-bottom-address">Fenkell Rx Pharmacy &nbsp;&middot;&nbsp; 18360 Fenkell Ave, Detroit, MI 48223 &nbsp;&middot;&nbsp; Phone: <a href="tel:3135195700">(313) 519-5700</a> &nbsp;&middot;&nbsp; Fax: (313) 899-7389</p>
+      <p class="sf-bottom-service">Serving North Rosedale, Detroit, MI 48223 and surrounding areas — Northwest Detroit, Rosedale Park, Grandmont, Grandmont #1, Minock Park, Old Redford, Brightmoor, Castle Rouge, Schoolcraft, Southfield Plymouth, Eliza Howell, Greenfield-Grand River, Redford Township, and Southfield.</p>
+      <p class="sf-bottom-copy">© 2026 Fenkell Rx Pharmacy. All rights reserved. Licensed by the Michigan Board of Pharmacy. 18360 Fenkell Ave, Detroit, MI 48223.</p>
+    </div>
+  </div>
+</footer>
 <script>
 function submitTransfer() {
   var first    = document.getElementById('tf-first').value.trim();
