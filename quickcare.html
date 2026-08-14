@@ -621,7 +621,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 0 24px;}
   window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(applyUpdate);}},{passive:true});
   applyUpdate();
 })();
-// Mobile Get QuickCare button — scroll form fully into view with some context above
+// Get QuickCare button — scroll to form section
 document.querySelectorAll('a[href="#get-started"]').forEach(function(btn) {
   btn.addEventListener('click', function(e) {
     var form = document.getElementById('get-started');
@@ -629,12 +629,18 @@ document.querySelectorAll('a[href="#get-started"]').forEach(function(btn) {
     e.preventDefault();
     var navH = document.querySelector('nav') ? document.querySelector('nav').offsetHeight : 70;
     var formRect = form.getBoundingClientRect();
-    var formH = form.offsetHeight;
-    var vpH = window.innerHeight;
-    // Try to show some space above the form (80px) while keeping the whole form visible
-    var offset = Math.min(80, vpH - formH - navH - 16);
-    if (offset < 0) offset = 8;
-    var scrollTo = window.scrollY + formRect.top - navH - offset;
+    var scrollTo;
+    if (window.innerWidth <= 768) {
+      // Mobile: show full form + some context above
+      var formH = form.offsetHeight;
+      var vpH = window.innerHeight;
+      var offset = Math.min(80, vpH - formH - navH - 16);
+      if (offset < 0) offset = 8;
+      scrollTo = window.scrollY + formRect.top - navH - offset;
+    } else {
+      // Desktop: form top border aligns exactly with bottom of sticky nav
+      scrollTo = window.scrollY + formRect.top - navH;
+    }
     window.scrollTo({ top: scrollTo, behavior: 'smooth' });
     // Close mobile menu if open
     var menu = document.querySelector('.nav-mobile-menu');
