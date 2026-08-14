@@ -621,6 +621,27 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 0 24px;}
   window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(applyUpdate);}},{passive:true});
   applyUpdate();
 })();
+// Mobile Get QuickCare button — scroll form fully into view with some context above
+document.querySelectorAll('a[href="#get-started"]').forEach(function(btn) {
+  btn.addEventListener('click', function(e) {
+    var form = document.getElementById('get-started');
+    if (!form) return;
+    e.preventDefault();
+    var navH = document.querySelector('nav') ? document.querySelector('nav').offsetHeight : 70;
+    var formRect = form.getBoundingClientRect();
+    var formH = form.offsetHeight;
+    var vpH = window.innerHeight;
+    // Try to show some space above the form (80px) while keeping the whole form visible
+    var offset = Math.min(80, vpH - formH - navH - 16);
+    if (offset < 0) offset = 8;
+    var scrollTo = window.scrollY + formRect.top - navH - offset;
+    window.scrollTo({ top: scrollTo, behavior: 'smooth' });
+    // Close mobile menu if open
+    var menu = document.querySelector('.nav-mobile-menu');
+    if (menu) menu.classList.remove('open');
+  });
+});
+
 function submitQuickCare(e) {
   e.preventDefault();
   var name    = document.getElementById('patient-name').value.trim();
