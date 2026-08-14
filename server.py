@@ -1139,6 +1139,8 @@ class Handler(SimpleHTTPRequestHandler):
                 self._respond(404, {"ok": False, "error": "Not found"})
         elif path == "/transfer":
             self._serve_html_with_seo(os.path.join(BASE_DIR, "transfer.html"))
+        elif path == "/testtransfer":
+            self._serve_html_with_seo(os.path.join(BASE_DIR, "testtransfer.html"))
         elif path == "/free-prescription-delivery-detroit":
             self._serve_html_with_seo(os.path.join(BASE_DIR, "free-prescription-delivery-detroit.html"))
         elif path == "/compounding-pharmacy-detroit":
