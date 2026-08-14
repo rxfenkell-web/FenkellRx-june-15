@@ -423,97 +423,102 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 0 24px;}
       <p style="font-size:14px;color:var(--text-mid);max-width:680px;margin:0 auto;line-height:1.75;">From common illnesses and same-day concerns to prescription refills and ongoing primary care, Fenkell Rx QuickCare makes it easier to connect with a healthcare provider online.</p>
     </div>
 
-    <!-- 6 Service Cards -->
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px;">
+    <!-- 6 Service Cards: big left card + 5 smaller right cards -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;align-items:stretch;">
 
-      <!-- Card 1: Common Illnesses -->
-      <div style="background:#fff;border:1.5px solid var(--border);border-radius:16px;padding:24px;grid-row:span 1;">
-        <div style="display:flex;align-items:center;gap:14px;margin-bottom:12px;">
-          <div style="width:52px;height:52px;border-radius:50%;background:var(--blue-light);flex-shrink:0;display:flex;align-items:center;justify-content:center;">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--blue-dark)" stroke-width="1.8"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="11" x2="12" y2="17"/><line x1="9" y1="14" x2="15" y2="14"/></svg>
+      <!-- Card 1: Common Illnesses — large left -->
+      <div style="background:#fff;border:1.5px solid var(--border);border-radius:16px;padding:28px;display:flex;flex-direction:column;">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px;">
+          <div style="width:56px;height:56px;border-radius:50%;background:var(--blue-light);flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--blue-dark)" stroke-width="1.8"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="11" x2="12" y2="17"/><line x1="9" y1="14" x2="15" y2="14"/></svg>
           </div>
-          <h3 style="font-size:15px;font-weight:800;color:var(--navy);line-height:1.3;">Common Illnesses &amp; Same-Day Care</h3>
+          <h3 style="font-size:18px;font-weight:800;color:var(--navy);line-height:1.3;">Common Illnesses &amp; Same-Day Care</h3>
         </div>
-        <div style="width:32px;height:2px;background:var(--blue);border-radius:2px;margin-bottom:10px;"></div>
-        <p style="font-size:13px;color:var(--text-mid);line-height:1.7;margin-bottom:14px;">Get convenient virtual care for many everyday health concerns that often lead patients to urgent care or a walk-in clinic, when appropriate for telehealth.</p>
-        <div style="background:var(--blue-light);border-radius:10px;padding:12px 14px;">
-          <p style="font-size:11px;font-weight:800;color:var(--blue-dark);margin-bottom:8px;">Common concerns may include:</p>
-          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px 4px;text-align:center;">
-            <div style="font-size:11px;color:var(--navy);font-weight:600;">🤧 Cold &amp; Flu</div>
-            <div style="font-size:11px;color:var(--navy);font-weight:600;">😮‍💨 Cough</div>
-            <div style="font-size:11px;color:var(--navy);font-weight:600;">🤒 Sore Throat</div>
-            <div style="font-size:11px;color:var(--navy);font-weight:600;">👃 Sinus Symptoms</div>
-            <div style="font-size:11px;color:var(--navy);font-weight:600;">🌿 Allergies</div>
-            <div style="font-size:11px;color:var(--navy);font-weight:600;">👁️ Pink Eye</div>
-            <div style="font-size:11px;color:var(--navy);font-weight:600;">💊 UTI Symptoms</div>
-            <div style="font-size:11px;color:var(--navy);font-weight:600;">🩹 Rashes &amp; Skin</div>
-            <div style="font-size:11px;color:var(--navy);font-weight:600;">🤢 Nausea &amp; GI</div>
-            <div style="font-size:11px;color:var(--navy);font-weight:600;">🤕 Headaches</div>
-            <div style="font-size:11px;color:var(--navy);font-weight:600;">👂 Ear Infections</div>
-            <div style="font-size:11px;color:var(--navy);font-weight:600;">+ More</div>
+        <div style="width:32px;height:2px;background:var(--blue);border-radius:2px;margin-bottom:12px;"></div>
+        <p style="font-size:14px;color:var(--text-mid);line-height:1.75;margin-bottom:18px;">Get convenient virtual care for many everyday health concerns that often lead patients to urgent care or a walk-in clinic, when appropriate for telehealth.</p>
+        <div style="background:var(--blue-light);border-radius:12px;padding:16px 18px;flex:1;">
+          <p style="font-size:12px;font-weight:800;color:var(--blue-dark);margin-bottom:12px;letter-spacing:0.04em;">Common concerns may include:</p>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px 8px;text-align:center;">
+            <div style="font-size:12px;color:var(--navy);font-weight:600;">🤧 Cold &amp; Flu</div>
+            <div style="font-size:12px;color:var(--navy);font-weight:600;">😮‍💨 Cough</div>
+            <div style="font-size:12px;color:var(--navy);font-weight:600;">🤒 Sore Throat</div>
+            <div style="font-size:12px;color:var(--navy);font-weight:600;">👃 Sinus Symptoms</div>
+            <div style="font-size:12px;color:var(--navy);font-weight:600;">🌿 Allergies</div>
+            <div style="font-size:12px;color:var(--navy);font-weight:600;">👁️ Pink Eye</div>
+            <div style="font-size:12px;color:var(--navy);font-weight:600;">💊 UTI Symptoms</div>
+            <div style="font-size:12px;color:var(--navy);font-weight:600;">🩹 Rashes &amp; Skin</div>
+            <div style="font-size:12px;color:var(--navy);font-weight:600;">🤢 Nausea &amp; GI</div>
+            <div style="font-size:12px;color:var(--navy);font-weight:600;">🤕 Headaches</div>
+            <div style="font-size:12px;color:var(--navy);font-weight:600;">👂 Ear Infections</div>
+            <div style="font-size:12px;color:var(--navy);font-weight:600;">➕ And More</div>
           </div>
         </div>
       </div>
 
-      <!-- Card 2: Primary Care -->
-      <div style="background:#fff;border:1.5px solid var(--border);border-radius:16px;padding:24px;">
-        <div style="display:flex;align-items:center;gap:14px;margin-bottom:12px;">
-          <div style="width:52px;height:52px;border-radius:50%;background:var(--blue-light);flex-shrink:0;display:flex;align-items:center;justify-content:center;">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--blue-dark)" stroke-width="1.8"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-          </div>
-          <h3 style="font-size:15px;font-weight:800;color:var(--navy);line-height:1.3;">Primary Care</h3>
-        </div>
-        <div style="width:32px;height:2px;background:var(--blue);border-radius:2px;margin-bottom:10px;"></div>
-        <p style="font-size:13px;color:var(--text-mid);line-height:1.7;">Discuss routine health concerns, preventive care, ongoing health needs, and next steps with a healthcare provider through a convenient virtual visit.</p>
-      </div>
+      <!-- Right side: 5 smaller cards in 2-col sub-grid -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
 
-      <!-- Card 3: Medication Refill Visits -->
-      <div style="background:#fff;border:1.5px solid var(--border);border-radius:16px;padding:24px;">
-        <div style="display:flex;align-items:center;gap:14px;margin-bottom:12px;">
-          <div style="width:52px;height:52px;border-radius:50%;background:var(--blue-light);flex-shrink:0;display:flex;align-items:center;justify-content:center;">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--blue-dark)" stroke-width="1.8"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+        <!-- Card 2: Primary Care -->
+        <div style="background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:18px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+            <div style="width:40px;height:40px;border-radius:50%;background:var(--blue-light);flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--blue-dark)" stroke-width="1.8"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            </div>
+            <h3 style="font-size:13px;font-weight:800;color:var(--navy);line-height:1.3;">Primary Care</h3>
           </div>
-          <h3 style="font-size:15px;font-weight:800;color:var(--navy);line-height:1.3;">Medication Refill Visits</h3>
+          <div style="width:24px;height:2px;background:var(--blue);border-radius:2px;margin-bottom:8px;"></div>
+          <p style="font-size:12px;color:var(--text-mid);line-height:1.65;">Routine health concerns, preventive care, and ongoing health needs.</p>
         </div>
-        <div style="width:32px;height:2px;background:var(--blue);border-radius:2px;margin-bottom:10px;"></div>
-        <p style="font-size:13px;color:var(--text-mid);line-height:1.7;">Need a prescription refill? A healthcare provider can review your current medications, medical needs, and refill history to determine whether a refill is medically appropriate.*</p>
-      </div>
 
-      <!-- Card 4: Diabetes & BP -->
-      <div style="background:#fff;border:1.5px solid var(--border);border-radius:16px;padding:24px;">
-        <div style="display:flex;align-items:center;gap:14px;margin-bottom:12px;">
-          <div style="width:52px;height:52px;border-radius:50%;background:var(--blue-light);flex-shrink:0;display:flex;align-items:center;justify-content:center;">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--blue-dark)" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
+        <!-- Card 3: Medication Refill Visits -->
+        <div style="background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:18px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+            <div style="width:40px;height:40px;border-radius:50%;background:var(--blue-light);flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--blue-dark)" stroke-width="1.8"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+            </div>
+            <h3 style="font-size:13px;font-weight:800;color:var(--navy);line-height:1.3;">Medication Refill Visits</h3>
           </div>
-          <h3 style="font-size:15px;font-weight:800;color:var(--navy);line-height:1.3;">Diabetes &amp; High Blood Pressure Follow-Up</h3>
+          <div style="width:24px;height:2px;background:var(--blue);border-radius:2px;margin-bottom:8px;"></div>
+          <p style="font-size:12px;color:var(--text-mid);line-height:1.65;">Review medications and refill history when medically appropriate.*</p>
         </div>
-        <div style="width:32px;height:2px;background:var(--blue);border-radius:2px;margin-bottom:10px;"></div>
-        <p style="font-size:13px;color:var(--text-mid);line-height:1.7;">Get convenient virtual follow-up care for diabetes and hypertension, including discussions about medications, home readings, treatment progress, and ongoing care needs.</p>
-      </div>
 
-      <!-- Card 5: Lab Orders -->
-      <div style="background:#fff;border:1.5px solid var(--border);border-radius:16px;padding:24px;">
-        <div style="display:flex;align-items:center;gap:14px;margin-bottom:12px;">
-          <div style="width:52px;height:52px;border-radius:50%;background:var(--blue-light);flex-shrink:0;display:flex;align-items:center;justify-content:center;">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--blue-dark)" stroke-width="1.8"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/><line x1="12" y1="12" x2="12" y2="17"/><line x1="9.5" y1="14.5" x2="14.5" y2="14.5"/></svg>
+        <!-- Card 4: Diabetes & BP -->
+        <div style="background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:18px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+            <div style="width:40px;height:40px;border-radius:50%;background:var(--blue-light);flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--blue-dark)" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
+            </div>
+            <h3 style="font-size:13px;font-weight:800;color:var(--navy);line-height:1.3;">Diabetes &amp; Blood Pressure</h3>
           </div>
-          <h3 style="font-size:15px;font-weight:800;color:var(--navy);line-height:1.3;">Lab Orders &amp; Results Review</h3>
+          <div style="width:24px;height:2px;background:var(--blue);border-radius:2px;margin-bottom:8px;"></div>
+          <p style="font-size:12px;color:var(--text-mid);line-height:1.65;">Virtual follow-up for diabetes and hypertension, medications, and home readings.</p>
         </div>
-        <div style="width:32px;height:2px;background:var(--blue);border-radius:2px;margin-bottom:10px;"></div>
-        <p style="font-size:13px;color:var(--text-mid);line-height:1.7;">When medically appropriate, your healthcare provider can order routine laboratory testing and schedule a virtual visit to discuss your lab results and recommended next steps.</p>
-      </div>
 
-      <!-- Card 6: Men's & Women's Health -->
-      <div style="background:#fff;border:1.5px solid var(--border);border-radius:16px;padding:24px;">
-        <div style="display:flex;align-items:center;gap:14px;margin-bottom:12px;">
-          <div style="width:52px;height:52px;border-radius:50%;background:var(--blue-light);flex-shrink:0;display:flex;align-items:center;justify-content:center;">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--blue-dark)" stroke-width="1.8"><circle cx="9" cy="9" r="4"/><path d="M9 13v8M6 18h6"/><circle cx="16" cy="8" r="3"/><path d="M19 5l2-2m0 0l-2-2m2 2h-3"/></svg>
+        <!-- Card 5: Lab Orders -->
+        <div style="background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:18px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+            <div style="width:40px;height:40px;border-radius:50%;background:var(--blue-light);flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--blue-dark)" stroke-width="1.8"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/><line x1="12" y1="12" x2="12" y2="17"/><line x1="9.5" y1="14.5" x2="14.5" y2="14.5"/></svg>
+            </div>
+            <h3 style="font-size:13px;font-weight:800;color:var(--navy);line-height:1.3;">Lab Orders &amp; Results Review</h3>
           </div>
-          <h3 style="font-size:15px;font-weight:800;color:var(--navy);line-height:1.3;">Men's &amp; Women's Health</h3>
+          <div style="width:24px;height:2px;background:var(--blue);border-radius:2px;margin-bottom:8px;"></div>
+          <p style="font-size:12px;color:var(--text-mid);line-height:1.65;">Routine lab testing orders and virtual review of your results.</p>
         </div>
-        <div style="width:32px;height:2px;background:var(--blue);border-radius:2px;margin-bottom:10px;"></div>
-        <p style="font-size:13px;color:var(--text-mid);line-height:1.7;">Access private, convenient virtual care for many common men's and women's health concerns without spending hours in a traditional waiting room.</p>
-      </div>
+
+        <!-- Card 6: Men's & Women's Health — spans both columns -->
+        <div style="background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:18px;grid-column:span 2;display:flex;align-items:flex-start;gap:14px;">
+          <div style="width:40px;height:40px;border-radius:50%;background:var(--blue-light);flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--blue-dark)" stroke-width="1.8"><circle cx="9" cy="9" r="4"/><path d="M9 13v8M6 18h6"/><circle cx="16" cy="8" r="3"/><path d="M19 5l2-2m0 0l-2-2m2 2h-3"/></svg>
+          </div>
+          <div>
+            <h3 style="font-size:13px;font-weight:800;color:var(--navy);margin-bottom:6px;">Men's &amp; Women's Health</h3>
+            <div style="width:24px;height:2px;background:var(--blue);border-radius:2px;margin-bottom:8px;"></div>
+            <p style="font-size:12px;color:var(--text-mid);line-height:1.65;">Private, convenient virtual care for many common men's and women's health concerns without a traditional waiting room.</p>
+          </div>
+        </div>
+
+      </div><!-- end right sub-grid -->
 
     </div>
 
