@@ -44,10 +44,6 @@ img{display:block;max-width:100%;}
 .topbar-phone svg{width:13px;height:13px;stroke:#fff;}
 .topbar-open{display:flex;align-items:center;gap:6px;font-size:11.5px;color:rgba(255,255,255,0.7);}
 .topbar-open-dot{width:7px;height:7px;border-radius:50%;background:#4ADE80;flex-shrink:0;}
-.topbar-socials{display:flex;align-items:center;gap:10px;}
-.topbar-socials a{display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,0.1);transition:background 0.15s;}
-.topbar-socials a:hover{background:rgba(255,255,255,0.2);}
-.topbar-socials svg{width:13px;height:13px;stroke:#fff;fill:none;}
 
 /* ── NAV ── */
 nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 1px 8px rgba(0,0,0,0.06);}
@@ -64,7 +60,17 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
 .nav-cta{margin-left:auto;background:var(--red);color:#fff;font-size:13px;font-weight:800;padding:10px 20px;border-radius:8px;white-space:nowrap;display:flex;align-items:center;gap:8px;transition:background 0.2s;}
 .nav-cta:hover{background:var(--red-dark);color:#fff;}
 .nav-cta svg{width:14px;height:14px;stroke:#fff;stroke-width:2.5;}
-.nav-mobile-call{display:none;}
+/* ── HAMBURGER ── */
+.nav-hamburger{display:none;background:none;border:none;cursor:pointer;padding:6px;border-radius:6px;flex-shrink:0;line-height:0;-webkit-tap-highlight-color:transparent;}
+.nav-hamburger:hover{background:#f5f5f5;}
+.nav-hamburger svg{width:22px;height:22px;stroke:var(--navy);stroke-width:2;display:block;}
+.nav-mobile-menu{display:none;background:#fff;border-top:1px solid var(--border);box-shadow:0 8px 24px rgba(0,0,0,0.1);}
+.nav-mobile-menu.open{display:block;}
+.nav-mobile-menu a{display:block;padding:14px 24px;font-size:15px;font-weight:600;color:var(--navy);border-bottom:1px solid #f0f0f0;text-decoration:none;font-family:'DM Sans',sans-serif;transition:background 0.15s,color 0.15s;}
+.nav-mobile-menu a:last-child{border-bottom:none;}
+.nav-mobile-menu a:hover{background:var(--red-light);color:var(--red);}
+.nav-mobile-menu .nav-m-cta{background:var(--red);color:#fff !important;margin:12px 16px 16px;border-radius:8px;text-align:center;border-bottom:none !important;display:block;}
+.nav-mobile-menu .nav-m-cta:hover{background:var(--red-dark) !important;color:#fff !important;}
 
 /* ── HERO ── */
 .transfer-hero{background:var(--cream);overflow:hidden;border-bottom:1px solid var(--border);}
@@ -212,8 +218,7 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
 @media(max-width:768px){
   .topbar{display:none;}
   .nav-links{display:none;}
-  .nav-mobile-call{display:flex;align-items:center;gap:6px;margin-left:auto;background:var(--red);color:#fff;font-size:12px;font-weight:700;padding:8px 14px;border-radius:6px;}
-  .nav-mobile-call svg{width:14px;height:14px;stroke:#fff;}
+  .nav-hamburger{display:flex;align-items:center;margin-left:auto;}
   .nav-cta{display:none;}
   .transfer-features{grid-template-columns:repeat(2,1fr);}
   .how-steps{flex-direction:column;align-items:center;gap:24px;}
@@ -225,30 +230,34 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
 </head>
 <body>
 
+<!--FRX_BANNER-->
 <!-- TOP BAR -->
 <div class="topbar">
   <div class="topbar-inner">
     <div class="topbar-left">
       <div class="topbar-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        18360 Fenkell Ave, Detroit, MI 48223
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Detroit's 4.9★ Independent Pharmacy
       </div>
       <div class="topbar-sep"></div>
       <div class="topbar-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 13.87a19.79 19.79 0 01-3.07-8.67A2 2 0 012 3h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 18v-.08z"/></svg>
-        (313) 519-5700
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        Free Same-Day Delivery
       </div>
       <div class="topbar-sep"></div>
-      <div class="topbar-open">
-        <span class="topbar-open-dot"></span>
-        Open Now · Closes 6:00 PM
+      <div class="topbar-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        Local. Trusted. Here for You.
       </div>
     </div>
     <div class="topbar-right">
-      <div class="topbar-socials">
-        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
-        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
-        <a href="#" aria-label="Google"><svg viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></a>
+      <div class="topbar-phone">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 13.87a19.79 19.79 0 01-3.07-8.67A2 2 0 012 3h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 18v-.08z"/></svg>
+        Call Us (313) 519-5700
+      </div>
+      <div class="topbar-open">
+        <span class="topbar-open-dot"></span>
+        Open Now · Closes 6:00 PM
       </div>
     </div>
   </div>
@@ -257,30 +266,41 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <div class="nav-logo">
+    <a href="https://fenkellrxpharmacy.com" class="nav-logo">
       <img src="/logo.png" alt="Fenkell Rx Pharmacy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
       <div class="nav-logo-fallback" style="display:none;">
         <div class="nav-logo-top">FENKELL <span>Rx</span></div>
         <div class="nav-logo-bot">Pharmacy</div>
       </div>
-    </div>
+    </a>
     <ul class="nav-links">
       <li><a href="/#services">Services</a></li>
       <li><a href="/refills">Refills</a></li>
-      <li><a href="/#wellness">Wellness</a></li>
       <li><a href="/vaccines-detroit">Vaccines</a></li>
       <li><a href="/diabetic-supplies-detroit">Diabetic Supplies</a></li>
       <li><a href="/availability">Meds In Stock</a></li>
-      <li><a href="/#team">Team</a></li>
+      <li><a href="/insurance-detroit">Insurance</a></li>
+      <li><a href="/#location">Hours &amp; Location</a></li>
     </ul>
-    <a href="/transfer" class="nav-cta active">
+    <a href="/transfer" class="nav-cta">
       Switch My Pharmacy
       <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
     </a>
-    <a href="tel:3135195700" class="nav-mobile-call">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 13.87a19.79 19.79 0 01-3.07-8.67A2 2 0 012 3h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 18v-.08z"/></svg>
-      Call Us
-    </a>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false" onclick="toggleMobileNav()">
+      <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+  </div>
+  <div class="nav-mobile-menu" id="navMobileMenu">
+    <a href="/#services">Services</a>
+    <a href="/refills">Refills</a>
+    <a href="/vaccines-detroit">Vaccines</a>
+    <a href="/diabetic-supplies-detroit">Diabetic Supplies</a>
+    <a href="/availability">Meds In Stock</a>
+    <a href="/insurance-detroit">Insurance</a>
+    <a href="/#location">Hours &amp; Location</a>
+    <a href="/transfer" class="nav-m-cta">Switch My Pharmacy &rarr;</a>
   </div>
 </nav>
 
@@ -532,14 +552,17 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
     </div>
     <div class="ft-item">
       <div class="ft-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
       </div>
       <div>
-        <div class="ft-label">Local &amp; Trusted</div>
-        <div class="ft-sub">Proudly serving Detroit and surrounding areas</div>
+        <div class="ft-label">Store Hours</div>
+        <div class="ft-sub">Mon–Fri 9:30–6 · Sat 9:30–3 · Sun Closed</div>
       </div>
     </div>
   </div>
+</div>
+<div style="background:var(--navy);border-top:1px solid rgba(255,255,255,0.08);padding:10px 0;text-align:center;">
+  <span style="font-size:11px;color:rgba(255,255,255,0.4);">© 2026 Fenkell Rx Pharmacy. All rights reserved. Licensed by the Michigan Board of Pharmacy. 18360 Fenkell Ave, Detroit, MI 48223.</span>
 </div>
 
 <script>
@@ -607,6 +630,20 @@ function submitTransfer() {
 </script>
 
 <script>
+function toggleMobileNav(){
+  var menu=document.getElementById('navMobileMenu');
+  var btn=document.getElementById('navHamburger');
+  var open=menu.classList.toggle('open');
+  btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+}
+document.addEventListener('click',function(e){
+  var menu=document.getElementById('navMobileMenu');
+  var btn=document.getElementById('navHamburger');
+  if(menu&&menu.classList.contains('open')&&!menu.contains(e.target)&&!btn.contains(e.target)){
+    menu.classList.remove('open');
+    btn.setAttribute('aria-expanded','false');
+  }
+});
 (function(){
   function etNow(){var d=new Date(new Date().toLocaleString('en-US',{timeZone:'America/Detroit'}));return{day:d.getDay(),mins:d.getHours()*60+d.getMinutes()};}
   function hm(h,m){return h*60+m;}
