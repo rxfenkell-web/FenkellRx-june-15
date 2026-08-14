@@ -860,22 +860,21 @@ nav{
 .nqa-title .t-blue{color:var(--blue);}
 .nqa-cards{
   display:grid;grid-template-columns:repeat(3,1fr);
-  gap:18px;padding-top:16px;
+  gap:18px;
 }
 .nqa-annotation{
-  position:relative;display:flex;align-items:flex-end;justify-content:center;
-  margin-top:2px;height:72px;pointer-events:none;
-}
-.nqa-annotation-inner{
-  display:flex;flex-direction:column;align-items:center;
+  background:var(--navy);border-radius:0 0 12px 12px;
+  padding:10px 16px 12px;
+  display:flex;align-items:center;gap:10px;
   position:relative;
 }
 .nqa-annotation-text{
-  font-family:'Caveat',cursive;font-size:26px;font-weight:600;
-  color:#E8A800;line-height:1.2;text-align:center;
-  transform:rotate(-4deg);margin-bottom:2px;
+  font-family:'Caveat',cursive;font-size:22px;font-weight:600;
+  color:#E8A800;line-height:1.2;flex:1;
 }
-.nqa-annotation svg{display:block;}
+.nqa-annotation-arrow{
+  flex-shrink:0;display:flex;align-items:center;
+}
 @media(max-width:768px){.nqa-annotation{display:none;}}
 .nqa-card{
   display:flex;align-items:center;gap:16px;
@@ -1304,17 +1303,6 @@ nav{
       </div>
       <div class="nqa-overlay">
         <div class="nqa-cards">
-          <a href="/refills" class="nqa-card red">
-            <div class="nqa-icon-wrap">
-              <img src="/refill-rx-icon.png" alt="Refill Rx" style="width:38px;height:auto;flex-shrink:0;">
-            </div>
-            <div class="nqa-divider"></div>
-            <div class="nqa-text">
-              <div class="nqa-card-title">Refill Rx</div>
-              <div class="nqa-card-sub">Quick &amp; easy prescription refills</div>
-            </div>
-            <div class="nqa-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-          </a>
           <a href="https://fenkellrxpharmacy.com/quickcare" class="nqa-card blue">
             <div class="most-popular-badge">New</div>
             <div class="nqa-icon-wrap">
@@ -1324,6 +1312,17 @@ nav{
             <div class="nqa-text">
               <div class="nqa-card-title">Schedule Appointment</div>
               <div class="nqa-card-sub">Online doctor visit</div>
+            </div>
+            <div class="nqa-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+          </a>
+          <a href="/refills" class="nqa-card red">
+            <div class="nqa-icon-wrap">
+              <img src="/refill-rx-icon.png" alt="Refill Rx" style="width:38px;height:auto;flex-shrink:0;">
+            </div>
+            <div class="nqa-divider"></div>
+            <div class="nqa-text">
+              <div class="nqa-card-title">Refill Rx</div>
+              <div class="nqa-card-sub">Quick &amp; easy prescription refills</div>
             </div>
             <div class="nqa-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
           </a>
@@ -1341,11 +1340,11 @@ nav{
         </div>
         <!-- ANNOTATION ARROW -->
         <div class="nqa-annotation">
-          <div class="nqa-annotation-inner">
-            <div class="nqa-annotation-text">Book your doctor visit online!</div>
-            <svg width="60" height="44" viewBox="0 0 60 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M30 40 C20 30, 10 15, 28 4" stroke="#E8A800" stroke-width="2.2" stroke-linecap="round" fill="none"/>
-              <path d="M24 3 L28 4 L26 8" stroke="#E8A800" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <div class="nqa-annotation-text">Book your doctor visit online!</div>
+          <div class="nqa-annotation-arrow">
+            <svg width="52" height="48" viewBox="0 0 52 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M44 44 C36 32, 20 16, 8 6" stroke="#E8A800" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+              <path d="M4 12 L8 6 L14 10" stroke="#E8A800" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
             </svg>
           </div>
         </div>
