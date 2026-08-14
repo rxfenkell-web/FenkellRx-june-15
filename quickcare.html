@@ -634,7 +634,7 @@ document.querySelectorAll('a[href="#get-started"]').forEach(function(btn) {
       // Mobile: show full form + some context above
       var formH = form.offsetHeight;
       var vpH = window.innerHeight;
-      var offset = Math.min(160, vpH - formH - navH - 16);
+      var offset = Math.min(240, vpH - formH - navH - 16);
       if (offset < 0) offset = 8;
       scrollTo = window.scrollY + formRect.top - navH - offset;
     } else {
