@@ -273,6 +273,10 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 0 24px;}
 .sf-bottom-copy{font-size:11px;color:rgba(255,255,255,0.35);}
 @media(max-width:900px){.sf-inner{grid-template-columns:1fr 1fr;gap:28px;}}
 @media(max-width:560px){.sf-inner{grid-template-columns:1fr;}.sf-logo img{height:36px;}}
+.sf-map{padding:24px 24px 0;}
+.sf-map-frame{max-width:1160px;margin:0 auto;border-radius:16px;overflow:hidden;box-shadow:0 4px 28px rgba(0,0,0,0.15);}
+.sf-map-frame iframe{width:100%;height:380px;border:0;display:block;}
+@media(max-width:768px){.sf-map-frame iframe{height:260px;}}
 </style>
 </head>
 <body>
@@ -617,6 +621,18 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 0 24px;}
 
 <!-- FOOTER -->
 <footer class="site-footer">
+  <div class="sf-map">
+    <div class="sf-map-frame">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2946.2430188004582!2d-83.22407692411689!3d42.40126987118913!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8824cb833ce227e7%3A0x67c2297148fbe551!2sFenkell%20Rx%20Pharmacy!5e0!3m2!1sen!2sus!4v1786812192153!5m2!1sen!2sus"
+        width="100%"
+        height="380"
+        allowfullscreen=""
+        loading="lazy"
+        title="Fenkell Rx Pharmacy — 18360 Fenkell Ave Detroit MI 48223"
+      ></iframe>
+    </div>
+  </div>
   <div class="sf-inner">
     <div class="sf-about">
       <a href="https://fenkellrxpharmacy.com" class="sf-logo">
