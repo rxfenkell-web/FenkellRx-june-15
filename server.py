@@ -693,6 +693,8 @@ def render_sitemap(meds):
         (SITE_URL + "/insurance-detroit", today, "0.8"),
         (SITE_URL + "/compounding-pharmacy-detroit", today, "0.7"),
         (SITE_URL + "/quickcare", today, "0.8"),
+        (SITE_URL + "/refills", today, "0.8"),
+        (SITE_URL + "/message", today, "0.7"),
         (SITE_URL + "/privacy-policy", today, "0.3"),
     ]
     for m in meds:
