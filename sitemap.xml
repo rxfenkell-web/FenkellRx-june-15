@@ -4,39 +4,163 @@
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
+  <!-- Core pages -->
   <url>
     <loc>https://fenkellrxpharmacy.com/</loc>
-    <lastmod>2026-06-13</lastmod>
+    <lastmod>2026-08-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://fenkellrxpharmacy.com/availability</loc>
-    <lastmod>2026-06-13</lastmod>
-    <changefreq>daily</changefreq>
+    <loc>https://fenkellrxpharmacy.com/refills</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://fenkellrxpharmacy.com/free-prescription-delivery-detroit</loc>
-    <lastmod>2026-06-13</lastmod>
+    <loc>https://fenkellrxpharmacy.com/quickcare</loc>
+    <lastmod>2026-08-15</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://fenkellrxpharmacy.com/compounding-pharmacy-detroit</loc>
-    <lastmod>2026-06-13</lastmod>
+    <loc>https://fenkellrxpharmacy.com/transfer</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://fenkellrxpharmacy.com/vaccines-detroit</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://fenkellrxpharmacy.com/availability</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Service pages -->
+  <url>
+    <loc>https://fenkellrxpharmacy.com/free-prescription-delivery-detroit</loc>
+    <lastmod>2026-08-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://fenkellrxpharmacy.com/blister-packaging-detroit</loc>
-    <lastmod>2026-06-13</lastmod>
+    <lastmod>2026-08-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://fenkellrxpharmacy.com/compounding-pharmacy-detroit</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://fenkellrxpharmacy.com/insurance-detroit</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://fenkellrxpharmacy.com/diabetic-supplies-detroit</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://fenkellrxpharmacy.com/message</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://fenkellrxpharmacy.com/privacy-policy</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- News hub -->
+  <url>
+    <loc>https://fenkellrxpharmacy.com/news</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- News articles -->
+  <url>
+    <loc>https://fenkellrxpharmacy.com/news/walk-in-vaccines-detroit-48223</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://fenkellrxpharmacy.com/news/how-to-transfer-prescription-to-fenkell-rx-detroit</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://fenkellrxpharmacy.com/news/online-doctor-visit-same-day-prescription-detroit</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://fenkellrxpharmacy.com/news/refill-prescription-online-detroit-fenkell-rx</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://fenkellrxpharmacy.com/news/medicare-glp-1-bridge-50-dollar-weight-loss-drugs-detroit</loc>
+    <lastmod>2026-07-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Medication pages -->
+  <url>
+    <loc>https://fenkellrxpharmacy.com/medications/progesterone-200-mg-capsules</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://fenkellrxpharmacy.com/medications/vivelle-dot-0-0375-mg-patches</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://fenkellrxpharmacy.com/medications/vivelle-dot-0-075-mg-patches</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
 
 </urlset>
