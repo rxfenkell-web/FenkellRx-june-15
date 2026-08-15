@@ -1047,8 +1047,18 @@ nav{
   .nqa-title{font-size:18px;}
 
   /* Can't find banner */
-  .cant-find-inner{flex-direction:column;align-items:center;gap:14px;text-align:center;padding:20px 1.25rem;}
-  .cant-find-inner .btn-gold-outline{margin-left:0 !important;}
+  .cant-find-inner{
+    display:grid;
+    grid-template-columns:auto auto;
+    grid-template-areas:"icon text" "btn btn";
+    justify-content:center;
+    align-items:center;
+    gap:10px 12px;
+    padding:20px 1.25rem;
+  }
+  .cant-find-icon{grid-area:icon;}
+  .cant-find-text{grid-area:text;text-align:left;}
+  .cant-find-inner .btn-gold-outline{grid-area:btn;justify-self:center;margin-left:0 !important;}
   .cant-find-title{font-size:14px;}
   .cant-find-sub{font-size:12.5px;}
 
