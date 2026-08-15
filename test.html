@@ -1188,8 +1188,9 @@ nav{
 .sf-bottom-address a{color:var(--blue,#00AEEF);text-decoration:none;}
 .sf-bottom-service{font-size:11px;color:rgba(255,255,255,0.35);line-height:1.6;}
 .sf-bottom-copy{font-size:11px;color:rgba(255,255,255,0.35);}
-.sf-map{border-bottom:1px solid rgba(255,255,255,0.08);}
-.sf-map iframe{width:100%;height:220px;border:0;display:block;filter:grayscale(15%);}
+.sf-map{padding:24px 24px 0;}
+.sf-map-frame{border-radius:12px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.35);}
+.sf-map iframe{width:100%;height:240px;border:0;display:block;}
 @media(max-width:900px){.sf-inner{grid-template-columns:1fr 1fr;gap:28px;}}
 @media(max-width:560px){.sf-inner{grid-template-columns:1fr;}.sf-logo img{height:36px;}}
 </style>
@@ -1801,15 +1802,16 @@ nav{
 <!-- FOOTER -->
 <footer class="site-footer">
   <div class="sf-map">
-    <iframe
-      src="https://maps.google.com/maps?q=Fenkell+Rx+Pharmacy,+18360+Fenkell+Ave,+Detroit,+MI+48223&z=16&output=embed"
-      width="100%"
-      height="220"
-      allowfullscreen=""
-      loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade"
-      title="Fenkell Rx Pharmacy location at 18360 Fenkell Ave Detroit MI 48223 on Google Maps"
-    ></iframe>
+    <div class="sf-map-frame">
+      <iframe
+        src="https://www.openstreetmap.org/export/embed.html?bbox=-83.2576%2C42.3766%2C-83.2376%2C42.3966&layer=mapnik&marker=42.3866%2C-83.2476"
+        width="100%"
+        height="240"
+        allowfullscreen=""
+        loading="lazy"
+        title="Fenkell Rx Pharmacy — 18360 Fenkell Ave Detroit MI 48223"
+      ></iframe>
+    </div>
   </div>
   <div class="sf-inner">
     <div class="sf-about">
