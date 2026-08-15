@@ -879,6 +879,195 @@ def _split_body_html(body):
             out.append("<p>" + _esc(block).replace("\n", "<br>") + "</p>")
     return "".join(out)
 
+def _new_page_css():
+    return """
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --navy:#0D1B2A;--navy-mid:#1A2F45;
+  --red:#CC001C;--red-dark:#A50016;--red-light:#FCE8EB;
+  --blue:#00AEEF;--blue-dark:#005B8E;--blue-light:#E6F7FD;
+  --cream:#F8F5F0;--cream-dark:#F0EBE1;
+  --border:#E2E8F0;--text-light:#6B7280;--text-mid:#374151;
+}
+body{font-family:'DM Sans',sans-serif;color:var(--navy);background:#fff;line-height:1.6;}
+a{text-decoration:none;color:inherit;}
+img{display:block;max-width:100%;}
+/* ACC BAR */
+.acc-bar{background:var(--navy);transition:max-height 0.3s ease,opacity 0.3s ease;max-height:60px;opacity:1;overflow:hidden;}
+.acc-bar.acc-bar-hidden{max-height:0;opacity:0;}
+.acc-bar-panel{max-width:1340px;margin:0 auto;padding:9px 2rem;display:flex;align-items:center;justify-content:center;gap:0;}
+.acc-bar-item{display:flex;align-items:center;gap:7px;white-space:nowrap;padding:0 1.5rem;font-size:13px;color:rgba(255,255,255,0.9);font-weight:400;}
+.acc-bar-item+.acc-bar-item{border-left:1px solid rgba(255,255,255,0.25);}
+.acc-bar-item svg{width:13px;height:13px;stroke:rgba(255,255,255,0.85);flex-shrink:0;}
+.acc-bar-item a{color:rgba(255,255,255,0.9);text-decoration:none;}
+.topbar-open{display:flex;align-items:center;gap:6px;font-size:12.5px;color:rgba(255,255,255,0.9);}
+.topbar-open-dot{width:7px;height:7px;border-radius:50%;background:#34D399;flex-shrink:0;}
+@media(max-width:768px){
+  .acc-bar{max-height:120px;}
+  .acc-bar-panel{flex-direction:column;align-items:center;gap:4px;padding:8px 1rem;}
+  .acc-bar-item{padding:0;font-size:12px;border-left:none !important;}
+}
+/* NAV */
+nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 1px 8px rgba(0,0,0,0.06);}
+.nav-inner{max-width:1340px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;height:70px;gap:0;}
+.nav-logo{display:flex;align-items:center;}
+.nav-logo img{height:76px;width:auto;}
+.nav-logo-fallback{display:flex;flex-direction:column;line-height:1.1;}
+.nav-logo-top{font-size:22px;font-weight:900;letter-spacing:-0.5px;color:var(--navy);}
+.nav-logo-top span{color:var(--red);}
+.nav-logo-bot{font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-light);}
+.nav-links{list-style:none;display:flex;align-items:center;gap:4px;flex:1;margin-left:24px;}
+.nav-links a{font-size:13px;font-weight:600;color:var(--navy);padding:6px 10px;border-radius:6px;transition:color 0.15s,background 0.15s;white-space:nowrap;}
+.nav-links a:hover{color:var(--red);background:var(--red-light);}
+@media(max-width:1024px){.nav-links{gap:2px;}.nav-links a{font-size:12px;padding:5px 8px;}}
+.nav-cta{margin-left:auto;background:var(--red);color:#fff;font-size:13px;font-weight:800;padding:10px 20px;border-radius:8px;white-space:nowrap;display:flex;align-items:center;gap:8px;transition:background 0.2s;}
+.nav-cta:hover{background:var(--red-dark);color:#fff;}
+.nav-cta svg{width:14px;height:14px;stroke:#fff;stroke-width:2.5;}
+.nav-hamburger{display:none;background:none;border:none;cursor:pointer;padding:6px;border-radius:6px;flex-shrink:0;line-height:0;}
+.nav-hamburger svg{width:22px;height:22px;stroke:var(--navy);stroke-width:2;display:block;}
+.nav-mobile-menu{display:none;background:#fff;border-top:1px solid var(--border);box-shadow:0 8px 24px rgba(0,0,0,0.1);}
+.nav-mobile-menu.open{display:block;}
+.nav-mobile-menu a{display:block;padding:14px 24px;font-size:15px;font-weight:600;color:var(--navy);border-bottom:1px solid #f0f0f0;text-decoration:none;}
+.nav-mobile-menu a:hover{background:var(--red-light);color:var(--red);}
+.nav-mobile-menu .nav-m-cta{background:var(--red);color:#fff !important;margin:12px 16px 16px;border-radius:8px;text-align:center;border-bottom:none !important;}
+.nav-mobile-menu .nav-m-cta:hover{background:var(--red-dark) !important;}
+@media(max-width:768px){.nav-links{display:none;}.nav-hamburger{display:flex;align-items:center;margin-left:auto;}.nav-cta{display:none;}.nav-logo img{height:44px !important;}}
+/* FOOTER */
+.site-footer{background:var(--navy);color:rgba(255,255,255,0.7);}
+.sf-inner{max-width:1340px;margin:0 auto;padding:44px 2rem 40px;display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:40px;}
+.sf-logo img{height:44px;width:auto;margin-bottom:14px;}
+.sf-desc{font-size:12.5px;line-height:1.75;color:rgba(255,255,255,0.5);}
+.sf-col-title{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:0.12em;color:rgba(255,255,255,0.35);margin-bottom:14px;}
+.sf-links{display:flex;flex-direction:column;gap:9px;}
+.sf-links a{font-size:13px;color:rgba(255,255,255,0.6);text-decoration:none;transition:color 0.15s;}
+.sf-links a:hover{color:#fff;}
+.sf-bottom{border-top:1px solid rgba(255,255,255,0.08);background:rgba(0,0,0,0.15);}
+.sf-bottom-inner{max-width:1340px;margin:0 auto;padding:18px 2rem;display:flex;flex-direction:column;gap:5px;}
+.sf-bottom-address{font-size:12.5px;font-weight:600;color:rgba(255,255,255,0.7);}
+.sf-bottom-address a{color:var(--blue);text-decoration:none;}
+.sf-bottom-service{font-size:11px;color:rgba(255,255,255,0.35);line-height:1.6;}
+.sf-bottom-copy{font-size:11px;color:rgba(255,255,255,0.35);}
+@media(max-width:900px){.sf-inner{grid-template-columns:1fr 1fr;gap:28px;}}
+@media(max-width:560px){.sf-inner{grid-template-columns:1fr;}.sf-logo img{height:36px;}}
+"""
+
+def _new_acc_bar_nav():
+    return """<!-- ACC BAR -->
+<div class="acc-bar">
+  <div class="acc-bar-panel">
+    <div class="acc-bar-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      18360 Fenkell Ave, Detroit, MI 48223
+    </div>
+    <div class="acc-bar-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 13.87a19.79 19.79 0 01-3.07-8.67A2 2 0 012 3h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 18v-.08z"/></svg>
+      <a href="tel:3135195700">(313) 519-5700</a>
+    </div>
+    <div class="acc-bar-item">
+      <div class="topbar-open"><span class="topbar-open-dot"></span>Open Now &middot; Closes 6:00 PM</div>
+    </div>
+  </div>
+</div>
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="https://fenkellrxpharmacy.com" class="nav-logo">
+      <img src="/logo.png" alt="Fenkell Rx Pharmacy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="nav-logo-fallback" style="display:none;">
+        <div class="nav-logo-top">FENKELL <span>Rx</span></div>
+        <div class="nav-logo-bot">Pharmacy</div>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/#services">Services</a></li>
+      <li><a href="/refills">Refills</a></li>
+      <li><a href="/vaccines-detroit">Vaccines</a></li>
+      <li><a href="/diabetic-supplies-detroit">Diabetic Supplies</a></li>
+      <li><a href="/availability">Meds In Stock</a></li>
+      <li><a href="/insurance-detroit">Insurance</a></li>
+      <li><a href="/#location">Hours &amp; Location</a></li>
+    </ul>
+    <a href="/transfer" class="nav-cta">
+      Switch My Pharmacy
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" onclick="toggleMobileNav()">
+      <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+  </div>
+  <div class="nav-mobile-menu" id="navMobileMenu">
+    <a href="/#services">Services</a>
+    <a href="/refills">Refills</a>
+    <a href="/vaccines-detroit">Vaccines</a>
+    <a href="/diabetic-supplies-detroit">Diabetic Supplies</a>
+    <a href="/availability">Meds In Stock</a>
+    <a href="/insurance-detroit">Insurance</a>
+    <a href="/#location">Hours &amp; Location</a>
+    <a href="/transfer" class="nav-m-cta">Switch My Pharmacy &rarr;</a>
+  </div>
+</nav>"""
+
+def _new_footer_html():
+    return """<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="sf-inner">
+    <div class="sf-about">
+      <a href="https://fenkellrxpharmacy.com" class="sf-logo"><img src="/logo.png" alt="Fenkell Rx Pharmacy" onerror="this.style.display='none'"></a>
+      <p class="sf-desc">Independently owned local pharmacy. Proudly serving Northwest Detroit, North Rosedale Park, Rosedale Park, Grandmont, Old Redford, Brightmoor, Redford Township, and Southfield with professional, personalized pharmaceutical care.</p>
+    </div>
+    <div class="sf-col">
+      <div class="sf-col-title">Services</div>
+      <div class="sf-links">
+        <a href="/refills">Prescription Refills</a>
+        <a href="/transfer">Transfer Prescription</a>
+        <a href="/free-prescription-delivery-detroit">Free Delivery</a>
+        <a href="/blister-packaging-detroit">Blister Packaging</a>
+        <a href="/compounding-pharmacy-detroit">Compounding</a>
+      </div>
+    </div>
+    <div class="sf-col">
+      <div class="sf-col-title">Health &amp; Wellness</div>
+      <div class="sf-links">
+        <a href="/vaccines-detroit">Immunizations</a>
+        <a href="/diabetic-supplies-detroit">Diabetic Supplies</a>
+        <a href="/quickcare">Online Doctor Visit</a>
+        <a href="/news">Health News</a>
+      </div>
+    </div>
+    <div class="sf-col">
+      <div class="sf-col-title">Information</div>
+      <div class="sf-links">
+        <a href="/insurance-detroit">Insurance Accepted</a>
+        <a href="/#location">Location &amp; Hours</a>
+        <a href="/availability">Meds In Stock</a>
+        <a href="/message">Contact Us</a>
+      </div>
+    </div>
+  </div>
+  <div class="sf-bottom">
+    <div class="sf-bottom-inner">
+      <p class="sf-bottom-address">Fenkell Rx Pharmacy &nbsp;&middot;&nbsp; 18360 Fenkell Ave, Detroit, MI 48223 &nbsp;&middot;&nbsp; Phone: <a href="tel:3135195700">(313) 519-5700</a> &nbsp;&middot;&nbsp; Fax: (313) 899-7389</p>
+      <p class="sf-bottom-service">Serving North Rosedale, Detroit, MI 48223 and surrounding areas — Northwest Detroit, Rosedale Park, Grandmont, Old Redford, Brightmoor, Redford Township, and Southfield.</p>
+      <p class="sf-bottom-copy">&copy; 2026 Fenkell Rx Pharmacy. All rights reserved. Licensed by the Michigan Board of Pharmacy.</p>
+    </div>
+  </div>
+</footer>
+<script>
+function toggleMobileNav(){
+  var m=document.getElementById('navMobileMenu');
+  var b=document.getElementById('navHamburger');
+  if(!m||!b)return;
+  var open=m.classList.toggle('open');
+  b.setAttribute('aria-expanded',open);
+}
+window.addEventListener('scroll',function(){
+  var bar=document.querySelector('.acc-bar');
+  if(bar){bar.classList.toggle('acc-bar-hidden',window.scrollY>60);}
+});
+</script>"""
+
 def render_news_article(item):
     title = _esc(item.get("title", ""))
     tag = _esc(item.get("tag", "Update"))
@@ -917,52 +1106,92 @@ def render_news_article(item):
 <meta property="og:description" content="{_esc(desc)}">
 <meta property="og:url" content="{url}">
 <meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <script type="application/ld+json">{json.dumps(ld)}</script>
-<style>{_med_page_css()}
-article h2{{font-size:20px;color:#0b2231;margin:22px 0 8px}}
-article p{{font-size:15.5px;color:#37505f;margin-bottom:12px;line-height:1.7}}
-.tagline{{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#0077a8;background:#e3f4fb;border-radius:999px;padding:4px 12px;margin-bottom:10px}}</style>
+<style>{_new_page_css()}
+/* ARTICLE HERO */
+.art-hero{{background:var(--cream);border-bottom:1px solid var(--border);padding:40px 0 36px;}}
+.art-hero-inner{{max-width:820px;margin:0 auto;padding:0 2rem;}}
+.art-crumb{{font-size:13px;color:var(--text-light);margin-bottom:14px;}}
+.art-crumb a{{color:var(--blue-dark);font-weight:500;}}
+.art-crumb a:hover{{text-decoration:underline;}}
+.art-tag{{display:inline-flex;align-items:center;font-size:11px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue-dark);background:var(--blue-light);border-radius:999px;padding:5px 14px;margin-bottom:14px;}}
+.art-title{{font-family:'DM Serif Display',serif;font-size:clamp(28px,4vw,44px);color:var(--navy);line-height:1.1;letter-spacing:-0.5px;margin-bottom:12px;}}
+.art-meta{{font-size:13px;color:var(--text-light);}}
+/* ARTICLE BODY */
+.art-body{{max-width:820px;margin:0 auto;padding:40px 2rem 48px;}}
+.art-summary{{font-size:17px;color:var(--text-mid);line-height:1.7;font-weight:500;margin-bottom:28px;padding-bottom:24px;border-bottom:2px solid var(--border);}}
+.art-content h2{{font-family:'DM Serif Display',serif;font-size:26px;color:var(--navy);margin:32px 0 12px;}}
+.art-content p{{font-size:16px;color:var(--text-mid);line-height:1.75;margin-bottom:16px;}}
+.art-content a{{color:var(--blue-dark);font-weight:600;}}
+.art-content a:hover{{text-decoration:underline;}}
+/* CTA CARD */
+.art-cta-wrap{{max-width:820px;margin:0 auto;padding:0 2rem 60px;}}
+.art-cta-card{{background:var(--navy);border-radius:16px;padding:32px 36px;}}
+.art-cta-title{{font-family:'DM Serif Display',serif;font-size:24px;color:#fff;margin-bottom:10px;}}
+.art-cta-sub{{font-size:14.5px;color:rgba(255,255,255,0.7);margin-bottom:20px;line-height:1.6;}}
+.art-cta-btns{{display:flex;gap:12px;flex-wrap:wrap;}}
+.art-btn-red{{background:var(--red);color:#fff;font-size:14px;font-weight:800;padding:12px 22px;border-radius:8px;display:inline-flex;align-items:center;gap:8px;transition:background 0.2s;}}
+.art-btn-red:hover{{background:var(--red-dark);}}
+.art-btn-outline{{background:transparent;color:#fff;font-size:14px;font-weight:700;padding:11px 22px;border-radius:8px;border:2px solid rgba(255,255,255,0.4);display:inline-flex;align-items:center;gap:8px;transition:border-color 0.2s;}}
+.art-btn-outline:hover{{border-color:#fff;}}
+.art-note{{font-size:12px;color:rgba(255,255,255,0.4);margin-top:16px;line-height:1.55;}}
+@media(max-width:768px){{.art-cta-card{{padding:24px 20px;}}.art-cta-btns{{flex-direction:column;}}}}
+</style>
 </head>
 <body>
-{_site_nav_html()}
-<header class="top"><div class="wrap">
-  <div class="crumb"><a href="/">Home</a> &rsaquo; <a href="/news">Health &amp; Pharmacy News</a></div>
-  <h1>{title}</h1>
-  <div class="meta">{tag} &middot; Published {published} &middot; {PHARMACY_NAME}, Detroit MI</div>
-</div></header>
-<main><div class="wrap">
-  <div class="card"><article>
-    <span class="tagline">{tag}</span>
-    {("<p><strong>" + summary + "</strong></p>") if summary else ""}
-    {body_html}
-  </article></div>
-  <div class="card">
-    <h2 style="font-size:19px;margin-bottom:10px;color:#0b2231">Questions? Talk to a pharmacist who answers the phone.</h2>
-    <p style="font-size:15px;color:#42586a">We are an independent pharmacy at {PHARMACY_ADDR}. Free same-day delivery across Northwest Detroit, free 2-minute prescription transfers, and real answers about your coverage.</p>
-    <div class="cta">
-      <a class="btn btn-red" href="tel:3135195700">Call {PHARMACY_PHONE}</a>
-      <a class="btn btn-blue" href="/#transfer">Transfer My Prescription</a>
-      <a class="btn btn-line" href="/medications">Medication Availability</a>
-    </div>
-    <p class="note">This article is general information, not medical or insurance advice. Coverage depends on your specific plan and eligibility. A valid prescription is required for all prescription medications.</p>
+{_new_acc_bar_nav()}
+<!-- ARTICLE HERO -->
+<section class="art-hero">
+  <div class="art-hero-inner">
+    <div class="art-crumb"><a href="/">Home</a> &rsaquo; <a href="/news">Health &amp; Pharmacy News</a></div>
+    <div class="art-tag">{tag}</div>
+    <h1 class="art-title">{title}</h1>
+    <div class="art-meta">Published {published} &middot; {PHARMACY_NAME}, Detroit MI</div>
   </div>
-</div></main>
-<footer><div class="wrap">{PHARMACY_NAME} &middot; {PHARMACY_ADDR} &middot; <a href="tel:3135195700">{PHARMACY_PHONE}</a> &middot; <a href="/">fenkellrxpharmacy.com</a></div></footer>
+</section>
+<!-- ARTICLE BODY -->
+<div class="art-body">
+  {(f'<p class="art-summary">{summary}</p>') if summary else ""}
+  <div class="art-content">{body_html}</div>
+</div>
+<!-- CTA CARD -->
+<div class="art-cta-wrap">
+  <div class="art-cta-card">
+    <div class="art-cta-title">Questions? Talk to a pharmacist who answers the phone.</div>
+    <div class="art-cta-sub">We are an independent pharmacy at {PHARMACY_ADDR}. Free same-day delivery across Northwest Detroit, free 2-minute prescription transfers, and real answers about your coverage.</div>
+    <div class="art-cta-btns">
+      <a class="art-btn-red" href="tel:3135195700">Call {PHARMACY_PHONE}</a>
+      <a class="art-btn-outline" href="/transfer">Transfer My Prescription</a>
+      <a class="art-btn-outline" href="/medications">Medication Availability</a>
+    </div>
+    <p class="art-note">This article is general information, not medical or insurance advice. Coverage depends on your specific plan and eligibility. A valid prescription is required for all prescription medications.</p>
+  </div>
+</div>
+{_new_footer_html()}
 </body>
 </html>"""
 
 def render_news_hub(items):
-    rows = ""
+    cards_html = ""
     ld_items = []
     pos = 1
     for it in items:
         slug = it.get("slug") or news_slug(it.get("title", ""))
         has_body = bool((it.get("body") or "").strip())
         href = ("/news/" + slug) if has_body else (it.get("url") or "/")
-        rows += (f'<a class="row" href="{_esc(href)}"><span>'
-                 f'<strong>{_esc(it.get("title",""))}</strong>'
-                 f'<em> - {_esc(it.get("publishedAt",""))}</em></span>'
-                 f'<span class="st" style="color:#0077a8">{_esc(it.get("tag","Update"))}</span></a>')
+        tag = _esc(it.get("tag", "Update"))
+        tit = _esc(it.get("title", ""))
+        summ = _esc(it.get("summary", ""))
+        pub = _esc(it.get("publishedAt", ""))
+        cards_html += f"""<a class="nc" href="{_esc(href)}">
+  <div class="nc-tag">{tag}</div>
+  <div class="nc-title">{tit}</div>
+  <div class="nc-summary">{summ}</div>
+  <div class="nc-footer"><span class="nc-date">{pub}</span><span class="nc-cta">Read article &rarr;</span></div>
+</a>"""
         if has_body:
             ld_items.append({"@type": "ListItem", "position": pos,
                              "name": it.get("title", ""), "url": SITE_URL + "/news/" + slug})
@@ -976,34 +1205,73 @@ def render_news_hub(items):
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Detroit Health &amp; Pharmacy News | {PHARMACY_NAME}</title>
-<meta name="description" content="Health, medication availability, and insurance coverage news for Detroit from Fenkell Rx Pharmacy - an independent pharmacy at 18360 Fenkell Ave, Detroit MI 48223.">
+<meta name="description" content="Health, medication availability, and insurance coverage news for Detroit from Fenkell Rx Pharmacy — an independent pharmacy at 18360 Fenkell Ave, Detroit MI 48223.">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="canonical" href="{SITE_URL}/news">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <script type="application/ld+json">{json.dumps(ld)}</script>
-<style>{_med_page_css()}
-.row{{display:flex;justify-content:space-between;gap:12px;background:#fff;border:1px solid #e1edf4;border-radius:10px;padding:14px 18px;margin-bottom:8px;text-decoration:none;color:#1e2f3c;font-size:15px}}
-.row:hover{{border-color:#0089c0;box-shadow:0 8px 20px -10px rgba(0,90,130,.25)}}
-.row em{{color:#66808f;font-style:normal;font-size:13px}}
-.row .st{{font-weight:800;font-size:12px;white-space:nowrap}}</style>
+<style>{_new_page_css()}
+/* NEWS HUB HERO */
+.hub-hero{{background:var(--cream);border-bottom:1px solid var(--border);padding:40px 0 36px;}}
+.hub-hero-inner{{max-width:1100px;margin:0 auto;padding:0 2rem;}}
+.hub-eyebrow{{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue-dark);margin-bottom:12px;}}
+.hub-eyebrow::before{{content:'';width:20px;height:2px;background:var(--blue);}}
+.hub-title{{font-family:'DM Serif Display',serif;font-size:clamp(30px,4vw,46px);color:var(--navy);line-height:1.1;letter-spacing:-0.5px;margin-bottom:10px;}}
+.hub-sub{{font-size:15px;color:var(--text-mid);max-width:560px;}}
+/* NEWS CARDS */
+.hub-body{{max-width:1100px;margin:0 auto;padding:44px 2rem 60px;}}
+.news-grid{{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:44px;}}
+@media(max-width:900px){{.news-grid{{grid-template-columns:repeat(2,1fr);}}}}
+@media(max-width:560px){{.news-grid{{grid-template-columns:1fr;}}}}
+.nc{{background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:22px 20px;display:flex;flex-direction:column;gap:10px;transition:border-color 0.2s,box-shadow 0.2s;text-decoration:none;color:inherit;}}
+.nc:hover{{border-color:var(--red);box-shadow:0 8px 28px rgba(204,0,28,0.1);}}
+.nc-tag{{display:inline-flex;font-size:10.5px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue-dark);background:var(--blue-light);border-radius:999px;padding:4px 12px;align-self:flex-start;}}
+.nc-title{{font-family:'DM Serif Display',serif;font-size:19px;color:var(--navy);line-height:1.25;}}
+.nc-summary{{font-size:13px;color:var(--text-mid);line-height:1.6;flex:1;}}
+.nc-footer{{display:flex;justify-content:space-between;align-items:center;margin-top:4px;}}
+.nc-date{{font-size:12px;color:var(--text-light);}}
+.nc-cta{{font-size:13px;font-weight:700;color:var(--red);}}
+/* BOTTOM CTA */
+.hub-cta-card{{background:var(--navy);border-radius:16px;padding:32px 36px;}}
+.hub-cta-title{{font-family:'DM Serif Display',serif;font-size:24px;color:#fff;margin-bottom:10px;}}
+.hub-cta-sub{{font-size:14.5px;color:rgba(255,255,255,0.7);margin-bottom:20px;}}
+.hub-cta-btns{{display:flex;gap:12px;flex-wrap:wrap;}}
+.hub-btn-red{{background:var(--red);color:#fff;font-size:14px;font-weight:800;padding:12px 22px;border-radius:8px;display:inline-flex;align-items:center;gap:8px;transition:background 0.2s;}}
+.hub-btn-red:hover{{background:var(--red-dark);}}
+.hub-btn-outline{{background:transparent;color:#fff;font-size:14px;font-weight:700;padding:11px 22px;border-radius:8px;border:2px solid rgba(255,255,255,0.4);transition:border-color 0.2s;}}
+.hub-btn-outline:hover{{border-color:#fff;}}
+</style>
 </head>
 <body>
-{_site_nav_html()}
-<header class="top"><div class="wrap">
-  <div class="crumb"><a href="/">Home</a> &rsaquo; News</div>
-  <h1>Detroit Health &amp; Pharmacy News</h1>
-  <div class="meta">Coverage changes, medication availability, and health updates from {PHARMACY_NAME}.</div>
-</div></header>
-<main><div class="wrap">
-  {rows if rows else '<p style="color:#42586a">No news items yet.</p>'}
-  <div class="cta" style="margin-top:26px">
-    <a class="btn btn-red" href="tel:3135195700">Call {PHARMACY_PHONE}</a>
-    <a class="btn btn-blue" href="/#transfer">Transfer My Prescription</a>
+{_new_acc_bar_nav()}
+<!-- HUB HERO -->
+<section class="hub-hero">
+  <div class="hub-hero-inner">
+    <div class="hub-eyebrow">Health &amp; Pharmacy News</div>
+    <h1 class="hub-title">Detroit Health &amp; Pharmacy News</h1>
+    <p class="hub-sub">Coverage changes, medication availability, and health updates from {PHARMACY_NAME}.</p>
   </div>
-</div></main>
-<footer><div class="wrap">{PHARMACY_NAME} &middot; {PHARMACY_ADDR} &middot; <a href="tel:3135195700">{PHARMACY_PHONE}</a></div></footer>
+</section>
+<!-- NEWS CARDS -->
+<div class="hub-body">
+  <div class="news-grid">
+    {cards_html if cards_html else '<p style="color:var(--text-mid)">No news items yet.</p>'}
+  </div>
+  <div class="hub-cta-card">
+    <div class="hub-cta-title">Ready to make the switch?</div>
+    <div class="hub-cta-sub">Free prescription transfer, free same-day delivery, real pharmacists who answer the phone.</div>
+    <div class="hub-cta-btns">
+      <a class="hub-btn-red" href="tel:3135195700">Call {PHARMACY_PHONE}</a>
+      <a class="hub-btn-outline" href="/transfer">Transfer My Prescription</a>
+    </div>
+  </div>
+</div>
+{_new_footer_html()}
 </body>
 </html>"""
 
