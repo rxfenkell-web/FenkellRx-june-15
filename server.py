@@ -158,6 +158,11 @@ def save_medications(data):
         with open(MEDICATIONS_FILE, "w") as f:
             json.dump(data, f, indent=2)
         github_sync_async(os.path.basename(MEDICATIONS_FILE))
+        # Ping IndexNow for availability hub + each medication page
+        urls = [f"{SITE_URL}/availability", f"{SITE_URL}/medications"]
+        for m in data.get("medications", []):
+            urls.append(f"{SITE_URL}/medications/{med_slug(m.get('name', ''))}")
+        ping_indexnow(urls)
         return True
     except Exception as e:
         log(f"Error saving medications: {e}")
@@ -186,6 +191,13 @@ def save_news(data):
         with open(NEWS_FILE, "w", encoding="utf-8") as f:
             json.dump(data, f, indent=2, ensure_ascii=False)
         github_sync_async(os.path.basename(NEWS_FILE))
+        # Ping IndexNow for homepage + each published article
+        urls = [f"{SITE_URL}/", f"{SITE_URL}/news"]
+        for it in data.get("items", []):
+            if (it.get("body") or "").strip():
+                slug = it.get("slug") or news_slug(it.get("title", ""))
+                urls.append(f"{SITE_URL}/news/{slug}")
+        ping_indexnow(urls)
         return True
     except Exception as e:
         log(f"Error saving news: {e}")
@@ -415,6 +427,45 @@ def github_sync_async(filename):
     """Fire-and-forget so admin saves and form posts never wait on GitHub."""
     threading.Thread(target=github_sync_file, args=(filename,), daemon=True).start()
 # ===================== END GITHUB PERSISTENCE SYNC =====================
+
+
+# ===================== INDEXNOW AUTO-PING =====================
+INDEXNOW_KEY = "3bde8e60214c44b4b4efc9f2fa023736"
+
+def ping_indexnow(urls):
+    """Notify IndexNow (Bing, Yandex — indirectly Google) of updated URLs.
+    Fires asynchronously so saves never wait on the network."""
+    def _ping():
+        try:
+            payload = json.dumps({
+                "host": "fenkellrxpharmacy.com",
+                "key": INDEXNOW_KEY,
+                "keyLocation": f"https://fenkellrxpharmacy.com/{INDEXNOW_KEY}.txt",
+                "urlList": urls,
+            }).encode("utf-8")
+            req = urllib.request.Request(
+                "https://api.indexnow.org/indexnow",
+                data=payload,
+                method="POST",
+                headers={"Content-Type": "application/json; charset=utf-8"},
+            )
+            with urllib.request.urlopen(req, timeout=10) as r:
+                log(f"IndexNow ping OK: {r.status} for {len(urls)} URL(s)")
+        except Exception as e:
+            log(f"IndexNow ping failed (non-critical): {e}")
+    threading.Thread(target=_ping, daemon=True).start()
+
+def ping_sitemap_urls():
+    """Ping the full set of core site URLs — used after any structural change."""
+    ping_indexnow([
+        f"{SITE_URL}/",
+        f"{SITE_URL}/news",
+        f"{SITE_URL}/availability",
+        f"{SITE_URL}/medications",
+        f"{SITE_URL}/refills",
+        f"{SITE_URL}/quickcare",
+    ])
+# ===================== END INDEXNOW AUTO-PING =====================
 
 
 # ===================== MEDICATION SEO PAGES =====================
@@ -1104,7 +1155,14 @@ class Handler(SimpleHTTPRequestHandler):
 
     def do_GET(self):
         path = self._clean_path()
-        if path == "/api/banner":
+        if path == f"/{INDEXNOW_KEY}.txt":
+            body = INDEXNOW_KEY.encode("utf-8")
+            self.send_response(200)
+            self.send_header("Content-Type", "text/plain; charset=utf-8")
+            self.send_header("Content-Length", str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
+        elif path == "/api/banner":
             msg = get_active_message()
             if not msg:
                 notice = get_holiday_notice()
