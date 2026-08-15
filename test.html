@@ -999,8 +999,21 @@ nav{
   .btn-gold{font-size:13px;padding:14px 24px;}
 
   /* Hero photo — show as full-width below text */
-  .hero-right{padding-bottom:0;}
-  .hero-photo{min-height:260px;border-radius:0;}
+  .hero-right{padding-bottom:0;display:flex;flex-direction:column;}
+  .hero-photo{min-height:260px;border-radius:0;flex:none;}
+
+  /* Quick-action cards: pull out of absolute, stack below photo */
+  .nqa-overlay{
+    position:static;
+    background:var(--cream);
+    border-top:1px solid var(--border);
+    padding:16px 1.25rem 20px;
+  }
+  .nqa-overlay .nqa-cards{flex-direction:column;align-items:stretch;gap:10px;}
+  .nqa-overlay .nqa-card{width:100%;min-width:unset;padding:14px 16px;box-shadow:0 2px 8px rgba(0,0,0,0.08);}
+  .nqa-overlay .nqa-card-sub{display:block;font-size:12px;}
+  .nqa-overlay .nqa-divider{display:flex;}
+  .nqa-overlay .nqa-arrow{display:flex;}
   .hero-trust-bar{
     position:static;
     margin:0;
