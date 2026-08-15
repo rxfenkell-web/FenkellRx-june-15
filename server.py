@@ -948,8 +948,9 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
 .sf-bottom-service{font-size:11px;color:rgba(255,255,255,0.35);line-height:1.6;}
 .sf-bottom-copy{font-size:11px;color:rgba(255,255,255,0.35);}
 .sf-map{padding:24px 24px 0;}
-.sf-map-frame{border-radius:12px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.35);}
-.sf-map iframe{width:100%;height:240px;border:0;display:block;}
+.sf-map-frame{max-width:1160px;margin:0 auto;border-radius:16px;overflow:hidden;box-shadow:0 4px 28px rgba(0,0,0,0.15);}
+.sf-map-frame iframe{width:100%;height:380px;border:0;display:block;}
+@media(max-width:768px){.sf-map-frame iframe{height:260px;}}
 @media(max-width:900px){.sf-inner{grid-template-columns:1fr 1fr;gap:28px;}}
 @media(max-width:560px){.sf-inner{grid-template-columns:1fr;}.sf-logo img{height:36px;}}
 """
