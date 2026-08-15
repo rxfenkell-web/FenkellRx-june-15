@@ -1155,7 +1155,18 @@ class Handler(SimpleHTTPRequestHandler):
 
     def do_GET(self):
         path = self._clean_path()
-        if path == f"/{INDEXNOW_KEY}.txt":
+        if path == "/BingSiteAuth.xml":
+            try:
+                with open(os.path.join(BASE_DIR, "BingSiteAuth.xml"), "rb") as f:
+                    body = f.read()
+                self.send_response(200)
+                self.send_header("Content-Type", "application/xml; charset=utf-8")
+                self.send_header("Content-Length", str(len(body)))
+                self.end_headers()
+                self.wfile.write(body)
+            except Exception:
+                self._respond(404, {"ok": False, "error": "Not found"})
+        elif path == f"/{INDEXNOW_KEY}.txt":
             body = INDEXNOW_KEY.encode("utf-8")
             self.send_response(200)
             self.send_header("Content-Type", "text/plain; charset=utf-8")
