@@ -1411,6 +1411,21 @@ class Handler(SimpleHTTPRequestHandler):
     def _clean_path(self):
         return urlparse(self.path).path
 
+    # Cache-Control values by file extension
+    _CACHE_BY_EXT = {
+        '.webp': 'public, max-age=31536000, immutable',
+        '.png':  'public, max-age=31536000, immutable',
+        '.jpg':  'public, max-age=31536000, immutable',
+        '.jpeg': 'public, max-age=31536000, immutable',
+        '.gif':  'public, max-age=31536000, immutable',
+        '.svg':  'public, max-age=31536000, immutable',
+        '.ico':  'public, max-age=31536000, immutable',
+        '.woff': 'public, max-age=31536000, immutable',
+        '.woff2':'public, max-age=31536000, immutable',
+        '.css':  'public, max-age=86400',
+        '.js':   'public, max-age=86400',
+    }
+
     def _security_headers(self):
         """Inject security headers on every response."""
         self.send_header("Strict-Transport-Security", "max-age=31536000; includeSubDomains")
@@ -1418,6 +1433,39 @@ class Handler(SimpleHTTPRequestHandler):
         self.send_header("X-Content-Type-Options", "nosniff")
         self.send_header("Referrer-Policy", "strict-origin-when-cross-origin")
         self.send_header("Permissions-Policy", "camera=(), microphone=(), geolocation=(self)")
+
+    def _serve_static_with_cache(self):
+        """Serve a static file with appropriate Cache-Control headers."""
+        path = self._clean_path()
+        fpath = os.path.realpath(os.path.join(BASE_DIR, path.lstrip('/')))
+        base = os.path.realpath(BASE_DIR)
+        # Security: block path traversal outside BASE_DIR
+        if not (fpath == base or fpath.startswith(base + os.sep)):
+            self.send_response(403)
+            self.end_headers()
+            return
+        if not os.path.isfile(fpath):
+            self.send_response(404)
+            self.end_headers()
+            return
+        ext = os.path.splitext(fpath)[1].lower()
+        cache = self._CACHE_BY_EXT.get(ext, 'public, max-age=3600')
+        ctype = self.guess_type(fpath)
+        try:
+            with open(fpath, 'rb') as f:
+                body = f.read()
+            self.send_response(200)
+            self.send_header('Content-Type', ctype)
+            self.send_header('Content-Length', str(len(body)))
+            self.send_header('Cache-Control', cache)
+            self.end_headers()
+            self.wfile.write(body)
+        except PermissionError:
+            self.send_response(403)
+            self.end_headers()
+        except Exception:
+            self.send_response(500)
+            self.end_headers()
 
     def do_OPTIONS(self):
         self.send_response(200)
@@ -1442,6 +1490,7 @@ class Handler(SimpleHTTPRequestHandler):
             self.send_response(200)
             self.send_header("Content-Type", "text/html; charset=utf-8")
             self.send_header("Content-Length", str(len(body)))
+            self.send_header("Cache-Control", "public, max-age=1800")
             self._security_headers()
             self.end_headers()
             self.wfile.write(body)
@@ -1510,6 +1559,7 @@ class Handler(SimpleHTTPRequestHandler):
                 self.send_response(200)
                 self.send_header("Content-Type", "text/html; charset=utf-8")
                 self.send_header("Content-Length", str(len(body)))
+                self.send_header("Cache-Control", "public, max-age=300")
                 self._security_headers()
                 self.end_headers()
                 self.wfile.write(body)
@@ -1547,6 +1597,7 @@ class Handler(SimpleHTTPRequestHandler):
             self.send_response(200)
             self.send_header("Content-Type", "text/html; charset=utf-8")
             self.send_header("Content-Length", str(len(body)))
+            self.send_header("Cache-Control", "public, max-age=300")
             self._security_headers()
             self.end_headers()
             self.wfile.write(body)
@@ -1565,6 +1616,7 @@ class Handler(SimpleHTTPRequestHandler):
                 self.send_response(200)
                 self.send_header("Content-Type", "text/html; charset=utf-8")
                 self.send_header("Content-Length", str(len(body)))
+                self.send_header("Cache-Control", "public, max-age=300")
                 self._security_headers()
                 self.end_headers()
                 self.wfile.write(body)
@@ -1574,6 +1626,7 @@ class Handler(SimpleHTTPRequestHandler):
             self.send_response(200)
             self.send_header("Content-Type", "text/html; charset=utf-8")
             self.send_header("Content-Length", str(len(body)))
+            self.send_header("Cache-Control", "public, max-age=1800")
             self._security_headers()
             self.end_headers()
             self.wfile.write(body)
@@ -1592,6 +1645,7 @@ class Handler(SimpleHTTPRequestHandler):
                 self.send_response(200)
                 self.send_header("Content-Type", "text/html; charset=utf-8")
                 self.send_header("Content-Length", str(len(body)))
+                self.send_header("Cache-Control", "public, max-age=1800")
                 self._security_headers()
                 self.end_headers()
                 self.wfile.write(body)
@@ -1628,7 +1682,7 @@ class Handler(SimpleHTTPRequestHandler):
                 return
             self._send_zip()
         else:
-            super().do_GET()
+            self._serve_static_with_cache()
 
     def do_POST(self):
         path = self._clean_path()
