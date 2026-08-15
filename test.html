@@ -179,8 +179,10 @@ nav{
 .nqa-overlay{
   position:absolute;
   bottom:16px;left:-32px;right:16px;
-  z-index:10;
+  z-index:20;
+  pointer-events:none;
 }
+.nqa-overlay .nqa-cards{pointer-events:auto;}
 .nqa-overlay .nqa-cards{gap:10px;}
 .nqa-overlay .nqa-card{
   padding:14px 18px;
