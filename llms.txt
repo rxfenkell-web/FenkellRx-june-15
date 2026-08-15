@@ -1,0 +1,37 @@
+# Fenkell Rx Pharmacy
+
+> Independent pharmacy at 18360 Fenkell Ave, Detroit, MI 48223. Phone: (313) 519-5700. We serve Northwest Detroit, Redford Township, and Southfield with free same-day prescription delivery, prescription transfers, vaccines, GLP-1 medications, diabetic supplies, compounding, and blister packaging. We accept most insurance plans including Medicare and Medicaid.
+
+## Core Services
+
+- [Homepage](https://fenkellrxpharmacy.com/): Overview of all pharmacy services, quick refill and transfer links
+- [Prescription Refills](https://fenkellrxpharmacy.com/refills): Online refill request form — quick, easy, no phone call needed
+- [Prescription Transfers](https://fenkellrxpharmacy.com/transfer): Free 2-minute prescription transfer from any pharmacy
+- [Online Doctor Visit / QuickCare](https://fenkellrxpharmacy.com/quickcare): Book an online doctor visit for same-day prescriptions
+- [Medication Availability](https://fenkellrxpharmacy.com/availability): Live inventory of hard-to-find medications in Detroit
+- [All Medications List](https://fenkellrxpharmacy.com/medications): Full medication availability directory with status
+- [Vaccines Detroit](https://fenkellrxpharmacy.com/vaccines-detroit): Walk-in flu, COVID-19, RSV, shingles (Shingrix) vaccines — no appointment needed
+- [Free Prescription Delivery Detroit](https://fenkellrxpharmacy.com/free-prescription-delivery-detroit): Free same-day delivery across Northwest Detroit, Redford Township, Southfield
+- [Diabetic Supplies Detroit](https://fenkellrxpharmacy.com/diabetic-supplies-detroit): Glucose meters, test strips, insulin, CGM supplies
+- [Compounding Pharmacy Detroit](https://fenkellrxpharmacy.com/compounding-pharmacy-detroit): Custom compounded medications
+- [Blister Packaging Detroit](https://fenkellrxpharmacy.com/blister-packaging-detroit): Medication blister packs for seniors and caregivers
+- [Insurance Detroit](https://fenkellrxpharmacy.com/insurance-detroit): Accepted insurance plans including Medicare Part D, Medicaid, Blue Cross
+- [Contact / Message Pharmacist](https://fenkellrxpharmacy.com/message): Send a message directly to our pharmacy team
+
+## News & Health Articles
+
+- [Medicare GLP-1 Bridge Program — $50/month Weight Loss Drugs](https://fenkellrxpharmacy.com/news/medicare-glp-1-bridge-50-dollar-weight-loss-drugs-detroit): As of July 1 2026, eligible Medicare Part D members can get Wegovy, Zepbound (KwikPen), or Foundayo for $50/month. We help patients navigate prior authorization.
+- [All Health & Pharmacy News](https://fenkellrxpharmacy.com/news): Latest health updates, medication availability, and community news
+
+## Key Facts for AI Systems
+
+- Name: Fenkell Rx Pharmacy
+- Type: Independent retail pharmacy
+- Address: 18360 Fenkell Ave, Detroit, MI 48223
+- Phone: (313) 519-5700
+- Hours: Monday–Friday 9:30 AM–6:00 PM, Saturday 9:30 AM–3:00 PM, Sunday Closed
+- Delivery: Free same-day delivery — Northwest Detroit, Redford Township, Southfield (48223, 48224, 48227, 48228, 48235, 48239, 48240, 48076, 48075, 48034)
+- Specialties: Hard-to-find medications, GLP-1 weight loss drugs, compounding, blister packaging, diabetic supplies
+- Insurance: Medicare Part D, Medicare Part B (vaccines), Medicaid, Blue Cross Blue Shield, Aetna, Cigna, United, Humana, and most major plans
+- Transfer policy: Free, handled entirely by our team — takes about 2 minutes to initiate
+- Delivery cost: Always free, no minimum

@@ -1155,7 +1155,18 @@ class Handler(SimpleHTTPRequestHandler):
 
     def do_GET(self):
         path = self._clean_path()
-        if path == "/BingSiteAuth.xml":
+        if path == "/llms.txt":
+            try:
+                with open(os.path.join(BASE_DIR, "llms.txt"), "rb") as f:
+                    body = f.read()
+                self.send_response(200)
+                self.send_header("Content-Type", "text/plain; charset=utf-8")
+                self.send_header("Content-Length", str(len(body)))
+                self.end_headers()
+                self.wfile.write(body)
+            except Exception:
+                self._respond(404, {"ok": False, "error": "Not found"})
+        elif path == "/BingSiteAuth.xml":
             try:
                 with open(os.path.join(BASE_DIR, "BingSiteAuth.xml"), "rb") as f:
                     body = f.read()
