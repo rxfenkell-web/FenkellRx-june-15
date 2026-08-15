@@ -1186,12 +1186,13 @@ def render_news_hub(items):
         tit = _esc(it.get("title", ""))
         summ = _esc(it.get("summary", ""))
         pub = _esc(it.get("publishedAt", ""))
-        cards_html += f"""<a class="nc" href="{_esc(href)}">
+        cards_html += f"""<div class="nc">
   <div class="nc-tag">{tag}</div>
   <div class="nc-title">{tit}</div>
   <div class="nc-summary">{summ}</div>
   <div class="nc-footer"><span class="nc-date">{pub}</span><span class="nc-cta">Read article &rarr;</span></div>
-</a>"""
+  <a href="{_esc(href)}" class="nc-stretched-link" aria-label="Read: {tit}"></a>
+</div>"""
         if has_body:
             ld_items.append({"@type": "ListItem", "position": pos,
                              "name": it.get("title", ""), "url": SITE_URL + "/news/" + slug})
@@ -1228,8 +1229,9 @@ def render_news_hub(items):
 .news-grid{{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:44px;}}
 @media(max-width:900px){{.news-grid{{grid-template-columns:repeat(2,1fr);}}}}
 @media(max-width:560px){{.news-grid{{grid-template-columns:1fr;}}}}
-.nc{{background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:22px 20px;display:flex;flex-direction:column;gap:10px;transition:border-color 0.2s,box-shadow 0.2s;text-decoration:none;color:inherit;}}
+.nc{{background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:22px 20px;display:flex;flex-direction:column;gap:10px;transition:border-color 0.2s,box-shadow 0.2s;position:relative;}}
 .nc:hover{{border-color:var(--red);box-shadow:0 8px 28px rgba(204,0,28,0.1);}}
+.nc-stretched-link{{position:absolute;inset:0;border-radius:inherit;z-index:1;}}
 .nc-tag{{display:inline-flex;font-size:10.5px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue-dark);background:var(--blue-light);border-radius:999px;padding:4px 12px;align-self:flex-start;}}
 .nc-title{{font-family:'DM Serif Display',serif;font-size:19px;color:var(--navy);line-height:1.25;}}
 .nc-summary{{font-size:13px;color:var(--text-mid);line-height:1.6;flex:1;}}
