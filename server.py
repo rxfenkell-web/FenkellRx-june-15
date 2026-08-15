@@ -947,7 +947,7 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
 .sf-bottom-address a{color:var(--blue);text-decoration:none;}
 .sf-bottom-service{font-size:11px;color:rgba(255,255,255,0.35);line-height:1.6;}
 .sf-bottom-copy{font-size:11px;color:rgba(255,255,255,0.35);}
-.sf-map{border-top:1px solid rgba(255,255,255,0.08);}
+.sf-map{border-bottom:1px solid rgba(255,255,255,0.08);}
 .sf-map iframe{width:100%;height:220px;border:0;display:block;filter:grayscale(15%);}
 @media(max-width:900px){.sf-inner{grid-template-columns:1fr 1fr;gap:28px;}}
 @media(max-width:560px){.sf-inner{grid-template-columns:1fr;}.sf-logo img{height:36px;}}
@@ -1014,6 +1014,17 @@ def _new_acc_bar_nav():
 def _new_footer_html():
     return """<!-- FOOTER -->
 <footer class="site-footer">
+  <div class="sf-map">
+    <iframe
+      src="https://maps.google.com/maps?q=Fenkell+Rx+Pharmacy,+18360+Fenkell+Ave,+Detroit,+MI+48223&z=16&output=embed"
+      width="100%"
+      height="220"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="Fenkell Rx Pharmacy location at 18360 Fenkell Ave Detroit MI 48223 on Google Maps"
+    ></iframe>
+  </div>
   <div class="sf-inner">
     <div class="sf-about">
       <a href="https://fenkellrxpharmacy.com" class="sf-logo"><img src="/logo.png" alt="Fenkell Rx Pharmacy" onerror="this.style.display='none'"></a>
@@ -1047,17 +1058,6 @@ def _new_footer_html():
         <a href="/message">Contact Us</a>
       </div>
     </div>
-  </div>
-  <div class="sf-map">
-    <iframe
-      src="https://maps.google.com/maps?q=Fenkell+Rx+Pharmacy,+18360+Fenkell+Ave,+Detroit,+MI+48223&z=16&output=embed"
-      width="100%"
-      height="220"
-      allowfullscreen=""
-      loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade"
-      title="Fenkell Rx Pharmacy location at 18360 Fenkell Ave Detroit MI 48223 on Google Maps"
-    ></iframe>
   </div>
   <div class="sf-bottom">
     <div class="sf-bottom-inner">
