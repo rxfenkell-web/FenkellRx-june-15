@@ -2009,7 +2009,24 @@ function closeMobileNav(){
 }
 // Close on menu link click (same-page anchors too) or outside-nav click
 document.addEventListener('click',function(e){
-  if(e.target.closest('#navMobileMenu a')){setTimeout(closeMobileNav,0);return;}
+  var link=e.target.closest('#navMobileMenu a');
+  if(link){
+    var href=link.getAttribute('href');
+    if(href&&href.startsWith('#')){
+      e.preventDefault();
+      closeMobileNav();
+      setTimeout(function(){
+        var target=document.querySelector(href);
+        if(target){
+          var navH=(document.querySelector('nav')||{offsetHeight:70}).offsetHeight;
+          window.scrollTo({top:target.getBoundingClientRect().top+window.scrollY-navH,behavior:'smooth'});
+        }
+      },50);
+      return;
+    }
+    setTimeout(closeMobileNav,0);
+    return;
+  }
   if(!e.target.closest('nav'))closeMobileNav();
 });
 </script>
