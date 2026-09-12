@@ -759,6 +759,8 @@ def render_sitemap(meds):
         (SITE_URL + "/caregiver-prescription-delivery-detroit", today, "0.8"),
         (SITE_URL + "/vaccination-clinics-detroit", today, "0.8"),
         (SITE_URL + "/ai", today, "0.7"),
+        (SITE_URL + "/llms.txt", today, "0.5"),
+        (SITE_URL + "/openapi.json", today, "0.5"),
         (SITE_URL + "/blister-packaging-detroit", today, "0.7"),
         (SITE_URL + "/diabetic-supplies-detroit", today, "0.8"),
         (SITE_URL + "/insurance-detroit", today, "0.8"),
@@ -1469,6 +1471,12 @@ class Handler(SimpleHTTPRequestHandler):
         self.send_header("X-Content-Type-Options", "nosniff")
         self.send_header("Referrer-Policy", "strict-origin-when-cross-origin")
         self.send_header("Permissions-Policy", "camera=(), microphone=(), geolocation=(self)")
+        # AI/LLM discovery hints — advertised on every HTML response
+        self.send_header("Link", (
+            '<https://fenkellrxpharmacy.com/llms.txt>; rel="llms-txt", '
+            '<https://fenkellrxpharmacy.com/openapi.json>; rel="describedby"; type="application/json", '
+            '<https://fenkellrxpharmacy.com/.well-known/mcp.json>; rel="mcp-manifest"'
+        ))
 
     def _serve_static_with_cache(self):
         """Serve a static file with appropriate Cache-Control headers."""
@@ -1522,6 +1530,12 @@ class Handler(SimpleHTTPRequestHandler):
                 html = html.replace("</head>", f"  {tag}\n</head>", 1)
             if "<!--FRX_BANNER-->" in html:
                 html = html.replace("<!--FRX_BANNER-->", get_banner_html(), 1)
+            # Inject AI/LLM discovery link tags into every HTML page
+            ai_links = (
+                '  <link rel="llms-txt" href="/llms.txt">\n'
+                '  <link rel="describedby" type="application/json" href="/openapi.json">\n'
+            )
+            html = html.replace("</head>", f"{ai_links}</head>", 1)
             body = html.encode("utf-8")
             self.send_response(200)
             self.send_header("Content-Type", "text/html; charset=utf-8")
@@ -1542,6 +1556,8 @@ class Handler(SimpleHTTPRequestHandler):
                 self.send_response(200)
                 self.send_header("Content-Type", "text/plain; charset=utf-8")
                 self.send_header("Content-Length", str(len(body)))
+                self.send_header("Access-Control-Allow-Origin", "*")
+                self.send_header("Cache-Control", "public, max-age=3600")
                 self.end_headers()
                 self.wfile.write(body)
             except Exception:

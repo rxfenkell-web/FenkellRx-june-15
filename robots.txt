@@ -2,6 +2,26 @@ User-agent: *
 Allow: /
 
 Disallow: /admin.html
-Disallow: /api/
+
+# Allow AI crawlers to read non-PHI API discovery endpoints
+Allow: /api/hours
+Allow: /api/services
+Allow: /api/check-delivery
+Allow: /llms.txt
+Allow: /openapi.json
+Allow: /.well-known/
+
+# Block form-submission endpoints and admin from bots
+Disallow: /api/refill
+Disallow: /api/transfer
+Disallow: /api/email
+Disallow: /api/admin/
+
+# AI / LLM discovery resources
+# llms.txt: https://fenkellrxpharmacy.com/llms.txt
+# OpenAPI spec: https://fenkellrxpharmacy.com/openapi.json
+# MCP manifest: https://fenkellrxpharmacy.com/.well-known/mcp.json
+# AI plugin: https://fenkellrxpharmacy.com/.well-known/ai-plugin.json
+# Agent info: https://fenkellrxpharmacy.com/ai
 
 Sitemap: https://fenkellrxpharmacy.com/sitemap.xml
