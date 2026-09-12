@@ -755,6 +755,9 @@ def render_sitemap(meds):
         (SITE_URL + "/transfer", today, "0.8"),
         (SITE_URL + "/vaccines-detroit", today, "0.9"),
         (SITE_URL + "/free-prescription-delivery-detroit", today, "0.8"),
+        (SITE_URL + "/magic-mouthwash-compounding-detroit", today, "0.8"),
+        (SITE_URL + "/caregiver-prescription-delivery-detroit", today, "0.8"),
+        (SITE_URL + "/vaccination-clinics-detroit", today, "0.8"),
         (SITE_URL + "/blister-packaging-detroit", today, "0.7"),
         (SITE_URL + "/diabetic-supplies-detroit", today, "0.8"),
         (SITE_URL + "/insurance-detroit", today, "0.8"),
@@ -1605,6 +1608,12 @@ class Handler(SimpleHTTPRequestHandler):
             self.end_headers()
         elif path == "/free-prescription-delivery-detroit":
             self._serve_html_with_seo(os.path.join(BASE_DIR, "free-prescription-delivery-detroit.html"))
+        elif path == "/magic-mouthwash-compounding-detroit":
+            self._serve_html_with_seo(os.path.join(BASE_DIR, "magic-mouthwash-compounding-detroit.html"))
+        elif path == "/caregiver-prescription-delivery-detroit":
+            self._serve_html_with_seo(os.path.join(BASE_DIR, "caregiver-prescription-delivery-detroit.html"))
+        elif path == "/vaccination-clinics-detroit":
+            self._serve_html_with_seo(os.path.join(BASE_DIR, "vaccination-clinics-detroit.html"))
         elif path == "/compounding-pharmacy-detroit":
             self._serve_html_with_seo(os.path.join(BASE_DIR, "compounding-pharmacy-detroit.html"))
         elif path == "/blister-packaging-detroit":
