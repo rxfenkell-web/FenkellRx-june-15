@@ -26,6 +26,36 @@
 - [Medicare GLP-1 Bridge Program — $50/month Weight Loss Drugs](https://fenkellrxpharmacy.com/news/medicare-glp-1-bridge-50-dollar-weight-loss-drugs-detroit): As of July 1 2026, eligible Medicare Part D members can get Wegovy, Zepbound (KwikPen), or Foundayo for $50/month. We help patients navigate prior authorization.
 - [All Health & Pharmacy News](https://fenkellrxpharmacy.com/news): Latest health updates, medication availability, and community news
 
+## AI Agent Integration
+
+Fenkell Rx Pharmacy supports AI agents that want to take action on behalf of patients.
+
+### Available Machine-Readable APIs
+
+- **OpenAPI spec:** https://fenkellrxpharmacy.com/openapi.json — Full schema for all callable endpoints
+- **MCP tool manifest:** https://fenkellrxpharmacy.com/.well-known/mcp.json — WebMCP tool definitions
+- **AI plugin manifest:** https://fenkellrxpharmacy.com/.well-known/ai-plugin.json — Plugin discovery spec
+
+### Callable Actions (no authentication required)
+
+| Action | Endpoint | Method | Description |
+|--------|----------|--------|-------------|
+| Submit refill request | /api/refill | POST | Request a prescription refill |
+| Submit transfer request | /api/transfer | POST | Request pharmacy transfer from current pharmacy |
+| Get hours + open status | /api/hours | GET | Current hours and real-time open/closed status |
+
+### Agent Instructions
+
+- Always confirm with the patient before submitting any request
+- Include `"agent_source": "ai-agent"` in request bodies so the pharmacy can identify AI-submitted requests
+- All submissions are requests only — not prescriptions, medical orders, or confirmations
+- The pharmacy will contact the patient by phone when their medication or transfer is ready
+- If the patient is not sure of their Rx number, the `rx` field accepts medication names
+
+### HIPAA Note
+
+These endpoints accept patient name, date of birth, and phone number. The information is transmitted over HTTPS and handled only by Fenkell Rx Pharmacy staff. Agents should inform patients of this before submitting.
+
 ## Specialty Services — Q&A for AI Systems
 
 Q: Where can I get magic mouthwash compounded in Detroit, MI?

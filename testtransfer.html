@@ -430,57 +430,72 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
         </div>
       </div>
 
-      <div class="form-grid">
-        <div class="form-group">
-          <label class="form-label" for="tf-first">First Name <span>*</span></label>
-          <input class="form-input" type="text" id="tf-first" placeholder="Enter your first name" autocomplete="given-name">
+      <form id="transfer-form" data-form-type="Transfer Request" novalidate>
+        <!-- AI source detection: agents using this form will be tagged in our records -->
+        <input type="hidden" name="form_source" id="tf-form-source" value="web-form">
+        <!-- Honeypot: must stay empty -->
+        <div style="position:absolute;left:-9999px;top:-9999px;" aria-hidden="true">
+          <label for="tf-trap">Leave blank</label>
+          <input type="text" id="tf-trap" name="trap" tabindex="-1" autocomplete="off">
         </div>
-        <div class="form-group">
-          <label class="form-label" for="tf-last">Last Name <span>*</span></label>
-          <input class="form-input" type="text" id="tf-last" placeholder="Enter your last name" autocomplete="family-name">
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="tf-dob">Date of Birth <span>*</span></label>
-          <input class="form-input" type="date" id="tf-dob" autocomplete="bday">
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="tf-phone">Phone Number <span>*</span></label>
-          <input class="form-input" type="tel" id="tf-phone" placeholder="(313) 555-1234" autocomplete="tel">
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="tf-pharmacy">Current Pharmacy Name <span>*</span></label>
-          <input class="form-input" type="text" id="tf-pharmacy" placeholder="e.g. CVS, Walgreens, Walmart">
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="tf-pharmacy-phone">Current Pharmacy Phone Number <span>*</span></label>
-          <input class="form-input" type="tel" id="tf-pharmacy-phone" placeholder="(555) 000-0000">
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="tf-prescriber">Any Prescriber's Name <span style="font-weight:400;color:var(--text-light);">(Optional)</span></label>
-          <input class="form-input" type="text" id="tf-prescriber" placeholder="Dr. Smith">
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="tf-method">Preferred Method <span>*</span></label>
-          <select class="form-select" id="tf-method">
-            <option value="In-store pickup">In-store pickup</option>
-            <option value="Home delivery (free)">Home delivery (free)</option>
-            <option value="Curbside pickup">Curbside pickup</option>
-          </select>
-        </div>
-        <div class="form-group form-full">
-          <label class="form-label" for="tf-notes">Additional Notes <span style="font-weight:400;color:var(--text-light);">(Optional)</span></label>
-          <textarea class="form-textarea" id="tf-notes" placeholder="Any special instructions or notes..."></textarea>
-        </div>
-      </div>
 
-      <button class="btn-submit" onclick="submitTransfer()">
-        Request Transfer
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </button>
-      <div class="form-security">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-        Your information is safe and secure. We never share your data.
-      </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label" for="tf-first">First Name <span>*</span></label>
+            <input class="form-input" type="text" id="tf-first" name="firstName" placeholder="Enter your first name" autocomplete="given-name" aria-required="true">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="tf-last">Last Name <span>*</span></label>
+            <input class="form-input" type="text" id="tf-last" name="lastName" placeholder="Enter your last name" autocomplete="family-name" aria-required="true">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="tf-dob">Date of Birth <span>*</span></label>
+            <input class="form-input" type="date" id="tf-dob" name="dob" autocomplete="bday" aria-required="true">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="tf-phone">Phone Number <span>*</span></label>
+            <input class="form-input" type="tel" id="tf-phone" name="phone" placeholder="(313) 555-1234" autocomplete="tel" aria-required="true">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="tf-pharmacy">Current Pharmacy Name <span>*</span></label>
+            <input class="form-input" type="text" id="tf-pharmacy" name="rxName" placeholder="e.g. CVS, Walgreens, Walmart" autocomplete="organization" aria-required="true">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="tf-pharmacy-phone">Current Pharmacy Phone Number <span>*</span></label>
+            <input class="form-input" type="tel" id="tf-pharmacy-phone" name="rxPhone" placeholder="(555) 000-0000" autocomplete="off" aria-required="true">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="tf-prescriber">Any Prescriber's Name <span style="font-weight:400;color:var(--text-light);">(Optional)</span></label>
+            <input class="form-input" type="text" id="tf-prescriber" name="prescriber" placeholder="Dr. Smith" autocomplete="off">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="tf-method">Preferred Method <span>*</span></label>
+            <select class="form-select" id="tf-method" name="method" aria-required="true">
+              <option value="In-store pickup">In-store pickup</option>
+              <option value="Home delivery (free)">Home delivery (free)</option>
+              <option value="Curbside pickup">Curbside pickup</option>
+            </select>
+          </div>
+          <div class="form-group form-full">
+            <label class="form-label" for="tf-notes">Additional Notes <span style="font-weight:400;color:var(--text-light);">(Optional)</span></label>
+            <textarea class="form-textarea" id="tf-notes" name="notes" placeholder="Any special instructions or notes..."></textarea>
+          </div>
+        </div>
+
+        <!-- Inline error/success (no alert() — required for agent compatibility) -->
+        <div id="tf-error" role="alert" style="display:none;background:#FEE2E2;border:1px solid #FCA5A5;border-radius:8px;padding:10px 14px;font-size:13px;color:#991B1B;margin-bottom:10px;"></div>
+        <div id="tf-success" role="status" style="display:none;background:#DCFCE7;border:1px solid #86EFAC;border-radius:8px;padding:14px 16px;font-size:13.5px;color:#166534;margin-bottom:10px;font-weight:600;"></div>
+
+        <button type="submit" class="btn-submit" id="tf-submit-btn">
+          Request Transfer
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+        <p style="font-size:11px;color:var(--text-light);margin-top:8px;line-height:1.5;">This is a transfer request only — not a confirmation. We will contact you once your transfer is complete.</p>
+        <div class="form-security">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          Your information is safe and secure. We never share your data.
+        </div>
+      </form>
     </div>
 
     <!-- SIDE CARDS -->
@@ -580,67 +595,87 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
   </div>
 </footer>
 <script>
-function submitTransfer() {
-  var first    = document.getElementById('tf-first').value.trim();
-  var last     = document.getElementById('tf-last').value.trim();
-  var dob      = document.getElementById('tf-dob').value.trim();
-  var phone    = document.getElementById('tf-phone').value.trim();
-  var pharmacy = document.getElementById('tf-pharmacy').value.trim();
-  var pharmPh  = document.getElementById('tf-pharmacy-phone').value.trim();
-  var prescriber = document.getElementById('tf-prescriber').value.trim();
-  var method   = document.getElementById('tf-method').value;
-  var notes    = document.getElementById('tf-notes').value.trim();
+(function(){
+  var form = document.getElementById('transfer-form');
+  if (!form) return;
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var errEl = document.getElementById('tf-error');
+    var okEl  = document.getElementById('tf-success');
+    var btn   = document.getElementById('tf-submit-btn');
+    errEl.style.display = 'none';
+    okEl.style.display  = 'none';
 
-  if (!first || !last || !dob || !phone || !pharmacy || !pharmPh) {
-    alert('Please fill in all required fields before submitting.');
-    return;
-  }
+    var first    = document.getElementById('tf-first').value.trim();
+    var last     = document.getElementById('tf-last').value.trim();
+    var dob      = document.getElementById('tf-dob').value.trim();
+    var phone    = document.getElementById('tf-phone').value.trim();
+    var pharmacy = document.getElementById('tf-pharmacy').value.trim();
+    var pharmPh  = document.getElementById('tf-pharmacy-phone').value.trim();
+    var prescriber = document.getElementById('tf-prescriber').value.trim();
+    var method   = document.getElementById('tf-method').value;
+    var notes    = document.getElementById('tf-notes').value.trim();
+    var trap     = document.getElementById('tf-trap').value;
 
-  fetch('/api/email', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      type: 'Transfer Request',
-      subject: 'Transfer Request – ' + first + ' ' + last,
-      body:
-        'PHARMACY TRANSFER REQUEST\n' +
-        '==============================\n\n' +
-        'Patient Name:          ' + first + ' ' + last + '\n' +
-        'Date of Birth:         ' + dob + '\n' +
-        'Phone:                 ' + phone + '\n' +
-        'Current Pharmacy:      ' + pharmacy + '\n' +
-        'Pharmacy Phone:        ' + pharmPh + '\n' +
-        'Prescriber:            ' + (prescriber || 'Not provided') + '\n' +
-        'Preferred Method:      ' + method + '\n' +
-        'Notes:                 ' + (notes || 'None') + '\n\n' +
-        '==============================\n' +
-        'Submitted via FenkellRxPharmacy.com/transfer',
-      firstName: first,
-      lastName: last,
-      dob: dob,
-      phone: phone,
-      pharmacy: pharmacy,
-      pharmacyPhone: pharmPh,
-      prescriber: prescriber || 'Not provided',
-      method: method,
-      notes: notes || 'None'
-    })
-  })
-  .then(function(r){ return r.json(); })
-  .then(function(d){
-    if (d.ok) {
-      alert('Thank you! We\'ll contact your current pharmacy and begin your transfer right away.');
-      ['tf-first','tf-last','tf-dob','tf-phone','tf-pharmacy','tf-pharmacy-phone','tf-prescriber','tf-notes'].forEach(function(id){
-        document.getElementById(id).value = '';
-      });
-    } else {
-      alert('Your request could not be sent. Please call us directly at (313) 519-5700.');
+    if (trap) {
+      okEl.textContent = 'Thank you! We\'ll contact your current pharmacy and begin your transfer right away.';
+      okEl.style.display = 'block';
+      form.reset();
+      return;
     }
-  })
-  .catch(function(){
-    alert('Your request could not be sent. Please call us directly at (313) 519-5700.');
+
+    if (!first || !last || !dob || !phone || !pharmacy || !pharmPh) {
+      errEl.textContent = 'Please fill in all required fields before submitting.';
+      errEl.style.display = 'block';
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Submitting...';
+
+    var ua = navigator.userAgent || '';
+    var agentSource = 'web-form';
+    if (/headlesschrome|phantom|selenium|webdriver|chatgpt|claude|perplexity/i.test(ua)) {
+      agentSource = 'browser-agent';
+    }
+
+    fetch('/api/transfer', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        firstName: first,
+        lastName: last,
+        dob: dob,
+        phone: phone,
+        rxName: pharmacy,
+        rxPhone: pharmPh,
+        prescriber: prescriber || 'Not provided',
+        method: method,
+        notes: notes || 'None',
+        agent_source: agentSource
+      })
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      if (d.ok) {
+        okEl.textContent = 'Thank you! We will contact your current pharmacy and begin your transfer right away.';
+        okEl.style.display = 'block';
+        form.reset();
+      } else {
+        errEl.textContent = 'Your request could not be sent. Please call us directly at (313) 519-5700.';
+        errEl.style.display = 'block';
+      }
+    })
+    .catch(function(){
+      errEl.textContent = 'Your request could not be sent. Please call us directly at (313) 519-5700.';
+      errEl.style.display = 'block';
+    })
+    .finally(function(){
+      btn.disabled = false;
+      btn.innerHTML = 'Request Transfer <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
+    });
   });
-}
+})();
 </script>
 
 <script>

@@ -1570,6 +1570,144 @@ class Handler(SimpleHTTPRequestHandler):
                 if notice:
                     msg = {"text": notice[1], "kind": notice[0]}
             self._respond(200, {"ok": True, "message": msg})
+
+        elif path == "/api/hours":
+            # Machine-readable hours for AI agents
+            eastern = ZoneInfo("America/Detroit")
+            now_dt = datetime.now(eastern)
+            now_mins = now_dt.hour * 60 + now_dt.minute
+            day = now_dt.weekday()  # 0=Mon, 6=Sun
+            def hm(h, m): return h * 60 + m
+            if day == 6:
+                is_open = False
+                today_label = "Sunday"
+                today_hours = "Closed"
+            elif day == 5:
+                is_open = hm(9,30) <= now_mins < hm(15,0)
+                today_label = "Saturday"
+                today_hours = "9:30 AM – 3:00 PM"
+            else:
+                is_open = hm(9,30) <= now_mins < hm(18,0)
+                today_label = ["Monday","Tuesday","Wednesday","Thursday","Friday"][day]
+                today_hours = "9:30 AM – 6:00 PM"
+            self._respond(200, {
+                "pharmacy": "Fenkell Rx Pharmacy",
+                "address": "18360 Fenkell Ave, Detroit, MI 48223",
+                "phone": "(313) 519-5700",
+                "fax": "(313) 899-7389",
+                "is_open_now": is_open,
+                "current_day": today_label,
+                "today_hours": today_hours,
+                "regular_hours": {
+                    "monday_friday": "9:30 AM – 6:00 PM",
+                    "saturday": "9:30 AM – 3:00 PM",
+                    "sunday": "Closed"
+                },
+                "timezone": "America/Detroit"
+            })
+
+        elif path == "/openapi.json":
+            self._serve_static_with_cache()
+
+        elif path == "/.well-known/ai-plugin.json":
+            payload = {
+                "schema_version": "v1",
+                "name_for_human": "Fenkell Rx Pharmacy",
+                "name_for_model": "fenkell_rx",
+                "description_for_human": "Request prescription refills and transfers at Fenkell Rx Pharmacy in Detroit, MI.",
+                "description_for_model": (
+                    "Use this plugin to submit prescription refill requests and pharmacy transfer requests "
+                    "to Fenkell Rx Pharmacy (18360 Fenkell Ave, Detroit, MI 48223, phone (313) 519-5700). "
+                    "Always inform the user that submissions are requests only — not confirmations — and that "
+                    "the pharmacy will contact them when ready. Do not submit without explicit user consent."
+                ),
+                "auth": {"type": "none"},
+                "api": {"type": "openapi", "url": "https://fenkellrxpharmacy.com/openapi.json"},
+                "logo_url": "https://fenkellrxpharmacy.com/logo.png",
+                "contact_email": "fenkellrxpharmacy@gmail.com",
+                "legal_info_url": "https://fenkellrxpharmacy.com/privacy-policy"
+            }
+            body = json.dumps(payload, indent=2).encode()
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Content-Length", str(len(body)))
+            self.send_header("Access-Control-Allow-Origin", "*")
+            self.end_headers()
+            self.wfile.write(body)
+
+        elif path == "/.well-known/mcp.json":
+            payload = {
+                "name": "Fenkell Rx Pharmacy",
+                "description": "Submit prescription refill and transfer requests to Fenkell Rx Pharmacy in Detroit, MI.",
+                "version": "1.0",
+                "tools": [
+                    {
+                        "name": "submit_refill",
+                        "description": (
+                            "Submit a prescription refill request to Fenkell Rx Pharmacy. "
+                            "The pharmacy will contact the patient when the medication is ready. "
+                            "This is a request only — not a prescription or guarantee of fulfillment. "
+                            "Always confirm with the user before submitting."
+                        ),
+                        "url": "https://fenkellrxpharmacy.com/api/refill",
+                        "method": "POST",
+                        "parameters": {
+                            "type": "object",
+                            "required": ["firstName","lastName","dob","phone","rx"],
+                            "properties": {
+                                "firstName": {"type":"string","description":"Patient first name"},
+                                "lastName":  {"type":"string","description":"Patient last name"},
+                                "dob":       {"type":"string","description":"Date of birth in YYYY-MM-DD format"},
+                                "phone":     {"type":"string","description":"Patient phone number"},
+                                "rx":        {"type":"string","description":"Rx number(s) or medication name(s). Multiple values comma-separated."},
+                                "notes":     {"type":"string","description":"Optional additional notes or special instructions"},
+                                "agent_source": {"type":"string","description":"Set to 'ai-agent' to identify this as an AI-submitted request"}
+                            }
+                        }
+                    },
+                    {
+                        "name": "submit_transfer",
+                        "description": (
+                            "Submit a prescription transfer request to Fenkell Rx Pharmacy. "
+                            "The pharmacy will contact the patient's current pharmacy to complete the transfer. "
+                            "This is a request only — not a confirmation. "
+                            "Always confirm with the user before submitting."
+                        ),
+                        "url": "https://fenkellrxpharmacy.com/api/transfer",
+                        "method": "POST",
+                        "parameters": {
+                            "type": "object",
+                            "required": ["firstName","lastName","dob","phone","rxName","rxPhone"],
+                            "properties": {
+                                "firstName":  {"type":"string","description":"Patient first name"},
+                                "lastName":   {"type":"string","description":"Patient last name"},
+                                "dob":        {"type":"string","description":"Date of birth in YYYY-MM-DD format"},
+                                "phone":      {"type":"string","description":"Patient phone number"},
+                                "rxName":     {"type":"string","description":"Name of the current pharmacy"},
+                                "rxPhone":    {"type":"string","description":"Phone number of the current pharmacy"},
+                                "prescriber": {"type":"string","description":"Name of the prescribing doctor (optional)"},
+                                "method":     {"type":"string","enum":["In-store pickup","Home delivery (free)","Curbside pickup"],"description":"Preferred pickup/delivery method"},
+                                "notes":      {"type":"string","description":"Optional additional notes"},
+                                "agent_source": {"type":"string","description":"Set to 'ai-agent' to identify this as an AI-submitted request"}
+                            }
+                        }
+                    },
+                    {
+                        "name": "get_hours",
+                        "description": "Get current pharmacy hours and whether Fenkell Rx Pharmacy is open right now.",
+                        "url": "https://fenkellrxpharmacy.com/api/hours",
+                        "method": "GET",
+                        "parameters": {"type":"object","properties":{}}
+                    }
+                ]
+            }
+            body = json.dumps(payload, indent=2).encode()
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Content-Length", str(len(body)))
+            self.send_header("Access-Control-Allow-Origin", "*")
+            self.end_headers()
+            self.wfile.write(body)
         elif path in ("/", "/index.html"):
             self._serve_html_with_seo(os.path.join(BASE_DIR, "test.html"))
         elif path == "/availability":
@@ -1748,6 +1886,80 @@ class Handler(SimpleHTTPRequestHandler):
                 if conf_subject:
                     send_email(conf_subject, conf_body, to=customer_email)
             self._respond(200, {"ok": True, "emailSent": email_sent})
+
+        elif path == "/api/refill":
+            # Structured refill endpoint — used by agents and the web form
+            agent_tag = self._detect_agent(data)
+            first  = data.get("firstName", "").strip()
+            last   = data.get("lastName", "").strip()
+            dob    = data.get("dob", "").strip()
+            phone  = data.get("phone", "").strip()
+            rx     = data.get("rx", "").strip()
+            notes  = data.get("notes", "None").strip()
+            if not (first and last and dob and phone and rx):
+                self._respond(400, {"ok": False, "error": "Missing required fields: firstName, lastName, dob, phone, rx"})
+                return
+            subject = f"{'[AI] ' if agent_tag else ''}Refill Request – {first} {last}"
+            body = (
+                f"REFILL REQUEST{' [AI-SUBMITTED]' if agent_tag else ''}\n"
+                f"Source: {agent_tag or 'web-form'}\n"
+                "==============================\n\n"
+                f"Patient Name:  {first} {last}\n"
+                f"Date of Birth: {dob}\n"
+                f"Phone:         {phone}\n"
+                f"Rx Number(s):  {rx}\n"
+                f"Notes:         {notes}\n\n"
+                "==============================\n"
+                "Note: This is a request only — not a prescription or medical order.\n"
+                "Submitted via fenkellrxpharmacy.com/refills"
+            )
+            enriched = dict(data)
+            enriched["type"] = "Refill Request"
+            enriched["agent_source"] = agent_tag or data.get("agent_source", "web-form")
+            log_submission("Refill Request", enriched)
+            email_sent = send_email(subject, body)
+            self._respond(200, {"ok": True, "emailSent": email_sent,
+                                "message": "Refill request received. We will contact you when your medication is ready."})
+
+        elif path == "/api/transfer":
+            # Structured transfer endpoint — used by agents and the web form
+            agent_tag = self._detect_agent(data)
+            first     = data.get("firstName", "").strip()
+            last      = data.get("lastName", "").strip()
+            dob       = data.get("dob", "").strip()
+            phone     = data.get("phone", "").strip()
+            rx_name   = data.get("rxName", "").strip()
+            rx_phone  = data.get("rxPhone", "").strip()
+            prescriber = data.get("prescriber", "Not provided").strip()
+            method    = data.get("method", "In-store pickup").strip()
+            notes     = data.get("notes", "None").strip()
+            if not (first and last and dob and phone and rx_name and rx_phone):
+                self._respond(400, {"ok": False, "error": "Missing required fields: firstName, lastName, dob, phone, rxName, rxPhone"})
+                return
+            subject = f"{'[AI] ' if agent_tag else ''}Transfer Request – {first} {last}"
+            body = (
+                f"PHARMACY TRANSFER REQUEST{' [AI-SUBMITTED]' if agent_tag else ''}\n"
+                f"Source: {agent_tag or 'web-form'}\n"
+                "==============================\n\n"
+                f"Patient Name:     {first} {last}\n"
+                f"Date of Birth:    {dob}\n"
+                f"Phone:            {phone}\n"
+                f"Current Pharmacy: {rx_name}\n"
+                f"Pharmacy Phone:   {rx_phone}\n"
+                f"Prescriber:       {prescriber}\n"
+                f"Preferred Method: {method}\n"
+                f"Notes:            {notes}\n\n"
+                "==============================\n"
+                "Note: This is a transfer request only — not a prescription confirmation.\n"
+                "Submitted via fenkellrxpharmacy.com/transfer"
+            )
+            enriched = dict(data)
+            enriched["type"] = "Transfer Request"
+            enriched["agent_source"] = agent_tag or data.get("agent_source", "web-form")
+            log_submission("Transfer Request", enriched)
+            email_sent = send_email(subject, body)
+            self._respond(200, {"ok": True, "emailSent": email_sent,
+                                "message": "Transfer request received. We will contact your current pharmacy and notify you when complete."})
 
         elif path == "/api/admin/banner":
             if data.get("password") != ADMIN_PASSWORD:
@@ -2011,6 +2223,35 @@ class Handler(SimpleHTTPRequestHandler):
         self.send_header("Access-Control-Allow-Origin", "*")
         self.end_headers()
         self.wfile.write(zip_bytes)
+
+    # ── AI AGENT DETECTION ──────────────────────────────────────────────────
+    _AI_UA_PATTERNS = [
+        "gptbot", "chatgpt-user", "chatgpt", "claudebot", "claude-web",
+        "anthropic", "perplexitybot", "perplexity", "cohere-ai", "ai2bot",
+        "amazonbot", "bytespider", "diffbot", "facebookbot", "googleother",
+        "headlesschrome", "phantomjs", "selenium", "webdriver",
+    ]
+
+    def _detect_agent(self, body_data=None):
+        """Return an agent-source string if this looks like an AI/agent request, else empty string."""
+        # 1. Explicit header from well-behaved agents
+        explicit = self.headers.get("X-Agent-Source", "").strip()
+        if explicit:
+            return explicit
+
+        # 2. Body field set by our JS form or a direct API caller
+        if body_data:
+            src = body_data.get("agent_source", "").strip()
+            if src and src not in ("web-form", ""):
+                return src
+
+        # 3. User-Agent sniffing
+        ua = self.headers.get("User-Agent", "").lower()
+        for pat in self._AI_UA_PATTERNS:
+            if pat in ua:
+                return f"ua:{pat}"
+
+        return ""
 
     def _respond(self, code, payload):
         body = json.dumps(payload).encode()

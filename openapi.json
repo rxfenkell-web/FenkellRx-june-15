@@ -1,0 +1,221 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Fenkell Rx Pharmacy API",
+    "version": "1.0.0",
+    "description": "Submit prescription refill and transfer requests to Fenkell Rx Pharmacy at 18360 Fenkell Ave, Detroit, MI 48223. Phone: (313) 519-5700.\n\nIMPORTANT: All submissions are requests only — not prescriptions, medical orders, or confirmations. Always inform the user that the pharmacy will contact them when their medication is ready. Do not submit without explicit user consent.",
+    "contact": {
+      "name": "Fenkell Rx Pharmacy",
+      "url": "https://fenkellrxpharmacy.com",
+      "email": "fenkellrxpharmacy@gmail.com"
+    }
+  },
+  "servers": [
+    { "url": "https://fenkellrxpharmacy.com", "description": "Production" }
+  ],
+  "paths": {
+    "/api/refill": {
+      "post": {
+        "operationId": "submitRefill",
+        "summary": "Submit a prescription refill request",
+        "description": "Submit a refill request for one or more prescriptions at Fenkell Rx Pharmacy. The pharmacy will process the request and contact the patient when the medication is ready. This is a request only — not a prescription or guarantee of fulfillment. Always confirm with the patient before submitting.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/RefillRequest" },
+              "example": {
+                "firstName": "Jane",
+                "lastName": "Smith",
+                "dob": "1960-04-15",
+                "phone": "(313) 555-0101",
+                "rx": "1234567",
+                "notes": "Please include delivery",
+                "agent_source": "ai-agent"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Request received successfully",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/SuccessResponse" },
+                "example": {
+                  "ok": true,
+                  "emailSent": true,
+                  "message": "Refill request received. We will contact you when your medication is ready."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing required fields",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/transfer": {
+      "post": {
+        "operationId": "submitTransfer",
+        "summary": "Submit a prescription transfer request",
+        "description": "Submit a request to transfer the patient's prescriptions from their current pharmacy to Fenkell Rx Pharmacy. The pharmacy will contact the patient's current pharmacy to complete the transfer and notify the patient when done. This is a request only — not a confirmation. Always confirm with the patient before submitting.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/TransferRequest" },
+              "example": {
+                "firstName": "Jane",
+                "lastName": "Smith",
+                "dob": "1960-04-15",
+                "phone": "(313) 555-0101",
+                "rxName": "CVS Pharmacy",
+                "rxPhone": "(313) 555-0200",
+                "prescriber": "Dr. Johnson",
+                "method": "Home delivery (free)",
+                "notes": "Please sync all medications to one monthly refill date",
+                "agent_source": "ai-agent"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Request received successfully",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/SuccessResponse" },
+                "example": {
+                  "ok": true,
+                  "emailSent": true,
+                  "message": "Transfer request received. We will contact your current pharmacy and notify you when complete."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing required fields",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/hours": {
+      "get": {
+        "operationId": "getHours",
+        "summary": "Get current pharmacy hours and open/closed status",
+        "description": "Returns current pharmacy hours and whether Fenkell Rx Pharmacy is open right now, based on Detroit (Eastern) time.",
+        "responses": {
+          "200": {
+            "description": "Hours and open/closed status",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HoursResponse" },
+                "example": {
+                  "pharmacy": "Fenkell Rx Pharmacy",
+                  "address": "18360 Fenkell Ave, Detroit, MI 48223",
+                  "phone": "(313) 519-5700",
+                  "fax": "(313) 899-7389",
+                  "is_open_now": true,
+                  "current_day": "Monday",
+                  "today_hours": "9:30 AM – 6:00 PM",
+                  "regular_hours": {
+                    "monday_friday": "9:30 AM – 6:00 PM",
+                    "saturday": "9:30 AM – 3:00 PM",
+                    "sunday": "Closed"
+                  },
+                  "timezone": "America/Detroit"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "RefillRequest": {
+        "type": "object",
+        "required": ["firstName", "lastName", "dob", "phone", "rx"],
+        "properties": {
+          "firstName":    { "type": "string", "description": "Patient first name" },
+          "lastName":     { "type": "string", "description": "Patient last name" },
+          "dob":          { "type": "string", "description": "Date of birth in YYYY-MM-DD format", "format": "date" },
+          "phone":        { "type": "string", "description": "Patient phone number" },
+          "rx":           { "type": "string", "description": "Rx number(s) or medication name(s). Multiple values comma-separated." },
+          "notes":        { "type": "string", "description": "Optional additional notes or special instructions" },
+          "agent_source": { "type": "string", "description": "Set to 'ai-agent' to identify this as an AI-submitted request. Helps the pharmacy log AI interactions." }
+        }
+      },
+      "TransferRequest": {
+        "type": "object",
+        "required": ["firstName", "lastName", "dob", "phone", "rxName", "rxPhone"],
+        "properties": {
+          "firstName":    { "type": "string", "description": "Patient first name" },
+          "lastName":     { "type": "string", "description": "Patient last name" },
+          "dob":          { "type": "string", "description": "Date of birth in YYYY-MM-DD format", "format": "date" },
+          "phone":        { "type": "string", "description": "Patient phone number" },
+          "rxName":       { "type": "string", "description": "Name of the patient's current pharmacy" },
+          "rxPhone":      { "type": "string", "description": "Phone number of the patient's current pharmacy" },
+          "prescriber":   { "type": "string", "description": "Name of the prescribing doctor (optional)" },
+          "method":       {
+            "type": "string",
+            "enum": ["In-store pickup", "Home delivery (free)", "Curbside pickup"],
+            "default": "In-store pickup",
+            "description": "Preferred pickup or delivery method"
+          },
+          "notes":        { "type": "string", "description": "Optional additional notes" },
+          "agent_source": { "type": "string", "description": "Set to 'ai-agent' to identify this as an AI-submitted request." }
+        }
+      },
+      "SuccessResponse": {
+        "type": "object",
+        "properties": {
+          "ok":        { "type": "boolean" },
+          "emailSent": { "type": "boolean" },
+          "message":   { "type": "string" }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "ok":    { "type": "boolean", "example": false },
+          "error": { "type": "string" }
+        }
+      },
+      "HoursResponse": {
+        "type": "object",
+        "properties": {
+          "pharmacy":     { "type": "string" },
+          "address":      { "type": "string" },
+          "phone":        { "type": "string" },
+          "fax":          { "type": "string" },
+          "is_open_now":  { "type": "boolean" },
+          "current_day":  { "type": "string" },
+          "today_hours":  { "type": "string" },
+          "regular_hours": {
+            "type": "object",
+            "properties": {
+              "monday_friday": { "type": "string" },
+              "saturday":      { "type": "string" },
+              "sunday":        { "type": "string" }
+            }
+          },
+          "timezone": { "type": "string" }
+        }
+      }
+    }
+  }
+}
