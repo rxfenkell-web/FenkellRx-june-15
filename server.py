@@ -1084,6 +1084,19 @@ def _new_footer_html():
       </div>
     </div>
   </div>
+  <div class="sf-inner" style="padding-top:0;border-top:1px solid rgba(255,255,255,0.06);">
+    <div class="sf-col" style="grid-column:1/-1;">
+      <div class="sf-col-title">For AI &amp; Developers</div>
+      <div class="sf-links" style="flex-direction:row;flex-wrap:wrap;gap:6px 20px;">
+        <a href="/ai">AI Agent Guide</a>
+        <a href="/llms.txt">llms.txt</a>
+        <a href="/openapi.json">OpenAPI Spec</a>
+        <a href="/.well-known/mcp.json">MCP Manifest</a>
+        <a href="/api/services">Pharmacy Services JSON</a>
+        <a href="/api/hours">Hours &amp; Status API</a>
+      </div>
+    </div>
+  </div>
   <div class="sf-bottom">
     <div class="sf-bottom-inner">
       <p class="sf-bottom-address">Fenkell Rx Pharmacy &nbsp;&middot;&nbsp; 18360 Fenkell Ave, Detroit, MI 48223 &nbsp;&middot;&nbsp; Phone: <a href="tel:3135195700">(313) 519-5700</a> &nbsp;&middot;&nbsp; Fax: (313) 899-7389</p>
