@@ -1760,6 +1760,10 @@ class Handler(SimpleHTTPRequestHandler):
             self._serve_html_with_seo(os.path.join(BASE_DIR, "diabetic-supplies-detroit.html"))
         elif path == "/refills":
             self._serve_html_with_seo(os.path.join(BASE_DIR, "refills.html"))
+        elif path == "/refill":
+            self.send_response(301)
+            self.send_header("Location", "/refills")
+            self.end_headers()
         elif path == "/message":
             self._serve_html_with_seo(os.path.join(BASE_DIR, "message.html"))
         elif path == "/vaccines-detroit":
