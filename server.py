@@ -602,7 +602,7 @@ def render_med_page(med):
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-CMLXVYL73L"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
+  function gtag(){{dataLayer.push(arguments);}}
   gtag('js', new Date());
   gtag('config', 'G-CMLXVYL73L');
 </script>
@@ -707,7 +707,7 @@ def render_med_hub(meds):
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-CMLXVYL73L"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
+  function gtag(){{dataLayer.push(arguments);}}
   gtag('js', new Date());
   gtag('config', 'G-CMLXVYL73L');
 </script>
@@ -1133,7 +1133,7 @@ def render_news_article(item):
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-CMLXVYL73L"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
+  function gtag(){{dataLayer.push(arguments);}}
   gtag('js', new Date());
   gtag('config', 'G-CMLXVYL73L');
 </script>
@@ -1251,7 +1251,7 @@ def render_news_hub(items):
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-CMLXVYL73L"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
+  function gtag(){{dataLayer.push(arguments);}}
   gtag('js', new Date());
   gtag('config', 'G-CMLXVYL73L');
 </script>
