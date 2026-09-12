@@ -758,6 +758,7 @@ def render_sitemap(meds):
         (SITE_URL + "/magic-mouthwash-compounding-detroit", today, "0.8"),
         (SITE_URL + "/caregiver-prescription-delivery-detroit", today, "0.8"),
         (SITE_URL + "/vaccination-clinics-detroit", today, "0.8"),
+        (SITE_URL + "/ai", today, "0.7"),
         (SITE_URL + "/blister-packaging-detroit", today, "0.7"),
         (SITE_URL + "/diabetic-supplies-detroit", today, "0.8"),
         (SITE_URL + "/insurance-detroit", today, "0.8"),
@@ -1698,6 +1699,31 @@ class Handler(SimpleHTTPRequestHandler):
                         "url": "https://fenkellrxpharmacy.com/api/hours",
                         "method": "GET",
                         "parameters": {"type":"object","properties":{}}
+                    },
+                    {
+                        "name": "get_services",
+                        "description": (
+                            "Get a full machine-readable JSON document of Fenkell Rx Pharmacy's services, "
+                            "accepted insurance plans, delivery area ZIP codes, and hours. "
+                            "Call this first to answer questions like 'Does Fenkell Rx accept Medicare?' or "
+                            "'Does Fenkell Rx compound medications?' without asking the patient for personal information."
+                        ),
+                        "url": "https://fenkellrxpharmacy.com/api/services",
+                        "method": "GET",
+                        "parameters": {"type":"object","properties":{}}
+                    },
+                    {
+                        "name": "check_delivery_zip",
+                        "description": "Check whether a patient's ZIP code is in Fenkell Rx Pharmacy's free same-day delivery area. Call this before submitting a refill or transfer to confirm delivery is available.",
+                        "url": "https://fenkellrxpharmacy.com/api/check-delivery",
+                        "method": "GET",
+                        "parameters": {
+                            "type": "object",
+                            "required": ["zip"],
+                            "properties": {
+                                "zip": {"type":"string","description":"5-digit ZIP code to check"}
+                            }
+                        }
                     }
                 ]
             }
@@ -1764,6 +1790,54 @@ class Handler(SimpleHTTPRequestHandler):
             self.send_response(301)
             self.send_header("Location", "/refills")
             self.end_headers()
+        # ── Agent-tolerant URL redirects ──────────────────────────────────
+        elif path == "/vaccine" or path == "/vaccines":
+            self.send_response(301)
+            self.send_header("Location", "/vaccines-detroit")
+            self.end_headers()
+        elif path == "/flu-shots" or path == "/flu":
+            self.send_response(301)
+            self.send_header("Location", "/vaccines-detroit")
+            self.end_headers()
+        elif path == "/delivery":
+            self.send_response(301)
+            self.send_header("Location", "/free-prescription-delivery-detroit")
+            self.end_headers()
+        elif path == "/compounding":
+            self.send_response(301)
+            self.send_header("Location", "/compounding-pharmacy-detroit")
+            self.end_headers()
+        elif path == "/blister" or path == "/blister-packaging":
+            self.send_response(301)
+            self.send_header("Location", "/blister-packaging-detroit")
+            self.end_headers()
+        elif path == "/diabetic" or path == "/diabetic-supplies":
+            self.send_response(301)
+            self.send_header("Location", "/diabetic-supplies-detroit")
+            self.end_headers()
+        elif path == "/insurance":
+            self.send_response(301)
+            self.send_header("Location", "/insurance-detroit")
+            self.end_headers()
+        elif path == "/contact":
+            self.send_response(301)
+            self.send_header("Location", "/message")
+            self.end_headers()
+        elif path == "/magic-mouthwash" or path == "/mouthwash":
+            self.send_response(301)
+            self.send_header("Location", "/magic-mouthwash-compounding-detroit")
+            self.end_headers()
+        elif path == "/caregiver" or path == "/elderly-delivery":
+            self.send_response(301)
+            self.send_header("Location", "/caregiver-prescription-delivery-detroit")
+            self.end_headers()
+        elif path == "/vaccination-clinic" or path == "/clinic" or path == "/clinics":
+            self.send_response(301)
+            self.send_header("Location", "/vaccination-clinics-detroit")
+            self.end_headers()
+        # ─────────────────────────────────────────────────────────────────
+        elif path == "/ai":
+            self._serve_html_with_seo(os.path.join(BASE_DIR, "ai.html"))
         elif path == "/message":
             self._serve_html_with_seo(os.path.join(BASE_DIR, "message.html"))
         elif path == "/vaccines-detroit":
@@ -1848,6 +1922,107 @@ class Handler(SimpleHTTPRequestHandler):
             med_data = load_medications()
             meds = med_data.get("medications", [])
             self._respond(200, {"ok": True, "medications": meds})
+        elif path == "/api/services":
+            # Non-PHI machine-readable pharmacy capabilities for AI agents
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Cache-Control", "public, max-age=3600")
+            self.send_header("Access-Control-Allow-Origin", "*")
+            self.end_headers()
+            payload = {
+                "pharmacy": PHARMACY_NAME,
+                "address": PHARMACY_ADDR,
+                "phone": PHARMACY_PHONE,
+                "fax": "(313) 899-7389",
+                "email": "fenkellrxpharmacy@gmail.com",
+                "website": SITE_URL,
+                "services": {
+                    "prescription_refills": True,
+                    "prescription_transfers": {"available": True, "cost": "Free", "time": "~2 minutes to initiate"},
+                    "free_same_day_delivery": True,
+                    "blister_packaging": True,
+                    "compounding": {"available": True, "examples": ["magic mouthwash (diphenhydramine/lidocaine/Maalox)", "custom topicals", "specialty suspensions"]},
+                    "diabetic_supplies": {"available": True, "items": ["glucose meters", "test strips", "insulin", "CGM supplies"]},
+                    "vaccines": {"flu": True, "covid_19": True, "rsv": True, "shingles_shingrix": True, "walk_in": True, "appointment_required": False},
+                    "vaccination_clinics": {"available": True, "minimum_participants": 5, "insurance_billed_directly": True, "vaccines": ["flu", "covid_19"]},
+                    "online_doctor_visit": {"available": True, "url": f"{SITE_URL}/quickcare"},
+                    "medication_sync": True,
+                    "glp1_medications": {"available": True, "examples": ["Wegovy", "Zepbound", "Mounjaro", "Ozempic"]},
+                    "hard_to_find_medications": True
+                },
+                "insurance": {
+                    "medicare_part_d": True,
+                    "medicare_part_b_vaccines": True,
+                    "medicaid": True,
+                    "blue_cross_blue_shield": True,
+                    "aetna": True,
+                    "cigna": True,
+                    "united_healthcare": True,
+                    "humana": True,
+                    "most_major_plans": True
+                },
+                "delivery": {
+                    "available": True,
+                    "cost": "Free",
+                    "same_day": True,
+                    "service_area_zips": ["48223", "48224", "48227", "48228", "48235", "48239", "48240", "48076", "48075", "48034"],
+                    "service_areas": ["Northwest Detroit", "Redford Township", "Southfield"]
+                },
+                "hours": {
+                    "monday": "9:30 AM - 6:00 PM",
+                    "tuesday": "9:30 AM - 6:00 PM",
+                    "wednesday": "9:30 AM - 6:00 PM",
+                    "thursday": "9:30 AM - 6:00 PM",
+                    "friday": "9:30 AM - 6:00 PM",
+                    "saturday": "9:30 AM - 3:00 PM",
+                    "sunday": "Closed",
+                    "timezone": "America/Detroit"
+                },
+                "ai_agent_integration": {
+                    "openapi_spec": f"{SITE_URL}/openapi.json",
+                    "mcp_manifest": f"{SITE_URL}/.well-known/mcp.json",
+                    "ai_plugin_manifest": f"{SITE_URL}/.well-known/ai-plugin.json",
+                    "agent_info_page": f"{SITE_URL}/ai",
+                    "callable_actions": [
+                        {"action": "submit_refill", "endpoint": "/api/refill", "method": "POST"},
+                        {"action": "submit_transfer", "endpoint": "/api/transfer", "method": "POST"},
+                        {"action": "get_hours", "endpoint": "/api/hours", "method": "GET"},
+                        {"action": "get_services", "endpoint": "/api/services", "method": "GET"},
+                        {"action": "check_delivery_zip", "endpoint": "/api/check-delivery", "method": "GET", "params": {"zip": "string"}}
+                    ]
+                }
+            }
+            self.wfile.write(json.dumps(payload, indent=2).encode())
+
+        elif path.startswith("/api/check-delivery"):
+            # Check if a ZIP code is in our delivery area
+            qs = parse_qs(urlparse(self.path).query)
+            zip_code = qs.get("zip", [""])[0].strip().replace("-", "")[:5]
+            delivery_zips = {
+                "48223": "Northwest Detroit",
+                "48224": "East English Village / NE Detroit",
+                "48227": "Old Redford / Brightmoor",
+                "48228": "Warrendale / West Detroit",
+                "48235": "Greenfield Village / Detroit",
+                "48239": "Redford Township",
+                "48240": "Redford Township",
+                "48076": "Southfield",
+                "48075": "Southfield",
+                "48034": "Southfield",
+            }
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Cache-Control", "public, max-age=86400")
+            self.send_header("Access-Control-Allow-Origin", "*")
+            self.end_headers()
+            if not zip_code:
+                payload = {"ok": False, "error": "Missing zip parameter. Usage: /api/check-delivery?zip=48223"}
+            elif zip_code in delivery_zips:
+                payload = {"ok": True, "zip": zip_code, "delivery_available": True, "area": delivery_zips[zip_code], "cost": "Free", "same_day": True}
+            else:
+                payload = {"ok": True, "zip": zip_code, "delivery_available": False, "message": f"ZIP {zip_code} is outside our current free delivery area. Please call (313) 519-5700 to confirm — we occasionally deliver to nearby areas."}
+            self.wfile.write(json.dumps(payload).encode())
+
         elif path == "/health":
             self._respond(200, {
                 "ok": True,

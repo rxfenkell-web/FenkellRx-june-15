@@ -43,6 +43,9 @@ Fenkell Rx Pharmacy supports AI agents that want to take action on behalf of pat
 | Submit refill request | /api/refill | POST | Request a prescription refill |
 | Submit transfer request | /api/transfer | POST | Request pharmacy transfer from current pharmacy |
 | Get hours + open status | /api/hours | GET | Current hours and real-time open/closed status |
+| Get services + capabilities | /api/services | GET | Full JSON of services, insurance, delivery area ZIPs |
+| Check delivery by ZIP | /api/check-delivery?zip=XXXXX | GET | Check if a ZIP code is in the free delivery area |
+| Agent information page | /ai | GET | Human + machine readable guide to AI agent integration |
 
 ### Agent Instructions
 

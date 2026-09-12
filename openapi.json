@@ -111,6 +111,62 @@
         }
       }
     },
+    "/api/services": {
+      "get": {
+        "operationId": "getServices",
+        "summary": "Get pharmacy services and capabilities",
+        "description": "Returns a machine-readable JSON document describing all Fenkell Rx Pharmacy services, accepted insurance plans, delivery area ZIP codes, hours, and links to other AI agent integration endpoints. Use this to quickly answer questions like 'Does Fenkell Rx accept Medicare?' or 'Does Fenkell Rx deliver to my ZIP?' before asking the user for personal information.",
+        "responses": {
+          "200": {
+            "description": "Pharmacy capabilities",
+            "content": {
+              "application/json": {
+                "example": {
+                  "pharmacy": "Fenkell Rx Pharmacy",
+                  "services": { "free_same_day_delivery": true, "compounding": { "available": true }, "vaccines": { "flu": true, "covid_19": true, "walk_in": true } },
+                  "insurance": { "medicare_part_d": true, "medicaid": true, "blue_cross_blue_shield": true },
+                  "delivery": { "cost": "Free", "same_day": true, "service_area_zips": ["48223", "48239", "48076"] }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/check-delivery": {
+      "get": {
+        "operationId": "checkDelivery",
+        "summary": "Check if a ZIP code is in the free delivery area",
+        "description": "Check whether a given ZIP code is within Fenkell Rx Pharmacy's free same-day delivery area. Call this before submitting a refill or transfer to confirm delivery is available for the patient.",
+        "parameters": [
+          {
+            "name": "zip",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "5-digit ZIP code to check",
+            "example": "48223"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delivery availability for the ZIP code",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "in_area": {
+                    "value": { "ok": true, "zip": "48223", "delivery_available": true, "area": "Northwest Detroit", "cost": "Free", "same_day": true }
+                  },
+                  "out_of_area": {
+                    "value": { "ok": true, "zip": "48201", "delivery_available": false, "message": "ZIP 48201 is outside our current free delivery area. Please call (313) 519-5700 to confirm." }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/hours": {
       "get": {
         "operationId": "getHours",

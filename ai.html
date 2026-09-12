@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CMLXVYL73L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-CMLXVYL73L');
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For AI Assistants &amp; Patients Using AI | Fenkell Rx Pharmacy Detroit</title>
+<meta name="description" content="If you're using ChatGPT, Claude, or another AI assistant to manage your prescriptions, this page explains exactly what Fenkell Rx Pharmacy can do for you — and what the AI needs from you to help.">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://fenkellrxpharmacy.com/ai">
+<meta property="og:title" content="For AI Assistants | Fenkell Rx Pharmacy">
+<meta property="og:description" content="What AI assistants like ChatGPT and Claude can do at Fenkell Rx Pharmacy in Detroit — and what information they need from you.">
+<meta property="og:url" content="https://fenkellrxpharmacy.com/ai">
+<meta property="og:type" content="website">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can an AI assistant submit a prescription refill at Fenkell Rx Pharmacy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. AI assistants like ChatGPT or Claude can submit a refill request to Fenkell Rx Pharmacy using our structured API. The AI will need your first name, last name, date of birth, phone number, and Rx number or medication name. All submissions are requests only — not prescriptions or guarantees of fulfillment. The pharmacy will contact you when your medication is ready."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can an AI assistant transfer my prescription to Fenkell Rx?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. An AI assistant can submit a transfer request on your behalf. It will need your name, date of birth, phone number, and the name and phone number of your current pharmacy. Fenkell Rx will contact your current pharmacy to complete the transfer at no cost to you."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can an AI assistant check if Fenkell Rx Pharmacy is open right now?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. AI assistants can call our /api/hours endpoint to get real-time open/closed status for Fenkell Rx Pharmacy, based on Detroit (Eastern) time and our current hours: Monday–Friday 9:30 AM–6:00 PM, Saturday 9:30 AM–3:00 PM, Sunday Closed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can an AI assistant check if Fenkell Rx delivers to my ZIP code?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. AI assistants can call /api/check-delivery?zip=XXXXX to check whether your ZIP code is in our free same-day delivery area. We currently serve 48223, 48224, 48227, 48228, 48235, 48239, 48240, 48076, 48075, and 48034."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Pharmacy",
+  "name": "Fenkell Rx Pharmacy",
+  "url": "https://fenkellrxpharmacy.com",
+  "telephone": "+13135195700",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "18360 Fenkell Ave",
+    "addressLocality": "Detroit",
+    "addressRegion": "MI",
+    "postalCode": "48223",
+    "addressCountry": "US"
+  }
+}
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --navy:#0D1B2A;--navy-mid:#1A2F45;
+  --red:#CC001C;--red-dark:#A50016;--red-light:#FCE8EB;
+  --blue:#00AEEF;--blue-dark:#005B8E;--blue-light:#E6F7FD;
+  --cream:#F8F5F0;--cream-dark:#F0EBE1;
+  --border:#E2E8F0;--text-light:#6B7280;--text-mid:#374151;
+  --green:#059669;--green-light:#ECFDF5;
+}
+body{font-family:'DM Sans',-apple-system,'Segoe UI',Roboto,Arial,sans-serif;color:var(--navy);background:#fff;line-height:1.6;}
+a{text-decoration:none;color:inherit;}
+img{display:block;max-width:100%;}
+
+/* ACC BAR */
+.acc-bar{background:var(--navy);max-height:60px;overflow:hidden;}
+.acc-bar-panel{max-width:1340px;margin:0 auto;padding:9px 2rem;display:flex;align-items:center;justify-content:center;}
+.acc-bar-item{display:flex;align-items:center;gap:7px;white-space:nowrap;padding:0 1.5rem;font-size:13px;color:rgba(255,255,255,0.9);}
+.acc-bar-item+.acc-bar-item{border-left:1px solid rgba(255,255,255,0.25);}
+.acc-bar-item a{color:rgba(255,255,255,0.9);}
+@media(max-width:768px){.acc-bar{max-height:100px;}.acc-bar-panel{flex-direction:column;gap:4px;padding:8px 1rem;}.acc-bar-item{padding:0;font-size:12px;border-left:none !important;}}
+
+/* NAV */
+nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 1px 8px rgba(0,0,0,0.06);}
+.nav-inner{max-width:1340px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;height:70px;gap:0;}
+.nav-logo img{height:56px;width:auto;}
+.nav-logo-fallback{display:none;flex-direction:column;line-height:1.1;}
+.nav-logo-top{font-size:22px;font-weight:900;letter-spacing:-0.5px;color:var(--navy);}
+.nav-logo-top span{color:var(--red);}
+.nav-logo-bot{font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-light);}
+.nav-links{list-style:none;display:flex;align-items:center;gap:4px;flex:1;margin-left:24px;}
+.nav-links a{font-size:13px;font-weight:600;color:var(--navy);padding:6px 10px;border-radius:6px;transition:color 0.15s,background 0.15s;white-space:nowrap;}
+.nav-links a:hover{color:var(--red);background:var(--red-light);}
+.nav-cta{margin-left:auto;background:var(--red);color:#fff;font-size:13px;font-weight:800;padding:10px 20px;border-radius:8px;white-space:nowrap;display:flex;align-items:center;gap:8px;transition:background 0.2s;}
+.nav-cta:hover{background:var(--red-dark);color:#fff;}
+.nav-hamburger{display:none;background:none;border:none;cursor:pointer;padding:6px;border-radius:6px;flex-shrink:0;}
+.nav-hamburger svg{width:22px;height:22px;stroke:var(--navy);stroke-width:2;display:block;}
+.nav-mobile-menu{display:none;background:#fff;border-top:1px solid var(--border);box-shadow:0 8px 24px rgba(0,0,0,0.1);}
+.nav-mobile-menu.open{display:block;}
+.nav-mobile-menu a{display:block;padding:14px 24px;font-size:15px;font-weight:600;color:var(--navy);border-bottom:1px solid #f0f0f0;}
+.nav-mobile-menu a:hover{background:var(--red-light);color:var(--red);}
+.nav-mobile-menu .nav-m-cta{background:var(--red);color:#fff !important;margin:12px 16px 16px;border-radius:8px;text-align:center;border-bottom:none !important;}
+@media(max-width:768px){.nav-links{display:none;}.nav-hamburger{display:flex;align-items:center;margin-left:auto;}.nav-cta{display:none;}.nav-logo img{height:44px !important;}}
+
+/* PAGE LAYOUT */
+.page-hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);color:#fff;padding:52px 0 48px;}
+.page-hero-inner{max-width:900px;margin:0 auto;padding:0 2rem;}
+.page-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue);margin-bottom:16px;background:rgba(0,174,239,0.12);padding:6px 14px;border-radius:999px;}
+.page-hero h1{font-size:clamp(26px,4vw,40px);line-height:1.15;letter-spacing:-0.5px;margin-bottom:14px;}
+.page-hero-sub{font-size:16px;color:rgba(255,255,255,0.75);max-width:600px;line-height:1.65;}
+
+/* MAIN CONTENT */
+.main-wrap{max-width:900px;margin:0 auto;padding:48px 2rem 64px;}
+.section{margin-bottom:40px;}
+.section-title{font-size:20px;font-weight:800;color:var(--navy);margin-bottom:20px;padding-bottom:12px;border-bottom:2px solid var(--border);}
+
+/* ACTION CARDS */
+.action-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:12px;}
+.action-card{background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:20px 22px;transition:border-color 0.2s,box-shadow 0.2s;}
+.action-card:hover{border-color:var(--blue);box-shadow:0 6px 20px rgba(0,174,239,0.12);}
+.action-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;}
+.action-icon svg{width:20px;height:20px;}
+.action-icon.blue{background:var(--blue-light);}
+.action-icon.blue svg{stroke:var(--blue-dark);}
+.action-icon.green{background:var(--green-light);}
+.action-icon.green svg{stroke:var(--green);}
+.action-card h3{font-size:15px;font-weight:800;color:var(--navy);margin-bottom:6px;}
+.action-card p{font-size:13.5px;color:var(--text-mid);line-height:1.55;}
+.action-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:3px 10px;border-radius:999px;margin-top:10px;}
+.action-tag.can{background:var(--green-light);color:var(--green);}
+.action-tag.cannot{background:#FEF2F2;color:#DC2626;}
+
+/* WHAT AI NEEDS */
+.needs-list{display:grid;gap:10px;}
+.need-row{display:flex;align-items:flex-start;gap:12px;background:var(--cream);border-radius:10px;padding:14px 16px;}
+.need-num{width:26px;height:26px;border-radius:50%;background:var(--navy);color:#fff;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.need-label{font-size:14.5px;color:var(--text-mid);line-height:1.5;}
+.need-label strong{color:var(--navy);}
+.need-label em{font-size:12.5px;font-style:normal;color:var(--text-light);display:block;margin-top:2px;}
+
+/* DEVELOPER RESOURCES */
+.resource-table{width:100%;border-collapse:collapse;font-size:14px;}
+.resource-table th{background:var(--cream);font-weight:700;text-align:left;padding:10px 14px;border:1px solid var(--border);color:var(--text-mid);font-size:12px;text-transform:uppercase;letter-spacing:0.06em;}
+.resource-table td{padding:10px 14px;border:1px solid var(--border);color:var(--text-mid);}
+.resource-table tr:hover td{background:#fafafa;}
+.resource-table td a{color:var(--blue-dark);font-weight:600;word-break:break-all;}
+.resource-table td a:hover{text-decoration:underline;}
+.method-pill{display:inline-block;font-size:11px;font-weight:800;padding:2px 8px;border-radius:4px;letter-spacing:0.05em;}
+.method-get{background:#DCFCE7;color:#166534;}
+.method-post{background:#DBEAFE;color:#1E40AF;}
+
+/* IMPORTANT BOX */
+.important-box{background:var(--blue-light);border:1.5px solid rgba(0,174,239,0.3);border-radius:12px;padding:20px 22px;margin:24px 0;}
+.important-box h4{font-size:14px;font-weight:800;color:var(--blue-dark);margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+.important-box p{font-size:13.5px;color:var(--text-mid);line-height:1.6;}
+
+.privacy-box{background:var(--cream);border-radius:12px;padding:20px 22px;margin:24px 0;}
+.privacy-box h4{font-size:14px;font-weight:800;color:var(--navy);margin-bottom:8px;}
+.privacy-box p{font-size:13.5px;color:var(--text-mid);line-height:1.6;}
+
+/* CTA STRIP */
+.cta-strip{background:var(--navy);border-radius:16px;padding:32px 36px;margin-top:48px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+.cta-strip-text h3{font-size:20px;font-weight:800;color:#fff;margin-bottom:6px;}
+.cta-strip-text p{font-size:14px;color:rgba(255,255,255,0.65);}
+.cta-strip-btns{display:flex;gap:12px;flex-shrink:0;flex-wrap:wrap;}
+.btn-red{background:var(--red);color:#fff;font-size:14px;font-weight:800;padding:12px 22px;border-radius:8px;display:inline-flex;align-items:center;gap:8px;transition:background 0.2s;white-space:nowrap;}
+.btn-red:hover{background:var(--red-dark);}
+.btn-outline{background:transparent;color:#fff;font-size:14px;font-weight:700;padding:11px 22px;border-radius:8px;border:2px solid rgba(255,255,255,0.35);display:inline-flex;align-items:center;gap:8px;transition:border-color 0.2s;white-space:nowrap;}
+.btn-outline:hover{border-color:#fff;}
+
+/* FOOTER */
+.site-footer{background:var(--navy);color:rgba(255,255,255,0.7);margin-top:0;}
+.sf-bottom{border-top:1px solid rgba(255,255,255,0.08);background:rgba(0,0,0,0.15);}
+.sf-bottom-inner{max-width:1340px;margin:0 auto;padding:18px 2rem;display:flex;flex-direction:column;gap:5px;}
+.sf-bottom-address{font-size:12.5px;font-weight:600;color:rgba(255,255,255,0.7);}
+.sf-bottom-address a{color:var(--blue);text-decoration:none;}
+.sf-bottom-copy{font-size:11px;color:rgba(255,255,255,0.35);}
+</style>
+</head>
+<body>
+
+<!-- ACC BAR -->
+<div class="acc-bar">
+  <div class="acc-bar-panel">
+    <div class="acc-bar-item">18360 Fenkell Ave, Detroit, MI 48223</div>
+    <div class="acc-bar-item"><a href="tel:3135195700">(313) 519-5700</a></div>
+    <div class="acc-bar-item">Mon–Fri 9:30 AM–6:00 PM &middot; Sat 9:30 AM–3:00 PM</div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="https://fenkellrxpharmacy.com" class="nav-logo">
+      <img src="/logo.png" alt="Fenkell Rx Pharmacy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="nav-logo-fallback">
+        <div class="nav-logo-top">FENKELL <span>Rx</span></div>
+        <div class="nav-logo-bot">Pharmacy</div>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/#services">Services</a></li>
+      <li><a href="/refills">Refills</a></li>
+      <li><a href="/vaccines-detroit">Vaccines</a></li>
+      <li><a href="/availability">Meds In Stock</a></li>
+      <li><a href="/insurance-detroit">Insurance</a></li>
+      <li><a href="/#location">Hours &amp; Location</a></li>
+    </ul>
+    <a href="/transfer" class="nav-cta">Switch My Pharmacy</a>
+    <button class="nav-hamburger" aria-label="Open menu" onclick="this.parentNode.parentNode.querySelector('.nav-mobile-menu').classList.toggle('open')">
+      <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+  </div>
+  <div class="nav-mobile-menu">
+    <a href="/#services">Services</a>
+    <a href="/refills">Refills</a>
+    <a href="/vaccines-detroit">Vaccines</a>
+    <a href="/availability">Meds In Stock</a>
+    <a href="/insurance-detroit">Insurance</a>
+    <a href="/#location">Hours &amp; Location</a>
+    <a href="/transfer" class="nav-m-cta">Switch My Pharmacy &rarr;</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-eyebrow">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+      AI Agent Information
+    </div>
+    <h1>What AI Assistants Can Do at Fenkell Rx Pharmacy</h1>
+    <p class="page-hero-sub">If you're using ChatGPT, Claude, or another AI assistant to help manage your prescriptions, this page explains exactly what actions they can take on your behalf — and what information they'll need from you.</p>
+  </div>
+</section>
+
+<!-- MAIN -->
+<div class="main-wrap">
+
+  <!-- WHAT AI CAN DO -->
+  <div class="section">
+    <div class="section-title">Actions AI Assistants Can Take</div>
+    <div class="action-grid">
+      <div class="action-card">
+        <div class="action-icon blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414A1 1 0 0119 9.414V19a2 2 0 01-2 2z"/></svg>
+        </div>
+        <h3>Request a Prescription Refill</h3>
+        <p>Your AI assistant can submit a refill request directly to our pharmacy. We'll process it and call you when it's ready.</p>
+        <span class="action-tag can">Available</span>
+      </div>
+      <div class="action-card">
+        <div class="action-icon blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
+        </div>
+        <h3>Transfer Your Prescription</h3>
+        <p>Your AI assistant can initiate a transfer of your prescriptions from any other pharmacy to Fenkell Rx. Free, takes about 2 minutes to initiate.</p>
+        <span class="action-tag can">Available</span>
+      </div>
+      <div class="action-card">
+        <div class="action-icon green">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3>Check If We're Open Right Now</h3>
+        <p>Your AI assistant can check our real-time open/closed status based on Detroit time — including holidays and Saturday hours.</p>
+        <span class="action-tag can">Available</span>
+      </div>
+      <div class="action-card">
+        <div class="action-icon green">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <h3>Check Delivery to Your ZIP Code</h3>
+        <p>Your AI assistant can check whether your ZIP code is within our free same-day delivery area before you initiate a refill or transfer.</p>
+        <span class="action-tag can">Available</span>
+      </div>
+    </div>
+
+    <div class="important-box">
+      <h4>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        Important: Requests Only
+      </h4>
+      <p>All submissions made by AI assistants are <strong>requests only</strong> — not prescriptions, medical orders, or guarantees of fulfillment. A valid prescription from a licensed provider is required for all prescription medications. The pharmacy will contact you by phone when your medication or transfer is ready.</p>
+    </div>
+  </div>
+
+  <!-- WHAT AI NEEDS -->
+  <div class="section">
+    <div class="section-title">What Your AI Assistant Will Need From You</div>
+    <div class="needs-list">
+      <div class="need-row">
+        <div class="need-num">1</div>
+        <div class="need-label"><strong>Your full name</strong> (first and last)<em>This is how we look up your profile in our system.</em></div>
+      </div>
+      <div class="need-row">
+        <div class="need-num">2</div>
+        <div class="need-label"><strong>Your date of birth</strong><em>Required for all prescription-related requests for patient verification.</em></div>
+      </div>
+      <div class="need-row">
+        <div class="need-num">3</div>
+        <div class="need-label"><strong>Your phone number</strong><em>So we can call you when your medication is ready, or if we have questions.</em></div>
+      </div>
+      <div class="need-row">
+        <div class="need-num">4</div>
+        <div class="need-label"><strong>Rx number or medication name</strong> (for refills)<em>Your Rx number is on your prescription bottle. If you don't have it, the medication name is fine.</em></div>
+      </div>
+      <div class="need-row">
+        <div class="need-num">5</div>
+        <div class="need-label"><strong>Current pharmacy name and phone number</strong> (for transfers only)<em>We'll contact them directly to complete the transfer — you won't need to do anything else.</em></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRIVACY -->
+  <div class="section">
+    <div class="section-title">Privacy &amp; Data Handling</div>
+    <div class="privacy-box">
+      <h4>Your information is handled only by Fenkell Rx Pharmacy staff.</h4>
+      <p>When your AI assistant submits a request, the information (name, date of birth, phone number, Rx number) is transmitted securely over HTTPS directly to Fenkell Rx Pharmacy. It is not stored by the AI assistant and is not shared with any third party. We handle your information in accordance with HIPAA and applicable Michigan pharmacy regulations.</p>
+    </div>
+  </div>
+
+  <!-- DEVELOPER RESOURCES -->
+  <div class="section">
+    <div class="section-title">Developer &amp; AI Agent Resources</div>
+    <p style="font-size:14px;color:var(--text-mid);margin-bottom:20px;line-height:1.6;">If you're building an AI agent, chatbot, or automation that needs to interact with Fenkell Rx Pharmacy, the following machine-readable resources are available. No authentication is required for patient-facing actions.</p>
+    <div style="overflow-x:auto;">
+      <table class="resource-table">
+        <thead>
+          <tr>
+            <th>Resource</th>
+            <th>Method</th>
+            <th>URL</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>OpenAPI Spec</td>
+            <td><span class="method-pill method-get">GET</span></td>
+            <td><a href="/openapi.json">/openapi.json</a></td>
+            <td>Full API schema (OpenAPI 3.1.0)</td>
+          </tr>
+          <tr>
+            <td>MCP Manifest</td>
+            <td><span class="method-pill method-get">GET</span></td>
+            <td><a href="/.well-known/mcp.json">/.well-known/mcp.json</a></td>
+            <td>WebMCP tool definitions</td>
+          </tr>
+          <tr>
+            <td>AI Plugin Manifest</td>
+            <td><span class="method-pill method-get">GET</span></td>
+            <td><a href="/.well-known/ai-plugin.json">/.well-known/ai-plugin.json</a></td>
+            <td>ChatGPT plugin discovery</td>
+          </tr>
+          <tr>
+            <td>Pharmacy Services</td>
+            <td><span class="method-pill method-get">GET</span></td>
+            <td><a href="/api/services">/api/services</a></td>
+            <td>Machine-readable service &amp; insurance catalog</td>
+          </tr>
+          <tr>
+            <td>Hours &amp; Status</td>
+            <td><span class="method-pill method-get">GET</span></td>
+            <td><a href="/api/hours">/api/hours</a></td>
+            <td>Real-time open/closed status</td>
+          </tr>
+          <tr>
+            <td>Delivery ZIP Check</td>
+            <td><span class="method-pill method-get">GET</span></td>
+            <td><a href="/api/check-delivery?zip=48223">/api/check-delivery?zip=48223</a></td>
+            <td>Check if a ZIP is in the delivery area</td>
+          </tr>
+          <tr>
+            <td>Submit Refill</td>
+            <td><span class="method-pill method-post">POST</span></td>
+            <td>/api/refill</td>
+            <td>Submit a prescription refill request</td>
+          </tr>
+          <tr>
+            <td>Submit Transfer</td>
+            <td><span class="method-pill method-post">POST</span></td>
+            <td>/api/transfer</td>
+            <td>Submit a prescription transfer request</td>
+          </tr>
+          <tr>
+            <td>LLM Text Index</td>
+            <td><span class="method-pill method-get">GET</span></td>
+            <td><a href="/llms.txt">/llms.txt</a></td>
+            <td>Plain-text summary for LLMs and crawlers</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:12px;color:var(--text-light);margin-top:12px;line-height:1.6;">All endpoints support CORS (<code>Access-Control-Allow-Origin: *</code>). Include <code>"agent_source": "ai-agent"</code> in POST request bodies so our pharmacy team knows the submission came from an AI assistant. Always confirm with the patient before submitting any request on their behalf.</p>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-strip">
+    <div class="cta-strip-text">
+      <h3>Questions? Talk to a real pharmacist.</h3>
+      <p>We are an independent pharmacy at 18360 Fenkell Ave, Detroit, MI 48223. Real answers, no hold music.</p>
+    </div>
+    <div class="cta-strip-btns">
+      <a class="btn-red" href="tel:3135195700">(313) 519-5700</a>
+      <a class="btn-outline" href="/refills">Request a Refill</a>
+      <a class="btn-outline" href="/transfer">Transfer My Prescription</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="sf-bottom">
+    <div class="sf-bottom-inner">
+      <p class="sf-bottom-address">Fenkell Rx Pharmacy &nbsp;&middot;&nbsp; 18360 Fenkell Ave, Detroit, MI 48223 &nbsp;&middot;&nbsp; Phone: <a href="tel:3135195700">(313) 519-5700</a> &nbsp;&middot;&nbsp; Fax: (313) 899-7389</p>
+      <p class="sf-bottom-copy">&copy; 2026 Fenkell Rx Pharmacy. All rights reserved. Licensed by the Michigan Board of Pharmacy.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
